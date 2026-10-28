@@ -1,0 +1,8 @@
+# Deny direct access to all JSON data files from web browsers
+<Files "*.json">
+    Require all denied
+</Files>
+<Files ~ "\.(json|lock|bak)$">
+    Order allow,deny
+    Deny from all
+</Files>
