@@ -1,5 +1,5 @@
 <?php
-// index.php - Massaji Spa Bali (Royal Blue Zen Aesthetic)
+// index.php - Massaji Spa Bali (Royal Blue Zen Aesthetic with Bilingual ID/EN Support)
 $settings_file = __DIR__ . '/data/settings.json';
 $promo_file    = __DIR__ . '/data/promo.json';
 $menu_file     = __DIR__ . '/data/menu.json';
@@ -37,12 +37,12 @@ if (substr($clean_wa, 0, 1) === '0') $clean_wa = '62' . substr($clean_wa, 1);
 $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $settings['site_name'] . ", saya ingin bertanya ketersediaan jadwal perawatan spa.");
 ?>
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo htmlspecialchars($settings['site_name']); ?> - <?php echo htmlspecialchars($settings['tagline']); ?></title>
-  <meta name="description" content="Massaji Spa Bali di Canggu & Kerobokan. Pijat tradisional Bali, Boreh herbal spa, Deep tissue, dan Facial Pevonia dengan nuansa biru zen yang damai.">
+  <meta name="description" content="Massaji Spa Bali in Canggu & Kerobokan. Authentic Balinese massage, herbal Boreh therapy, deep tissue, and Pevonia facials.">
   
   <!-- Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +83,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
   <!-- TOP PROMO BANNER (IF ACTIVE) -->
   <!-- ========================================== -->
   <?php if (!empty($promo['active'])): ?>
-    <div class="bg-gradient-to-r from-brand-navy via-brand-royal to-brand-navy text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide flex items-center justify-center gap-2 relative z-50 shadow-sm">
+    <div class="bg-gradient-to-r from-brand-navy via-brand-royal to-brand-navy text-white py-2 px-4 text-center text-xs sm:text-sm font-medium tracking-wide flex items-center justify-center gap-2 relative z-50 shadow-sm">
       <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-[11px] font-bold uppercase tracking-wider"><?php echo htmlspecialchars($promo['badge'] ?? 'Promotion'); ?></span>
       <span><strong><?php echo htmlspecialchars($promo['title'] ?? ''); ?></strong> — <?php echo htmlspecialchars($promo['description'] ?? ''); ?></span>
       <?php if (!empty($promo['code'])): ?>
@@ -102,11 +102,8 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
       <!-- Brand Logo (Enso Zen Blue Style) -->
       <a href="index.php" class="flex items-center gap-3.5 group">
         <div class="w-12 h-12 rounded-full border-2 border-brand-royal flex items-center justify-center bg-blue-50/50 shadow-inner group-hover:scale-105 transition duration-300 relative">
-          <!-- Zen Enso & Meditating Silhouette -->
           <svg class="w-8 h-8 text-brand-royal" viewBox="0 0 100 100" fill="currentColor">
-            <!-- Stylized Brush Enso Ring -->
             <path d="M50 8 A42 42 0 1 0 88 65 A38 38 0 1 1 50 14 Z" opacity="0.85" />
-            <!-- Meditating Figure -->
             <circle cx="50" cy="42" r="6" />
             <path d="M43 51 C40 54 36 62 33 67 C39 67 44 64 50 64 C56 64 61 67 67 67 C64 62 60 54 57 51 C55 49 45 49 43 51 Z" />
             <path d="M30 68 C35 69 45 68 50 71 C55 68 65 69 70 68 C71 70 67 73 50 73 C33 73 29 70 30 68 Z" />
@@ -120,24 +117,31 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600">
-        <a href="#about" class="hover:text-brand-royal transition">Tentang Kami</a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="#about" class="hover:text-brand-royal transition" data-i18n="nav_about">Tentang Kami</a>
         <a href="#promotion" class="hover:text-brand-royal text-brand-royal font-bold flex items-center gap-1.5 transition">
           <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-          Paket Promo
+          <span data-i18n="nav_promo">Paket Promo</span>
         </a>
-        <a href="#menu" class="hover:text-brand-royal transition">Menu & Harga</a>
-        <a href="#reviews" class="hover:text-brand-royal transition">Ulasan (4.8★)</a>
-        <a href="#contact" class="hover:text-brand-royal transition">Lokasi & Jam Buka</a>
+        <a href="#menu" class="hover:text-brand-royal transition" data-i18n="nav_menu">Menu & Harga</a>
+        <a href="#reviews" class="hover:text-brand-royal transition" data-i18n="nav_reviews">Ulasan (4.8★)</a>
+        <a href="#contact" class="hover:text-brand-royal transition" data-i18n="nav_contact">Lokasi & Jam Buka</a>
       </nav>
 
-      <!-- Header Actions -->
+      <!-- Header Actions (Bilingual Toggle + CTA) -->
       <div class="hidden sm:flex items-center gap-3.5">
-        <a href="<?php echo $wa_url; ?>" target="_blank" class="px-4 py-2 rounded-full border border-emerald-600/60 hover:border-emerald-500 text-emerald-700 hover:bg-emerald-50 text-xs font-bold tracking-wider uppercase flex items-center gap-2 transition duration-200">
+        
+        <!-- Language Switcher Toggle (ID / EN) -->
+        <div class="inline-flex items-center p-1 bg-slate-100 rounded-full border border-slate-200 text-[11px] font-bold">
+          <button class="lang-btn px-2.5 py-1 rounded-full transition" data-lang="id">ID</button>
+          <button class="lang-btn px-2.5 py-1 rounded-full transition bg-brand-royal text-white" data-lang="en">EN</button>
+        </div>
+
+        <a href="<?php echo $wa_url; ?>" target="_blank" class="px-3.5 py-2 rounded-full border border-emerald-600/60 hover:border-emerald-500 text-emerald-700 hover:bg-emerald-50 text-xs font-bold tracking-wider uppercase flex items-center gap-1.5 transition duration-200">
           <svg class="w-4 h-4 fill-current text-emerald-600" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           WhatsApp
         </a>
-        <button onclick="openBookingModal()" class="px-5 py-2.5 rounded-full bg-brand-royal hover:bg-brand-blue text-white font-semibold text-xs tracking-wider uppercase shadow-md shadow-blue-900/20 hover:shadow-lg transition duration-300">
+        <button onclick="openBookingModal()" class="px-5 py-2.5 rounded-full bg-brand-royal hover:bg-brand-blue text-white font-semibold text-xs tracking-wider uppercase shadow-md shadow-blue-900/20 hover:shadow-lg transition duration-300" data-i18n="nav_book">
           Reservasi Online
         </button>
       </div>
@@ -150,13 +154,22 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
 
     <!-- Mobile Dropdown Navigation -->
     <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl">
-      <a href="#about" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal">Tentang Kami</a>
-      <a href="#promotion" class="block text-sm font-bold text-brand-royal">Paket Promo Spesial</a>
-      <a href="#menu" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal">Menu & Harga Treatment</a>
-      <a href="#reviews" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal">Ulasan Tamu (4.8★)</a>
-      <a href="#contact" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal">Lokasi & Jam Buka</a>
+      <!-- Mobile Language Switcher -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <span class="text-xs font-bold text-slate-500 uppercase">Pilih Bahasa / Language:</span>
+        <div class="inline-flex items-center p-1 bg-slate-100 rounded-full border border-slate-200 text-xs font-bold">
+          <button class="lang-btn px-3 py-1 rounded-full transition" data-lang="id">ID</button>
+          <button class="lang-btn px-3 py-1 rounded-full transition bg-brand-royal text-white" data-lang="en">EN</button>
+        </div>
+      </div>
+
+      <a href="#about" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal" data-i18n="nav_about">Tentang Kami</a>
+      <a href="#promotion" class="block text-sm font-bold text-brand-royal" data-i18n="nav_promo">Paket Promo Spesial</a>
+      <a href="#menu" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal" data-i18n="nav_menu">Menu & Harga Treatment</a>
+      <a href="#reviews" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal" data-i18n="nav_reviews">Ulasan Tamu (4.8★)</a>
+      <a href="#contact" class="block text-sm font-semibold text-slate-700 hover:text-brand-royal" data-i18n="nav_contact">Lokasi & Jam Buka</a>
       <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
-        <button onclick="openBookingModal()" class="w-full py-3 rounded-xl bg-brand-royal text-white text-center font-bold text-xs tracking-wider uppercase shadow">
+        <button onclick="openBookingModal()" class="w-full py-3 rounded-xl bg-brand-royal text-white text-center font-bold text-xs tracking-wider uppercase shadow" data-i18n="nav_book">
           Reservasi Sekarang
         </button>
         <a href="<?php echo $wa_url; ?>" target="_blank" class="w-full py-2.5 rounded-xl border border-emerald-600 text-emerald-700 text-center font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2">
@@ -167,11 +180,9 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
   </header>
 
   <!-- ========================================== -->
-  <!-- HERO SECTION (ROYAL BLUE ZEN VIBE) -->
+  <!-- HERO SECTION -->
   <!-- ========================================== -->
-  <section class="relative min-h-[82vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-sky-50 via-white to-blue-50/50">
-    
-    <!-- Zen Atmosphere Gradients -->
+  <section class="relative min-h-[80vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-sky-50 via-white to-blue-50/50">
     <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-200/30 rounded-full blur-[140px] pointer-events-none"></div>
 
     <div class="relative max-w-4xl mx-auto text-center z-10">
@@ -179,26 +190,26 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
       <!-- Top Badge -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-brand-royal text-xs font-bold tracking-widest uppercase mb-8 shadow-sm">
         <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
-        Top Rated Spa in Canggu &bull; 4.8★ Google Reviews
+        <span data-i18n="hero_badge">Top Rated Spa in Canggu &bull; 4.8★ Google Reviews</span>
       </div>
 
       <!-- Main Headline -->
       <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-brand-navy tracking-tight leading-[1.12] mb-6">
-        Ketenteraman Sejati, <br>
-        <span class="italic font-normal text-brand-royal">Sentuhan Jiwa Tradisi Bali.</span>
+        <span data-i18n="hero_title_1">Ketenteraman Sejati,</span> <br>
+        <span class="italic font-normal text-brand-royal" data-i18n="hero_title_2">Sentuhan Jiwa Tradisi Bali.</span>
       </h1>
 
       <!-- Subheadline -->
-      <p class="max-w-2xl mx-auto text-slate-600 text-base sm:text-lg font-light leading-relaxed mb-10">
+      <p class="max-w-2xl mx-auto text-slate-600 text-base sm:text-lg font-light leading-relaxed mb-10" data-i18n="hero_sub">
         <?php echo htmlspecialchars($settings['subtagline']); ?>
       </p>
 
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-royal hover:bg-brand-blue text-white font-bold text-sm tracking-wider uppercase shadow-xl shadow-blue-900/20 hover:shadow-2xl transition duration-300">
+        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-royal hover:bg-brand-blue text-white font-bold text-sm tracking-wider uppercase shadow-xl shadow-blue-900/20 hover:shadow-2xl transition duration-300" data-i18n="hero_btn_book">
           Reservasi Jadwal Pijat
         </button>
-        <a href="#promotion" class="w-full sm:w-auto px-8 py-4 rounded-full border-2 border-brand-royal text-brand-royal hover:bg-blue-50 font-bold text-sm tracking-wider uppercase transition duration-300">
+        <a href="#promotion" class="w-full sm:w-auto px-8 py-4 rounded-full border-2 border-brand-royal text-brand-royal hover:bg-blue-50 font-bold text-sm tracking-wider uppercase transition duration-300" data-i18n="hero_btn_promo">
           Lihat Paket Promo
         </a>
       </div>
@@ -207,19 +218,19 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
       <div class="mt-16 pt-10 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
         <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
           <div class="text-brand-royal font-serif text-3xl font-bold">4.8 ★</div>
-          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">560+ Ulasan Tamu</div>
+          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold" data-i18n="stat_reviews">560+ Ulasan Tamu</div>
         </div>
         <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-brand-royal font-serif text-3xl font-bold">100% Murni</div>
-          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Boreh & Minyak Botani</div>
+          <div class="text-brand-royal font-serif text-3xl font-bold">100%</div>
+          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold" data-i18n="stat_pure">Boreh & Minyak Botani</div>
         </div>
         <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-brand-royal font-serif text-3xl font-bold">Tersertifikasi</div>
-          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Terapis Ahli & Ramah</div>
+          <div class="text-brand-royal font-serif text-3xl font-bold">Certified</div>
+          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold" data-i18n="stat_therapist">Terapis Ahli & Ramah</div>
         </div>
         <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-brand-royal font-serif text-3xl font-bold">Ruang Privat</div>
-          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">AC Dingin, Tenang & Higienis</div>
+          <div class="text-brand-royal font-serif text-3xl font-bold">Private Room</div>
+          <div class="text-[11px] text-slate-500 mt-1 uppercase tracking-wider font-semibold" data-i18n="stat_private">AC Dingin, Tenang & Higienis</div>
         </div>
       </div>
     </div>
@@ -230,18 +241,16 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
   <!-- ========================================== -->
   <section id="promotion" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     <div class="bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
-      
-      <!-- Subtle Decorative Elements -->
       <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
 
       <div class="text-center max-w-2xl mx-auto mb-10 relative z-10">
-        <span class="inline-block px-3.5 py-1 rounded-full bg-blue-800 text-sky-200 text-xs font-bold uppercase tracking-widest mb-3">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-blue-800 text-sky-200 text-xs font-bold uppercase tracking-widest mb-3" data-i18n="promo_badge">
           Special Deal &bull; Canggu Bali
         </span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-3">
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-3" data-i18n="promo_title">
           One Day Promotion Packages
         </h2>
-        <p class="text-sky-200/80 text-sm sm:text-base font-light">
+        <p class="text-sky-200/80 text-sm sm:text-base font-light" data-i18n="promo_desc">
           Penawaran istimewa untuk ritual perawatan lengkap dan paket pasangan (*couples*) di Massaji Spa Bali.
         </p>
       </div>
@@ -269,7 +278,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               Nett price : 750K
             </span>
             <button onclick="openBookingModal('1 pax Balinese Boreh Spa ~ Hydrating Facial (2.5 hours)')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-brand-royal text-brand-royal hover:text-white font-bold text-xs uppercase tracking-wider transition">
-              Pesan &rarr;
+              <span data-i18n="btn_book_card">Pesan</span> &rarr;
             </button>
           </div>
         </div>
@@ -296,7 +305,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               Nett price : 488K
             </span>
             <button onclick="openBookingModal('2 pax Massaji Signature (90 mins)')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-brand-royal text-brand-royal hover:text-white font-bold text-xs uppercase tracking-wider transition">
-              Pesan &rarr;
+              <span data-i18n="btn_book_card">Pesan</span> &rarr;
             </button>
           </div>
         </div>
@@ -323,7 +332,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               Nett price : 488K
             </span>
             <button onclick="openBookingModal('2 pax Balinese Massage (120 mins)')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-brand-royal text-brand-royal hover:text-white font-bold text-xs uppercase tracking-wider transition">
-              Pesan &rarr;
+              <span data-i18n="btn_book_card">Pesan</span> &rarr;
             </button>
           </div>
         </div>
@@ -341,34 +350,17 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-6 space-y-6">
-          <span class="text-xs font-bold tracking-widest text-brand-royal uppercase">Tentang Massaji Spa</span>
+          <span class="text-xs font-bold tracking-widest text-brand-royal uppercase" data-i18n="about_badge">Tentang Massaji Spa</span>
           <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900 leading-tight">
-            Sentuhan Kehangatan Bali <br>
-            <span class="italic text-brand-royal">dengan Kedamaian Pikiran.</span>
+            <span data-i18n="about_title_1">Sentuhan Kehangatan Bali</span> <br>
+            <span class="italic text-brand-royal" data-i18n="about_title_2">dengan Kedamaian Pikiran.</span>
           </h2>
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light" data-i18n="about_desc_1">
             Berlokasi di kawasan Kerobokan / Canggu yang tenang, <strong>Massaji Spa</strong> menghadirkan pengalaman spa profesional dengan standar kebersihan tinggi dan harga yang jujur dan terjangkau.
           </p>
-          <p class="text-slate-500 text-sm leading-relaxed font-light">
+          <p class="text-slate-500 text-sm leading-relaxed font-light" data-i18n="about_desc_2">
             Mulai dari tradisi rempah Boreh Bali yang menghangatkan persendian, Facial Pevonia yang menyegarkan wajah lelah, hingga pijat prenatal bersertifikat untuk ibu hamil—setiap terapis kami berdedikasi memberikan perawatan terbaik yang disesuaikan dengan kebutuhan Anda.
           </p>
-
-          <div class="pt-4 flex items-center gap-6">
-            <div>
-              <span class="block font-serif text-3xl font-bold text-brand-royal">4.8 ★</span>
-              <span class="text-xs text-slate-500 uppercase tracking-wider">Google Reviews</span>
-            </div>
-            <div class="h-10 w-px bg-slate-200"></div>
-            <div>
-              <span class="block font-serif text-3xl font-bold text-brand-royal">Rp 140K+</span>
-              <span class="text-xs text-slate-500 uppercase tracking-wider">Harga Terjangkau</span>
-            </div>
-            <div class="h-10 w-px bg-slate-200"></div>
-            <div>
-              <span class="block font-serif text-3xl font-bold text-brand-royal">100%</span>
-              <span class="text-xs text-slate-500 uppercase tracking-wider">Bahan Botani Murni</span>
-            </div>
-          </div>
         </div>
 
         <div class="lg:col-span-6">
@@ -421,29 +413,29 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
   <section id="menu" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
     <div class="text-center max-w-3xl mx-auto mb-14">
-      <span class="text-xs font-bold tracking-widest text-brand-royal uppercase">Katalog Lengkap</span>
-      <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900 mt-2 mb-4">
+      <span class="text-xs font-bold tracking-widest text-brand-royal uppercase" data-i18n="menu_badge">Katalog Lengkap</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900 mt-2 mb-4" data-i18n="menu_title">
         Daftar Menu & Tarif Layanan
       </h2>
-      <p class="text-slate-600 text-sm sm:text-base font-light">
+      <p class="text-slate-600 text-sm sm:text-base font-light" data-i18n="menu_desc">
         Harga transparan dan terjangkau di kawasan Canggu & Kerobokan.
       </p>
 
       <!-- Category Filter Tabs -->
       <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
         <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-brand-royal text-white border-brand-royal active shadow-sm" data-category="all">
-          Semua Layanan (<?php echo count($menu); ?>)
+          <span data-i18n="cat_all">Semua Layanan</span> (<?php echo count($menu); ?>)
         </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="packages">
+        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="packages" data-i18n="cat_packages">
           Paket Spa (Packages)
         </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="massage">
+        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="massage" data-i18n="cat_massage">
           Pijat Tradisional & Tubuh
         </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="beauty">
+        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="beauty" data-i18n="cat_beauty">
           Facial & Scrub
         </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="reflexology">
+        <button class="menu-filter-btn px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition border bg-white text-slate-700 border-slate-200 hover:border-brand-royal" data-category="reflexology" data-i18n="cat_reflexology">
           Reflexology
         </button>
       </div>
@@ -496,14 +488,14 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
           <!-- Bottom Price & Booking Button -->
           <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Tarif</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold" data-i18n="card_rate">Tarif</span>
               <span class="font-serif text-xl sm:text-2xl font-bold text-brand-navy font-mono">
                 Rp <?php echo number_format($item['price'], 0, ',', '.'); ?>
               </span>
             </div>
 
             <button onclick="openBookingModal('<?php echo htmlspecialchars(addslashes($item['name'])); ?>')" class="px-4 py-2 rounded-xl bg-blue-50 hover:bg-brand-royal text-brand-royal hover:text-white border border-blue-200 hover:border-brand-royal text-xs font-bold tracking-wider uppercase transition duration-200 flex items-center gap-1.5 shadow-sm">
-              <span>Pesan</span>
+              <span data-i18n="btn_book_card">Pesan</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
@@ -521,8 +513,8 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold tracking-widest text-brand-royal uppercase">Ulasan Pengunjung</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900 mt-2">
+        <span class="text-xs font-bold tracking-widest text-brand-royal uppercase" data-i18n="reviews_badge">Ulasan Pengunjung</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900 mt-2" data-i18n="reviews_title">
           Dipercaya Ribuan Pelancong di Bali
         </h2>
         <div class="flex items-center justify-center gap-2 mt-4">
@@ -594,11 +586,11 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
       <div class="lg:col-span-5 space-y-6">
-        <span class="text-xs font-bold tracking-widest text-brand-royal uppercase">Lokasi & Kontak</span>
-        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900">
+        <span class="text-xs font-bold tracking-widest text-brand-royal uppercase" data-i18n="contact_badge">Lokasi & Kontak</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-slate-900" data-i18n="contact_title">
           Kunjungi Massaji Spa
         </h2>
-        <p class="text-slate-600 text-sm font-light leading-relaxed">
+        <p class="text-slate-600 text-sm font-light leading-relaxed" data-i18n="contact_desc">
           Terletak di jalan utama Canggu / Kerobokan dengan parkir yang mudah dan akses cepat dari hotel & villa sekitar.
         </p>
 
@@ -608,9 +600,9 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             </div>
             <div>
-              <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider">Alamat</span>
+              <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider" data-i18n="contact_address">Alamat</span>
               <p class="text-xs sm:text-sm text-slate-600 mt-0.5"><?php echo htmlspecialchars($settings['address']); ?></p>
-              <a href="<?php echo htmlspecialchars($settings['google_maps_link']); ?>" target="_blank" class="text-xs text-brand-royal font-bold hover:underline mt-1.5 inline-block">
+              <a href="<?php echo htmlspecialchars($settings['google_maps_link']); ?>" target="_blank" class="text-xs text-brand-royal font-bold hover:underline mt-1.5 inline-block" data-i18n="contact_maps">
                 Buka di Google Maps &rarr;
               </a>
             </div>
@@ -621,7 +613,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <div>
-              <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider">Jam Operasional</span>
+              <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider" data-i18n="contact_hours">Jam Operasional</span>
               <p class="text-xs sm:text-sm text-slate-600 mt-0.5 font-semibold"><?php echo htmlspecialchars($settings['opening_hours']); ?></p>
             </div>
           </div>
@@ -631,7 +623,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
             </div>
             <div>
-              <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider">Hubungi Langsung</span>
+              <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider" data-i18n="contact_chat">Hubungi Langsung</span>
               <a href="<?php echo $wa_url; ?>" target="_blank" class="text-xs sm:text-sm text-emerald-700 font-bold hover:underline">
                 WhatsApp: +<?php echo htmlspecialchars($clean_wa); ?>
               </a>
@@ -680,10 +672,10 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
         <div>
           <h4 class="font-bold text-white uppercase tracking-wider text-xs mb-3">Tautan Cepat</h4>
           <ul class="space-y-2">
-            <li><a href="#about" class="hover:text-white transition">Tentang Kami</a></li>
-            <li><a href="#promotion" class="hover:text-white transition">Paket Promo</a></li>
-            <li><a href="#menu" class="hover:text-white transition">Daftar Menu</a></li>
-            <li><a href="#contact" class="hover:text-white transition">Lokasi & Jam Buka</a></li>
+            <li><a href="#about" class="hover:text-white transition" data-i18n="nav_about">Tentang Kami</a></li>
+            <li><a href="#promotion" class="hover:text-white transition" data-i18n="nav_promo">Paket Promo</a></li>
+            <li><a href="#menu" class="hover:text-white transition" data-i18n="nav_menu">Daftar Menu</a></li>
+            <li><a href="#contact" class="hover:text-white transition" data-i18n="nav_contact">Lokasi & Jam Buka</a></li>
           </ul>
         </div>
 
@@ -710,9 +702,9 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
   <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 flex items-center gap-2 shadow-2xl">
     <a href="<?php echo $wa_url; ?>" target="_blank" class="flex-1 py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 shadow">
       <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-      <span>Chat WA</span>
+      <span data-i18n="mobile_btn_wa">Chat WA</span>
     </a>
-    <button onclick="openBookingModal()" class="flex-1 py-3 px-3 rounded-xl bg-brand-royal text-white font-bold text-xs tracking-wider uppercase text-center shadow">
+    <button onclick="openBookingModal()" class="flex-1 py-3 px-3 rounded-xl bg-brand-royal text-white font-bold text-xs tracking-wider uppercase text-center shadow" data-i18n="mobile_btn_book">
       Pesan Sekarang
     </button>
   </div>
@@ -731,9 +723,9 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
       <!-- Booking Form View -->
       <div id="booking-form-container">
         <div class="mb-6">
-          <span class="text-[10px] font-bold tracking-widest text-brand-royal uppercase">Reservasi Langsung</span>
-          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Pesan Jadwal Perawatan</h3>
-          <p class="text-xs text-slate-500 mt-1">Rincian reservasi akan otomatis diteruskan ke email resepsionis dan WhatsApp.</p>
+          <span class="text-[10px] font-bold tracking-widest text-brand-royal uppercase" data-i18n="modal_badge">Reservasi Langsung</span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mt-1" data-i18n="modal_title">Pesan Jadwal Perawatan</h3>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="modal_sub">Rincian reservasi akan otomatis diteruskan ke email resepsionis dan WhatsApp.</p>
         </div>
 
         <div id="booking-error-msg" class="hidden mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs"></div>
@@ -741,26 +733,26 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
         <form id="booking-form" class="space-y-4">
           
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Nama Lengkap Tamu *</label>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_name">Nama Lengkap Tamu *</label>
             <input type="text" name="name" required placeholder="Contoh: Jessica Miller"
               class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:border-brand-royal focus:bg-white focus:outline-none">
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Nomor WhatsApp / HP *</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_phone">Nomor WhatsApp / HP *</label>
               <input type="tel" name="phone" required placeholder="Contoh: 0812-xxxx-xxxx"
                 class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:border-brand-royal focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Alamat Email</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_email">Alamat Email</label>
               <input type="email" name="email" placeholder="nama@email.com"
                 class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:border-brand-royal focus:bg-white focus:outline-none">
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Pilihan Layanan / Paket *</label>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_service">Pilihan Layanan / Paket *</label>
             <select id="booking-service" name="service" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-brand-royal focus:bg-white focus:outline-none">
               <?php foreach ($menu as $m): ?>
                 <option value="<?php echo htmlspecialchars($m['name']); ?>">
@@ -772,12 +764,12 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Tanggal *</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_date">Tanggal *</label>
               <input type="date" id="booking-date" name="date" required
                 class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:border-brand-royal focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Jam *</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_time">Jam *</label>
               <select name="time" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:border-brand-royal focus:bg-white focus:outline-none">
                 <option value="10:00">10:00 WITA</option>
                 <option value="11:00">11:00 WITA</option>
@@ -793,7 +785,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
               </select>
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Pax</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_guests">Pax</label>
               <select name="guests" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:border-brand-royal focus:bg-white focus:outline-none">
                 <option value="1">1 Orang</option>
                 <option value="2">2 Orang (Couple)</option>
@@ -804,13 +796,13 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
           </div>
 
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Catatan Khusus (Opsional)</label>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1" data-i18n="modal_label_notes">Catatan Khusus (Opsional)</label>
             <textarea name="notes" rows="2" placeholder="Tingkat tekanan pijatan (lembut/kuat), ruangan couple, dll."
               class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:border-brand-royal focus:bg-white focus:outline-none"></textarea>
           </div>
 
           <div class="pt-3">
-            <button type="submit" id="booking-submit-btn" class="w-full py-3.5 rounded-xl bg-brand-royal hover:bg-brand-blue text-white font-bold text-sm tracking-wider uppercase shadow-lg transition duration-200">
+            <button type="submit" id="booking-submit-btn" class="w-full py-3.5 rounded-xl bg-brand-royal hover:bg-brand-blue text-white font-bold text-sm tracking-wider uppercase shadow-lg transition duration-200" data-i18n="modal_submit">
               Kirim Permintaan Reservasi
             </button>
           </div>
@@ -825,19 +817,18 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Halo " . $sett
         </div>
 
         <div>
-          <h4 class="font-serif text-3xl font-bold text-slate-900">Reservasi Terkirim!</h4>
+          <h4 class="font-serif text-3xl font-bold text-slate-900" data-i18n="modal_success_title">Reservasi Terkirim!</h4>
           <p id="booking-summary-text" class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed px-4">
             Terima kasih! Rincian reservasi Anda telah berhasil kami catat.
           </p>
         </div>
 
         <div class="space-y-3 pt-2">
-          <a id="wa-confirm-link" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg transition">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <a id="wa-confirm-link" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg transition" data-i18n="modal_btn_wa">
             Konfirmasi Cepat via WhatsApp
           </a>
 
-          <button onclick="closeBookingModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs tracking-wider transition">
+          <button onclick="closeBookingModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs tracking-wider transition" data-i18n="modal_btn_close">
             Tutup
           </button>
         </div>
