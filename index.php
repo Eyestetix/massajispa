@@ -476,12 +476,6 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="<?php echo htmlspecialchars($item['category'] ?? 'massage'); ?>">
           
           <div>
-            <?php if (!empty($item['image'])): ?>
-              <div class="treatment-img-frame mb-3.5">
-                <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" loading="lazy" onerror="this.parentElement.style.display='none';">
-              </div>
-            <?php endif; ?>
-
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">
                 <?php 

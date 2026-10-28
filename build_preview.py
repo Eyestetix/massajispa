@@ -38,19 +38,12 @@ options_list = []
 for item in menu:
     tag_badge = ''
     if item.get('is_featured'):
-        tag = html.escape(item.get('tag', 'Signature'))
+        tag = html.escape(item.get('tag', 'Featured'))
         tag_badge = f'''
-        <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#EFE8DE] text-[#344B3D] border border-[#E5DED3]">
-          {tag}
-        </span>
-        '''
-
-    img_html = ''
-    if item.get('image'):
-        img_src = html.escape(item.get('image'))
-        img_html = f'''
-        <div class="img-editorial-frame aspect-[4/3] w-full mb-4 border border-[#E5DED3]">
-          <img src="{img_src}" alt="{html.escape(item.get('name', ''))}" class="w-full h-full object-cover" loading="lazy">
+        <div class="mb-1.5">
+          <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+            {tag}
+          </span>
         </div>
         '''
 
@@ -61,27 +54,29 @@ for item in menu:
     
     options_list.append(f'<option value="{escaped_name}">{escaped_name} (Rp {formatted_price})</option>')
 
+    # Menu card WITHOUT image (as requested by user)
     cards_list.append(f'''
-    <div class="treatment-card editorial-card p-6 flex flex-col justify-between" data-category="{html.escape(item.get('category', 'massage'))}">
+    <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="{html.escape(item.get('category', 'massage'))}">
       <div>
-        {img_html}
-        <div class="flex items-center justify-between text-xs mb-2">
-          <span class="text-[#75816A] font-bold uppercase tracking-wider text-[11px]">{cat_label}</span>
-          <span class="text-[#68685F] font-mono text-[11px] flex items-center gap-1 font-medium">
-            <svg class="w-3.5 h-3.5 text-[#75816A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">{cat_label}</span>
+          <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
+            <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             {html.escape(item.get('duration', ''))}
           </span>
         </div>
-        <div class="flex items-start justify-between gap-2 mb-2">
-          <h3 class="font-serif text-2xl font-bold text-[#252820] leading-snug">{escaped_name}</h3>
-          {tag_badge}
-        </div>
-        <p class="text-[#68685F] text-xs sm:text-sm font-light leading-relaxed mb-6">{html.escape(item.get('description', ''))}</p>
+        {tag_badge}
+        <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+          {escaped_name}
+        </h3>
+        <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-4">
+          {html.escape(item.get('description', ''))}
+        </p>
       </div>
-      <div class="pt-4 border-t border-[#E5DED3] flex items-center justify-between">
+      <div class="mt-auto pt-3 border-t border-[#BAE0FD]/70 flex items-center justify-between">
         <div>
-          <span class="text-[10px] text-[#68685F] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
-          <span class="font-serif text-2xl font-bold text-[#0284C7] font-mono">Rp {formatted_price}</span>
+          <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+          <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp {formatted_price}</span>
         </div>
         <button onclick="openBookingModal('{safe_js_name}')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
           Book Treatment
@@ -114,4 +109,4 @@ with open(f'{WEBSITE_DIR}/index.html', 'w') as f:
 with open(f'{WEBSITE_DIR}/preview.html', 'w') as f:
     f.write(content)
 
-print('Compiled index.html and preview.html with local images successfully!')
+print('Compiled index.html and preview.html without menu card images successfully!')
