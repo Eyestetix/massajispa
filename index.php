@@ -399,7 +399,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
         <!-- Left: Authentic Spa Photography with Reliable Local Image -->
         <div class="lg:col-span-5">
           <div class="img-editorial-frame aspect-[4/5] border border-[#BAE0FD] shadow-lg">
-            <img src="assets/images/massaji-zen-stones.jpg" alt="Botanical Spa Healing Massaji Bali" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/menu 2016-23s.jpg';">
+            <img src="assets/images/massaji-reception.jpg" alt="Massaji Spa Bali Sanctuary & Reception" class="w-full h-full object-cover" onerror="if (!this.triedPng) { this.triedPng = true; this.src = 'assets/images/massaji-reception.png'; } else if (!this.triedRaw) { this.triedRaw = true; this.src = 'assets/images/18BB6F9B-4ACE-49DF-9AE1-610D3B65BA60.png'; } else if (!this.triedAbout) { this.triedAbout = true; this.src = 'assets/images/massaji-about.jpg'; } else { this.onerror = null; this.src = 'assets/images/gambar2.jpg'; }">
           </div>
         </div>
 
