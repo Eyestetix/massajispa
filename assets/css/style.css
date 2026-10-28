@@ -1,0 +1,96 @@
+/* assets/css/style.css - Massaji Spa Royal Blue Zen Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary-navy: #0F2547;
+  --color-royal-blue: #1E3A8A;
+  --color-ocean-blue: #2563EB;
+  --color-sky-blue: #38BDF8;
+  --color-ice-blue: #F0F7FF;
+  --color-pale-blue: #E0F2FE;
+  --color-border-blue: #DBEAFE;
+  --color-dark-text: #0F172A;
+  --color-muted-text: #475569;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #F8FAFC;
+  color: #1E293B;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Zen Enso Circle Logo Style */
+.enso-circle {
+  border: 3px solid #1E3A8A;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Zen Oriental Key Corner Borders */
+.zen-corner-tl {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 28px;
+  height: 28px;
+  border-top: 2px solid #1E3A8A;
+  border-left: 2px solid #1E3A8A;
+}
+
+.zen-corner-br {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-bottom: 2px solid #1E3A8A;
+  border-right: 2px solid #1E3A8A;
+}
+
+/* Card hover animation */
+.treatment-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #FFFFFF;
+}
+
+.treatment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px -10px rgba(30, 58, 138, 0.12), 0 0 1px 1px rgba(37, 99, 235, 0.2);
+  border-color: #93C5FD;
+}
+
+/* Custom scrollbar in blue tone */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1E3A8A;
+}
+
+/* Subtitle callout badge */
+.badge-blue-pill {
+  background-color: #1E3A8A;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 4px 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}

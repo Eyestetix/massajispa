@@ -1,0 +1,122 @@
+[
+  {
+    "id": "massaji-signature-couple",
+    "category": "packages",
+    "name": "2 Pax Massaji Signature (90 Mins)",
+    "duration": "90 Menit (2 Orang)",
+    "price": 488000,
+    "description": "Pijat signature khas Massaji yang dikembangkan bertahun-tahun oleh terapis senior dengan memadukan esensi pijat terbaik dunia. Termasuk bonus masker wajah Free Pure Cooling Aloe Vera & Honey Face Mask untuk 2 orang.",
+    "is_featured": true,
+    "tag": "Special Promo"
+  },
+  {
+    "id": "balinese-massage-couple",
+    "category": "packages",
+    "name": "2 Pax Balinese Massage (120 Mins)",
+    "duration": "120 Menit (2 Orang)",
+    "price": 488000,
+    "description": "Seni penyembuhan tradisional Bali kuno yang membawa tubuh ke dalam ketenangan mendalam lewat peregangan lembut, akupresur, dan aromaterapi murni. Termasuk bonus Free Pure Cooling Aloe Vera & Honey Face Mask untuk 2 orang.",
+    "is_featured": true,
+    "tag": "Best Value (2 Pax)"
+  },
+  {
+    "id": "boreh-spa-hydrating-facial",
+    "category": "packages",
+    "name": "1 Pax Balinese Boreh Spa ~ Hydrating Facial (2.5 Hours)",
+    "duration": "150 Menit (2.5 Jam)",
+    "price": 750000,
+    "description": "Ritual Boreh Bali kaya rempah herbal hangat untuk melancarkan sirkulasi darah dan meredakan nyeri otot lelah, dipadukan dengan Hydrating Facial Pevonia Botanica (Australia) berformula teratai air & teh hijau untuk kelembapan kulit maksimal.",
+    "is_featured": true,
+    "tag": "Signature Ritual"
+  },
+  {
+    "id": "balinese-massage",
+    "category": "massage",
+    "name": "Traditional Balinese Massage",
+    "duration": "60 / 90 / 120 Menit",
+    "price": 185000,
+    "description": "Pijat tradisional Bali dengan teknik kombinasi akupresur jemari, telapak tangan, dan minyak aromaterapi alami untuk melancarkan sirkulasi serta meredakan ketegangan otot mendalam.",
+    "is_featured": true,
+    "tag": "Best Seller"
+  },
+  {
+    "id": "deep-tissue-swedish",
+    "category": "massage",
+    "name": "Deep Tissue & Swedish Massage",
+    "duration": "60 / 90 Menit",
+    "price": 220000,
+    "description": "Tekanan lebih kuat dengan penekanan pada titik-titik simpul otot kaku (muscle knots), sangat direkomendasikan bagi olahragawan, peselancar (surfer), dan pelancong aktif di Canggu.",
+    "is_featured": false,
+    "tag": "Favorit Surfer"
+  },
+  {
+    "id": "hot-stone-therapy",
+    "category": "massage",
+    "name": "Hot Stone Healing Therapy",
+    "duration": "90 / 120 Menit",
+    "price": 280000,
+    "description": "Batu basal vulkanik hangat diletakkan pada titik-titik cakra tubuh dan digunakan untuk memijat, mengalirkan energi hangat yang meredakan stres dan kekakuan tulang belakang.",
+    "is_featured": false,
+    "tag": "Healing Stone"
+  },
+  {
+    "id": "pregnancy-massage",
+    "category": "massage",
+    "name": "Nurturing Pregnancy Massage",
+    "duration": "60 / 90 Menit",
+    "price": 210000,
+    "description": "Perawatan lembut khusus ibu hamil oleh terapis tersertifikasi dengan posisi berbaring menyamping yang aman dan bantal penopang khusus untuk mengurangi pegal punggung dan kaki bengkak.",
+    "is_featured": false,
+    "tag": "Certified Prenatal"
+  },
+  {
+    "id": "biokos-facial",
+    "category": "beauty",
+    "name": "Hydrating Botanical Facial & Light Therapy",
+    "duration": "60 Menit",
+    "price": 195000,
+    "description": "Pembersihan mendalam wajah dengan produk botani Pevonia / Biokos, pijat akupresur wajah relaksasi, masker pelembap alami, dan terapi cahaya peremajaan kulit.",
+    "is_featured": false,
+    "tag": "Glow Facial"
+  },
+  {
+    "id": "bali-lulur-scrub",
+    "category": "beauty",
+    "name": "Traditional Balinese Lulur & Flower Bath",
+    "duration": "90 Menit",
+    "price": 275000,
+    "description": "Scrub rempah tradisional Bali untuk mengangkat sel kulit mati, dilanjutkan dengan baluran yogurt pendingin dan berendam di bak mandi bertabur kelopak bunga segar.",
+    "is_featured": false,
+    "tag": "Pampering"
+  },
+  {
+    "id": "sunburn-soothing",
+    "category": "beauty",
+    "name": "Sunburn Soothing Aloe Vera Wrap",
+    "duration": "60 Menit",
+    "price": 190000,
+    "description": "Perawatan pendinginan intensif untuk kulit yang terpapar sinar matahari pantai Bali menggunakan gel lidah buaya organik segar dan kompres mentimun sejuk.",
+    "is_featured": false,
+    "tag": "After Sun Care"
+  },
+  {
+    "id": "foot-reflexology",
+    "category": "reflexology",
+    "name": "Reflexology & Acupressure Foot Therapy",
+    "duration": "60 Menit",
+    "price": 140000,
+    "description": "Stimulasi titik-titik saraf pada telapak kaki yang terhubung dengan organ vital tubuh, diakhiri dengan pijatan ringan pada betis dan paha untuk melancarkan sirkulasi.",
+    "is_featured": false,
+    "tag": "Quick Relief"
+  },
+  {
+    "id": "head-neck-shoulder",
+    "category": "reflexology",
+    "name": "Head, Neck & Upper Back Tension Relief",
+    "duration": "45 / 60 Menit",
+    "price": 130000,
+    "description": "Fokus pada area leher, bahu, dan kepala untuk menghilangkan migrain, kelelahan bekerja di depan layar laptop, dan jet lag setelah penerbangan.",
+    "is_featured": false,
+    "tag": "Jet Lag Relief"
+  }
+]
