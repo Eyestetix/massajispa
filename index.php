@@ -1,5 +1,5 @@
 <?php
-// index.php - Massaji Spa Bali (Serene Sky & Royal Blue Zen Theme with Member Logo)
+// index.php - Massaji Spa Bali (Serene Sky & Royal Blue Zen Theme with Light Blue Pricing)
 $settings_file = __DIR__ . '/data/settings.json';
 $promo_file    = __DIR__ . '/data/promo.json';
 $menu_file     = __DIR__ . '/data/menu.json';
@@ -61,6 +61,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
               royal: '#1E3A8A',
               royalDark: '#172554',
               sky: '#0284C7',
+              skyLight: '#38BDF8',
               emerald: '#059669',
               border: '#BAE0FD'
             }
@@ -83,10 +84,10 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#BAE0FD] shadow-sm transition duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo (Official Member Circular Logo) -->
+      <!-- Brand Logo (Direct Member PNG file) -->
       <a href="index.php" class="flex items-center gap-3.5 group">
         <div class="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-[#BAE0FD] group-hover:scale-105 transition duration-300">
-          <img src="assets/images/member.png" alt="Massaji Spa Bali" class="w-full h-full object-contain p-0.5" onerror="this.onerror=null; this.src='assets/images/member.svg';">
+          <img src="assets/images/member.png" alt="Massaji Spa Bali" class="w-full h-full object-contain p-0.5" onerror="this.onerror=null; this.src='assets/images/member-1.png';">
         </div>
         <div>
           <div class="text-[10px] tracking-[0.2em] text-[#0284C7] font-bold uppercase leading-tight">マッサージ</div>
@@ -306,7 +307,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
             <div class="pt-4 border-t border-[#BAE0FD] flex items-center justify-between">
               <div>
                 <span class="text-[10px] text-[#475569] uppercase tracking-wider block font-bold">Nett Price</span>
-                <span class="font-serif text-2xl font-bold text-[#1E3A8A]">Rp 750.000</span>
+                <span class="font-serif text-2xl font-bold text-[#0284C7]">Rp 750.000</span>
               </div>
               <button onclick="openBookingModal('1 Pax Balinese Boreh Spa ~ Hydrating Facial (2.5 Hours)')" class="btn-primary py-2 px-4 text-xs" data-i18n="deals_book_btn">
                 Book Package
@@ -339,7 +340,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
             <div class="pt-4 border-t border-[#BAE0FD] flex items-center justify-between">
               <div>
                 <span class="text-[10px] text-[#475569] uppercase tracking-wider block font-bold">Nett Price (2 Pax)</span>
-                <span class="font-serif text-2xl font-bold text-[#1E3A8A]">Rp 488.000</span>
+                <span class="font-serif text-2xl font-bold text-[#0284C7]">Rp 488.000</span>
               </div>
               <button onclick="openBookingModal('2 Pax Massaji Signature (90 Mins)')" class="btn-primary py-2 px-4 text-xs" data-i18n="deals_book_btn">
                 Book Package
@@ -372,7 +373,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
             <div class="pt-4 border-t border-[#BAE0FD] flex items-center justify-between">
               <div>
                 <span class="text-[10px] text-[#475569] uppercase tracking-wider block font-bold">Nett Price (2 Pax)</span>
-                <span class="font-serif text-2xl font-bold text-[#1E3A8A]">Rp 488.000</span>
+                <span class="font-serif text-2xl font-bold text-[#0284C7]">Rp 488.000</span>
               </div>
               <button onclick="openBookingModal('2 Pax Balinese Massage (120 Mins)')" class="btn-primary py-2 px-4 text-xs" data-i18n="deals_book_btn">
                 Book Package
@@ -393,10 +394,10 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        <!-- Left: Authentic Spa Photography -->
+        <!-- Left: Authentic Spa Photography with Reliable Fallback -->
         <div class="lg:col-span-5">
           <div class="img-editorial-frame aspect-[4/5] border border-[#BAE0FD] shadow-lg">
-            <img src="assets/images/signature.jpg" alt="Rejuvenating Botanical Care Massaji Bali" onerror="this.onerror=null; this.src='assets/images/Wellness-Symbol.jpg';">
+            <img src="assets/images/signature.jpg" alt="Rejuvenating Botanical Care Massaji Bali" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80';">
           </div>
         </div>
 
@@ -440,8 +441,8 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
     
     <div class="text-center max-w-3xl mx-auto mb-14">
       <span class="eyebrow-tag" data-i18n="menu_eyebrow">Treatment Catalog</span>
-      <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3" data-i18n="menu_title">
-        Treatment Menu & Pricing
+      <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
+        Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
       </h2>
       <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
         Transparent and budget-friendly pricing with no hidden charges in Canggu & Kerobokan.
@@ -503,7 +504,7 @@ $wa_url = "https://wa.me/" . $clean_wa . "?text=" . rawurlencode("Hello " . $set
           <div class="pt-4 border-t border-[#BAE0FD] flex items-center justify-between">
             <div>
               <span class="text-[10px] text-[#475569] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
-              <span class="font-serif text-2xl font-bold text-[#1E3A8A] font-mono">
+              <span class="font-serif text-2xl font-bold text-[#0284C7] font-mono">
                 Rp <?php echo number_format($item['price'], 0, ',', '.'); ?>
               </span>
             </div>

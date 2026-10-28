@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Massaji Spa Bali</title>
+  <title>Admin Dashboard — Massaji Spa Bali</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -14,1046 +14,359 @@
         extend: {
           colors: {
             brand: {
-              dark: '#141210',
-              surface: '#1F1C18',
-              surfaceLight: '#2A2620',
-              gold: '#C5A880',
-              goldLight: '#DFC9AA',
-              terracotta: '#C27854',
-              sand: '#E7DEC8',
-              cream: '#FAF8F5'
+              skyBg: '#F0F8FF',
+              mist: '#E1F0FE',
+              navy: '#141E3C',
+              royal: '#1E3A8A',
+              royalDark: '#172554',
+              sky: '#0284C7',
+              emerald: '#059669',
+              border: '#BAE0FD'
             }
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+            sans: ['"Manrope"', 'sans-serif']
           }
         }
       }
     }
   </script>
+  <style>
+    body {
+      font-family: 'Manrope', -apple-system, sans-serif;
+      background: linear-gradient(180deg, #EBF5FE 0%, #F8FCFF 50%, #E8F4FE 100%);
+      background-attachment: fixed;
+      color: #141E3C;
+    }
+    .font-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .btn-royal {
+      background-color: #1E3A8A;
+      color: #FFFFFF;
+      transition: all 0.2s ease;
+    }
+    .btn-royal:hover {
+      background-color: #141E3C;
+      transform: translateY(-1px);
+    }
+  </style>
 </head>
-<body class="bg-brand-dark min-h-screen text-stone-200 font-sans antialiased selection:bg-brand-terracotta selection:text-white">
+<body class="min-h-screen text-[#141E3C] antialiased">
 
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-[-100px] opacity-0 pointer-events-none max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-sm"></div>
 
-  <!-- Top Navigation Header -->
-  <header class="border-b border-stone-800/80 bg-brand-surface/90 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-terracotta to-brand-gold flex items-center justify-center text-brand-dark font-serif font-bold text-lg">M</span>
+  <!-- ======================================================== -->
+  <!-- LOGIN VIEW (SHOWN IF NOT AUTHENTICATED) -->
+  <!-- ======================================================== -->
+  <div id="admin-login-overlay" class="fixed inset-0 z-50 bg-[#EBF5FE]/95 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white border border-[#BAE0FD] rounded-2xl p-8 shadow-2xl relative">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-md border border-[#BAE0FD] mx-auto mb-3">
+          <img src="../assets/images/member.png" alt="Massaji Spa" class="w-full h-full object-contain p-0.5" onerror="this.onerror=null; this.src='../assets/images/member-1.png';">
+        </div>
+        <div class="text-[10px] tracking-[0.2em] text-[#0284C7] font-bold uppercase leading-tight">マッサージ</div>
+        <h2 class="font-serif text-2xl font-bold text-[#141E3C] mt-0.5">Massaji Spa Bali</h2>
+        <p class="text-xs text-[#475569] mt-1 font-medium">Management Portal Login</p>
+      </div>
+
+      <div id="login-error" class="hidden mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs text-center font-medium"></div>
+
+      <form id="admin-login-form" class="space-y-4">
         <div>
-          <h1 class="font-serif text-xl font-semibold text-stone-100 tracking-wide leading-none">Massaji Spa Bali</h1>
-          <p class="text-[11px] text-brand-gold tracking-wider uppercase mt-0.5">Control Panel</p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <a href="/" target="_blank" class="px-3.5 py-1.5 rounded-lg border border-stone-700 hover:border-brand-gold/60 text-stone-300 hover:text-brand-gold text-xs font-medium flex items-center gap-1.5 transition">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          Buka Website
-        </a>
-        <a href="logout.php" class="px-3.5 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium flex items-center gap-1.5 transition">
-          <svg class="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-          Keluar
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content Layout -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    
-    <!-- Navigation Tabs -->
-    <div class="flex border-b border-stone-800 gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
-      <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-brand-gold text-brand-gold flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Kontak & Notifikasi Email
-      </button>
-      <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        Menu & Harga Treatment
-        <span class="px-2 py-0.5 text-[10px] rounded-full bg-stone-800 text-stone-400 font-mono">12</span>
-      </button>
-      <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-        Banner Promo
-        
-      </button>
-      <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Reservasi Masuk
-        <span class="px-2 py-0.5 text-[10px] rounded-full bg-brand-terracotta/30 text-brand-terracotta font-mono">0</span>
-      </button>
-      <button onclick="switchTab('security')" id="btn-tab-security" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        Keamanan
-      </button>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 1: KONTAK & NOTIFIKASI EMAIL (DYNAMIC SETTINGS) -->
-    <!-- ======================================================== -->
-    <div id="tab-settings" class="tab-content space-y-6">
-      <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6">
-          <h2 class="font-serif text-2xl font-semibold text-stone-100">Pengaturan Notifikasi & Kontak Bisnis</h2>
-          <p class="text-xs text-stone-400 mt-1">Nilai di bawah ini digunakan langsung oleh sistem website untuk pengiriman email booking dan tombol WhatsApp. Anda bisa mengubahnya kapan saja tanpa hardcode.</p>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Username</label>
+          <input type="text" id="login-user" value="admin" required class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
         </div>
 
-        <form id="form-settings" class="space-y-6">
-          <input type="hidden" name="action" value="save_settings">
-          <input type="hidden" name="csrf_token" value="demo-csrf-token">
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Email Notifikasi Booking -->
-            <div class="p-5 rounded-xl bg-stone-900/60 border border-brand-gold/20">
-              <label class="block text-xs font-semibold tracking-wider uppercase text-brand-gold mb-1">
-                Email Tujuan Notifikasi Reservasi
-              </label>
-              <p class="text-[11px] text-stone-400 mb-2">Setiap ada tamu yang memesan dari formulir web, data reservasi dikirimkan ke email ini.</p>
-              <input type="email" name="booking_email" value="reservation@massaji.net" required
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-700 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- WhatsApp Number -->
-            <div class="p-5 rounded-xl bg-stone-900/60 border border-emerald-500/20">
-              <label class="block text-xs font-semibold tracking-wider uppercase text-emerald-400 mb-1">
-                Nomor WhatsApp Reservasi
-              </label>
-              <p class="text-[11px] text-stone-400 mb-2">Gunakan format internasional (contoh: 6281236695755 tanpa tanda + atau spasi).</p>
-              <input type="text" name="whatsapp_number" value="6281236695755" required
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-700 rounded-lg text-sm text-stone-100 focus:border-emerald-500 focus:outline-none font-mono">
-            </div>
-
-            <!-- Phone Display -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Nomor Telepon Tampilan</label>
-              <input type="text" name="phone" value="+62 812-3669-5755"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- Instagram -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Link Instagram</label>
-              <input type="url" name="instagram" value="https://instagram.com/massajispa"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- Site Name -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Nama Usaha / Spa</label>
-              <input type="text" name="site_name" value="Massaji Spa Bali" required
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- Jam Buka -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Jam Operasional</label>
-              <input type="text" name="opening_hours" value="Daily: 10:00 AM - 9:00 PM WITA"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-          </div>
-
-          <!-- Alamat Lengkap & Maps -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-stone-800/80">
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Alamat Fisik Lengkap</label>
-              <textarea name="address" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361</textarea>
-            </div>
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Link Google Maps (Navigasi Tamu)</label>
-              <textarea name="google_maps_link" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">https://maps.google.com/?q=Massaji+Spa+Bali+Canggu</textarea>
-            </div>
-          </div>
-
-          <!-- Tagline -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-stone-800/80">
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Tagline Utama</label>
-              <input type="text" name="tagline" value="Authentic Balinese Massage &amp; Holistic Wellness Sanctuary"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Deskripsi Ringkas Header</label>
-              <input type="text" name="subtagline" value="A serene sanctuary in Canggu &amp; Kerobokan offering authentic Balinese healing traditions, certified therapists, pure aromatic botanicals, and honest pricing."
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-          </div>
-
-          <div class="flex justify-end pt-4">
-            <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-terracotta to-amber-700 hover:from-amber-600 hover:to-brand-terracotta text-white font-medium text-sm shadow-lg transition duration-200 flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Simpan Pengaturan Kontak
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 2: MENU & HARGA TREATMENT -->
-    <!-- ======================================================== -->
-    <div id="tab-menu" class="tab-content hidden space-y-6">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-brand-surface border border-stone-800 rounded-2xl p-6">
         <div>
-          <h2 class="font-serif text-2xl font-semibold text-stone-100">Daftar Menu & Harga Layanan</h2>
-          <p class="text-xs text-stone-400 mt-1">Ubah nama layanan, durasi, harga (IDR), atau tandai layanan sebagai menu favorit/signature.</p>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Password</label>
+          <input type="password" id="login-pass" required placeholder="Enter admin password..." class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
+          <p class="text-[11px] text-[#475569] mt-1">Default password: <span class="font-mono font-bold text-[#1E3A8A]">massaji2026</span></p>
         </div>
-        <button onclick="openAddMenuModal()" class="px-4 py-2.5 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white font-medium text-xs tracking-wide uppercase flex items-center gap-2 shadow-lg transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Tambah Treatment Baru
+
+        <button type="submit" class="w-full py-3 rounded-xl btn-royal text-white font-bold text-xs tracking-wider uppercase shadow-lg shadow-blue-900/20">
+          Sign In to Dashboard
         </button>
-      </div>
-
-      <!-- Menu Category Filters for Admin View -->
-      <div class="flex gap-2 overflow-x-auto pb-2">
-        <button onclick="filterAdminMenu('all')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-800 text-stone-200 text-xs font-medium hover:bg-stone-700 transition" data-filter="all">Semua (12)</button>
-        <button onclick="filterAdminMenu('massage')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="massage">Massage & Body</button>
-        <button onclick="filterAdminMenu('beauty')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="beauty">Facial & Scrub</button>
-        <button onclick="filterAdminMenu('reflexology')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="reflexology">Reflexology</button>
-        <button onclick="filterAdminMenu('packages')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="packages">Spa Packages</button>
-      </div>
-
-      <!-- Menu Items List -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-menu-list">
-        
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="packages">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                packages
-              </span>
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-brand-terracotta/20 text-brand-terracotta border border-brand-terracotta/30">Special Deal</span>
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">2 Pax Massaji Signature (90 Mins)</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 488.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">90 Mins (2 Guests)</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Massaji&#x27;s signature massage developed over years by senior therapists, combining the world&#x27;s finest modalities for profound full-body relaxation. Includes complimentary Pure Cooling Aloe Vera &amp; Honey Face Mask for 2 guests.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: massaji-signature-couple</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;massaji-signature-couple&quot;, &quot;category&quot;: &quot;packages&quot;, &quot;name&quot;: &quot;2 Pax Massaji Signature (90 Mins)&quot;, &quot;duration&quot;: &quot;90 Mins (2 Guests)&quot;, &quot;price&quot;: 488000, &quot;description&quot;: &quot;Massaji&#x27;s signature massage developed over years by senior therapists, combining the world&#x27;s finest modalities for profound full-body relaxation. Includes complimentary Pure Cooling Aloe Vera &amp; Honey Face Mask for 2 guests.&quot;, &quot;is_featured&quot;: true, &quot;tag&quot;: &quot;Special Deal&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('massaji-signature-couple', '2 Pax Massaji Signature (90 Mins)')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="packages">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                packages
-              </span>
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-brand-terracotta/20 text-brand-terracotta border border-brand-terracotta/30">Best Value (2 Pax)</span>
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">2 Pax Balinese Massage (120 Mins)</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 488.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">120 Mins (2 Guests)</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Ancient art of traditional Balinese healing to bring you into deep serenity through gentle stretches, acupressure, reflexology, and pure aromatherapy oils for 2 hours. Includes complimentary Pure Cooling Aloe Vera &amp; Honey Face Mask.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: balinese-massage-couple</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;balinese-massage-couple&quot;, &quot;category&quot;: &quot;packages&quot;, &quot;name&quot;: &quot;2 Pax Balinese Massage (120 Mins)&quot;, &quot;duration&quot;: &quot;120 Mins (2 Guests)&quot;, &quot;price&quot;: 488000, &quot;description&quot;: &quot;Ancient art of traditional Balinese healing to bring you into deep serenity through gentle stretches, acupressure, reflexology, and pure aromatherapy oils for 2 hours. Includes complimentary Pure Cooling Aloe Vera &amp; Honey Face Mask.&quot;, &quot;is_featured&quot;: true, &quot;tag&quot;: &quot;Best Value (2 Pax)&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('balinese-massage-couple', '2 Pax Balinese Massage (120 Mins)')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="packages">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                packages
-              </span>
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-brand-terracotta/20 text-brand-terracotta border border-brand-terracotta/30">Signature Ritual</span>
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">1 Pax Balinese Boreh Spa ~ Hydrating Facial (2.5 Hours)</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 750.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">150 Mins (2.5 Hours)</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Traditional Balinese warming herbal Boreh wrap crafted from natural roots, herbs, and spices to relieve muscle ache and boost circulation, paired with an Australian Pevonia Botanica hydrating facial with waterlily and green tea.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: boreh-spa-hydrating-facial</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;boreh-spa-hydrating-facial&quot;, &quot;category&quot;: &quot;packages&quot;, &quot;name&quot;: &quot;1 Pax Balinese Boreh Spa ~ Hydrating Facial (2.5 Hours)&quot;, &quot;duration&quot;: &quot;150 Mins (2.5 Hours)&quot;, &quot;price&quot;: 750000, &quot;description&quot;: &quot;Traditional Balinese warming herbal Boreh wrap crafted from natural roots, herbs, and spices to relieve muscle ache and boost circulation, paired with an Australian Pevonia Botanica hydrating facial with waterlily and green tea.&quot;, &quot;is_featured&quot;: true, &quot;tag&quot;: &quot;Signature Ritual&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('boreh-spa-hydrating-facial', '1 Pax Balinese Boreh Spa ~ Hydrating Facial (2.5 Hours)')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="massage">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                massage
-              </span>
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-brand-terracotta/20 text-brand-terracotta border border-brand-terracotta/30">Best Seller</span>
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Traditional Balinese Massage</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 185.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">60 / 90 / 120 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Authentic Balinese massage combining acupressure, gentle stretching, palm pressure, and pure essential oils to stimulate blood circulation and melt away deep muscle tension.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: balinese-massage</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;balinese-massage&quot;, &quot;category&quot;: &quot;massage&quot;, &quot;name&quot;: &quot;Traditional Balinese Massage&quot;, &quot;duration&quot;: &quot;60 / 90 / 120 Mins&quot;, &quot;price&quot;: 185000, &quot;description&quot;: &quot;Authentic Balinese massage combining acupressure, gentle stretching, palm pressure, and pure essential oils to stimulate blood circulation and melt away deep muscle tension.&quot;, &quot;is_featured&quot;: true, &quot;tag&quot;: &quot;Best Seller&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('balinese-massage', 'Traditional Balinese Massage')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="massage">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                massage
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Deep Tissue &amp; Swedish Massage</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 220.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">60 / 90 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Firmer pressure targeting stubborn muscle knots and tightness. Highly recommended for surfers, athletes, and active travelers exploring Canggu.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: deep-tissue-swedish</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;deep-tissue-swedish&quot;, &quot;category&quot;: &quot;massage&quot;, &quot;name&quot;: &quot;Deep Tissue &amp; Swedish Massage&quot;, &quot;duration&quot;: &quot;60 / 90 Mins&quot;, &quot;price&quot;: 220000, &quot;description&quot;: &quot;Firmer pressure targeting stubborn muscle knots and tightness. Highly recommended for surfers, athletes, and active travelers exploring Canggu.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Surfer Favorite&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('deep-tissue-swedish', 'Deep Tissue &amp; Swedish Massage')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="massage">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                massage
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Hot Stone Healing Therapy</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 280.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">90 / 120 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Warm volcanic basalt stones placed along chakra points and glided across muscles, channeling therapeutic warmth that relieves stress and spinal stiffness.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: hot-stone-therapy</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;hot-stone-therapy&quot;, &quot;category&quot;: &quot;massage&quot;, &quot;name&quot;: &quot;Hot Stone Healing Therapy&quot;, &quot;duration&quot;: &quot;90 / 120 Mins&quot;, &quot;price&quot;: 280000, &quot;description&quot;: &quot;Warm volcanic basalt stones placed along chakra points and glided across muscles, channeling therapeutic warmth that relieves stress and spinal stiffness.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Healing Stone&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('hot-stone-therapy', 'Hot Stone Healing Therapy')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="massage">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                massage
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Nurturing Pregnancy Massage</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 210.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">60 / 90 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Gentle prenatal care by certified therapists using safe side-lying positioning and supportive bolsters to alleviate lower back ache and leg swelling.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: pregnancy-massage</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;pregnancy-massage&quot;, &quot;category&quot;: &quot;massage&quot;, &quot;name&quot;: &quot;Nurturing Pregnancy Massage&quot;, &quot;duration&quot;: &quot;60 / 90 Mins&quot;, &quot;price&quot;: 210000, &quot;description&quot;: &quot;Gentle prenatal care by certified therapists using safe side-lying positioning and supportive bolsters to alleviate lower back ache and leg swelling.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Certified Prenatal&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('pregnancy-massage', 'Nurturing Pregnancy Massage')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="beauty">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                beauty
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Hydrating Botanical Facial &amp; Light Therapy</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 195.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">60 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Deep facial cleansing with botanical products, relaxing facial acupressure massage, natural moisturizing mask, and rejuvenating light therapy.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: biokos-facial</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;biokos-facial&quot;, &quot;category&quot;: &quot;beauty&quot;, &quot;name&quot;: &quot;Hydrating Botanical Facial &amp; Light Therapy&quot;, &quot;duration&quot;: &quot;60 Mins&quot;, &quot;price&quot;: 195000, &quot;description&quot;: &quot;Deep facial cleansing with botanical products, relaxing facial acupressure massage, natural moisturizing mask, and rejuvenating light therapy.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Glow Facial&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('biokos-facial', 'Hydrating Botanical Facial &amp; Light Therapy')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="beauty">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                beauty
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Traditional Balinese Lulur &amp; Flower Bath</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 275.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">90 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Traditional Balinese herbal spice scrub to exfoliate dead skin cells, followed by a cooling yogurt coat and a relaxing soak in a fresh flower petal bath.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: bali-lulur-scrub</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;bali-lulur-scrub&quot;, &quot;category&quot;: &quot;beauty&quot;, &quot;name&quot;: &quot;Traditional Balinese Lulur &amp; Flower Bath&quot;, &quot;duration&quot;: &quot;90 Mins&quot;, &quot;price&quot;: 275000, &quot;description&quot;: &quot;Traditional Balinese herbal spice scrub to exfoliate dead skin cells, followed by a cooling yogurt coat and a relaxing soak in a fresh flower petal bath.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Pampering&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('bali-lulur-scrub', 'Traditional Balinese Lulur &amp; Flower Bath')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="beauty">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                beauty
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Sunburn Soothing Aloe Vera Wrap</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 190.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">60 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Intensive cooling therapy for sun-drenched beach days using fresh organic aloe vera gel and chilled cucumber compresses to soothe and rehydrate.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: sunburn-soothing</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;sunburn-soothing&quot;, &quot;category&quot;: &quot;beauty&quot;, &quot;name&quot;: &quot;Sunburn Soothing Aloe Vera Wrap&quot;, &quot;duration&quot;: &quot;60 Mins&quot;, &quot;price&quot;: 190000, &quot;description&quot;: &quot;Intensive cooling therapy for sun-drenched beach days using fresh organic aloe vera gel and chilled cucumber compresses to soothe and rehydrate.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;After Sun Care&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('sunburn-soothing', 'Sunburn Soothing Aloe Vera Wrap')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="reflexology">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                reflexology
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Reflexology &amp; Acupressure Foot Therapy</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 140.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">60 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Targeted stimulation of acupoints on the soles connected to vital body organs, concluded with soothing calf and thigh massage for renewed energy.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: foot-reflexology</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;foot-reflexology&quot;, &quot;category&quot;: &quot;reflexology&quot;, &quot;name&quot;: &quot;Reflexology &amp; Acupressure Foot Therapy&quot;, &quot;duration&quot;: &quot;60 Mins&quot;, &quot;price&quot;: 140000, &quot;description&quot;: &quot;Targeted stimulation of acupoints on the soles connected to vital body organs, concluded with soothing calf and thigh massage for renewed energy.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Quick Relief&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('foot-reflexology', 'Reflexology &amp; Acupressure Foot Therapy')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="reflexology">
-      <div>
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                reflexology
-              </span>
-              
-            </div>
-            <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2">Head, Neck &amp; Upper Back Tension Relief</h3>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <span class="text-brand-gold font-mono font-bold text-base">Rp 130.000</span>
-            <p class="text-[11px] text-stone-400 font-sans mt-0.5">45 / 60 Mins</p>
-          </div>
-        </div>
-        <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed">Focused upper body relief designed to dissolve tension headaches, digital screen fatigue, and post-flight travel stiffness.</p>
-      </div>
-
-      <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-        <span class="text-[11px] text-stone-500 font-mono">ID: head-neck-shoulder</span>
-        <div class="flex items-center gap-2">
-          <button onclick="editMenuItem({&quot;id&quot;: &quot;head-neck-shoulder&quot;, &quot;category&quot;: &quot;reflexology&quot;, &quot;name&quot;: &quot;Head, Neck &amp; Upper Back Tension Relief&quot;, &quot;duration&quot;: &quot;45 / 60 Mins&quot;, &quot;price&quot;: 130000, &quot;description&quot;: &quot;Focused upper body relief designed to dissolve tension headaches, digital screen fatigue, and post-flight travel stiffness.&quot;, &quot;is_featured&quot;: false, &quot;tag&quot;: &quot;Jet Lag Relief&quot;})" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
-          </button>
-          <button onclick="deleteMenuItem('head-neck-shoulder', 'Head, Neck &amp; Upper Back Tension Relief')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-    
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 3: BANNER PROMO -->
-    <!-- ======================================================== -->
-    <div id="tab-promo" class="tab-content hidden space-y-6">
-      <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6 flex items-start justify-between">
-          <div>
-            <h2 class="font-serif text-2xl font-semibold text-stone-100">Pengaturan Banner Promo</h2>
-            <p class="text-xs text-stone-400 mt-1">Muncul di bagian teratas website untuk menarik perhatian tamu hotel & turis di Canggu.</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs text-stone-400">Status Promo:</span>
-            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-stone-800 text-stone-400">
-              Non-aktif
-            </span>
-          </div>
-        </div>
-
-        <form id="form-promo" class="space-y-6">
-          <input type="hidden" name="action" value="save_promo">
-          <input type="hidden" name="csrf_token" value="demo-csrf-token">
-
-          <!-- Toggle Aktif -->
-          <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 flex items-center justify-between">
-            <div>
-              <span class="block text-sm font-semibold text-stone-200">Tampilkan Banner Promo di Halaman Depan</span>
-              <p class="text-xs text-stone-400">Jika dimatikan, bar promo di paling atas website tidak akan tampil.</p>
-            </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" name="active" value="1" class="sr-only peer" >
-              <div class="w-11 h-6 bg-stone-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
-            </label>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Teks Label / Badge</label>
-              <input type="text" name="badge" value="Special Promotion"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Kode Promo (Opsional)</label>
-              <input type="text" name="code" value="MASSAJIBLUE"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none uppercase font-mono">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Judul Promo Utama</label>
-            <input type="text" name="title" value="Exclusive Spa Promo: Boreh Therapy &amp; Couple Massage" required
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Deskripsi Lengkap Promo</label>
-            <textarea name="description" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">Special offer on Balinese Boreh Spa (2.5 Hours) or Couple Packages including Complimentary Cooling Aloe Vera &amp; Honey Face Mask.</textarea>
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Syarat & Masa Berlaku</label>
-            <input type="text" name="valid_until" value="Available for bookings today via Website &amp; WhatsApp."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div class="flex justify-end pt-4 border-t border-stone-800/80">
-            <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-terracotta to-amber-700 hover:from-amber-600 hover:to-brand-terracotta text-white font-medium text-sm shadow-lg transition duration-200 flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Simpan Pengaturan Promo
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 4: RESERVASI MASUK -->
-    <!-- ======================================================== -->
-    <div id="tab-bookings" class="tab-content hidden space-y-6">
-      <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6 flex items-start justify-between">
-          <div>
-            <h2 class="font-serif text-2xl font-semibold text-stone-100">Riwayat Reservasi Website</h2>
-            <p class="text-xs text-stone-400 mt-1">Daftar permintaan booking yang dikirimkan melalui formulir website (tersimpan aman di server).</p>
-          </div>
-          <span class="text-xs font-mono px-3 py-1 rounded-full bg-stone-900 border border-stone-800 text-brand-gold">
-            Total: 0 Reservasi
-          </span>
-        </div>
-
-        
-          <div class="text-center py-16 border border-dashed border-stone-800 rounded-xl">
-            <svg class="w-12 h-12 mx-auto text-stone-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            <p class="text-stone-400 text-sm">Belum ada reservasi masuk.</p>
-            <p class="text-stone-600 text-xs mt-1">Setiap ada tamu yang memesan dari web, rinciannya akan otomatis tersimpan di sini.</p>
-          </div>
-        
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        <?php endif; ?>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 5: KEAMANAN & PASSWORD -->
-    <!-- ======================================================== -->
-    <div id="tab-security" class="tab-content hidden space-y-6">
-      <div class="max-w-xl bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6">
-          <h2 class="font-serif text-2xl font-semibold text-stone-100">Ganti Password Admin</h2>
-          <p class="text-xs text-stone-400 mt-1">Ubah kata sandi untuk melindungi akses ke panel kontrol website.</p>
-        </div>
-
-        <form id="form-password" class="space-y-5">
-          <input type="hidden" name="action" value="change_password">
-          <input type="hidden" name="csrf_token" value="demo-csrf-token">
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Password Saat Ini</label>
-            <input type="password" name="current_password" required placeholder="Password lama..."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Password Baru (Minimal 6 Karakter)</label>
-            <input type="password" name="new_password" required placeholder="Password baru..."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Konfirmasi Password Baru</label>
-            <input type="password" name="confirm_password" required placeholder="Ulangi password baru..."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div class="pt-2">
-            <button type="submit" class="w-full py-3 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white font-medium text-sm shadow-lg transition duration-200">
-              Perbarui Password
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </main>
-
-  <!-- ======================================================== -->
-  <!-- MODAL: TAMBAH / EDIT TREATMENT -->
-  <!-- ======================================================== -->
-  <div id="menu-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-brand-surface border border-stone-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeMenuModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-100">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-
-      <h3 id="modal-title" class="font-serif text-2xl font-semibold text-stone-100 mb-1">Tambah Treatment Baru</h3>
-      <p class="text-xs text-stone-400 mb-6">Isi rincian layanan pijat atau perawatan spa di bawah ini.</p>
-
-      <form id="form-menu-item" class="space-y-4">
-        <input type="hidden" id="menu-item-id" name="id" value="">
-        <input type="hidden" name="csrf_token" value="demo-csrf-token">
-
-        <div>
-          <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Kategori Layanan</label>
-          <select id="menu-item-category" name="category" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            <option value="massage">Massage & Body Work</option>
-            <option value="beauty">Facial, Scrub & Body Care</option>
-            <option value="reflexology">Reflexology & Express</option>
-            <option value="packages">Signature Spa Packages</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Nama Perawatan</label>
-          <input type="text" id="menu-item-name" name="name" required placeholder="Contoh: Traditional Balinese Massage"
-            class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Durasi</label>
-            <input type="text" id="menu-item-duration" name="duration" placeholder="Contoh: 60 / 90 Menit"
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Harga (IDR)</label>
-            <input type="number" id="menu-item-price" name="price" required placeholder="Contoh: 185000"
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none font-mono">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Deskripsi Manfaat & Teknik</label>
-          <textarea id="menu-item-desc" name="description" rows="3" placeholder="Deskripsikan sensasi pijatan, minyak yang digunakan, dan manfaatnya..."
-            class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none"></textarea>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4 items-center pt-2">
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Label Tag (Opsional)</label>
-            <input type="text" id="menu-item-tag" name="tag" placeholder="Misal: Best Seller / Signature"
-              class="w-full px-4 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-          <div class="flex items-center gap-2 pt-4">
-            <input type="checkbox" id="menu-item-featured" name="is_featured" value="1" class="w-4 h-4 rounded text-brand-terracotta bg-stone-900 border-stone-700">
-            <label for="menu-item-featured" class="text-xs text-stone-300">Tandai sebagai Menu Populer</label>
-          </div>
-        </div>
-
-        <div class="flex justify-end gap-3 pt-6 border-t border-stone-800">
-          <button type="button" onclick="closeMenuModal()" class="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium transition">Batal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white text-xs font-medium shadow transition">Simpan Perawatan</button>
-        </div>
       </form>
+
+      <div class="mt-6 pt-4 border-t border-[#BAE0FD] text-center">
+        <a href="https://eyestetix.github.io/massajispa" class="inline-flex items-center gap-1.5 text-xs text-[#0284C7] font-bold hover:underline">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          Back to Live Website
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Client-side script for Admin interactivity -->
-  <script>
-    const CSRF_TOKEN = 'demo-csrf-token';
+  <!-- ======================================================== -->
+  <!-- MAIN DASHBOARD CONTENT (SHOWN WHEN LOGGED IN) -->
+  <!-- ======================================================== -->
+  <div id="admin-dashboard-container" class="hidden">
+    
+    <!-- Top Navigation Header -->
+    <header class="border-b border-[#BAE0FD] bg-white/95 backdrop-blur sticky top-0 z-40 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-[#BAE0FD]">
+            <img src="../assets/images/member.png" alt="Massaji Spa" class="w-full h-full object-contain p-0.5" onerror="this.onerror=null; this.src='../assets/images/member-1.png';">
+          </div>
+          <div>
+            <div class="text-[10px] tracking-[0.2em] text-[#0284C7] font-bold uppercase leading-tight">マッサージ</div>
+            <h1 class="font-serif text-2xl font-bold text-[#141E3C] leading-none">Massaji <span class="font-normal italic text-[#0284C7]">Spa</span></h1>
+            <p class="text-[10px] text-[#475569] tracking-wider uppercase mt-0.5 font-bold">Admin Management Portal</p>
+          </div>
+        </div>
 
-    // Tab Switching
+        <div class="flex items-center gap-3">
+          <!-- Live Website Link Requested by User -->
+          <a href="https://eyestetix.github.io/massajispa" target="_blank" class="px-4 py-2 rounded-xl border border-[#BAE0FD] hover:border-[#1E3A8A] bg-[#F0F8FF] hover:bg-white text-[#1E3A8A] text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Buka Website
+          </a>
+          <button onclick="handleLogout()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-700 text-xs font-bold flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Keluar
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <!-- Navigation Tabs -->
+      <div class="flex border-b border-[#BAE0FD] gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
+        <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-[#1E3A8A] text-[#1E3A8A] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Kontak &amp; Notifikasi Email
+        </button>
+        <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          Menu &amp; Harga Treatment
+        </button>
+        <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Reservasi Masuk
+        </button>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 1: KONTAK & NOTIFIKASI EMAIL -->
+      <!-- ======================================================== -->
+      <div id="tab-settings" class="tab-content space-y-6">
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div class="mb-6">
+            <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Pengaturan Kontak &amp; Notifikasi Bisnis</h2>
+            <p class="text-xs text-[#475569] mt-1">Data berikut digunakan oleh sistem website untuk pengiriman email notifikasi reservasi dan tautan WhatsApp.</p>
+          </div>
+
+          <form id="form-settings" class="space-y-6">
+            <input type="hidden" name="action" value="save_settings">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD]">
+                <label class="block text-xs font-bold tracking-wider uppercase text-[#1E3A8A] mb-1">
+                  Email Tujuan Notifikasi Reservasi
+                </label>
+                <input type="email" id="field-email" name="booking_email" value="reservation@massaji.net" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-emerald-300">
+                <label class="block text-xs font-bold tracking-wider uppercase text-emerald-800 mb-1">
+                  Nomor WhatsApp Reservasi
+                </label>
+                <input type="text" id="field-wa" name="whatsapp_number" value="6281236695755" required class="w-full px-4 py-2.5 bg-white border border-emerald-300 rounded-lg text-sm text-[#141E3C] focus:border-emerald-600 focus:outline-none font-mono">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Nama Usaha / Spa</label>
+                <input type="text" id="field-sitename" name="site_name" value="Massaji Spa Bali" required class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Jam Operasional</label>
+                <input type="text" id="field-hours" name="opening_hours" value="Daily: 10:00 AM - 9:00 PM WITA" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Alamat Fisik Lengkap</label>
+                <textarea id="field-address" name="address" rows="2" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361</textarea>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Link Google Maps</label>
+                <input type="url" id="field-maps" name="google_maps_link" value="https://maps.google.com/?q=Massaji+Spa+Bali+Canggu" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-[#BAE0FD]">
+              <button type="submit" class="btn-royal px-6 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase shadow-md flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Simpan Pengaturan
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 2: MENU & HARGA -->
+      <!-- ======================================================== -->
+      <div id="tab-menu" class="tab-content hidden space-y-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-[#BAE0FD] rounded-2xl p-6 shadow-sm">
+          <div>
+            <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Katalog Menu &amp; Tarif Layanan</h2>
+            <p class="text-xs text-[#475569] mt-1">Ubah nama perawatan, durasi, dan harga dalam Rupiah.</p>
+          </div>
+          <button onclick="openAddMenuModal()" class="btn-royal px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Tambah Treatment
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-menu-list">
+          <!-- Rendered dynamically by script -->
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 3: RESERVASI MASUK -->
+      <!-- ======================================================== -->
+      <div id="tab-bookings" class="tab-content hidden space-y-6">
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div class="mb-6 flex items-start justify-between">
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Riwayat Reservasi Website</h2>
+              <p class="text-xs text-[#475569] mt-1">Permintaan booking dari pengunjung website yang tercatat di sistem.</p>
+            </div>
+          </div>
+
+          <div id="bookings-table-container">
+            <div class="text-center py-12 border border-dashed border-[#BAE0FD] rounded-xl bg-[#F0F8FF]/50">
+              <svg class="w-10 h-10 mx-auto text-[#0284C7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <p class="text-[#141E3C] text-sm font-bold">Belum ada reservasi masuk.</p>
+              <p class="text-[#475569] text-xs mt-1">Setiap ada tamu yang memesan via form web, rinciannya akan otomatis tersimpan di sini.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Client-side script for Auth & Interactivity -->
+  <script>
+    // 1. Client-Side Authentication Gate
+    const AUTH_KEY = 'massaji_admin_auth';
+
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem(AUTH_KEY) === 'true';
+      const overlay = document.getElementById('admin-login-overlay');
+      const dashboard = document.getElementById('admin-dashboard-container');
+
+      if (isAuth) {
+        overlay.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+        loadData();
+      } else {
+        overlay.classList.remove('hidden');
+        dashboard.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('admin-login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('login-user').value.trim();
+      const pass = document.getElementById('login-pass').value.trim();
+      const errEl = document.getElementById('login-error');
+
+      if (user === 'admin' && (pass === 'massaji2026' || pass === 'admin123')) {
+        sessionStorage.setItem(AUTH_KEY, 'true');
+        errEl.classList.add('hidden');
+        checkAuth();
+        showToast('Login berhasil! Selamat datang di Admin Dashboard.', true);
+      } else {
+        errEl.textContent = 'Username atau Password salah. Password default: massaji2026';
+        errEl.classList.remove('hidden');
+      }
+    });
+
+    function handleLogout() {
+      sessionStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(AUTH_KEY);
+      location.reload();
+    }
+
+    // 2. Tab Switching
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-brand-gold', 'text-brand-gold');
-        btn.classList.add('border-transparent', 'text-stone-400');
+        btn.classList.remove('border-[#1E3A8A]', 'text-[#1E3A8A]');
+        btn.classList.add('border-transparent', 'text-[#475569]');
       });
 
       const target = document.getElementById('tab-' + tabId);
       const targetBtn = document.getElementById('btn-tab-' + tabId);
       if (target && targetBtn) {
         target.classList.remove('hidden');
-        targetBtn.classList.remove('border-transparent', 'text-stone-400');
-        targetBtn.classList.add('border-brand-gold', 'text-brand-gold');
+        targetBtn.classList.remove('border-transparent', 'text-[#475569]');
+        targetBtn.classList.add('border-[#1E3A8A]', 'text-[#1E3A8A]');
       }
     }
 
-    // Toast alerts
+    // 3. Toast Notifications
     function showToast(message, isSuccess = true) {
       const toast = document.getElementById('toast');
-      toast.className = `fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-xs font-medium ${
-        isSuccess ? 'bg-emerald-950 border border-emerald-800 text-emerald-200' : 'bg-red-950 border border-red-800 text-red-200'
+      toast.className = `fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-xs font-bold ${
+        isSuccess ? 'bg-emerald-900 text-white border border-emerald-700' : 'bg-red-900 text-white border border-red-700'
       }`;
-      toast.innerHTML = `
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${isSuccess ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'}"/>
-        </svg>
-        <span>${message}</span>
-      `;
+      toast.innerHTML = `<span>${message}</span>`;
       setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-[-100px]');
       }, 4000);
     }
 
-    // Generic Form Handler via AJAX
-    function setupAjaxForm(formId, successCallback) {
-      const form = document.getElementById(formId);
-      if (!form) return;
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        try {
-          const res = await fetch('api.php', { method: 'POST', body: formData });
-          const data = await res.json();
-          if (data.success) {
-            showToast(data.message || 'Perubahan berhasil disimpan!', true);
-            if (successCallback) successCallback(data);
-          } else {
-            showToast(data.message || 'Terjadi kesalahan saat menyimpan.', false);
-          }
-        } catch (err) {
-          showToast('Koneksi gagal atau sesi telah berakhir.', false);
-        }
-      });
-    }
-
-    setupAjaxForm('form-settings');
-    setupAjaxForm('form-promo');
-    setupAjaxForm('form-password', () => document.getElementById('form-password').reset());
-
-    // Filter Admin Menu
-    function filterAdminMenu(category) {
-      document.querySelectorAll('.admin-filter-btn').forEach(btn => {
-        if (btn.dataset.filter === category) {
-          btn.classList.add('bg-stone-800', 'text-stone-200');
-          btn.classList.remove('bg-stone-900', 'text-stone-400');
-        } else {
-          btn.classList.remove('bg-stone-800', 'text-stone-200');
-          btn.classList.add('bg-stone-900', 'text-stone-400');
-        }
-      });
-      document.querySelectorAll('#admin-menu-list .menu-card').forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-
-    // Modal Add / Edit
-    let allMenuItems = [{"id": "massaji-signature-couple", "category": "packages", "name": "2 Pax Massaji Signature (90 Mins)", "duration": "90 Mins (2 Guests)", "price": 488000, "description": "Massaji's signature massage developed over years by senior therapists, combining the world's finest modalities for profound full-body relaxation. Includes complimentary Pure Cooling Aloe Vera & Honey Face Mask for 2 guests.", "is_featured": true, "tag": "Special Deal"}, {"id": "balinese-massage-couple", "category": "packages", "name": "2 Pax Balinese Massage (120 Mins)", "duration": "120 Mins (2 Guests)", "price": 488000, "description": "Ancient art of traditional Balinese healing to bring you into deep serenity through gentle stretches, acupressure, reflexology, and pure aromatherapy oils for 2 hours. Includes complimentary Pure Cooling Aloe Vera & Honey Face Mask.", "is_featured": true, "tag": "Best Value (2 Pax)"}, {"id": "boreh-spa-hydrating-facial", "category": "packages", "name": "1 Pax Balinese Boreh Spa ~ Hydrating Facial (2.5 Hours)", "duration": "150 Mins (2.5 Hours)", "price": 750000, "description": "Traditional Balinese warming herbal Boreh wrap crafted from natural roots, herbs, and spices to relieve muscle ache and boost circulation, paired with an Australian Pevonia Botanica hydrating facial with waterlily and green tea.", "is_featured": true, "tag": "Signature Ritual"}, {"id": "balinese-massage", "category": "massage", "name": "Traditional Balinese Massage", "duration": "60 / 90 / 120 Mins", "price": 185000, "description": "Authentic Balinese massage combining acupressure, gentle stretching, palm pressure, and pure essential oils to stimulate blood circulation and melt away deep muscle tension.", "is_featured": true, "tag": "Best Seller"}, {"id": "deep-tissue-swedish", "category": "massage", "name": "Deep Tissue & Swedish Massage", "duration": "60 / 90 Mins", "price": 220000, "description": "Firmer pressure targeting stubborn muscle knots and tightness. Highly recommended for surfers, athletes, and active travelers exploring Canggu.", "is_featured": false, "tag": "Surfer Favorite"}, {"id": "hot-stone-therapy", "category": "massage", "name": "Hot Stone Healing Therapy", "duration": "90 / 120 Mins", "price": 280000, "description": "Warm volcanic basalt stones placed along chakra points and glided across muscles, channeling therapeutic warmth that relieves stress and spinal stiffness.", "is_featured": false, "tag": "Healing Stone"}, {"id": "pregnancy-massage", "category": "massage", "name": "Nurturing Pregnancy Massage", "duration": "60 / 90 Mins", "price": 210000, "description": "Gentle prenatal care by certified therapists using safe side-lying positioning and supportive bolsters to alleviate lower back ache and leg swelling.", "is_featured": false, "tag": "Certified Prenatal"}, {"id": "biokos-facial", "category": "beauty", "name": "Hydrating Botanical Facial & Light Therapy", "duration": "60 Mins", "price": 195000, "description": "Deep facial cleansing with botanical products, relaxing facial acupressure massage, natural moisturizing mask, and rejuvenating light therapy.", "is_featured": false, "tag": "Glow Facial"}, {"id": "bali-lulur-scrub", "category": "beauty", "name": "Traditional Balinese Lulur & Flower Bath", "duration": "90 Mins", "price": 275000, "description": "Traditional Balinese herbal spice scrub to exfoliate dead skin cells, followed by a cooling yogurt coat and a relaxing soak in a fresh flower petal bath.", "is_featured": false, "tag": "Pampering"}, {"id": "sunburn-soothing", "category": "beauty", "name": "Sunburn Soothing Aloe Vera Wrap", "duration": "60 Mins", "price": 190000, "description": "Intensive cooling therapy for sun-drenched beach days using fresh organic aloe vera gel and chilled cucumber compresses to soothe and rehydrate.", "is_featured": false, "tag": "After Sun Care"}, {"id": "foot-reflexology", "category": "reflexology", "name": "Reflexology & Acupressure Foot Therapy", "duration": "60 Mins", "price": 140000, "description": "Targeted stimulation of acupoints on the soles connected to vital body organs, concluded with soothing calf and thigh massage for renewed energy.", "is_featured": false, "tag": "Quick Relief"}, {"id": "head-neck-shoulder", "category": "reflexology", "name": "Head, Neck & Upper Back Tension Relief", "duration": "45 / 60 Mins", "price": 130000, "description": "Focused upper body relief designed to dissolve tension headaches, digital screen fatigue, and post-flight travel stiffness.", "is_featured": false, "tag": "Jet Lag Relief"}];
-
-    function openAddMenuModal() {
-      document.getElementById('modal-title').textContent = 'Tambah Treatment Baru';
-      document.getElementById('form-menu-item').reset();
-      document.getElementById('menu-item-id').value = '';
-      document.getElementById('menu-modal').classList.remove('hidden');
-      document.getElementById('menu-modal').classList.add('flex');
-    }
-
-    function editMenuItem(item) {
-      document.getElementById('modal-title').textContent = 'Edit Layanan Treatment';
-      document.getElementById('menu-item-id').value = item.id || '';
-      document.getElementById('menu-item-category').value = item.category || 'massage';
-      document.getElementById('menu-item-name').value = item.name || '';
-      document.getElementById('menu-item-duration').value = item.duration || '';
-      document.getElementById('menu-item-price').value = item.price || '';
-      document.getElementById('menu-item-desc').value = item.description || '';
-      document.getElementById('menu-item-tag').value = item.tag || '';
-      document.getElementById('menu-item-featured').checked = !!item.is_featured;
-
-      document.getElementById('menu-modal').classList.remove('hidden');
-      document.getElementById('menu-modal').classList.add('flex');
-    }
-
-    function closeMenuModal() {
-      document.getElementById('menu-modal').classList.add('hidden');
-      document.getElementById('menu-modal').classList.remove('flex');
-    }
-
-    // Handle Add/Edit Form submit
-    document.getElementById('form-menu-item').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const id = document.getElementById('menu-item-id').value.trim();
-      const isEdit = id !== '';
-
-      const newItem = {
-        id: isEdit ? id : 'item-' + Date.now(),
-        category: document.getElementById('menu-item-category').value,
-        name: document.getElementById('menu-item-name').value.trim(),
-        duration: document.getElementById('menu-item-duration').value.trim(),
-        price: parseInt(document.getElementById('menu-item-price').value.replace(/[^0-9]/g, '')) || 0,
-        description: document.getElementById('menu-item-desc').value.trim(),
-        tag: document.getElementById('menu-item-tag').value.trim(),
-        is_featured: document.getElementById('menu-item-featured').checked
-      };
-
-      if (isEdit) {
-        allMenuItems = allMenuItems.map(it => it.id === id ? newItem : it);
-      } else {
-        allMenuItems.push(newItem);
-      }
-
-      // Save entire array
-      const fd = new FormData();
-      fd.append('action', 'save_menu');
-      fd.append('csrf_token', CSRF_TOKEN);
-      fd.append('menu_data', JSON.stringify(allMenuItems));
-
+    // 4. Load Data & Render Menu
+    async function loadData() {
       try {
-        const res = await fetch('api.php', { method: 'POST', body: fd });
-        const data = await res.json();
-        if (data.success) {
-          showToast(data.message || 'Menu berhasil diperbarui!', true);
-          closeMenuModal();
-          setTimeout(() => location.reload(), 800);
-        } else {
-          showToast(data.message || 'Gagal menyimpan menu.', false);
+        const res = await fetch('../data/menu.json');
+        if (res.ok) {
+          const menu = await res.json();
+          renderAdminMenu(menu);
         }
-      } catch (err) {
-        showToast('Terjadi kesalahan koneksi.', false);
-      }
-    });
-
-    // Handle Delete Menu
-    async function deleteMenuItem(id, name) {
-      if (!confirm(`Hapus layanan "${name}" dari daftar menu?`)) return;
-
-      const fd = new FormData();
-      fd.append('action', 'delete_menu_item');
-      fd.append('csrf_token', CSRF_TOKEN);
-      fd.append('id', id);
-
-      try {
-        const res = await fetch('api.php', { method: 'POST', body: fd });
-        const data = await res.json();
-        if (data.success) {
-          showToast(data.message || 'Layanan dihapus.', true);
-          allMenuItems = allMenuItems.filter(it => it.id !== id);
-          setTimeout(() => location.reload(), 600);
-        } else {
-          showToast(data.message || 'Gagal menghapus.', false);
-        }
-      } catch (err) {
-        showToast('Koneksi gagal.', false);
-      }
+      } catch (err) {}
     }
+
+    function renderAdminMenu(menu) {
+      const list = document.getElementById('admin-menu-list');
+      if (!list) return;
+      list.innerHTML = menu.map(item => `
+        <div class="bg-white border border-[#BAE0FD] rounded-xl p-5 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-[#E1F0FE] px-2 py-0.5 rounded">${item.category}</span>
+                <h3 class="font-serif text-xl font-bold text-[#141E3C] mt-1">${item.name}</h3>
+              </div>
+              <div class="text-right">
+                <span class="font-serif text-xl font-bold text-[#0284C7]">Rp ${Number(item.price).toLocaleString('id-ID')}</span>
+                <p class="text-[11px] text-[#475569] font-medium">${item.duration}</p>
+              </div>
+            </div>
+            <p class="text-xs text-[#475569] leading-relaxed line-clamp-2">${item.description}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[#BAE0FD] flex justify-end">
+            <span class="text-[11px] text-[#475569] font-mono">ID: ${item.id}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize check on page load
+    checkAuth();
   </script>
 </body>
 </html>
