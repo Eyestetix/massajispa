@@ -7,7 +7,8 @@
     "price": 488000,
     "description": "Massaji's signature massage developed over years by senior therapists, combining the world's finest modalities for profound full-body relaxation. Includes complimentary Pure Cooling Aloe Vera & Honey Face Mask for 2 guests.",
     "is_featured": true,
-    "tag": "Special Deal"
+    "tag": "Special Deal",
+    "image": "assets/images/massaji-hero.jpg"
   },
   {
     "id": "balinese-massage-couple",
@@ -17,7 +18,8 @@
     "price": 488000,
     "description": "Ancient art of traditional Balinese healing to bring you into deep serenity through gentle stretches, acupressure, reflexology, and pure aromatherapy oils for 2 hours. Includes complimentary Pure Cooling Aloe Vera & Honey Face Mask.",
     "is_featured": true,
-    "tag": "Best Value (2 Pax)"
+    "tag": "Best Value (2 Pax)",
+    "image": "assets/images/massaji-zen-stones.jpg"
   },
   {
     "id": "boreh-spa-hydrating-facial",
@@ -27,7 +29,8 @@
     "price": 750000,
     "description": "Traditional Balinese warming herbal Boreh wrap crafted from natural roots, herbs, and spices to relieve muscle ache and boost circulation, paired with an Australian Pevonia Botanica hydrating facial with waterlily and green tea.",
     "is_featured": true,
-    "tag": "Signature Ritual"
+    "tag": "Signature Ritual",
+    "image": "assets/images/massaji-wellness.jpg"
   },
   {
     "id": "rejuvenating-facial-docte",
@@ -37,7 +40,8 @@
     "price": 650000,
     "description": "Revitalizes skin condition and helps reduce appearance of fine lines, wrinkles, and pigmentation while controlling sebum oil and deeply hydrating. Powered by Docté Botanical Research (Singapore) and clinical photo light therapy.",
     "is_featured": true,
-    "tag": "Docté Singapore"
+    "tag": "Docté Singapore",
+    "image": "assets/images/massaji-revitalize.jpg"
   },
   {
     "id": "balinese-massage",
@@ -47,7 +51,8 @@
     "price": 185000,
     "description": "Authentic Balinese massage combining acupressure, gentle stretching, palm pressure, and pure essential oils to stimulate blood circulation and melt away deep muscle tension.",
     "is_featured": true,
-    "tag": "Best Seller"
+    "tag": "Best Seller",
+    "image": "assets/images/massaji-hero.jpg"
   },
   {
     "id": "deep-tissue-swedish",
@@ -57,7 +62,8 @@
     "price": 220000,
     "description": "Firmer pressure targeting stubborn muscle knots and tightness. Highly recommended for surfers, athletes, and active travelers exploring Canggu.",
     "is_featured": false,
-    "tag": "Surfer Favorite"
+    "tag": "Surfer Favorite",
+    "image": "assets/images/massaji-tension-relief.jpg"
   },
   {
     "id": "hot-stone-therapy",
@@ -67,7 +73,8 @@
     "price": 280000,
     "description": "Warm volcanic basalt stones placed along chakra points and glided across muscles, channeling therapeutic warmth that relieves stress and spinal stiffness.",
     "is_featured": false,
-    "tag": "Healing Stone"
+    "tag": "Healing Stone",
+    "image": "assets/images/massaji-zen-stones.jpg"
   },
   {
     "id": "pregnancy-massage",
@@ -77,7 +84,8 @@
     "price": 210000,
     "description": "Gentle prenatal care by certified therapists using safe side-lying positioning and supportive bolsters to alleviate lower back ache and leg swelling.",
     "is_featured": false,
-    "tag": "Certified Prenatal"
+    "tag": "Certified Prenatal",
+    "image": "assets/images/massaji-hero.jpg"
   },
   {
     "id": "biokos-facial",
@@ -87,7 +95,8 @@
     "price": 195000,
     "description": "Deep facial cleansing with botanical products, relaxing facial acupressure massage, natural moisturizing mask, and rejuvenating light therapy.",
     "is_featured": false,
-    "tag": "Glow Facial"
+    "tag": "Glow Facial",
+    "image": "assets/images/massaji-revitalize.jpg"
   },
   {
     "id": "bali-lulur-scrub",
@@ -97,7 +106,8 @@
     "price": 275000,
     "description": "Traditional Balinese herbal spice scrub to exfoliate dead skin cells, followed by a cooling yogurt coat and a relaxing soak in a fresh flower petal bath.",
     "is_featured": false,
-    "tag": "Pampering"
+    "tag": "Pampering",
+    "image": "assets/images/massaji-wellness.jpg"
   },
   {
     "id": "sunburn-soothing",
@@ -107,7 +117,8 @@
     "price": 190000,
     "description": "Intensive cooling therapy for sun-drenched beach days using fresh organic aloe vera gel and chilled cucumber compresses to soothe and rehydrate.",
     "is_featured": false,
-    "tag": "After Sun Care"
+    "tag": "After Sun Care",
+    "image": "assets/images/massaji-wellness.jpg"
   },
   {
     "id": "foot-reflexology",
@@ -117,7 +128,8 @@
     "price": 140000,
     "description": "Targeted stimulation of acupoints on the soles connected to vital body organs, concluded with soothing calf and thigh massage for renewed energy.",
     "is_featured": false,
-    "tag": "Quick Relief"
+    "tag": "Quick Relief",
+    "image": "assets/images/massaji-reflexology.jpg"
   },
   {
     "id": "head-neck-shoulder",
@@ -127,6 +139,7 @@
     "price": 130000,
     "description": "Focused upper body relief designed to dissolve tension headaches, digital screen fatigue, and post-flight travel stiffness.",
     "is_featured": false,
-    "tag": "Jet Lag Relief"
+    "tag": "Jet Lag Relief",
+    "image": "assets/images/massaji-tension-relief.jpg"
   }
 ]
