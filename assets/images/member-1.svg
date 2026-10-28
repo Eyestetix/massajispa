@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Glow -->
+    <radialGradient id="skyGlow" cx="50%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#E1F0FE" />
+      <stop offset="100%" stop-color="#BAE0FD" />
+    </radialGradient>
+    
+    <!-- Enso Brush Gradient -->
+    <linearGradient id="ensoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141E3C" />
+      <stop offset="50%" stop-color="#1C2E60" />
+      <stop offset="100%" stop-color="#0E1730" />
+    </linearGradient>
+
+    <!-- Drop Shadow -->
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0e1730" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Inner Soft Blue Circle Base -->
+  <circle cx="250" cy="250" r="195" fill="url(#skyGlow)" />
+
+  <!-- Outer Stylized Zen Enso Brush Ring -->
+  <path d="M 250 25 
+           A 225 225 0 1 1 45 300 
+           A 220 220 0 0 1 180 38
+           A 225 225 0 0 1 250 25 Z" 
+        fill="none" 
+        stroke="url(#ensoGrad)" 
+        stroke-width="32" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        stroke-dasharray="1400"
+        stroke-dashoffset="30"
+        filter="url(#subtleShadow)" />
+
+  <!-- Inner Concentric Brush Ring Arc -->
+  <path d="M 230 65 
+           A 185 185 0 1 1 95 330 
+           A 185 185 0 0 1 170 80" 
+        fill="none" 
+        stroke="#1E3264" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        opacity="0.85" />
+
+  <!-- Katakana: マッサージ (Massaji) -->
+  <text x="250" y="148" 
+        text-anchor="middle" 
+        font-family="'Manrope', -apple-system, sans-serif" 
+        font-size="24" 
+        font-weight="700" 
+        letter-spacing="5" 
+        fill="#1C2E60">
+    マッサージ
+  </text>
+
+  <!-- Brand Name: Massaji -->
+  <text x="250" y="210" 
+        text-anchor="middle" 
+        font-family="'Cormorant Garamond', Georgia, serif" 
+        font-size="76" 
+        font-weight="700" 
+        letter-spacing="2" 
+        fill="#141E3C">
+    Massaji
+  </text>
+
+  <!-- Water Wave Flourish underneath Massaji -->
+  <path d="M 175 226 C 215 238, 285 214, 325 226" 
+        fill="none" 
+        stroke="#0284C7" 
+        stroke-width="4.5" 
+        stroke-linecap="round" />
+
+  <!-- Subtitle: REFLEXOLOGY -->
+  <text x="250" y="258" 
+        text-anchor="middle" 
+        font-family="'Manrope', -apple-system, sans-serif" 
+        font-size="28" 
+        font-weight="800" 
+        letter-spacing="7" 
+        fill="#0284C7">
+    REFLEXOLOGY
+  </text>
+
+  <!-- Meditating Buddha / Yogi Silhouette in Lotus Position -->
+  <g fill="#141E3C" transform="translate(250, 320) scale(1.15)">
+    <circle cx="0" cy="-28" r="11" />
+    <path d="M -5 -16 C -8 -10, -16 6, -18 20 C -10 21, 10 21, 18 20 C 16 6, 8 -10, 5 -16 Z" />
+    <path d="M -16 2 C -26 12, -34 26, -42 34 C -36 36, -24 32, -18 24 Z" />
+    <circle cx="-41" cy="34" r="3.5" />
+    <path d="M 16 2 C 26 12, 34 26, 42 34 C 36 36, 24 32, 18 24 Z" />
+    <circle cx="41" cy="34" r="3.5" />
+    <path d="M -44 33 C -40 42, -20 44, 0 42 C 20 44, 40 42, 44 33 C 34 31, 24 38, 0 38 C -24 38, -34 31, -44 33 Z" />
+    <ellipse cx="0" cy="45" rx="38" ry="4" opacity="0.25" />
+  </g>
+</svg>

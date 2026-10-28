@@ -1,20 +1,21 @@
-/* assets/css/style.css - Massaji Spa: Contemporary Balinese Luxury Design System */
+/* assets/css/style.css - Massaji Spa: Serene Sky & Royal Blue Zen Theme */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Color Palette Tokens */
-  --bg-primary: #F7F4EE;         /* Warm Ivory */
-  --bg-secondary: #EFE8DE;       /* Soft Sand */
-  --surface: #FFFFFF;            /* Clean White Cards */
-  --text-primary: #252820;       /* Deep Warm Charcoal */
-  --text-secondary: #68685F;     /* Muted Warm Gray */
-  --brand-primary: #344B3D;      /* Deep Botanical Green */
-  --brand-primary-hover: #26372F;/* Deeper Forest Green */
-  --brand-secondary: #75816A;    /* Muted Sage */
-  --accent-bronze: #B58A59;      /* Muted Champagne Bronze */
-  --border-subtle: #E5DED3;      /* Warm Subtle Borders */
-  --dark-forest: #26372F;        /* Deep Forest Green */
+  /* Color Palette Tokens based on Massaji Spa Official Graphics */
+  --bg-primary: #F0F8FF;         /* Serene Ice Sky Blue */
+  --bg-secondary: #E1F0FE;       /* Soft Cerulean Mist */
+  --bg-surface: #FFFFFF;         /* Crisp White Card */
+  --text-primary: #141E3C;       /* Deep Royal Navy */
+  --text-secondary: #475569;     /* Slate Gray */
+  --brand-navy: #141E3C;         /* Deepest Indigo Navy */
+  --brand-royal: #1E3A8A;        /* Royal Sapphire Blue */
+  --brand-royal-hover: #172554;  /* Deep Navy Hover */
+  --brand-sky: #0284C7;          /* Vibrant Ocean Sky Blue */
+  --brand-emerald: #059669;      /* Botanical Emerald (WhatsApp / Nature) */
+  --border-subtle: #BAE0FD;      /* Delicate Sky Blue Border */
+  --border-light: #E2E8F0;       /* Neutral Card Border */
 
   /* Typography Scales */
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -28,7 +29,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-primary);
+  background: linear-gradient(180deg, #EBF5FE 0%, #F8FCFF 50%, #E8F4FE 100%);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -62,12 +64,12 @@ body {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--brand-secondary);
+  color: var(--brand-sky);
 }
 
 /* Card Transitions & Shadows */
 .editorial-card {
-  background-color: var(--surface);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
@@ -75,8 +77,8 @@ body {
 
 .editorial-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px -12px rgba(37, 40, 32, 0.08);
-  border-color: #D3C9BD;
+  box-shadow: 0 16px 36px -12px rgba(20, 30, 60, 0.12);
+  border-color: #7DD3FC;
 }
 
 /* Image Aspect Ratio Containers */
@@ -100,10 +102,10 @@ body {
 
 /* Button System Tokens */
 .btn-primary {
-  background-color: var(--brand-primary);
+  background-color: var(--brand-royal);
   color: #FFFFFF;
   font-family: var(--font-body);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   border-radius: 10px;
@@ -113,21 +115,21 @@ body {
   justify-content: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px -3px rgba(52, 75, 61, 0.25);
+  box-shadow: 0 4px 14px -3px rgba(30, 58, 138, 0.35);
 }
 
 .btn-primary:hover {
-  background-color: var(--brand-primary-hover);
-  box-shadow: 0 6px 20px -4px rgba(38, 55, 47, 0.35);
+  background-color: var(--brand-royal-hover);
+  box-shadow: 0 6px 20px -4px rgba(20, 30, 60, 0.45);
   transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--text-primary);
+  background-color: #FFFFFF;
+  color: var(--brand-royal);
   border: 1px solid var(--border-subtle);
   font-family: var(--font-body);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   border-radius: 10px;
@@ -137,12 +139,13 @@ body {
   justify-content: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 8px -2px rgba(20, 30, 60, 0.05);
 }
 
 .btn-secondary:hover {
-  background-color: var(--surface);
-  border-color: var(--brand-primary);
-  color: var(--brand-primary);
+  background-color: #F0F8FF;
+  border-color: var(--brand-royal);
+  color: var(--brand-navy);
 }
 
 /* Clean Custom Scrollbar */
@@ -154,15 +157,15 @@ body {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CFC5B8;
+  background: #94A3B8;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-secondary);
+  background: var(--brand-royal);
 }
 
 /* Accessible Focus States */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--brand-primary);
+  outline: 2px solid var(--brand-royal);
   outline-offset: 2px;
 }

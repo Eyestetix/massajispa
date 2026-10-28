@@ -1,4 +1,4 @@
-// assets/js/main.js - Contemporary Balinese Luxury UI Interactions & Bilingual System
+// assets/js/main.js - Interactive UI & Bilingual System for Massaji Spa Bali
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -161,11 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       if (btn.dataset.lang === lang) {
-        btn.classList.add('bg-[#344B3D]', 'text-white');
-        btn.classList.remove('text-[#68685F]', 'hover:text-[#252820]');
+        btn.classList.add('bg-[#1E3A8A]', 'text-white');
+        btn.classList.remove('text-[#475569]', 'hover:text-[#141E3C]');
       } else {
-        btn.classList.remove('bg-[#344B3D]', 'text-white');
-        btn.classList.add('text-[#68685F]', 'hover:text-[#252820]');
+        btn.classList.remove('bg-[#1E3A8A]', 'text-white');
+        btn.classList.add('text-[#475569]', 'hover:text-[#141E3C]');
       }
     });
 
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // 3. MENU CATEGORY FILTERING (CONTEMPORARY LUXURY STYLING)
+  // 3. MENU CATEGORY FILTERING (ROYAL BLUE ZEN STYLING)
   // ========================================================
   const filterButtons = document.querySelectorAll('.menu-filter-btn');
   const menuCards = document.querySelectorAll('.treatment-card');
@@ -214,12 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const category = btn.dataset.category;
 
       filterButtons.forEach(b => {
-        b.classList.remove('active', 'bg-[#344B3D]', 'text-white', 'border-[#344B3D]');
-        b.classList.add('bg-white', 'text-[#68685F]', 'border-[#E5DED3]');
+        b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        b.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
       });
 
-      btn.classList.add('active', 'bg-[#344B3D]', 'text-white', 'border-[#344B3D]');
-      btn.classList.remove('bg-white', 'text-[#68685F]', 'border-[#E5DED3]');
+      btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+      btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
 
       menuCards.forEach(card => {
         if (category === 'all' || card.dataset.category === category) {

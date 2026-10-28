@@ -30,6 +30,16 @@
     "tag": "Signature Ritual"
   },
   {
+    "id": "rejuvenating-facial-docte",
+    "category": "beauty",
+    "name": "Rejuvenating Facial & Photo Therapy (Docté)",
+    "duration": "90 Mins",
+    "price": 650000,
+    "description": "Revitalizes skin condition and helps reduce appearance of fine lines, wrinkles, and pigmentation while controlling sebum oil and deeply hydrating. Powered by Docté Botanical Research (Singapore) and clinical photo light therapy.",
+    "is_featured": true,
+    "tag": "Docté Singapore"
+  },
+  {
     "id": "balinese-massage",
     "category": "massage",
     "name": "Traditional Balinese Massage",
