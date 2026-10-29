@@ -130,33 +130,87 @@ $email_body = '<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>' . htmlspecialchars($subject) . '</title>
+  <style>
+    @media only screen and (max-width: 480px) {
+      .resp-card {
+        border-radius: 12px !important;
+      }
+      .resp-header-pad {
+        padding: 30px 16px 24px !important;
+      }
+      .resp-section-pad {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+      }
+      .resp-card-inner {
+        padding: 14px !important;
+      }
+      .resp-service-title {
+        font-size: 17px !important;
+        line-height: 1.35 !important;
+      }
+      .resp-badge-box {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+      }
+      .resp-badge-item {
+        display: inline-flex !important;
+        align-items: center !important;
+        margin: 0 !important;
+        padding: 6px 10px !important;
+        font-size: 11.5px !important;
+        white-space: nowrap !important;
+      }
+      .resp-table-cell {
+        padding: 9px 8px !important;
+        font-size: 12.5px !important;
+      }
+      .resp-table-label {
+        width: 37% !important;
+        font-size: 11.5px !important;
+      }
+      .resp-footer-pad {
+        padding: 24px 16px !important;
+      }
+      .resp-action-col {
+        display: block !important;
+        width: 100% !important;
+      }
+      .resp-action-spacer {
+        display: block !important;
+        height: 8px !important;
+        width: 100% !important;
+      }
+    }
+  </style>
 </head>
 <body style="margin: 0; padding: 0; background-color: #EBF5FE; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #141E3C;">
   
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #EBF5FE; padding: 30px 15px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 20px 8px; background-color: #EBF5FE;">
     <tr>
       <td align="center">
         
         <!-- Main Card Container -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 620px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; border: 1px solid #BAE0FD; box-shadow: 0 12px 36px rgba(20, 30, 60, 0.08);">
+        <table class="resp-card" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; border: 1px solid #BAE0FD; box-shadow: 0 12px 36px rgba(20, 30, 60, 0.08);">
           
           <!-- ============================================== -->
           <!-- 1. HEADER (Deep Indigo & Sapphire Gradient) -->
           <!-- ============================================== -->
           <tr>
-            <td style="background: #141E3C; background: linear-gradient(135deg, #141E3C 0%, #1E3A8A 55%, #141E3C 100%); padding: 36px 24px 30px; text-align: center; border-bottom: 2px solid #0284C7;">
+            <td class="resp-header-pad" style="background: #141E3C; background: linear-gradient(135deg, #141E3C 0%, #1E3A8A 55%, #141E3C 100%); padding: 36px 20px 28px; text-align: center; border-bottom: 2px solid #0284C7;">
               
-              <!-- Brand Logo Emblem -->
-              <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 12px;">
+              <!-- Brand Logo Emblem (+30% LARGER: 80px x 80px wrapper, 70px x 70px image) -->
+              <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 14px;">
                 <tr>
-                  <td style="width: 60px; height: 60px; border-radius: 50%; background-color: #FFFFFF; padding: 4px; border: 2px solid #BAE0FD; text-align: center; vertical-align: middle; box-shadow: 0 4px 14px rgba(0,0,0,0.25);">
-                    <img src="https://eyestetix.github.io/massajispa/assets/images/member-1.png" alt="Massaji Spa Logo" width="52" height="52" style="width: 52px; height: 52px; border-radius: 50%; display: block; margin: 0 auto; object-fit: contain;">
+                  <td style="width: 80px; height: 80px; border-radius: 50%; background-color: #FFFFFF; padding: 5px; border: 3px solid #BAE0FD; text-align: center; vertical-align: middle; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+                    <img src="https://eyestetix.github.io/massajispa/assets/images/member-1.png" alt="Massaji Spa Logo" width="70" height="70" style="width: 70px; height: 70px; border-radius: 50%; display: block; margin: 0 auto; object-fit: contain;">
                   </td>
                 </tr>
               </table>
 
               <!-- Katakana Brand Mark -->
-              <div style="font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #BAE0FD; text-transform: uppercase; margin-bottom: 4px;">マッサージ</div>
+              <div style="font-size: 11px; font-weight: 800; letter-spacing: 3.5px; color: #BAE0FD; text-transform: uppercase; margin-bottom: 4px;">マッサージ</div>
               
               <!-- Brand Name -->
               <h1 style="margin: 0; font-size: 26px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.5px; line-height: 1.2;">
@@ -166,7 +220,7 @@ $email_body = '<!DOCTYPE html>
               <div style="font-size: 10px; font-weight: 700; letter-spacing: 2.5px; color: #94A3B8; text-transform: uppercase; margin-top: 4px;">CANGGU &bull; BALI</div>
               
               <!-- Badge Tag -->
-              <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 18px auto 0;">
+              <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 16px auto 0;">
                 <tr>
                   <td style="background-color: rgba(2, 132, 199, 0.35); border: 1px solid #38BDF8; color: #E0F2FE; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; padding: 6px 18px; border-radius: 20px;">
                     ✨ NOTIFIKASI RESERVASI MASUK
@@ -178,38 +232,35 @@ $email_body = '<!DOCTYPE html>
           </tr>
 
           <!-- ============================================== -->
-          <!-- 2. SUMMARY HIGHLIGHT CARD -->
+          <!-- 2. SUMMARY HIGHLIGHT CARD (Mobile-Optimized Pills) -->
           <!-- ============================================== -->
           <tr>
-            <td style="padding: 28px 28px 12px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #F0F8FF; border: 1px solid #BAE0FD; border-radius: 14px; padding: 20px;">
-                <tr>
-                  <td>
-                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0284C7; margin-bottom: 6px;">Layanan / Treatment yang Dipesan:</div>
-                    <div style="font-size: 20px; font-weight: 800; color: #141E3C; line-height: 1.3; margin-bottom: 14px;">' . htmlspecialchars($service) . '</div>
-                    
-                    <table cellpadding="0" cellspacing="0" border="0">
-                      <tr>
-                        <td style="padding-right: 8px; padding-bottom: 6px;">
-                          <div style="background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A;">
-                            📅 ' . htmlspecialchars($date) . '
-                          </div>
-                        </td>
-                        <td style="padding-right: 8px; padding-bottom: 6px;">
-                          <div style="background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A;">
-                            ⏰ ' . htmlspecialchars($time) . ' WITA
-                          </div>
-                        </td>
-                        <td style="padding-bottom: 6px;">
-                          <div style="background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A;">
-                            👥 ' . htmlspecialchars($guests) . ' Tamu
-                          </div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
+            <td class="resp-section-pad" style="padding: 22px 22px 10px;">
+              <div class="resp-card-inner" style="background-color: #F0F8FF; border: 1px solid #BAE0FD; border-radius: 14px; padding: 18px;">
+                
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0284C7; margin-bottom: 5px;">
+                  Layanan / Treatment yang Dipesan:
+                </div>
+                
+                <!-- Treatment Title: Comfortable size, clean wrapping -->
+                <div class="resp-service-title" style="font-size: 18px; font-weight: 800; color: #141E3C; line-height: 1.35; margin-bottom: 12px; word-break: break-word;">
+                  ' . htmlspecialchars($service) . '
+                </div>
+                
+                <!-- Fluid Responsive Pills: Never break words inside, wrap gracefully on mobile -->
+                <div class="resp-badge-box" style="margin: 0; padding: 0;">
+                  <div class="resp-badge-item" style="display: inline-block; background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A; white-space: nowrap; margin: 3px 6px 3px 0;">
+                    📅 ' . htmlspecialchars($date) . '
+                  </div>
+                  <div class="resp-badge-item" style="display: inline-block; background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A; white-space: nowrap; margin: 3px 6px 3px 0;">
+                    ⏰ ' . htmlspecialchars($time) . ' WITA
+                  </div>
+                  <div class="resp-badge-item" style="display: inline-block; background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A; white-space: nowrap; margin: 3px 0 3px 0;">
+                    👥 ' . htmlspecialchars($guests) . ' Orang
+                  </div>
+                </div>
+
+              </div>
             </td>
           </tr>
 
@@ -217,53 +268,53 @@ $email_body = '<!DOCTYPE html>
           <!-- 3. DETAILED INFORMATION TABLE -->
           <!-- ============================================== -->
           <tr>
-            <td style="padding: 12px 28px 24px;">
-              <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #475569; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #E2E8F0;">
+            <td class="resp-section-pad" style="padding: 10px 22px 20px;">
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #475569; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #E2E8F0;">
                 Rincian Lengkap Tamu &amp; Reservasi
               </div>
 
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; font-size: 13px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; font-size: 13px; width: 100%;">
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; width: 38%; background-color: #F8FCFF;">👤 Nama Lengkap</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700; font-size: 14px;">' . htmlspecialchars($name) . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; width: 37%; background-color: #F8FCFF; white-space: nowrap;">👤 Nama Lengkap</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700; font-size: 13.5px; word-break: break-word;">' . htmlspecialchars($name) . '</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">💆 Layanan Spa</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #0284C7; font-weight: 700;">' . htmlspecialchars($service) . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">💆 Layanan Spa</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #0284C7; font-weight: 700; word-break: break-word;">' . htmlspecialchars($service) . '</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">📅 Tanggal Perawatan</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($date) . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📅 Tanggal</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($date) . '</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">⏰ Waktu / Jam</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($time) . ' WITA</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">⏰ Waktu / Jam</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($time) . ' WITA</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">👥 Jumlah Tamu</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($guests) . ' Orang</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">👥 Jumlah Tamu</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($guests) . ' Orang</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">📱 WhatsApp / Telp</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #059669; font-weight: 700;">
-                    <a href="tel:' . htmlspecialchars($phone) . '" style="color: #059669; text-decoration: none;">' . htmlspecialchars($phone) . '</a>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📱 WhatsApp / Telp</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #059669; font-weight: 700;">
+                    <a href="tel:' . htmlspecialchars($phone) . '" style="color: #059669; text-decoration: none; white-space: nowrap;">' . htmlspecialchars($phone) . '</a>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">✉️ Email Tamu</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C;">' . (!empty($email) ? '<a href="mailto:' . htmlspecialchars($email) . '" style="color: #0284C7; text-decoration: none; font-weight: 600;">' . htmlspecialchars($email) . '</a>' : '<span style="color: #94A3B8; font-style: italic;">Tidak dicantumkan</span>') . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">✉️ Email Tamu</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; word-break: break-all;">' . (!empty($email) ? '<a href="mailto:' . htmlspecialchars($email) . '" style="color: #0284C7; text-decoration: none; font-weight: 600;">' . htmlspecialchars($email) . '</a>' : '<span style="color: #94A3B8; font-style: italic;">Tidak dicantumkan</span>') . '</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">📝 Permintaan Khusus</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-style: italic;">' . nl2br(htmlspecialchars($notes)) . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📝 Catatan Khusus</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-style: italic; line-height: 1.45; word-break: break-word;">' . nl2br(htmlspecialchars($notes)) . '</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">🔖 ID Booking</td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #475569; font-family: monospace; font-weight: 600;">' . htmlspecialchars($booking_id) . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">🔖 ID Booking</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #475569; font-family: monospace; font-weight: 600; font-size: 12px;">' . htmlspecialchars($booking_id) . '</td>
                 </tr>
                 <tr>
-                  <td style="padding: 11px 12px; color: #64748B; font-weight: 600; background-color: #F8FCFF;">⏱️ Waktu Pengajuan</td>
-                  <td style="padding: 11px 12px; color: #475569; font-size: 12px;">' . htmlspecialchars($created_time) . '</td>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">⏱️ Waktu Masuk</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; color: #475569; font-size: 11.5px;">' . htmlspecialchars($created_time) . '</td>
                 </tr>
               </table>
             </td>
@@ -273,28 +324,28 @@ $email_body = '<!DOCTYPE html>
           <!-- 4. INSTANT ACTION BUTTONS -->
           <!-- ============================================== -->
           <tr>
-            <td style="padding: 0 28px 30px;">
+            <td class="resp-section-pad" style="padding: 0 22px 26px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="center">
                     <!-- WhatsApp Direct Reply Button -->
-                    <a href="' . $guest_wa_url . '" target="_blank" style="display: block; width: 100%; box-sizing: border-box; background-color: #059669; color: #FFFFFF; padding: 15px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);">
-                      💬 Hubungi &amp; Balas Tamu via WhatsApp
+                    <a href="' . $guest_wa_url . '" target="_blank" style="display: block; width: 100%; box-sizing: border-box; background-color: #059669; color: #FFFFFF; padding: 14px 18px; border-radius: 12px; font-weight: 700; font-size: 13.5px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);">
+                      💬 Balas Tamu via WhatsApp
                     </a>
                   </td>
                 </tr>
               </table>
 
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 8px;">
                 <tr>
-                  <td width="48%" align="center">
-                    <a href="tel:' . htmlspecialchars($phone) . '" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center;">
-                      📞 Telepon Langsung
+                  <td class="resp-action-col" width="48%" align="center">
+                    <a href="tel:' . htmlspecialchars($phone) . '" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center; white-space: nowrap;">
+                      📞 Telepon Tamu
                     </a>
                   </td>
-                  <td width="4%"></td>
-                  <td width="48%" align="center">
-                    <a href="https://eyestetix.github.io/massajispa/admin/" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center;">
+                  <td class="resp-action-spacer" width="4%"></td>
+                  <td class="resp-action-col" width="48%" align="center">
+                    <a href="https://eyestetix.github.io/massajispa/admin/" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center; white-space: nowrap;">
                       🔐 Buka Panel Admin
                     </a>
                   </td>
@@ -307,7 +358,7 @@ $email_body = '<!DOCTYPE html>
           <!-- 5. FOOTER (Matching Massaji Spa Web Footer) -->
           <!-- ============================================== -->
           <tr>
-            <td style="background-color: #141E3C; padding: 28px 24px; text-align: center; color: #94A3B8; font-size: 12px; border-top: 1px solid rgba(186, 224, 253, 0.2);">
+            <td class="resp-footer-pad" style="background-color: #141E3C; padding: 26px 20px; text-align: center; color: #94A3B8; font-size: 12px; border-top: 1px solid rgba(186, 224, 253, 0.2);">
               
               <!-- Footer Brand -->
               <div style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">
@@ -321,12 +372,12 @@ $email_body = '<!DOCTYPE html>
 
               <div style="color: #94A3B8; font-size: 11px; line-height: 1.6; margin-bottom: 12px;">
                 📍 Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Bali 80361<br>
-                🕒 Buka Setiap Hari: 10:00 AM – 9:00 PM WITA &bull; 📱 WA: +62 812-3669-5755
+                🕒 Buka: 10:00 AM – 9:00 PM WITA &bull; 📱 WA: +62 812-3669-5755
               </div>
 
               <div style="font-size: 10px; color: #64748B; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; margin-top: 12px;">
                 &copy; 2026 Massaji Spa Bali. All rights reserved.<br>
-                <span style="color: #475569;">Email ini dikirim otomatis oleh sistem reservasi website Massaji Spa Bali.</span>
+                <span style="color: #475569;">Email otomatis sistem reservasi website Massaji Spa Bali.</span>
               </div>
 
             </td>
