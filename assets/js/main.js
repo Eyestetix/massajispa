@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
       pkg_btn_book: "Reserve Package",
       pkg_search_placeholder: "Search spa packages (e.g., couple, 120 mins, relax, single, boreh)...",
       pkg_not_found: "No packages found matching your search.",
+      toggle_collapse: "Collapse",
+      toggle_expand: "Expand",
 
       menu_eyebrow: "Complete Spa Catalog",
       menu_title: "Treatment Menu & Pricing",
@@ -171,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
       pkg_btn_book: "Pesan Paket Ini",
       pkg_search_placeholder: "Cari paket spa (misal: couple, 120 menit, relax, single, boreh)...",
       pkg_not_found: "Tidak ada paket yang sesuai dengan pencarian Anda.",
+      toggle_collapse: "Sembunyikan",
+      toggle_expand: "Tampilkan",
 
       menu_eyebrow: "Katalog Layanan Lengkap",
       menu_title: "Menu Perawatan & Tarif",
@@ -362,6 +366,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update cards & booking options dynamically in real-time
     updateBilingualCards(lang);
 
+    // Sync collapsible toggle buttons text to active language
+    const pkgBtn = document.getElementById('packages-toggle-btn');
+    if (pkgBtn) {
+      const isExpanded = pkgBtn.getAttribute('aria-expanded') === 'true';
+      const label = pkgBtn.querySelector('.toggle-label');
+      if (label) {
+        label.textContent = isExpanded ? i18n[lang].toggle_collapse : i18n[lang].toggle_expand;
+      }
+    }
+    const menuBtn = document.getElementById('menu-toggle-btn');
+    if (menuBtn) {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      const label = menuBtn.querySelector('.toggle-label');
+      if (label) {
+        label.textContent = isExpanded ? i18n[lang].toggle_collapse : i18n[lang].toggle_expand;
+      }
+    }
+
     // Update Popup WhatsApp prefilled message
     const popupWaBtn = document.getElementById('popup-wa-btn');
     if (popupWaBtn) {
@@ -430,6 +452,120 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.classList.add('hidden');
       });
     });
+  }
+
+  // ========================================================
+  // 2.5 COLLAPSIBLE SECTIONS CONTROLLER (PACKAGES & CATALOG)
+  // ========================================================
+  let userToggledPackages = false;
+  let userToggledMenu = false;
+  let wasMobile = window.innerWidth < 768;
+
+  function setSectionCollapseState(section, expand, isUserAction = false) {
+    const btn = document.getElementById(`${section}-toggle-btn`);
+    const body = document.getElementById(`${section}-collapse-body`);
+    if (!btn || !body) return;
+
+    if (expand) {
+      body.classList.remove('is-collapsed');
+      btn.setAttribute('aria-expanded', 'true');
+      const sign = btn.querySelector('.toggle-sign');
+      const label = btn.querySelector('.toggle-label');
+      if (sign) sign.innerHTML = '&minus;';
+      if (label) {
+        label.setAttribute('data-i18n', 'toggle_collapse');
+        label.textContent = (i18n[currentLang] && i18n[currentLang].toggle_collapse) ? i18n[currentLang].toggle_collapse : 'Collapse';
+      }
+      btn.title = section === 'packages' ? 'Collapse Spa Packages' : 'Collapse Complete Spa Catalog';
+    } else {
+      body.classList.add('is-collapsed');
+      btn.setAttribute('aria-expanded', 'false');
+      const sign = btn.querySelector('.toggle-sign');
+      const label = btn.querySelector('.toggle-label');
+      if (sign) sign.textContent = '+';
+      if (label) {
+        label.setAttribute('data-i18n', 'toggle_expand');
+        label.textContent = (i18n[currentLang] && i18n[currentLang].toggle_expand) ? i18n[currentLang].toggle_expand : 'Expand';
+      }
+      btn.title = section === 'packages' ? 'Expand Spa Packages' : 'Expand Complete Spa Catalog';
+    }
+
+    if (isUserAction) {
+      if (section === 'packages') userToggledPackages = true;
+      if (section === 'menu') userToggledMenu = true;
+    }
+  }
+
+  // Initialize responsive state on page load:
+  // Mobile (<768px): Both collapsed by default
+  // Desktop (>=768px): Packages expanded, Catalog collapsed by default
+  const isMobileInitial = window.innerWidth < 768;
+  setSectionCollapseState('packages', !isMobileInitial, false);
+  setSectionCollapseState('menu', false, false);
+
+  // Toggle button event listeners
+  const pkgToggleBtn = document.getElementById('packages-toggle-btn');
+  const pkgHeadingTrigger = document.getElementById('packages-heading-trigger');
+  function handlePackagesToggle() {
+    const isExpanded = pkgToggleBtn && pkgToggleBtn.getAttribute('aria-expanded') === 'true';
+    setSectionCollapseState('packages', !isExpanded, true);
+  }
+  if (pkgToggleBtn) pkgToggleBtn.addEventListener('click', handlePackagesToggle);
+  if (pkgHeadingTrigger) {
+    pkgHeadingTrigger.addEventListener('click', () => {
+      if (window.innerWidth < 768) {
+        handlePackagesToggle();
+      }
+    });
+  }
+
+  const menuToggleBtn = document.getElementById('menu-toggle-btn');
+  const menuHeadingTrigger = document.getElementById('menu-heading-trigger');
+  function handleMenuToggle() {
+    const isExpanded = menuToggleBtn && menuToggleBtn.getAttribute('aria-expanded') === 'true';
+    setSectionCollapseState('menu', !isExpanded, true);
+  }
+  if (menuToggleBtn) menuToggleBtn.addEventListener('click', handleMenuToggle);
+  if (menuHeadingTrigger) {
+    menuHeadingTrigger.addEventListener('click', () => {
+      if (window.innerWidth < 768) {
+        handleMenuToggle();
+      }
+    });
+  }
+
+  // Window resize handler: update state only if user hasn't explicitly interacted with toggle
+  window.addEventListener('resize', () => {
+    const isMobileNow = window.innerWidth < 768;
+    if (isMobileNow !== wasMobile) {
+      wasMobile = isMobileNow;
+      if (!userToggledPackages) {
+        setSectionCollapseState('packages', !isMobileNow, false);
+      }
+      if (!userToggledMenu) {
+        setSectionCollapseState('menu', false, false);
+      }
+    }
+  });
+
+  // Anchor link navigation: clicking #packages or #menu expands target section so content is visible
+  function expandTargetSectionFromHash(hash) {
+    if (hash === '#packages') {
+      setSectionCollapseState('packages', true, true);
+    } else if (hash === '#menu') {
+      setSectionCollapseState('menu', true, true);
+    }
+  }
+
+  document.querySelectorAll('a[href="#packages"], a[href="#menu"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const targetHash = link.getAttribute('href');
+      expandTargetSectionFromHash(targetHash);
+    });
+  });
+
+  if (window.location.hash) {
+    expandTargetSectionFromHash(window.location.hash);
   }
 
   // ========================================================

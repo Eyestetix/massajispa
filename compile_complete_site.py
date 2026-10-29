@@ -128,28 +128,17 @@ for item in promo_items:
         if m:
             title_display_html = f'{m.group(1)} <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">{m.group(2)}</span>'
 
-    # Elegant SVG icons for category/duration
-    header_icon = '<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
-    if 'Slimming' in item['name'] or 'Cavitation' in item['duration']:
-        header_icon = '<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5c1.5 2.5 4 4 6.5 4.5-1.5 3-4 4.5-6.5 9-2.5-4.5-5-6-6.5-9 2.5-.5 5-2 6.5-4.5z"/></svg>'
-    elif 'Rose' in item['name']:
-        header_icon = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 009-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 009 9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7c-2 1-3 3-2 5s3 3 5 2 3-3 2-5-3-3-5-2z"/></svg>'
+    # Simple clean uppercase text label for duration without decorative icons (e.g., "120 MINUTES", "90 MINUTES", "CAVITATION RF")
+    dur_clean_en = esc_dur_en.upper().replace('MINS', 'MINUTES').replace('MIN', 'MINUTES')
+    dur_clean_id = esc_dur_id.upper().replace('MENIT', 'MENIT')
 
     if item.get('multi_prices'):
-        # Multi-option card: Body Slimming Treatment (Tummy / Thigh)
-        tummy_icon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5" /></svg>'
-        thigh_icon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v14" /><path stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2" d="M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6" /></svg>'
-
+        # Multi-option card: Body Slimming Treatment (Tummy / Thigh) - clean text-based rows without icons
         boxes_en = f'''<div class="card-multi-prices space-y-2.5 mb-4">
   <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
-        {tummy_icon}
-      </div>
-      <div class="min-w-0">
-        <span class="block font-bold text-white text-sm">Tummy</span>
-        <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
-      </div>
+    <div>
+      <span class="block font-bold text-white text-sm">Tummy</span>
+      <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
     </div>
     <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
       <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
@@ -157,14 +146,9 @@ for item in promo_items:
     </div>
   </div>
   <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
-        {thigh_icon}
-      </div>
-      <div class="min-w-0">
-        <span class="block font-bold text-white text-sm">Thigh</span>
-        <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
-      </div>
+    <div>
+      <span class="block font-bold text-white text-sm">Thigh</span>
+      <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
     </div>
     <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
       <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
@@ -175,14 +159,9 @@ for item in promo_items:
 
         boxes_id = f'''<div class="card-multi-prices space-y-2.5 mb-4">
   <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
-        {tummy_icon}
-      </div>
-      <div class="min-w-0">
-        <span class="block font-bold text-white text-sm">Perut</span>
-        <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
-      </div>
+    <div>
+      <span class="block font-bold text-white text-sm">Perut</span>
+      <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
     </div>
     <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
       <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">KINI</span>
@@ -190,14 +169,9 @@ for item in promo_items:
     </div>
   </div>
   <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
-        {thigh_icon}
-      </div>
-      <div class="min-w-0">
-        <span class="block font-bold text-white text-sm">Paha</span>
-        <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
-      </div>
+    <div>
+      <span class="block font-bold text-white text-sm">Paha</span>
+      <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
     </div>
     <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
       <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">KINI</span>
@@ -237,16 +211,13 @@ for item in promo_items:
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
              data-desc-en="{esc_desc_en}" data-desc-id="{esc_desc_id}"
-             data-dur-en="{esc_dur_en}" data-dur-id="{esc_dur_id}"
+             data-dur-en="{dur_clean_en}" data-dur-id="{dur_clean_id}"
              data-tag-en="{esc_tag_en}" data-tag-id="{esc_tag_id}"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="{esc_pills_en}" data-multi-id="{esc_pills_id}">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
-                {header_icon}
-                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">{esc_dur_en}</span>
-              </div>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">{dur_clean_en}</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 {esc_tag_en}
               </span>
@@ -300,10 +271,7 @@ for item in package_items:
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">{cat_badge_en}</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">{esc_dur_en}</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">{esc_dur_en}</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -379,10 +347,7 @@ for item in treatment_items:
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">{cat_label_en}</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">{esc_dur_en}</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">{esc_dur_en}</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -694,62 +659,79 @@ html_template = f'''<!DOCTYPE html>
   <!-- ========================================== -->
   <!-- 5. SECTION 2: PAKET (CURATED SPA PACKAGES WITH SEARCH) -->
   <!-- ========================================== -->
-  <section id="packages" class="py-24 bg-[#F0F8FF]/80 border-b border-[#BAE0FD]">
+  <section id="packages" class="py-16 sm:py-24 bg-[#F0F8FF]/80 border-b border-[#BAE0FD]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="text-center max-w-3xl mx-auto mb-6">
         <span class="eyebrow-tag" data-i18n="packages_eyebrow">Curated Spa Rituals</span>
-        <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
-          Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
-        </h2>
-        <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
-          Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
-        </p>
+        <div class="flex items-center justify-center gap-3.5 mt-2 mb-3 flex-wrap">
+          <h2 class="font-serif section-headline text-[#141E3C] cursor-pointer sm:cursor-default" id="packages-heading-trigger">
+            Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
+          </h2>
+          <button 
+            type="button" 
+            id="packages-toggle-btn"
+            aria-expanded="true"
+            aria-controls="packages-collapse-body"
+            class="section-toggle-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#BAE0FD] bg-white text-[#1E3A8A] hover:bg-[#E1F0FE] hover:border-[#1E3A8A] text-xs font-semibold tracking-wider transition-all duration-200 shadow-sm cursor-pointer select-none"
+            title="Toggle Spa Packages">
+            <span class="toggle-sign font-mono text-sm font-bold leading-none" aria-hidden="true">&minus;</span>
+            <span class="toggle-label font-mono text-[11px] uppercase" data-i18n="toggle_collapse">Collapse</span>
+          </button>
+        </div>
+      </div>
 
-        <!-- Live Search Bar for Packages -->
-        <div class="mt-6 max-w-md mx-auto relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <div id="packages-collapse-body" class="collapsible-section-body overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
+            Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
+          </p>
+
+          <!-- Live Search Bar for Packages -->
+          <div class="mt-6 max-w-md mx-auto relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <input 
+              type="text" 
+              id="package-search-input" 
+              placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
+              data-i18n-placeholder="pkg_search_placeholder"
+              class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+            <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
           </div>
-          <input 
-            type="text" 
-            id="package-search-input" 
-            placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
-            data-i18n-placeholder="pkg_search_placeholder"
-            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
-          <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
+
+          <!-- Package Filter Tabs -->
+          <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
+              <span data-i18n="pkg_tab_all">All Packages</span> ({len(package_items)})
+            </button>
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-single" data-i18n="pkg_tab_single">
+              Single Package (1 Person)
+            </button>
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-couple" data-i18n="pkg_tab_couple">
+              Couple Package (2 Persons)
+            </button>
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-group" data-i18n="pkg_tab_group">
+              Group Package (4 Persons)
+            </button>
+          </div>
         </div>
 
-        <!-- Package Filter Tabs -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
-            <span data-i18n="pkg_tab_all">All Packages</span> ({len(package_items)})
-          </button>
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-single" data-i18n="pkg_tab_single">
-            Single Package (1 Person)
-          </button>
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-couple" data-i18n="pkg_tab_couple">
-            Couple Package (2 Persons)
-          </button>
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-group" data-i18n="pkg_tab_group">
-            Group Package (4 Persons)
-          </button>
-        </div>
-      </div>
-
-      <!-- Packages Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
+        <!-- Packages Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
 {package_cards_html}
-      </div>
+        </div>
 
-      <!-- No Packages Found Message -->
-      <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
-        <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
-        <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
-          <span data-i18n="pkg_tab_all">All Packages</span>
-        </button>
+        <!-- No Packages Found Message -->
+        <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+          <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
+          <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+            <span data-i18n="pkg_tab_all">All Packages</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -758,70 +740,87 @@ html_template = f'''<!DOCTYPE html>
   <!-- ========================================== -->
   <!-- 6. SECTION 3: TREATMENT MENU & PRICING WITH SEARCH -->
   <!-- ========================================== -->
-  <section id="menu" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <section id="menu" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
-    <div class="text-center max-w-3xl mx-auto mb-10">
+    <div class="text-center max-w-3xl mx-auto mb-6">
       <span class="eyebrow-tag" data-i18n="menu_eyebrow">Complete Spa Catalog</span>
-      <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
-        Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
-      </h2>
-      <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
-        Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
-      </p>
+      <div class="flex items-center justify-center gap-3.5 mt-2 mb-3 flex-wrap">
+        <h2 class="font-serif section-headline text-[#141E3C] cursor-pointer sm:cursor-default" id="menu-heading-trigger">
+          Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
+        </h2>
+        <button 
+          type="button" 
+          id="menu-toggle-btn"
+          aria-expanded="false"
+          aria-controls="menu-collapse-body"
+          class="section-toggle-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#BAE0FD] bg-white text-[#1E3A8A] hover:bg-[#E1F0FE] hover:border-[#1E3A8A] text-xs font-semibold tracking-wider transition-all duration-200 shadow-sm cursor-pointer select-none"
+          title="Toggle Complete Spa Catalog">
+          <span class="toggle-sign font-mono text-sm font-bold leading-none" aria-hidden="true">+</span>
+          <span class="toggle-label font-mono text-[11px] uppercase" data-i18n="toggle_expand">Expand</span>
+        </button>
+      </div>
+    </div>
 
-      <!-- Live Search Bar for Treatments -->
-      <div class="mt-6 max-w-md mx-auto relative">
-        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    <div id="menu-collapse-body" class="collapsible-section-body is-collapsed overflow-hidden transition-all duration-300 ease-in-out">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
+          Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
+        </p>
+
+        <!-- Live Search Bar for Treatments -->
+        <div class="mt-6 max-w-md mx-auto relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            id="menu-search-input" 
+            placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
+            data-i18n-placeholder="menu_search_placeholder"
+            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+          <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
         </div>
-        <input 
-          type="text" 
-          id="menu-search-input" 
-          placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
-          data-i18n-placeholder="menu_search_placeholder"
-          class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
-        <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
+            <span data-i18n="cat_all">All Treatments</span> ({len(treatment_items)})
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="massage" data-i18n="cat_massage">
+            Body Massage
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="spa" data-i18n="cat_spa">
+            Body Spa Treatments
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="slimming" data-i18n="cat_slimming">
+            Slimming &amp; Cellulite
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="facial" data-i18n="cat_facial">
+            Facial Treatments
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="nail" data-i18n="cat_nail">
+            Nail Services
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="additional" data-i18n="cat_additional">
+            Additional Services
+          </button>
+        </div>
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
-          <span data-i18n="cat_all">All Treatments</span> ({len(treatment_items)})
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="massage" data-i18n="cat_massage">
-          Body Massage
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="spa" data-i18n="cat_spa">
-          Body Spa Treatments
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="slimming" data-i18n="cat_slimming">
-          Slimming &amp; Cellulite
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="facial" data-i18n="cat_facial">
-          Facial Treatments
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="nail" data-i18n="cat_nail">
-          Nail Services
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="additional" data-i18n="cat_additional">
-          Additional Services
-        </button>
-      </div>
-    </div>
-
-    <!-- Treatment Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
+      <!-- Treatment Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
 {treatment_cards_html}
-    </div>
+      </div>
 
-    <!-- No Treatments Found Message -->
-    <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
-      <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
-      <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
-        <span data-i18n="cat_all">All Treatments</span>
-      </button>
+      <!-- No Treatments Found Message -->
+      <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+        <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
+        <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+          <span data-i18n="cat_all">All Treatments</span>
+        </button>
+      </div>
     </div>
 
   </section>

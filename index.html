@@ -256,16 +256,13 @@
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Bali Traditional Massage (120 mins)" data-name-id="Pijat Tradisional Bali (120 menit)"
              data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage" data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam. CATATAN : Pijat tekanan sedang (Medium pressure massage)"
-             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-dur-en="120 MINUTESUTES" data-dur-id="120 MENIT"
              data-tag-en="Now 300K" data-tag-id="Kini 300K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
-                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">120 Mins</span>
-              </div>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTESUTES</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 300K
               </span>
@@ -294,16 +291,13 @@
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Deep Tissue Massage (90 mins)" data-name-id="Pijat Deep Tissue (90 menit)"
              data-desc-en="A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage" data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika. CATATAN: Pijat tekanan kuat (Strong Pressure Massage)"
-             data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-dur-en="90 MINUTESUTES" data-dur-id="90 MENIT"
              data-tag-en="Now 285K" data-tag-id="Kini 285K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
-                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">90 Mins</span>
-              </div>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">90 MINUTESUTES</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 285K
               </span>
@@ -332,19 +326,14 @@
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Body Slimming Treatment (Tummy / Thigh)" data-name-id="Perawatan Body Slimming (Perut / Paha)"
              data-desc-en="Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub." data-desc-id="Terapi pembentukan kontur tubuh modern dengan Cavitation RF untuk memecah sel lemak membandel dan mengencangkan kulit. Termasuk lulur kopi gratis."
-             data-dur-en="Cavitation RF" data-dur-id="Cavitation RF"
+             data-dur-en="CAVITATION RF" data-dur-id="CAVITATION RF"
              data-tag-en="Save Up To 250K" data-tag-id="Hemat Hingga 250K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="&lt;div class=&quot;card-multi-prices space-y-2.5 mb-4&quot;&gt;
   &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
-    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
-      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
-        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5&quot; /&gt;&lt;/svg&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;min-w-0&quot;&gt;
-        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Tummy&lt;/span&gt;
-        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 900.000&lt;/span&gt;
-      &lt;/div&gt;
+    &lt;div&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Tummy&lt;/span&gt;
+      &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 900.000&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
       &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;NOW&lt;/span&gt;
@@ -352,14 +341,9 @@
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
-    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
-      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
-        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M12 7v14&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-dasharray=&quot;2 2&quot; d=&quot;M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6&quot; /&gt;&lt;/svg&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;min-w-0&quot;&gt;
-        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Thigh&lt;/span&gt;
-        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 850.000&lt;/span&gt;
-      &lt;/div&gt;
+    &lt;div&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Thigh&lt;/span&gt;
+      &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 850.000&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
       &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;NOW&lt;/span&gt;
@@ -368,14 +352,9 @@
   &lt;/div&gt;
 &lt;/div&gt;" data-multi-id="&lt;div class=&quot;card-multi-prices space-y-2.5 mb-4&quot;&gt;
   &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
-    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
-      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
-        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5&quot; /&gt;&lt;/svg&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;min-w-0&quot;&gt;
-        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Perut&lt;/span&gt;
-        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 900.000&lt;/span&gt;
-      &lt;/div&gt;
+    &lt;div&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Perut&lt;/span&gt;
+      &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 900.000&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
       &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;KINI&lt;/span&gt;
@@ -383,14 +362,9 @@
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
-    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
-      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
-        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M12 7v14&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-dasharray=&quot;2 2&quot; d=&quot;M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6&quot; /&gt;&lt;/svg&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;min-w-0&quot;&gt;
-        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Paha&lt;/span&gt;
-        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 850.000&lt;/span&gt;
-      &lt;/div&gt;
+    &lt;div&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Paha&lt;/span&gt;
+      &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 850.000&lt;/span&gt;
     &lt;/div&gt;
     &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
       &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;KINI&lt;/span&gt;
@@ -400,10 +374,7 @@
 &lt;/div&gt;">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
-                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5c1.5 2.5 4 4 6.5 4.5-1.5 3-4 4.5-6.5 9-2.5-4.5-5-6-6.5-9 2.5-.5 5-2 6.5-4.5z"/></svg>
-                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">Cavitation RF</span>
-              </div>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">CAVITATION RF</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Save Up To 250K
               </span>
@@ -419,14 +390,9 @@
           <div class="mt-auto pt-4 flex flex-col justify-end">
             <div class="card-multi-prices space-y-2.5 mb-4">
   <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5" /></svg>
-      </div>
-      <div class="min-w-0">
-        <span class="block font-bold text-white text-sm">Tummy</span>
-        <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
-      </div>
+    <div>
+      <span class="block font-bold text-white text-sm">Tummy</span>
+      <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
     </div>
     <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
       <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
@@ -434,14 +400,9 @@
     </div>
   </div>
   <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
-    <div class="flex items-center gap-3 min-w-0">
-      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v14" /><path stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2" d="M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6" /></svg>
-      </div>
-      <div class="min-w-0">
-        <span class="block font-bold text-white text-sm">Thigh</span>
-        <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
-      </div>
+    <div>
+      <span class="block font-bold text-white text-sm">Thigh</span>
+      <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
     </div>
     <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
       <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
@@ -459,16 +420,13 @@
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Rose Bali Spa (120 mins)" data-name-id="Rose Bali Spa (120 menit)"
              data-desc-en="Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles." data-desc-id="Kemewahan ekstrak mawar kaya antioksidan serta vitamin A dan C yang meremajakan sel kulit, menyamarkan kerutan, dan memberikan keharuman elegan sepanjang hari."
-             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-dur-en="120 MINUTESUTES" data-dur-id="120 MENIT"
              data-tag-en="Now 600K" data-tag-id="Kini 600K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
-                <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 009-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 009 9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7c-2 1-3 3-2 5s3 3 5 2 3-3 2-5-3-3-5-2z"/></svg>
-                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">120 Mins</span>
-              </div>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTESUTES</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 600K
               </span>
@@ -519,53 +477,69 @@
   <!-- ========================================== -->
   <!-- 5. SECTION 2: PAKET (CURATED SPA PACKAGES WITH SEARCH) -->
   <!-- ========================================== -->
-  <section id="packages" class="py-24 bg-[#F0F8FF]/80 border-b border-[#BAE0FD]">
+  <section id="packages" class="py-16 sm:py-24 bg-[#F0F8FF]/80 border-b border-[#BAE0FD]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="text-center max-w-3xl mx-auto mb-6">
         <span class="eyebrow-tag" data-i18n="packages_eyebrow">Curated Spa Rituals</span>
-        <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
-          Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
-        </h2>
-        <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
-          Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
-        </p>
-
-        <!-- Live Search Bar for Packages -->
-        <div class="mt-6 max-w-md mx-auto relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          </div>
-          <input 
-            type="text" 
-            id="package-search-input" 
-            placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
-            data-i18n-placeholder="pkg_search_placeholder"
-            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
-          <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>
-
-        <!-- Package Filter Tabs -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
-            <span data-i18n="pkg_tab_all">All Packages</span> (11)
-          </button>
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-single" data-i18n="pkg_tab_single">
-            Single Package (1 Person)
-          </button>
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-couple" data-i18n="pkg_tab_couple">
-            Couple Package (2 Persons)
-          </button>
-          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-group" data-i18n="pkg_tab_group">
-            Group Package (4 Persons)
+        <div class="flex items-center justify-center gap-3.5 mt-2 mb-3 flex-wrap">
+          <h2 class="font-serif section-headline text-[#141E3C] cursor-pointer sm:cursor-default" id="packages-heading-trigger">
+            Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
+          </h2>
+          <button 
+            type="button" 
+            id="packages-toggle-btn"
+            aria-expanded="true"
+            aria-controls="packages-collapse-body"
+            class="section-toggle-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#BAE0FD] bg-white text-[#1E3A8A] hover:bg-[#E1F0FE] hover:border-[#1E3A8A] text-xs font-semibold tracking-wider transition-all duration-200 shadow-sm cursor-pointer select-none"
+            title="Toggle Spa Packages">
+            <span class="toggle-sign font-mono text-sm font-bold leading-none" aria-hidden="true">&minus;</span>
+            <span class="toggle-label font-mono text-[11px] uppercase" data-i18n="toggle_collapse">Collapse</span>
           </button>
         </div>
       </div>
 
-      <!-- Packages Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
+      <div id="packages-collapse-body" class="collapsible-section-body overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
+            Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
+          </p>
+
+          <!-- Live Search Bar for Packages -->
+          <div class="mt-6 max-w-md mx-auto relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <input 
+              type="text" 
+              id="package-search-input" 
+              placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
+              data-i18n-placeholder="pkg_search_placeholder"
+              class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+            <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <!-- Package Filter Tabs -->
+          <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
+              <span data-i18n="pkg_tab_all">All Packages</span> (11)
+            </button>
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-single" data-i18n="pkg_tab_single">
+              Single Package (1 Person)
+            </button>
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-couple" data-i18n="pkg_tab_couple">
+              Couple Package (2 Persons)
+            </button>
+            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-group" data-i18n="pkg_tab_group">
+              Group Package (4 Persons)
+            </button>
+          </div>
+        </div>
+
+        <!-- Packages Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
              data-category="packages-single" 
@@ -578,10 +552,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins (1 Person)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins (1 Person)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -620,10 +591,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins (1 Person)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins (1 Person)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -662,10 +630,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">150 Mins (1 Person)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins (1 Person)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -704,10 +669,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">4 Hours (1 Person)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">4 Hours (1 Person)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -746,10 +708,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">105 Mins (2 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">105 Mins (2 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -788,10 +747,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins (2 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins (2 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -830,10 +786,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins (2 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins (2 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -872,10 +825,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">135 Mins (2 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins (2 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -914,10 +864,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">150 Mins (2 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins (2 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -956,10 +903,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Group Package (4 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins (4 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins (4 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -998,10 +942,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Group Package (4 Persons)</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins (4 Persons)</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins (4 Persons)</span>
             </div>
             <div class="mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1028,14 +969,15 @@
             </button>
           </div>
         </div>
-      </div>
+        </div>
 
-      <!-- No Packages Found Message -->
-      <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
-        <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
-        <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
-          <span data-i18n="pkg_tab_all">All Packages</span>
-        </button>
+        <!-- No Packages Found Message -->
+        <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+          <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
+          <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+            <span data-i18n="pkg_tab_all">All Packages</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -1044,61 +986,77 @@
   <!-- ========================================== -->
   <!-- 6. SECTION 3: TREATMENT MENU & PRICING WITH SEARCH -->
   <!-- ========================================== -->
-  <section id="menu" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <section id="menu" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
-    <div class="text-center max-w-3xl mx-auto mb-10">
+    <div class="text-center max-w-3xl mx-auto mb-6">
       <span class="eyebrow-tag" data-i18n="menu_eyebrow">Complete Spa Catalog</span>
-      <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
-        Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
-      </h2>
-      <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
-        Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
-      </p>
-
-      <!-- Live Search Bar for Treatments -->
-      <div class="mt-6 max-w-md mx-auto relative">
-        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </div>
-        <input 
-          type="text" 
-          id="menu-search-input" 
-          placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
-          data-i18n-placeholder="menu_search_placeholder"
-          class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
-        <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-
-      <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
-          <span data-i18n="cat_all">All Treatments</span> (43)
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="massage" data-i18n="cat_massage">
-          Body Massage
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="spa" data-i18n="cat_spa">
-          Body Spa Treatments
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="slimming" data-i18n="cat_slimming">
-          Slimming &amp; Cellulite
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="facial" data-i18n="cat_facial">
-          Facial Treatments
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="nail" data-i18n="cat_nail">
-          Nail Services
-        </button>
-        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="additional" data-i18n="cat_additional">
-          Additional Services
+      <div class="flex items-center justify-center gap-3.5 mt-2 mb-3 flex-wrap">
+        <h2 class="font-serif section-headline text-[#141E3C] cursor-pointer sm:cursor-default" id="menu-heading-trigger">
+          Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
+        </h2>
+        <button 
+          type="button" 
+          id="menu-toggle-btn"
+          aria-expanded="false"
+          aria-controls="menu-collapse-body"
+          class="section-toggle-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#BAE0FD] bg-white text-[#1E3A8A] hover:bg-[#E1F0FE] hover:border-[#1E3A8A] text-xs font-semibold tracking-wider transition-all duration-200 shadow-sm cursor-pointer select-none"
+          title="Toggle Complete Spa Catalog">
+          <span class="toggle-sign font-mono text-sm font-bold leading-none" aria-hidden="true">+</span>
+          <span class="toggle-label font-mono text-[11px] uppercase" data-i18n="toggle_expand">Expand</span>
         </button>
       </div>
     </div>
 
-    <!-- Treatment Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
+    <div id="menu-collapse-body" class="collapsible-section-body is-collapsed overflow-hidden transition-all duration-300 ease-in-out">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
+          Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
+        </p>
+
+        <!-- Live Search Bar for Treatments -->
+        <div class="mt-6 max-w-md mx-auto relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            id="menu-search-input" 
+            placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
+            data-i18n-placeholder="menu_search_placeholder"
+            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+          <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
+            <span data-i18n="cat_all">All Treatments</span> (43)
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="massage" data-i18n="cat_massage">
+            Body Massage
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="spa" data-i18n="cat_spa">
+            Body Spa Treatments
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="slimming" data-i18n="cat_slimming">
+            Slimming &amp; Cellulite
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="facial" data-i18n="cat_facial">
+            Facial Treatments
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="nail" data-i18n="cat_nail">
+            Nail Services
+          </button>
+          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="additional" data-i18n="cat_additional">
+            Additional Services
+          </button>
+        </div>
+      </div>
+
+      <!-- Treatment Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
              data-category="massage" 
@@ -1112,10 +1070,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">60 / 90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 / 90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1157,10 +1112,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">60 / 90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 / 90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1202,10 +1154,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">60 / 90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 / 90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1247,10 +1196,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1292,10 +1238,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1337,10 +1280,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1382,10 +1322,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 / 60 / 90 / 120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 / 60 / 90 / 120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1427,10 +1364,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 / 60 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 / 60 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1472,10 +1406,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">45 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">45 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1514,10 +1445,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1556,10 +1484,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1598,10 +1523,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1640,10 +1562,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">135 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1682,10 +1601,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">135 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1724,10 +1640,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">135 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1766,10 +1679,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1808,10 +1718,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1850,10 +1757,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1892,10 +1796,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1934,10 +1835,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1976,10 +1874,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">150 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2018,10 +1913,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">150 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2060,10 +1952,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">150 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2102,10 +1991,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">60 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2144,10 +2030,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2186,10 +2069,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">120 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2228,10 +2108,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">10 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">10 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2270,10 +2147,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">10 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">10 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2312,10 +2186,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">15 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2354,10 +2225,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">15 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2396,10 +2264,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2438,10 +2303,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">90 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2480,10 +2342,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">60 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2525,10 +2384,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">60 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2567,10 +2423,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">Service Add-on</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">Service Add-on</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2612,10 +2465,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2654,10 +2504,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2696,10 +2543,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2738,10 +2582,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">15 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2780,10 +2621,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">30 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2822,10 +2660,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">15 Mins</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2864,10 +2699,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">Custom Treatment</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">Custom Treatment</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2906,10 +2738,7 @@
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
-                <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="card-duration">Romantic Add-on</span>
-              </span>
+              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">Romantic Add-on</span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2935,14 +2764,15 @@
             </button>
           </div>
         </div>
-    </div>
+      </div>
 
-    <!-- No Treatments Found Message -->
-    <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
-      <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
-      <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
-        <span data-i18n="cat_all">All Treatments</span>
-      </button>
+      <!-- No Treatments Found Message -->
+      <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+        <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
+        <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+          <span data-i18n="cat_all">All Treatments</span>
+        </button>
+      </div>
     </div>
 
   </section>
