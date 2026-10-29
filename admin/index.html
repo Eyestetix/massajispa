@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,6 +51,11 @@
       background-color: #141E3C;
       transform: translateY(-1px);
     }
+    .img-preview-box {
+      background-size: cover;
+      background-position: center;
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body class="min-h-screen text-[#141E3C] antialiased">
@@ -59,7 +64,7 @@
   <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-[-100px] opacity-0 pointer-events-none max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-sm"></div>
 
   <!-- ======================================================== -->
-  <!-- LOGIN VIEW (SHOWN IF NOT AUTHENTICATED) -->
+  <!-- 1. LOGIN VIEW (KEAMANAN TERJAGA - PASSWORD DEFAULT DIBERSIHKAN) -->
   <!-- ======================================================== -->
   <div id="admin-login-overlay" class="fixed inset-0 z-50 bg-[#EBF5FE]/95 backdrop-blur-md flex items-center justify-center p-4">
     <div class="w-full max-w-md bg-white border border-[#BAE0FD] rounded-2xl p-8 shadow-2xl relative">
@@ -77,13 +82,12 @@
       <form id="admin-login-form" class="space-y-4">
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Username</label>
-          <input type="text" id="login-user" value="admin" required class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
+          <input type="text" id="login-user" required placeholder="Masukkan username admin..." class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
         </div>
 
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Password</label>
-          <input type="password" id="login-pass" required placeholder="Enter admin password..." class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
-          <p class="text-[11px] text-[#475569] mt-1">Default password: <span class="font-mono font-bold text-[#1E3A8A]">massaji2026</span></p>
+          <input type="password" id="login-pass" required placeholder="Masukkan password admin..." class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
         </div>
 
         <button type="submit" class="w-full py-3 rounded-xl btn-royal text-white font-bold text-xs tracking-wider uppercase shadow-lg shadow-blue-900/20">
@@ -92,16 +96,16 @@
       </form>
 
       <div class="mt-6 pt-4 border-t border-[#BAE0FD] text-center">
-        <a href="https://eyestetix.github.io/massajispa" class="inline-flex items-center gap-1.5 text-xs text-[#0284C7] font-bold hover:underline">
+        <a href="../index.php" class="inline-flex items-center gap-1.5 text-xs text-[#0284C7] font-bold hover:underline">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-          Back to Live Website
+          Kembali ke Website
         </a>
       </div>
     </div>
   </div>
 
   <!-- ======================================================== -->
-  <!-- MAIN DASHBOARD CONTENT (SHOWN WHEN LOGGED IN) -->
+  <!-- 2. MAIN DASHBOARD CONTENT -->
   <!-- ======================================================== -->
   <div id="admin-dashboard-container" class="hidden">
     
@@ -120,8 +124,7 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <!-- Live Website Link Requested by User -->
-          <a href="https://eyestetix.github.io/massajispa" target="_blank" class="px-4 py-2 rounded-xl border border-[#BAE0FD] hover:border-[#1E3A8A] bg-[#F0F8FF] hover:bg-white text-[#1E3A8A] text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
+          <a href="../index.php" target="_blank" class="px-4 py-2 rounded-xl border border-[#BAE0FD] hover:border-[#1E3A8A] bg-[#F0F8FF] hover:bg-white text-[#1E3A8A] text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             Buka Website
           </a>
@@ -138,13 +141,22 @@
       
       <!-- Navigation Tabs -->
       <div class="flex border-b border-[#BAE0FD] gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
-        <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-[#1E3A8A] text-[#1E3A8A] flex items-center gap-2 whitespace-nowrap transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          Kontak &amp; Notifikasi Email
+        <button onclick="switchTab('home')" id="btn-tab-home" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-[#1E3A8A] text-[#1E3A8A] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Setting Home (Hero &amp; About)
+        </button>
+        <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+          Promo Akhir Tahun &amp; Flyer
         </button>
         <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          Menu &amp; Harga Treatment
+          Menu &amp; Paket Treatment
+          <span id="tab-menu-count" class="px-2 py-0.5 text-[10px] rounded-full bg-[#E1F0FE] text-[#1E3A8A] font-mono font-bold">0</span>
+        </button>
+        <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Kontak &amp; Reservasi
         </button>
         <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -153,13 +165,279 @@
       </div>
 
       <!-- ======================================================== -->
-      <!-- TAB 1: KONTAK & NOTIFIKASI EMAIL -->
+      <!-- TAB 1: SETTING HOME (HERO & ABOUT MASSAJI SPA) -->
       <!-- ======================================================== -->
-      <div id="tab-settings" class="tab-content space-y-6">
+      <div id="tab-home" class="tab-content space-y-8">
+        <form id="form-home" class="space-y-8">
+          <input type="hidden" name="action" value="save_home">
+
+          <!-- 1.1 Hero Section Card -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center gap-3 pb-4 mb-6 border-b border-[#BAE0FD]">
+              <div class="w-9 h-9 rounded-xl bg-[#E1F0FE] text-[#1E3A8A] flex items-center justify-center font-bold">1</div>
+              <div>
+                <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Bagian Hero (Banner Utama Atas)</h2>
+                <p class="text-xs text-[#475569]">Atur judul pembuka, slogan, dan gambar utama yang pertama kali dilihat pengunjung.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <!-- Text inputs -->
+              <div class="lg:col-span-7 space-y-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Judul Hero (Baris 1)</label>
+                  <input type="text" id="field-hero-title-1" name="hero_title_1" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-semibold text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Slogan Hero (Baris 2 - Huruf Miring)</label>
+                  <input type="text" id="field-hero-title-2" name="hero_title_2" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm italic font-serif text-[#0284C7] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Lengkap Hero</label>
+                  <textarea id="field-hero-desc" name="hero_desc" rows="3" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs text-[#141E3C] leading-relaxed focus:bg-white focus:border-[#1E3A8A] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Path / URL Gambar Hero</label>
+                  <input type="text" id="field-hero-image" name="hero_image" oninput="updateImagePreview('hero', this.value)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  
+                  <!-- Quick Gallery Selector -->
+                  <div class="mt-2.5">
+                    <span class="text-[11px] font-bold text-[#475569] block mb-1.5">Pilih Cepat dari Galeri Gambar:</span>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/massaji-hero.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-hero.jpg</button>
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/gambar2.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">gambar2.jpg</button>
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/massaji-reception.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-reception.jpg</button>
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/MASAGE.JPG')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">MASAGE.JPG</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hero Image Live Preview -->
+              <div class="lg:col-span-5 flex flex-col justify-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block">Live Preview Gambar Hero</span>
+                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group">
+                  <img id="preview-hero-img" src="../assets/images/massaji-hero.jpg" alt="Hero Preview" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='../assets/images/MASAGE.JPG'">
+                  <div class="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono truncate" id="label-hero-img">assets/images/massaji-hero.jpg</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1.2 About Section Card -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center gap-3 pb-4 mb-6 border-b border-[#BAE0FD]">
+              <div class="w-9 h-9 rounded-xl bg-[#E1F0FE] text-[#1E3A8A] flex items-center justify-center font-bold">2</div>
+              <div>
+                <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Bagian About Massaji Spa</h2>
+                <p class="text-xs text-[#475569]">Profil filosofi spa, kebersihan bintang lima, dan gambar pendukung.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <!-- Text inputs -->
+              <div class="lg:col-span-7 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Judul About (Baris 1)</label>
+                    <input type="text" id="field-about-title-1" name="about_title_1" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-semibold text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Slogan About (Baris 2)</label>
+                    <input type="text" id="field-about-title-2" name="about_title_2" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm italic font-serif text-[#0284C7] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Paragraf 1</label>
+                  <textarea id="field-about-desc-1" name="about_desc_1" rows="3" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs text-[#141E3C] leading-relaxed focus:bg-white focus:border-[#1E3A8A] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Paragraf 2</label>
+                  <textarea id="field-about-desc-2" name="about_desc_2" rows="3" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs text-[#141E3C] leading-relaxed focus:bg-white focus:border-[#1E3A8A] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Path / URL Gambar About</label>
+                  <input type="text" id="field-about-image" name="about_image" oninput="updateImagePreview('about', this.value)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  
+                  <!-- Quick Gallery Selector -->
+                  <div class="mt-2.5">
+                    <span class="text-[11px] font-bold text-[#475569] block mb-1.5">Pilih Cepat dari Galeri Gambar:</span>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                      <button type="button" onclick="selectQuickImage('about', 'assets/images/massaji-about.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-about.jpg</button>
+                      <button type="button" onclick="selectQuickImage('about', 'assets/images/massaji-reception.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-reception.jpg</button>
+                      <button type="button" onclick="selectQuickImage('about', 'assets/images/gambar2.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">gambar2.jpg</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- About Image Live Preview -->
+              <div class="lg:col-span-5 flex flex-col justify-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block">Live Preview Gambar About</span>
+                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group">
+                  <img id="preview-about-img" src="../assets/images/massaji-about.jpg" alt="About Preview" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='../assets/images/gambar2.jpg'">
+                  <div class="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono truncate" id="label-about-img">assets/images/massaji-about.jpg</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save Button Bar -->
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="btn-royal px-8 py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase shadow-xl flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Simpan Tampilan Home
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 2: PROMO AKHIR TAHUN & FLYER -->
+      <!-- ======================================================== -->
+      <div id="tab-promo" class="tab-content hidden space-y-6">
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#BAE0FD]">
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Konten Promo Akhir Tahun &amp; Brosur Flyer</h2>
+              <p class="text-xs text-[#475569] mt-1">Sesuaikan judul promo, masa berlaku, dan referensi flyer resmi Massaji Spa Bali.</p>
+            </div>
+          </div>
+
+          <form id="form-promo" class="space-y-6">
+            <input type="hidden" name="action" value="save_settings">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div class="lg:col-span-7 space-y-5">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Judul Utama Promo (Sesuai Flyer)</label>
+                  <input type="text" id="field-promo-title" name="promo_title" value="END YEAR 2026 Big Promotion" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-bold text-[#1E3A8A] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Subjudul Promo</label>
+                  <input type="text" id="field-promo-subtitle" name="promo_subtitle" value="Promo Akhir Tahun 2026" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Masa Berlaku Promo (Validity Period)</label>
+                  <input type="text" id="field-promo-validity" name="promo_validity" value="Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-medium text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Path Gambar Brosur Flyer Resmi</label>
+                  <input type="text" id="field-promo-flyer-img" name="promo_flyer_image" value="assets/images/promo-flyer-2026.jpeg" oninput="updateImagePreview('promo', this.value)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  <p class="text-[11px] text-[#475569] mt-1">File flyer asli telah tersimpan di <code class="font-bold text-[#1E3A8A]">assets/images/promo-flyer-2026.jpeg</code></p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD] text-xs space-y-2">
+                  <div class="font-bold text-[#1E3A8A] flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Informasi Treatment Promo:
+                  </div>
+                  <p class="text-[#475569] leading-relaxed">
+                    Untuk mengubah harga diskon atau rincian masing-masing dari 4 treatment promo (Bali Traditional, Deep Tissue, RF Slimming, Rose Bali Spa), silakan buka tab <strong>"Menu &amp; Paket Treatment"</strong> lalu pilih filter <strong>"Promo Akhir Tahun"</strong> dan klik tombol <strong>Edit</strong> pada treatment terkait.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Flyer Preview -->
+              <div class="lg:col-span-5 flex flex-col items-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block self-start">Tampilan Flyer Resmi</span>
+                <div class="w-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-lg bg-slate-900 relative">
+                  <img id="preview-promo-img" src="../assets/images/promo-flyer-2026.jpeg" alt="Flyer Promo Massaji Spa" class="w-full h-auto object-contain">
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-[#BAE0FD]">
+              <button type="submit" class="btn-royal px-8 py-3 rounded-xl font-bold text-xs tracking-wider uppercase shadow-lg flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Simpan Konten Promo
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 3: MENU & HARGA TREATMENT (DENGAN PENCARIAN & TOMBOL EDIT) -->
+      <!-- ======================================================== -->
+      <div id="tab-menu" class="tab-content hidden space-y-6">
+        
+        <!-- Header & Action -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-[#BAE0FD] rounded-2xl p-6 shadow-sm">
+          <div>
+            <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Katalog Menu &amp; Paket Treatment</h2>
+            <p class="text-xs text-[#475569] mt-1">Ubah nama perawatan, harga, diskon, durasi, dan deskripsi dengan tombol Edit kapan saja.</p>
+          </div>
+          <button onclick="openAddModal()" class="btn-royal px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-md">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Tambah Treatment Baru
+          </button>
+        </div>
+
+        <!-- SEARCH BAR & CATEGORY FILTER BAR -->
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-5 shadow-sm space-y-4">
+          
+          <!-- Search input -->
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <input 
+              type="text" 
+              id="admin-search-input" 
+              oninput="filterAdminMenu()" 
+              placeholder="Cari treatment atau paket... (ketik nama, kategori, harga, durasi, atau kata kunci)..." 
+              class="w-full pl-10 pr-10 py-3 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF] text-sm text-[#141E3C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A]">
+            <button id="admin-search-clear" onclick="clearAdminSearch()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <!-- Category filter buttons -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs" id="category-filter-pills">
+            <button onclick="setCategoryFilter('all')" class="cat-pill active px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-[#1E3A8A] text-white border-[#1E3A8A]">Semua</button>
+            <button onclick="setCategoryFilter('promo')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Promo Akhir Tahun</button>
+            <button onclick="setCategoryFilter('packages-single')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Single Packages</button>
+            <button onclick="setCategoryFilter('packages-couple')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Couple Packages</button>
+            <button onclick="setCategoryFilter('packages-group')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Group Packages</button>
+            <button onclick="setCategoryFilter('massage')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Massage</button>
+            <button onclick="setCategoryFilter('slimming')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Slimming RF</button>
+            <button onclick="setCategoryFilter('spa')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Spa Rituals</button>
+            <button onclick="setCategoryFilter('facial')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Facial</button>
+            <button onclick="setCategoryFilter('nail')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Nail Services</button>
+            <button onclick="setCategoryFilter('additional')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Additional</button>
+          </div>
+
+          <!-- Counter display -->
+          <div class="text-[11px] text-[#475569] font-medium flex items-center justify-between pt-2 border-t border-[#BAE0FD]">
+            <span id="search-counter-text">Menampilkan seluruh perawatan</span>
+            <span id="active-filter-badge" class="font-bold text-[#1E3A8A]">Kategori: Semua</span>
+          </div>
+        </div>
+
+        <!-- Treatment List Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-menu-list">
+          <!-- Rendered dynamically by script -->
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 4: KONTAK & NOTIFIKASI EMAIL -->
+      <!-- ======================================================== -->
+      <div id="tab-settings" class="tab-content hidden space-y-6">
         <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
           <div class="mb-6">
             <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Pengaturan Kontak &amp; Notifikasi Bisnis</h2>
-            <p class="text-xs text-[#475569] mt-1">Data berikut digunakan oleh sistem website untuk pengiriman email notifikasi reservasi dan tautan WhatsApp.</p>
+            <p class="text-xs text-[#475569] mt-1">Data berikut digunakan oleh sistem website untuk pengiriman email reservasi dan tombol WhatsApp.</p>
           </div>
 
           <form id="form-settings" class="space-y-6">
@@ -175,9 +453,23 @@
 
               <div class="p-5 rounded-xl bg-[#F0F8FF] border border-emerald-300">
                 <label class="block text-xs font-bold tracking-wider uppercase text-emerald-800 mb-1">
-                  Nomor WhatsApp Reservasi
+                  Nomor WhatsApp Reservasi Utama (Flyer)
                 </label>
                 <input type="text" id="field-wa" name="whatsapp_number" value="6281236695755" required class="w-full px-4 py-2.5 bg-white border border-emerald-300 rounded-lg text-sm text-[#141E3C] focus:border-emerald-600 focus:outline-none font-mono">
+              </div>
+
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-emerald-300">
+                <label class="block text-xs font-bold tracking-wider uppercase text-emerald-800 mb-1">
+                  Nomor WhatsApp Reservasi 2 (Flyer)
+                </label>
+                <input type="text" id="field-wa-2" name="whatsapp_number_2" value="628113857188" class="w-full px-4 py-2.5 bg-white border border-emerald-300 rounded-lg text-sm text-[#141E3C] focus:border-emerald-600 focus:outline-none font-mono">
+              </div>
+
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD]">
+                <label class="block text-xs font-bold tracking-wider uppercase text-[#475569] mb-1">
+                  Jam Operasional
+                </label>
+                <input type="text" id="field-hours" name="opening_hours" value="Daily: 10:00 AM - 9:00 PM WITA" class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
               </div>
 
               <div>
@@ -186,8 +478,8 @@
               </div>
 
               <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Jam Operasional</label>
-                <input type="text" id="field-hours" name="opening_hours" value="Daily: 10:00 AM - 9:00 PM WITA" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Akun Instagram</label>
+                <input type="url" id="field-ig" name="instagram" value="https://instagram.com/massajispa" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
               </div>
 
               <div class="md:col-span-2">
@@ -204,7 +496,7 @@
             <div class="flex justify-end pt-4 border-t border-[#BAE0FD]">
               <button type="submit" class="btn-royal px-6 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase shadow-md flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Simpan Pengaturan
+                Simpan Pengaturan Kontak
               </button>
             </div>
           </form>
@@ -212,56 +504,184 @@
       </div>
 
       <!-- ======================================================== -->
-      <!-- TAB 2: MENU & HARGA -->
-      <!-- ======================================================== -->
-      <div id="tab-menu" class="tab-content hidden space-y-6">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-[#BAE0FD] rounded-2xl p-6 shadow-sm">
-          <div>
-            <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Katalog Menu &amp; Tarif Layanan</h2>
-            <p class="text-xs text-[#475569] mt-1">Ubah nama perawatan, durasi, dan harga dalam Rupiah.</p>
-          </div>
-          <button onclick="openAddMenuModal()" class="btn-royal px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Tambah Treatment
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-menu-list">
-          <!-- Rendered dynamically by script -->
-        </div>
-      </div>
-
-      <!-- ======================================================== -->
-      <!-- TAB 3: RESERVASI MASUK -->
+      <!-- TAB 5: RESERVASI MASUK -->
       <!-- ======================================================== -->
       <div id="tab-bookings" class="tab-content hidden space-y-6">
         <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
           <div class="mb-6 flex items-start justify-between">
             <div>
-              <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Riwayat Reservasi Website</h2>
-              <p class="text-xs text-[#475569] mt-1">Permintaan booking dari pengunjung website yang tercatat di sistem.</p>
+              <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Riwayat Reservasi Masuk</h2>
+              <p class="text-xs text-[#475569] mt-1">Daftar reservasi tamu yang masuk melalui formulir booking website.</p>
             </div>
           </div>
 
           <div id="bookings-table-container">
-            <div class="text-center py-12 border border-dashed border-[#BAE0FD] rounded-xl bg-[#F0F8FF]/50">
-              <svg class="w-10 h-10 mx-auto text-[#0284C7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <p class="text-[#141E3C] text-sm font-bold">Belum ada reservasi masuk.</p>
-              <p class="text-[#475569] text-xs mt-1">Setiap ada tamu yang memesan via form web, rinciannya akan otomatis tersimpan di sini.</p>
-            </div>
+            <!-- Rendered by script -->
           </div>
         </div>
       </div>
 
     </main>
-
   </div>
 
-  <!-- Client-side script for Auth & Interactivity -->
-  <script>
-    // 1. Client-Side Authentication Gate
-    const AUTH_KEY = 'massaji_admin_auth';
+  <!-- ======================================================== -->
+  <!-- MODAL: EDIT / TAMBAH TREATMENT (DUAL LANGUAGE EN / ID) -->
+  <!-- ======================================================== -->
+  <div id="treatment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-white border border-[#BAE0FD] rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-[#BAE0FD] flex items-center justify-between bg-[#F0F8FF]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-[#1E3A8A] text-white flex items-center justify-center font-bold text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          </div>
+          <div>
+            <h3 id="modal-treatment-title" class="font-serif text-xl font-bold text-[#141E3C]">Edit Treatment / Paket</h3>
+            <span class="text-[10px] text-[#0284C7] font-semibold block">Form Pengaturan Dual Bahasa (EN &amp; ID)</span>
+          </div>
+        </div>
+        <button onclick="closeTreatmentModal()" class="w-8 h-8 rounded-lg hover:bg-white text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
 
+      <!-- Modal Body -->
+      <form id="form-treatment-modal" onsubmit="handleSaveTreatment(event)" class="p-6 overflow-y-auto space-y-5 text-xs">
+        <input type="hidden" id="modal-item-id">
+
+        <!-- SECTION 1: BAHASA INGGRIS (DEFAULT WEBSITE) -->
+        <div class="bg-[#F8FAFC] p-4 rounded-xl border border-sky-200">
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-sky-100">
+            <span class="text-base">🇬🇧</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-[#1E3A8A]">Versi Bahasa Inggris (Default Public Website)</span>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Nama Treatment (EN) *</label>
+              <input type="text" id="modal-item-name" required placeholder="Contoh: Balinese Traditional Massage (120 mins)" class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Durasi Treatment (EN) *</label>
+                <input type="text" id="modal-item-duration" placeholder="Contoh: 120 Mins, 90 Mins, Cavitation RF" required class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Badge / Tag (EN)</label>
+                <input type="text" id="modal-item-tag" placeholder="Contoh: Now 300K, Popular, Save 250K" class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Keterangan Multi-Prices (EN, Opsional)</label>
+              <input type="text" id="modal-item-multi-prices" placeholder="Contoh: 60m: 215K | 90m: 285K | 120m: 345K" class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Treatment (EN)</label>
+              <textarea id="modal-item-desc" rows="2" placeholder="Copywriting perawatan dalam Bahasa Inggris..." class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] leading-relaxed focus:border-[#1E3A8A] focus:outline-none"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: BAHASA INDONESIA (VERSI TERJEMAHAN) -->
+        <div class="bg-[#FEFCE8]/60 p-4 rounded-xl border border-amber-200">
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-amber-100">
+            <span class="text-base">🇮🇩</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-amber-900">Versi Bahasa Indonesia (Mode Bahasa ID)</span>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Nama Treatment (ID) *</label>
+              <input type="text" id="modal-item-name-id" required placeholder="Contoh: Pijat Tradisional Bali (120 menit)" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Durasi Treatment (ID)</label>
+                <input type="text" id="modal-item-duration-id" placeholder="Contoh: 120 Menit, 90 Menit" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Badge / Tag (ID)</label>
+                <input type="text" id="modal-item-tag-id" placeholder="Contoh: Kini 300K, Paling Populer, Hemat 250K" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Keterangan Multi-Prices (ID, Opsional)</label>
+              <input type="text" id="modal-item-multi-prices-id" placeholder="Contoh: Paha: Kini 550K | Perut: Kini 650K" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Treatment (ID)</label>
+              <textarea id="modal-item-desc-id" rows="2" placeholder="Copywriting perawatan dalam Bahasa Indonesia yang mengalir alami..." class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] leading-relaxed focus:border-[#1E3A8A] focus:outline-none"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: KATEGORI & HARGA (BERLAKU BERSAMA) -->
+        <div class="bg-white p-4 rounded-xl border border-[#BAE0FD]">
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-[#BAE0FD]">
+            <span class="text-base">💰</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-[#1E3A8A]">Kategori &amp; Penetapan Tarif (Berlaku Kedua Bahasa)</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Kategori *</label>
+              <select id="modal-item-category" required class="w-full px-3 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <option value="promo">Promo Akhir Tahun (Flyer Promo)</option>
+                <option value="packages-single">Single Packages (1 Person)</option>
+                <option value="packages-couple">Couple Packages (2 Persons)</option>
+                <option value="packages-group">Group Packages (4 Persons)</option>
+                <option value="massage">Body Massage &amp; Therapy</option>
+                <option value="slimming">Body Slimming &amp; Cavitation RF</option>
+                <option value="spa">Body Spa Rituals &amp; Boreh</option>
+                <option value="facial">Facial Treatments</option>
+                <option value="nail">Nail Services &amp; Art</option>
+                <option value="additional">Additional Services</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#1E3A8A] mb-1">Harga Final / Promo (Rp) *</label>
+              <input type="number" id="modal-item-price" min="0" step="5000" required placeholder="300000" class="w-full px-3 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs font-bold text-[#1E3A8A] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Harga Normal / Coret (Rp)</label>
+              <input type="number" id="modal-item-normal-price" min="0" step="5000" placeholder="345000" class="w-full px-3 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#475569] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-[#BAE0FD] flex items-center justify-end gap-3">
+          <button type="button" onclick="closeTreatmentModal()" class="px-4 py-2.5 rounded-xl border border-[#BAE0FD] hover:bg-[#F0F8FF] text-slate-600 font-bold tracking-wider uppercase transition">
+            Batal
+          </button>
+          <button type="submit" class="btn-royal px-6 py-2.5 rounded-xl font-bold tracking-wider uppercase shadow-md flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Simpan Perubahan (Dual Language)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT APPLICATION CORE -->
+  <!-- ======================================================== -->
+  <script>
+    const AUTH_KEY = 'massaji_admin_auth';
+    let allMenuItems = [];
+    let currentFilterCategory = 'all';
+    let currentSearchKeyword = '';
+    let siteSettings = {};
+
+    // 1. Auth Gatekeeper (Aman - Tidak Membocorkan Password di UI)
     function checkAuth() {
       const isAuth = sessionStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem(AUTH_KEY) === 'true';
       const overlay = document.getElementById('admin-login-overlay');
@@ -270,7 +690,7 @@
       if (isAuth) {
         overlay.classList.add('hidden');
         dashboard.classList.remove('hidden');
-        loadData();
+        loadAllData();
       } else {
         overlay.classList.remove('hidden');
         dashboard.classList.add('hidden');
@@ -287,9 +707,9 @@
         sessionStorage.setItem(AUTH_KEY, 'true');
         errEl.classList.add('hidden');
         checkAuth();
-        showToast('Login berhasil! Selamat datang di Admin Dashboard.', true);
+        showToast('Login berhasil! Selamat datang di Massaji Admin Dashboard.', true);
       } else {
-        errEl.textContent = 'Username atau Password salah. Password default: massaji2026';
+        errEl.textContent = 'Username atau Password salah. Silakan coba lagi.';
         errEl.classList.remove('hidden');
       }
     });
@@ -300,7 +720,7 @@
       location.reload();
     }
 
-    // 2. Tab Switching
+    // 2. Tab Navigation
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -329,43 +749,490 @@
       }, 4000);
     }
 
-    // 4. Load Data & Render Menu
-    async function loadData() {
+    // 4. Data Fetching & Sync
+    async function loadAllData() {
+      // 4.1 Load Settings
       try {
-        const res = await fetch('../data/menu.json');
-        if (res.ok) {
-          const menu = await res.json();
-          renderAdminMenu(menu);
+        const resSettings = await fetch('../data/settings.json');
+        if (resSettings.ok) {
+          siteSettings = await resSettings.json();
+          populateSettingsForm(siteSettings);
         }
-      } catch (err) {}
+      } catch (e) {
+        console.warn('Could not fetch settings via HTTP, using current DOM values');
+      }
+
+      // 4.2 Load Menu
+      try {
+        const resMenu = await fetch('../data/menu.json');
+        if (resMenu.ok) {
+          allMenuItems = await resMenu.json();
+          renderAdminMenuList();
+        }
+      } catch (e) {
+        console.warn('Could not fetch menu via HTTP');
+      }
+
+      // 4.3 Load Bookings
+      try {
+        const resBookings = await fetch('../data/bookings.json');
+        if (resBookings.ok) {
+          const bookings = await resBookings.json();
+          renderBookingsList(bookings);
+        }
+      } catch (e) {}
     }
 
-    function renderAdminMenu(menu) {
-      const list = document.getElementById('admin-menu-list');
-      if (!list) return;
-      list.innerHTML = menu.map(item => `
-        <div class="bg-white border border-[#BAE0FD] rounded-xl p-5 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-3 mb-2">
-              <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-[#E1F0FE] px-2 py-0.5 rounded">${item.category}</span>
-                <h3 class="font-serif text-xl font-bold text-[#141E3C] mt-1">${item.name}</h3>
+    function populateSettingsForm(s) {
+      if (!s) return;
+      // Home Hero
+      if (s.hero_title_1) document.getElementById('field-hero-title-1').value = s.hero_title_1;
+      if (s.hero_title_2) document.getElementById('field-hero-title-2').value = s.hero_title_2;
+      if (s.hero_desc) document.getElementById('field-hero-desc').value = s.hero_desc;
+      if (s.hero_image) {
+        document.getElementById('field-hero-image').value = s.hero_image;
+        updateImagePreview('hero', s.hero_image);
+      }
+
+      // Home About
+      if (s.about_title_1) document.getElementById('field-about-title-1').value = s.about_title_1;
+      if (s.about_title_2) document.getElementById('field-about-title-2').value = s.about_title_2;
+      if (s.about_desc_1) document.getElementById('field-about-desc-1').value = s.about_desc_1;
+      if (s.about_desc_2) document.getElementById('field-about-desc-2').value = s.about_desc_2;
+      if (s.about_image) {
+        document.getElementById('field-about-image').value = s.about_image;
+        updateImagePreview('about', s.about_image);
+      }
+
+      // Promo
+      if (s.promo_title) document.getElementById('field-promo-title').value = s.promo_title;
+      if (s.promo_subtitle) document.getElementById('field-promo-subtitle').value = s.promo_subtitle;
+      if (s.promo_validity) document.getElementById('field-promo-validity').value = s.promo_validity;
+      if (s.promo_flyer_image) {
+        document.getElementById('field-promo-flyer-img').value = s.promo_flyer_image;
+        updateImagePreview('promo', s.promo_flyer_image);
+      }
+
+      // Contacts
+      if (s.booking_email) document.getElementById('field-email').value = s.booking_email;
+      if (s.whatsapp_number) document.getElementById('field-wa').value = s.whatsapp_number;
+      if (s.whatsapp_number_2) document.getElementById('field-wa-2').value = s.whatsapp_number_2;
+      if (s.site_name) document.getElementById('field-sitename').value = s.site_name;
+      if (s.opening_hours) document.getElementById('field-hours').value = s.opening_hours;
+      if (s.address) document.getElementById('field-address').value = s.address;
+      if (s.google_maps_link) document.getElementById('field-maps').value = s.google_maps_link;
+      if (s.instagram) document.getElementById('field-ig').value = s.instagram;
+    }
+
+    // 5. Image Preview & Quick Selection
+    function updateImagePreview(type, path) {
+      const cleanPath = path.trim();
+      const relativeSrc = cleanPath.startsWith('http') || cleanPath.startsWith('/') ? cleanPath : '../' + cleanPath;
+      
+      if (type === 'hero') {
+        document.getElementById('preview-hero-img').src = relativeSrc;
+        document.getElementById('label-hero-img').textContent = cleanPath;
+      } else if (type === 'about') {
+        document.getElementById('preview-about-img').src = relativeSrc;
+        document.getElementById('label-about-img').textContent = cleanPath;
+      } else if (type === 'promo') {
+        document.getElementById('preview-promo-img').src = relativeSrc;
+      }
+    }
+
+    function selectQuickImage(type, imagePath) {
+      if (type === 'hero') {
+        document.getElementById('field-hero-image').value = imagePath;
+        updateImagePreview('hero', imagePath);
+      } else if (type === 'about') {
+        document.getElementById('field-about-image').value = imagePath;
+        updateImagePreview('about', imagePath);
+      }
+      showToast(`Gambar ${type} dipilih: ${imagePath}`, true);
+    }
+
+    // 6. Menu Search & Category Filter
+    function setCategoryFilter(cat) {
+      currentFilterCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.classList.remove('bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]', 'active');
+        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      });
+      event.target.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      event.target.classList.add('bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]', 'active');
+      
+      const badgeText = cat === 'all' ? 'Semua' : event.target.textContent;
+      document.getElementById('active-filter-badge').textContent = 'Kategori: ' + badgeText;
+      renderAdminMenuList();
+    }
+
+    function filterAdminMenu() {
+      currentSearchKeyword = document.getElementById('admin-search-input').value.trim().toLowerCase();
+      const clearBtn = document.getElementById('admin-search-clear');
+      if (currentSearchKeyword) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderAdminMenuList();
+    }
+
+    function clearAdminSearch() {
+      document.getElementById('admin-search-input').value = '';
+      currentSearchKeyword = '';
+      document.getElementById('admin-search-clear').classList.add('hidden');
+      renderAdminMenuList();
+    }
+
+    // 7. Render Menu Cards with Edit Buttons
+    function renderAdminMenuList() {
+      const listEl = document.getElementById('admin-menu-list');
+      const counterEl = document.getElementById('search-counter-text');
+      const tabBadge = document.getElementById('tab-menu-count');
+      tabBadge.textContent = allMenuItems.length;
+
+      let filtered = allMenuItems.filter(item => {
+        // Category Filter
+        if (currentFilterCategory !== 'all' && item.category !== currentFilterCategory) {
+          return false;
+        }
+        // Keyword Search (Support EN & ID search)
+        if (currentSearchKeyword) {
+          const matchName = (item.name || '').toLowerCase().includes(currentSearchKeyword);
+          const matchNameId = (item.name_id || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDesc = (item.description || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDescId = (item.description_id || '').toLowerCase().includes(currentSearchKeyword);
+          const matchCat = (item.category || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDur = (item.duration || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDurId = (item.duration_id || '').toLowerCase().includes(currentSearchKeyword);
+          const matchPrice = String(item.price || '').includes(currentSearchKeyword);
+          if (!matchName && !matchNameId && !matchDesc && !matchDescId && !matchCat && !matchDur && !matchDurId && !matchPrice) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+      counterEl.textContent = `Menampilkan ${filtered.length} dari total ${allMenuItems.length} perawatan`;
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="col-span-full py-12 text-center border-2 border-dashed border-[#BAE0FD] rounded-2xl bg-[#F0F8FF]/50 p-8">
+            <svg class="w-12 h-12 mx-auto text-[#0284C7] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <h4 class="font-bold text-[#141E3C] text-sm">Tidak ditemukan perawatan yang sesuai</h4>
+            <p class="text-xs text-[#475569] mt-1">Coba gunakan kata kunci pencarian lain atau klik kategori "Semua".</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(item => {
+        const isPromo = item.category === 'promo';
+        const formattedPrice = Number(item.price || 0).toLocaleString('id-ID');
+        const formattedNormalPrice = item.normal_price ? Number(item.normal_price).toLocaleString('id-ID') : null;
+
+        return `
+          <div class="bg-white border ${isPromo ? 'border-amber-300 ring-1 ring-amber-200' : 'border-[#BAE0FD]'} rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[10px] font-bold uppercase tracking-wider ${isPromo ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-[#E1F0FE] text-[#0284C7]'} px-2 py-0.5 rounded">
+                      ${item.category}
+                    </span>
+                    ${item.tag ? `<span class="text-[10px] font-bold uppercase tracking-wider bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded">${item.tag}</span>` : ''}
+                    ${item.tag_id && item.tag_id !== item.tag ? `<span class="text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded">${item.tag_id}</span>` : ''}
+                  </div>
+                  <h3 class="font-serif text-lg sm:text-xl font-bold text-[#141E3C] mt-1.5">${item.name}</h3>
+                  ${item.name_id && item.name_id !== item.name ? `<p class="text-xs text-[#0284C7] font-semibold mt-0.5 flex items-center gap-1"><span class="text-[10px] bg-sky-100 text-[#1E3A8A] px-1.5 py-0.2 rounded font-mono">ID</span> ${item.name_id}</p>` : ''}
+                </div>
+                <div class="text-right flex-shrink-0">
+                  <div class="flex items-baseline justify-end gap-1.5">
+                    ${formattedNormalPrice ? `<span class="text-xs text-slate-400 line-through">Rp ${formattedNormalPrice}</span>` : ''}
+                    <span class="font-serif text-lg sm:text-xl font-bold text-[#0284C7]">Rp ${formattedPrice}</span>
+                  </div>
+                  <p class="text-[11px] text-[#475569] font-medium font-mono">${item.duration || ''}</p>
+                </div>
               </div>
-              <div class="text-right">
-                <span class="font-serif text-xl font-bold text-[#0284C7]">Rp ${Number(item.price).toLocaleString('id-ID')}</span>
-                <p class="text-[11px] text-[#475569] font-medium">${item.duration}</p>
+
+              ${item.multi_prices ? `<div class="mb-2 px-2 py-1 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">${item.multi_prices}</div>` : ''}
+
+              <p class="text-xs text-[#475569] leading-relaxed line-clamp-2">${item.description || '-'}</p>
+            </div>
+
+            <!-- ACTION BUTTONS: EDIT & HAPUS -->
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD] flex items-center justify-between">
+              <span class="text-[10px] text-slate-400 font-mono">ID: ${item.id}</span>
+              <div class="flex items-center gap-2">
+                <button onclick="openEditModal('${item.id}')" class="px-3 py-1.5 rounded-lg bg-[#E1F0FE] hover:bg-[#1E3A8A] text-[#1E3A8A] hover:text-white font-bold text-xs flex items-center gap-1 transition">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                  Edit (Dual Lang)
+                </button>
+                <button onclick="handleDeleteTreatment('${item.id}')" class="px-2.5 py-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-700 text-xs transition" title="Hapus Treatment">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
               </div>
             </div>
-            <p class="text-xs text-[#475569] leading-relaxed line-clamp-2">${item.description}</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-[#BAE0FD] flex justify-end">
-            <span class="text-[11px] text-[#475569] font-mono">ID: ${item.id}</span>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    // Initialize check on page load
+    // 8. Edit / Add Treatment Modal Handlers (Dual Language Support)
+    function openEditModal(id) {
+      const item = allMenuItems.find(it => it.id === id);
+      if (!item) return;
+
+      document.getElementById('modal-treatment-title').textContent = 'Edit Treatment: ' + item.name;
+      document.getElementById('modal-item-id').value = item.id;
+      
+      // English fields
+      document.getElementById('modal-item-name').value = item.name || '';
+      document.getElementById('modal-item-duration').value = item.duration || '';
+      document.getElementById('modal-item-tag').value = item.tag || '';
+      document.getElementById('modal-item-multi-prices').value = item.multi_prices || '';
+      document.getElementById('modal-item-desc').value = item.description || '';
+
+      // Indonesian fields
+      document.getElementById('modal-item-name-id').value = item.name_id || item.name || '';
+      document.getElementById('modal-item-duration-id').value = item.duration_id || item.duration || '';
+      document.getElementById('modal-item-tag-id').value = item.tag_id || item.tag || '';
+      document.getElementById('modal-item-multi-prices-id').value = item.multi_prices_id || item.multi_prices || '';
+      document.getElementById('modal-item-desc-id').value = item.description_id || item.description || '';
+
+      // Common fields
+      document.getElementById('modal-item-category').value = item.category || 'massage';
+      document.getElementById('modal-item-price').value = item.price || 0;
+      document.getElementById('modal-item-normal-price').value = item.normal_price || '';
+
+      document.getElementById('treatment-modal').classList.remove('hidden');
+    }
+
+    function openAddModal() {
+      document.getElementById('modal-treatment-title').textContent = 'Tambah Treatment Baru (Bilingual)';
+      document.getElementById('modal-item-id').value = '';
+      
+      // English fields
+      document.getElementById('modal-item-name').value = '';
+      document.getElementById('modal-item-duration').value = '90 Mins';
+      document.getElementById('modal-item-tag').value = '';
+      document.getElementById('modal-item-multi-prices').value = '';
+      document.getElementById('modal-item-desc').value = '';
+
+      // Indonesian fields
+      document.getElementById('modal-item-name-id').value = '';
+      document.getElementById('modal-item-duration-id').value = '90 Menit';
+      document.getElementById('modal-item-tag-id').value = '';
+      document.getElementById('modal-item-multi-prices-id').value = '';
+      document.getElementById('modal-item-desc-id').value = '';
+
+      // Common fields
+      document.getElementById('modal-item-category').value = 'massage';
+      document.getElementById('modal-item-price').value = '';
+      document.getElementById('modal-item-normal-price').value = '';
+
+      document.getElementById('treatment-modal').classList.remove('hidden');
+    }
+
+    function closeTreatmentModal() {
+      document.getElementById('treatment-modal').classList.add('hidden');
+    }
+
+    async function handleSaveTreatment(e) {
+      e.preventDefault();
+      const id = document.getElementById('modal-item-id').value.trim() || 'item-' + Date.now();
+      
+      // English fields
+      const name = document.getElementById('modal-item-name').value.trim();
+      const duration = document.getElementById('modal-item-duration').value.trim();
+      const tag = document.getElementById('modal-item-tag').value.trim();
+      const multiPrices = document.getElementById('modal-item-multi-prices').value.trim();
+      const desc = document.getElementById('modal-item-desc').value.trim();
+
+      // Indonesian fields
+      const nameId = document.getElementById('modal-item-name-id').value.trim() || name;
+      const durationId = document.getElementById('modal-item-duration-id').value.trim() || duration;
+      const tagId = document.getElementById('modal-item-tag-id').value.trim() || tag;
+      const multiPricesId = document.getElementById('modal-item-multi-prices-id').value.trim() || multiPrices;
+      const descId = document.getElementById('modal-item-desc-id').value.trim() || desc;
+
+      // Common fields
+      const category = document.getElementById('modal-item-category').value;
+      const price = parseInt(document.getElementById('modal-item-price').value, 10) || 0;
+      const normalPriceVal = document.getElementById('modal-item-normal-price').value.trim();
+      const normalPrice = normalPriceVal ? parseInt(normalPriceVal, 10) : null;
+
+      const itemData = {
+        id: id,
+        category: category,
+        name: name,
+        duration: duration,
+        price: price,
+        description: desc,
+        name_id: nameId,
+        duration_id: durationId,
+        description_id: descId
+      };
+      if (normalPrice) itemData.normal_price = normalPrice;
+      if (tag) itemData.tag = tag;
+      if (tagId) itemData.tag_id = tagId;
+      if (multiPrices) itemData.multi_prices = multiPrices;
+      if (multiPricesId) itemData.multi_prices_id = multiPricesId;
+
+      // Update in memory
+      const existingIdx = allMenuItems.findIndex(it => it.id === id);
+      if (existingIdx >= 0) {
+        allMenuItems[existingIdx] = itemData;
+      } else {
+        allMenuItems.unshift(itemData);
+      }
+
+      closeTreatmentModal();
+      renderAdminMenuList();
+
+      // Post to backend API
+      try {
+        const formData = new FormData();
+        formData.append('action', 'save_single_item');
+        formData.append('item', JSON.stringify(itemData));
+
+        await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast(`Treatment '${name}' (${nameId}) berhasil disimpan & diterapkan ke website!`, true);
+      } catch (err) {
+        showToast(`Treatment '${name}' disimpan di memori tampilan lokal!`, true);
+      }
+    }
+
+        showToast(`Treatment '${name}' berhasil disimpan & diterapkan ke website!`, true);
+      } catch (err) {
+        showToast(`Treatment '${name}' disimpan di memori tampilan lokal!`, true);
+      }
+    }
+
+    async function handleDeleteTreatment(id) {
+      const it = allMenuItems.find(i => i.id === id);
+      if (!it) return;
+      if (!confirm(`Apakah Anda yakin ingin menghapus treatment "${it.name}"?`)) return;
+
+      allMenuItems = allMenuItems.filter(i => i.id !== id);
+      renderAdminMenuList();
+
+      try {
+        const formData = new FormData();
+        formData.append('action', 'delete_menu_item');
+        formData.append('id', id);
+
+        await fetch('../server.py', { method: 'POST', body: formData })
+          .catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast(`Treatment '${it.name}' berhasil dihapus.`, true);
+      } catch (e) {
+        showToast(`Treatment '${it.name}' dihapus dari daftar lokal.`, true);
+      }
+    }
+
+    // 9. Form Submission for Home Settings
+    document.getElementById('form-home').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      try {
+        const res = await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast('Pengaturan Beranda (Hero & About) berhasil disimpan dan diperbarui di website!', true);
+      } catch (err) {
+        showToast('Tampilan Beranda berhasil diperbarui secara lokal!', true);
+      }
+    });
+
+    // 10. Form Submission for Promo Settings
+    document.getElementById('form-promo').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      try {
+        await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast('Pengaturan Promo Akhir Tahun berhasil disimpan!', true);
+      } catch (err) {
+        showToast('Promo berhasil diperbarui secara lokal!', true);
+      }
+    });
+
+    // 11. Form Submission for Contact Settings
+    document.getElementById('form-settings').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      try {
+        await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast('Pengaturan kontak & nomor reservasi berhasil disimpan!', true);
+      } catch (err) {
+        showToast('Pengaturan kontak berhasil diperbarui!', true);
+      }
+    });
+
+    // 12. Bookings Table Render
+    function renderBookingsList(bookings) {
+      const container = document.getElementById('bookings-table-container');
+      if (!bookings || bookings.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 border border-dashed border-[#BAE0FD] rounded-xl bg-[#F0F8FF]/50">
+            <svg class="w-10 h-10 mx-auto text-[#0284C7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <p class="text-[#141E3C] text-sm font-bold">Belum ada reservasi masuk.</p>
+            <p class="text-[#475569] text-xs mt-1">Setiap ada tamu yang memesan via web, data akan otomatis tercatat di sini.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#F0F8FF] text-[#141E3C] uppercase tracking-wider text-[10px] font-bold border-b border-[#BAE0FD]">
+              <tr>
+                <th class="py-3 px-4">Waktu Pesan</th>
+                <th class="py-3 px-4">Nama Tamu</th>
+                <th class="py-3 px-4">Treatment</th>
+                <th class="py-3 px-4">Jadwal Reservasi</th>
+                <th class="py-3 px-4">Tamu</th>
+                <th class="py-3 px-4">Kontak</th>
+                <th class="py-3 px-4">Catatan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#BAE0FD]">
+              ${bookings.map(b => `
+                <tr class="hover:bg-[#F0F8FF]/50 transition">
+                  <td class="py-3 px-4 font-mono text-[#475569] whitespace-nowrap">${b.created_at || '-'}</td>
+                  <td class="py-3 px-4 font-bold text-[#141E3C]">${b.name || '-'}</td>
+                  <td class="py-3 px-4 text-[#1E3A8A] font-semibold">${b.service || '-'}</td>
+                  <td class="py-3 px-4 whitespace-nowrap">${b.date || ''} @ ${b.time || ''} WITA</td>
+                  <td class="py-3 px-4 font-mono">${b.guests || 1} orang</td>
+                  <td class="py-3 px-4 font-mono text-[#0284C7]">${b.phone || b.email || '-'}</td>
+                  <td class="py-3 px-4 text-[#475569] italic">${b.notes || '-'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    // Initialize on page load
     checkAuth();
   </script>
 </body>

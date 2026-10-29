@@ -10,6 +10,9 @@ from datetime import datetime
 PORT = 8080
 DIRECTORY = '/Volumes/PROJECTS/EYESTETIX_BACKUP_2026-09-30/WEBSITE'
 
+# Map .php files to render directly as HTML in browser (PHP-Only preview mode)
+http.server.SimpleHTTPRequestHandler.extensions_map['.php'] = 'text/html; charset=utf-8'
+
 class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
@@ -19,8 +22,8 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
 
-        if path in ('/', '/index.php'):
-            self.path = '/index.html'
+        if path in ('/', '/index.html', '/index.php'):
+            self.path = '/index.php'
         elif path in ('/admin', '/admin/', '/admin/index.php'):
             self.path = '/admin/index.html'
 
@@ -152,17 +155,25 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
             action = fields.get('action', '')
             resp = {'success': False, 'message': 'Aksi tidak dikenali.'}
 
-            if action == 'save_settings':
+            if action in ('save_settings', 'save_home'):
                 settings_path = os.path.join(DIRECTORY, 'data', 'settings.json')
                 with open(settings_path) as f:
                     curr = json.load(f)
-                for k in ['site_name', 'tagline', 'subtagline', 'booking_email', 'whatsapp_number', 'phone', 'address', 'google_maps_link', 'opening_hours', 'instagram']:
+                all_keys = [
+                    'site_name', 'tagline', 'subtagline', 'booking_email', 
+                    'whatsapp_number', 'phone', 'whatsapp_number_2', 'phone_2',
+                    'address', 'google_maps_link', 'opening_hours', 'instagram',
+                    'hero_title_1', 'hero_title_2', 'hero_desc', 'hero_image',
+                    'about_title_1', 'about_title_2', 'about_desc_1', 'about_desc_2', 'about_image',
+                    'promo_title', 'promo_subtitle', 'promo_validity', 'promo_flyer_image'
+                ]
+                for k in all_keys:
                     if k in fields:
                         curr[k] = fields[k]
                 with open(settings_path, 'w') as f:
                     json.dump(curr, f, indent=2, ensure_ascii=False)
                 subprocess.run(['python3', os.path.join(DIRECTORY, 'build_preview.py')], capture_output=True)
-                resp = {'success': True, 'message': 'Pengaturan kontak, email & WhatsApp berhasil disimpan!'}
+                resp = {'success': True, 'message': 'Pengaturan berhasil disimpan!', 'settings': curr}
 
             elif action == 'save_promo':
                 promo_path = os.path.join(DIRECTORY, 'data', 'promo.json')
@@ -191,6 +202,31 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception as e:
                     resp = {'success': False, 'message': str(e)}
 
+            elif action == 'save_single_item':
+                item_data = fields.get('item', '{}')
+                menu_path = os.path.join(DIRECTORY, 'data', 'menu.json')
+                try:
+                    target_item = json.loads(item_data)
+                    item_id = target_item.get('id')
+                    with open(menu_path) as f:
+                        items = json.load(f)
+                    
+                    found = False
+                    for i, it in enumerate(items):
+                        if it.get('id') == item_id:
+                            items[i] = target_item
+                            found = True
+                            break
+                    if not found:
+                        items.append(target_item)
+                        
+                    with open(menu_path, 'w') as f:
+                        json.dump(items, f, indent=2, ensure_ascii=False)
+                    subprocess.run(['python3', os.path.join(DIRECTORY, 'build_preview.py')], capture_output=True)
+                    resp = {'success': True, 'message': f"Treatment '{target_item.get('name')}' berhasil diperbarui!"}
+                except Exception as e:
+                    resp = {'success': False, 'message': str(e)}
+
             elif action == 'delete_menu_item':
                 item_id = fields.get('id', '')
                 menu_path = os.path.join(DIRECTORY, 'data', 'menu.json')
@@ -201,6 +237,15 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                     json.dump(items, f, indent=2, ensure_ascii=False)
                 subprocess.run(['python3', os.path.join(DIRECTORY, 'build_preview.py')], capture_output=True)
                 resp = {'success': True, 'message': 'Perawatan berhasil dihapus.'}
+
+            elif action == 'get_available_images':
+                img_dir = os.path.join(DIRECTORY, 'assets', 'images')
+                imgs = []
+                if os.path.exists(img_dir):
+                    for fn in sorted(os.listdir(img_dir)):
+                        if fn.lower().endswith(('.jpg', '.jpeg', '.png', '.webp', '.svg')):
+                            imgs.append(f'assets/images/{fn}')
+                resp = {'success': True, 'images': imgs}
 
             elif action == 'change_password':
                 resp = {'success': True, 'message': 'Password admin berhasil diganti!'}
@@ -217,6 +262,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
 if __name__ == '__main__':
     # Initial build
     subprocess.run(['python3', os.path.join(DIRECTORY, 'build_preview.py')], capture_output=True)
+    socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", PORT), SpaPreviewHandler) as httpd:
         print(f"Serving Massaji Spa at http://localhost:{PORT}")
         httpd.serve_forever()

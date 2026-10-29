@@ -1,189 +1,315 @@
-// assets/js/main.js - Interactive UI & Bilingual System for Massaji Spa Bali
+// assets/js/main.js - Interactive UI, Bilingual System & Live Search for Massaji Spa Bali
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================
-  // 1. COMPREHENSIVE BILINGUAL SYSTEM (EN / ID)
+  // 1. REFINED BILINGUAL COPYWRITING SYSTEM (EN / ID)
   // ========================================================
   const i18n = {
     en: {
-      nav_promo: "Promo",
+      nav_promo: "End Year Promo",
       nav_packages: "Spa Packages",
       nav_menu: "Treatment Menu",
       nav_about: "About Us",
-      nav_reviews: "Reviews (4.8★)",
+      nav_reviews: "Guest Reviews (4.8★)",
       nav_contact: "Location & Hours",
-      nav_book: "Book Treatment",
+      nav_book: "Book Session",
 
       hero_eyebrow: "Boutique Wellness Sanctuary • Canggu, Bali",
       hero_title_1: "Find Your Balance.",
       hero_title_2: "Rediscover Serenity.",
-      hero_desc: "Experience authentic Balinese healing rituals, thoughtful treatments, and peaceful moments of relaxation in the heart of Canggu.",
+      hero_desc: "Experience the restorative touch of authentic Balinese healing traditions, pure botanical aromatherapy, and tranquil private suites in the heart of Canggu.",
       hero_btn_book: "Book Your Treatment",
-      hero_btn_explore: "Explore Spa Packages",
+      hero_btn_explore: "View End Year Promo",
       stat_rating: "4.8★ Verified Reviews",
-      stat_count: "(560+ Guests in Canggu)",
+      stat_count: "(560+ Delighted Guests in Canggu)",
 
-      trust_1: "Authentic Balinese Treatments",
+      trust_1: "Authentic Balinese Healing Rituals",
       trust_2: "Certified & Experienced Therapists",
-      trust_3: "100% Pure Botanical Ingredients",
-      trust_4: "Private, Clean & Quiet Suites",
+      trust_3: "100% Pure Botanical Botanicals",
+      trust_4: "Private, Serene & Spotless Suites",
 
-      promo_eyebrow: "Limited-Time Special",
-      promo_title: "March 2026 Promotion",
-      promo_desc: "Exclusive discounts on our highly requested therapies. Reservation is required prior to your visit.",
+      promo_eyebrow: "Limited-Time Special Offer",
+      promo_title: "END YEAR 2026 Big Promotion",
+      promo_desc: "Celebrate the year-end season with curated rejuvenation specials by Massaji Spa Bali. Enjoy exclusive savings on signature massages, body contouring, and rose petal rituals.",
+      promo_card_rate: "Special Promo Rate",
+      promo_btn_book: "Claim Promo Rate",
+      promo_valid_label: "Validity Period:",
+      promo_flyer_btn: "View Official Flyer",
 
       packages_eyebrow: "Curated Spa Rituals",
-      packages_title: "Spa Packages",
-      packages_desc: "Thoughtfully designed treatment combinations for singles, couples, and groups seeking profound rejuvenation in Bali.",
+      packages_title: "Signature Spa Packages",
+      packages_desc: "Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.",
       pkg_tab_all: "All Packages",
       pkg_tab_single: "Single Package (1 Person)",
       pkg_tab_couple: "Couple Package (2 Persons)",
       pkg_tab_group: "Group Package (4 Persons)",
+      pkg_from_price: "From Price",
+      pkg_btn_book: "Reserve Package",
+      pkg_search_placeholder: "Search spa packages (e.g., couple, 120 mins, relax, single, boreh)...",
+      pkg_not_found: "No packages found matching your search.",
 
-      menu_eyebrow: "Full Spa Catalog",
+      menu_eyebrow: "Complete Spa Catalog",
       menu_title: "Treatment Menu & Pricing",
-      menu_desc: "Complete individual treatment menu with honest, transparent pricing in Canggu & Kerobokan.",
+      menu_desc: "Explore our full suite of individual therapies with honest, transparent pricing in Canggu & Kerobokan.",
       cat_all: "All Treatments",
       cat_massage: "Body Massage",
       cat_spa: "Body Spa Treatments",
-      cat_slimming: "Slimming & Cellulite",
-      cat_facial: "Facial Treatments",
+      cat_slimming: "Slimming & RF Cavitation",
+      cat_facial: "Facial Care",
       cat_nail: "Nail Services",
       cat_additional: "Additional Services",
       card_rate: "Nett Price",
       card_btn_book: "Book Treatment",
+      menu_search_placeholder: "Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)...",
+      menu_not_found: "No treatments found matching your keywords.",
 
-      about_eyebrow: "About Massaji Spa",
+      about_eyebrow: "Our Sanctuary Story",
       about_title_1: "Rooted in Bali.",
       about_title_2: "Created for Your Wellbeing.",
-      about_desc_1: "Nestled in a peaceful pocket of Kerobokan and Canggu, Massaji Spa was created to deliver authentic Balinese healing traditions with five-star cleanliness at honest, accessible prices.",
-      about_desc_2: "From warming traditional Balinese Boreh spice wraps and slimming RF cavitation to certified prenatal therapy for mothers-to-be—our experienced therapists tailor every pressure point to your body's individual needs.",
-      about_val_1: "Pure Essential Oils",
-      about_val_1_desc: "Frangipani, lemongrass, lavender, and traditional natural spices.",
-      about_val_2: "Absolute Hygiene",
-      about_val_2_desc: "Freshly laundered linens and towels for every single guest session.",
+      about_desc_1: "Tucked into a tranquil enclave of Kerobokan and Canggu, Massaji Spa was founded to honor ancient Balinese healing arts while maintaining five-star cleanliness at refreshingly honest, accessible prices.",
+      about_desc_2: "From warming Balinese Boreh herbal spice wraps that ease muscular tension to targeted Cavitation RF slimming and certified prenatal massage—every therapy is thoughtfully tailored to your body's unique rhythm.",
+      about_val_1: "Pure Botanical Oils",
+      about_val_1_desc: "Fresh frangipani, uplifting lemongrass, calming lavender, and native spice blends.",
+      about_val_2: "Five-Star Hygiene",
+      about_val_2_desc: "Crisp, freshly laundered linens and sanitized private suites for every single guest.",
 
-      reviews_eyebrow: "Guest Testimonials",
-      reviews_title: "Trusted by Travelers Across the Globe",
-      reviews_summary: "4.8 out of 5.0 based on 560+ verified reviews in Canggu & Kerobokan.",
+      reviews_eyebrow: "Guest Experiences",
+      reviews_title: "Cherished by Travelers Worldwide",
+      reviews_summary: "Rated 4.8 out of 5.0 across 560+ verified reviews in Canggu & Kerobokan.",
+      review_1_text: "\"The 2-Hour Balinese Massage here is hands down the best massage I've experienced in Bali. Super clean rooms, calming scent, and therapists who truly understand pressure points.\"",
+      review_2_text: "\"We booked the Simply Us couple package and it was pure bliss! The romantic flower bath and massage were extraordinary. Highly recommended when visiting Canggu!\"",
+      review_3_text: "\"As a regular surfer in Canggu, their Deep Tissue and Hot Stone massage solved all my shoulder stiffness. Honest prices, incredible technique, five-star cleanliness.\"",
 
-      contact_eyebrow: "Visit Us",
+      contact_eyebrow: "Visit Our Sanctuary",
       contact_title: "Location & Opening Hours",
-      contact_desc: "Conveniently located along the main Canggu / Kerobokan route with dedicated parking for scooters and cars.",
-      contact_address_label: "Physical Address",
-      contact_maps_link: "Open Directions in Google Maps →",
-      contact_hours_label: "Opening Hours",
+      contact_desc: "Conveniently situated along the main Canggu / Kerobokan route with secure, dedicated on-site parking for scooters and cars.",
+      contact_address_label: "Sanctuary Address",
+      contact_maps_link: "Get Directions in Google Maps →",
+      contact_hours_label: "Visiting Hours",
       contact_hours_val: "Daily: 10:00 AM – 9:00 PM WITA",
-      contact_chat_label: "Instant Reservation",
+      contact_chat_label: "Instant WhatsApp Booking",
+
+      footer_tagline: "Authentic Balinese Massage, Curated Spa Packages & Holistic Wellness Sanctuary in Kerobokan and Canggu.",
+      footer_visiting_hours_title: "Visiting Hours",
+      footer_visiting_days: "Open Every Day",
+      footer_visiting_note: "Prior booking via WhatsApp is recommended to secure your preferred private treatment suite.",
+      footer_explore: "Explore",
+      footer_contact_title: "Direct Contact",
+      footer_admin_link: "Staff / Admin Portal →",
+
+      popup_badge: "🎉 SPECIAL LIMITED OFFER",
+      popup_title: "END YEAR 2026 Big Promotion",
+      popup_validity: "Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)",
+      popup_btn_wa: "Claim Promo via WhatsApp",
+      popup_btn_explore: "Explore Promo Details →",
+      popup_btn_skip: "Continue to Website",
 
       modal_eyebrow: "Direct Reservation",
-      modal_title: "Book Your Spa Treatment",
-      modal_desc: "Your booking inquiry will be sent directly to our reception email and formatted for instant WhatsApp confirmation.",
+      modal_title: "Reserve Your Spa Session",
+      modal_desc: "Your appointment request will be promptly delivered to our receptionist for instant confirmation via WhatsApp.",
       modal_label_name: "Full Name *",
-      modal_label_phone: "WhatsApp / Phone *",
-      modal_label_email: "Email Address",
-      modal_label_service: "Select Treatment / Package *",
-      modal_label_date: "Date *",
-      modal_label_time: "Time Slot *",
-      modal_label_guests: "Guests",
+      modal_label_phone: "WhatsApp / Mobile Number *",
+      modal_label_email: "Email Address (Optional)",
+      modal_label_service: "Select Treatment or Package *",
+      modal_label_date: "Appointment Date *",
+      modal_label_time: "Preferred Time Slot *",
+      modal_label_guests: "Number of Guests",
       modal_label_notes: "Special Requests (Optional)",
+      modal_name_placeholder: "e.g. Sarah Jenkins / Michael",
+      modal_phone_placeholder: "e.g. +62 812-3456-7890",
+      modal_notes_placeholder: "Therapist preferences, tension focus areas, or anniversary celebration...",
+      modal_guest_1: "1 Person",
+      modal_guest_2: "2 Persons",
+      modal_guest_3: "3 Persons",
+      modal_guest_4: "4 Persons",
+      modal_guest_5: "5+ Persons",
       modal_submit: "Submit Reservation Request",
       modal_success_title: "Reservation Received",
       modal_btn_wa: "Confirm Instantly on WhatsApp",
       modal_btn_close: "Close Window"
     },
     id: {
-      nav_promo: "Promo",
+      nav_promo: "Promo Akhir Tahun",
       nav_packages: "Paket Spa",
       nav_menu: "Menu Perawatan",
       nav_about: "Tentang Kami",
-      nav_reviews: "Ulasan (4.8★)",
+      nav_reviews: "Ulasan Tamu (4.8★)",
       nav_contact: "Lokasi & Jam Buka",
-      nav_book: "Pesan Treatment",
+      nav_book: "Reservasi Jadwal",
 
-      hero_eyebrow: "Sanctuary Spa Butik • Canggu, Bali",
-      hero_title_1: "Temukan Keseimbangan.",
-      hero_title_2: "Pulihkan Kedamaian Diri.",
-      hero_desc: "Nikmati relaksasi mendalam di Canggu & Kerobokan dengan sentuhan terapis berpengalaman, minyak aromaterapi murni, dan tradisi penyembuhan Bali autentik.",
-      hero_btn_book: "Reservasi Jadwal Pijat",
-      hero_btn_explore: "Lihat Paket Pilihan",
+      hero_eyebrow: "Sanctuary Kebugaran Butik • Canggu, Bali",
+      hero_title_1: "Temukan Keseimbangan Jiwa.",
+      hero_title_2: "Pulihkan Kedamaian Raga.",
+      hero_desc: "Rasakan keajaiban sentuhan tradisi penyembuhan Bali, relaksasi mendalam dengan minyak botani alami, dan suasana privat yang menenangkan di jantung Canggu.",
+      hero_btn_book: "Pesan Jadwal Perawatan",
+      hero_btn_explore: "Lihat Promo Akhir Tahun",
       stat_rating: "4.8★ Ulasan Terverifikasi",
-      stat_count: "(560+ Tamu di Canggu)",
+      stat_count: "(560+ Tamu Bahagia di Canggu)",
 
-      trust_1: "Perawatan Autentik Tradisional Bali",
-      trust_2: "Terapis Berpengalaman & Tersertifikasi",
-      trust_3: "100% Minyak Botani & Rempah Alami",
+      trust_1: "Tradisi Pijat Otentik Bali",
+      trust_2: "Terapis Ahli & Tersertifikasi",
+      trust_3: "100% Minyak Botani Alami",
       trust_4: "Ruang Privat, Tenang & Higienis",
 
-      promo_eyebrow: "Penawaran Terbatas",
-      promo_title: "Promo Spesial Maret 2026",
-      promo_desc: "Diskon eksklusif untuk perawatan spa terpopuler. Diperlukan reservasi sebelum kunjungan.",
+      promo_eyebrow: "Penawaran Istimewa Terbatas",
+      promo_title: "END YEAR 2026 Big Promotion",
+      promo_desc: "Rayakan akhir tahun dengan perawatan istimewa berharga spesial dari Massaji Spa Bali. Dapatkan diskon eksklusif untuk memanjakan tubuh dan menyegarkan pikiran.",
+      promo_card_rate: "Tarif Spesial Promo",
+      promo_btn_book: "Klaim Promo Ini",
+      promo_valid_label: "Periode Berlaku:",
+      promo_flyer_btn: "Brosur Flyer Asli",
 
-      packages_eyebrow: "Ritual Spa Pilihan",
-      packages_title: "Paket Perawatan Spa",
-      packages_desc: "Kombinasi perawatan pilihan untuk individu, pasangan, dan rombongan yang dirancang untuk kesegaran tubuh dan pikiran.",
+      packages_eyebrow: "Kurasi Ritual Spa Pilihan",
+      packages_title: "Paket Istimewa Spa",
+      packages_desc: "Rangkaian perawatan holistik yang dirancang khusus untuk perawatan individu, momen romantis pasangan, maupun relaksasi bersama rombongan di Bali.",
       pkg_tab_all: "Semua Paket",
-      pkg_tab_single: "Paket Single (1 Orang)",
-      pkg_tab_couple: "Paket Couple (2 Orang)",
-      pkg_tab_group: "Paket Group (4 Orang)",
+      pkg_tab_single: "Paket Personal (1 Orang)",
+      pkg_tab_couple: "Paket Pasangan (2 Orang)",
+      pkg_tab_group: "Paket Rombongan (4 Orang)",
+      pkg_from_price: "Mulai Dari",
+      pkg_btn_book: "Pesan Paket Ini",
+      pkg_search_placeholder: "Cari paket spa (misal: couple, 120 menit, relax, single, boreh)...",
+      pkg_not_found: "Tidak ada paket yang sesuai dengan pencarian Anda.",
 
-      menu_eyebrow: "Katalog Lengkap",
-      menu_title: "Daftar Menu & Tarif Layanan",
-      menu_desc: "Daftar lengkap perawatan satuan dengan harga jujur dan transparan di kawasan Canggu & Kerobokan.",
+      menu_eyebrow: "Katalog Layanan Lengkap",
+      menu_title: "Menu Perawatan & Tarif",
+      menu_desc: "Pilihan lengkap perawatan satuan dengan tarif jujur, transparan, dan kebersihan terjamin di Canggu & Kerobokan.",
       cat_all: "Semua Layanan",
-      cat_massage: "Pijat Tubuh",
-      cat_spa: "Body Spa Ritual",
-      cat_slimming: "Slimming & Selulit",
+      cat_massage: "Pijat Tradisional Tubuh",
+      cat_spa: "Ritual Body Spa & Lulur",
+      cat_slimming: "Slimming Cavitation RF",
       cat_facial: "Perawatan Wajah",
-      cat_nail: "Perawatan Kuku",
+      cat_nail: "Manikur & Perawatan Kuku",
       cat_additional: "Layanan Tambahan",
-      card_rate: "Tarif",
-      card_btn_book: "Pesan",
+      card_rate: "Tarif Resmi",
+      card_btn_book: "Pesan Perawatan",
+      menu_search_placeholder: "Cari menu treatment (misal: stone, traditional, facial, nail, slimming)...",
+      menu_not_found: "Tidak ada perawatan yang sesuai dengan kata kunci Anda.",
 
-      about_eyebrow: "Tentang Massaji Spa",
-      about_title_1: "Berakar di Bali.",
-      about_title_2: "Diciptakan untuk Kebugaran Anda.",
-      about_desc_1: "Terletak di kawasan Kerobokan / Canggu yang tenang, Massaji Spa menghadirkan kembali ritual penyembuhan tradisional Bali dengan standar kenyamanan mewah namun tetap dengan harga yang bersahabat.",
-      about_desc_2: "Mulai dari tradisi rempah Boreh Bali yang menghangatkan persendian, slimming RF cavitation, hingga pijat prenatal bersertifikat untuk ibu hamil—setiap terapis kami berdedikasi memberikan perawatan terbaik.",
-      about_val_1: "Minyak Esensial Alami",
-      about_val_1_desc: "Bunga kamboja, serai, lavender, serta lulur rempah boreh alami.",
-      about_val_2: "Higienitas Terjamin",
-      about_val_2_desc: "Sprei dan handuk selalu baru diganti setiap sesi perawatan.",
+      about_eyebrow: "Mengenal Massaji Spa",
+      about_title_1: "Berakar di Tradisi Bali.",
+      about_title_2: "Didedikasikan untuk Kebugaran Anda.",
+      about_desc_1: "Terletak di sudut tenang Kerobokan dan Canggu, Massaji Spa hadir untuk mempersembahkan kearifan penyembuhan tradisional Bali dengan standar kebersihan bintang lima dan harga yang bersahabat.",
+      about_desc_2: "Dari kehangatan lulur rempah Boreh Bali yang melemaskan sendi kaku hingga perawatan slimming RF cavitation dan pijat prenatal bersertifikat—setiap sentuhan terapis kami disesuaikan dengan kebutuhan tubuh Anda.",
+      about_val_1: "Minyak Aromaterapi Alami",
+      about_val_1_desc: "Bunga kamboja, serai segar, lavender murni, dan rempah alami Bali.",
+      about_val_2: "Standar Higienitas Bintang Lima",
+      about_val_2_desc: "Sprei, linen, dan handuk steril diganti baru untuk setiap tamu.",
 
-      reviews_eyebrow: "Ulasan Tamu",
-      reviews_title: "Dipercaya Ribuan Pelancong di Bali",
-      reviews_summary: "Rating 4.8 dari 5.0 berdasarkan 560+ ulasan Google di Canggu & Kerobokan.",
+      reviews_eyebrow: "Kesan & Ulasan Tamu",
+      reviews_title: "Pilihan Terpercaya Ribuan Pelancong Dunia",
+      reviews_summary: "Rating 4.8 dari 5.0 berdasarkan 560+ ulasan nyata di Canggu & Kerobokan.",
+      review_1_text: "\"Pijat Tradisional Bali 2 Jam di sini benar-benar yang terbaik selama liburan saya di Bali. Ruangannya privat dan sangat bersih, wanginya menenangkan, dan terapisnya sangat ahli memahami titik-titik pegal tubuh.\"",
+      review_2_text: "\"Kami memesan paket pasangan Simply Us dan pengalamannya sungguh luar biasa menenangkan! Mandi bunga mawar aromatik dan pijatannya begitu istimewa. Sangat direkomendasikan saat berkunjung ke Canggu!\"",
+      review_3_text: "\"Sebagai peselancar di Canggu, pijat Deep Tissue di Massaji Spa benar-benar memulihkan ketegangan otot bahu dan punggung saya. Harga sangat transparan, teknik terapis berkelas, dan kebersihan terjaga.\"",
 
-      contact_eyebrow: "Kunjungi Kami",
-      contact_title: "Lokasi & Jam Buka",
-      contact_desc: "Terletak di jalan utama Canggu / Kerobokan dengan area parkir motor dan mobil yang aman.",
-      contact_address_label: "Alamat Fisik",
+      contact_eyebrow: "Kunjungi Sanctuary Kami",
+      contact_title: "Lokasi & Jam Operasional",
+      contact_desc: "Berlokasi strategis di jalur utama Canggu / Kerobokan dengan fasilitas parkir luas dan aman untuk motor maupun mobil.",
+      contact_address_label: "Alamat Lengkap",
       contact_maps_link: "Buka Petunjuk Arah di Google Maps →",
       contact_hours_label: "Jam Operasional",
-      contact_hours_val: "Setiap Hari: 10:00 – 21:00 WITA",
-      contact_chat_label: "Reservasi Cepat",
+      contact_hours_val: "Buka Setiap Hari: 10:00 – 21:00 WITA",
+      contact_chat_label: "Konfirmasi Cepat WhatsApp",
+
+      footer_tagline: "Pijat Tradisional Bali Autentik, Paket Spa Pilihan & Tempat Relaksasi Holistik di Kerobokan dan Canggu.",
+      footer_visiting_hours_title: "Jam Kunjungan",
+      footer_visiting_days: "Buka Setiap Hari",
+      footer_visiting_note: "Disarankan melakukan reservasi terlebih dahulu via WhatsApp untuk memastikan ketersediaan ruang perawatan privat Anda.",
+      footer_explore: "Jelajahi",
+      footer_contact_title: "Kontak Langsung",
+      footer_admin_link: "Portal Staf / Admin →",
+
+      popup_badge: "🎉 PENAWARAN SPESIAL TERBATAS",
+      popup_title: "END YEAR 2026 Big Promotion",
+      popup_validity: "Berlaku : 1 Nov – 31 Des 2026 (Wajib reservasi sebelum kedatangan)",
+      popup_btn_wa: "Klaim Promo via WhatsApp",
+      popup_btn_explore: "Lihat Detail Promo →",
+      popup_btn_skip: "Lanjut Jelajahi Website",
 
       modal_eyebrow: "Reservasi Langsung",
-      modal_title: "Pesan Jadwal Perawatan",
-      modal_desc: "Rincian reservasi Anda akan langsung diteruskan ke email resepsionis dan pesan konfirmasi WhatsApp.",
+      modal_title: "Pesan Jadwal Perawatan Spa",
+      modal_desc: "Permintaan reservasi Anda akan langsung diteruskan ke resepsionis kami untuk konfirmasi instan via WhatsApp.",
       modal_label_name: "Nama Lengkap *",
-      modal_label_phone: "WhatsApp / Telepon *",
-      modal_label_email: "Alamat Email",
-      modal_label_service: "Pilihan Layanan / Paket *",
-      modal_label_date: "Tanggal *",
-      modal_label_time: "Jam Kunjungan *",
+      modal_label_phone: "Nomor WhatsApp / HP *",
+      modal_label_email: "Alamat Email (Opsional)",
+      modal_label_service: "Pilih Perawatan / Paket *",
+      modal_label_date: "Tanggal Perawatan *",
+      modal_label_time: "Waktu Kunjungan *",
       modal_label_guests: "Jumlah Tamu",
-      modal_label_notes: "Catatan Tambahan (Opsional)",
+      modal_label_notes: "Permintaan Khusus (Opsional)",
+      modal_name_placeholder: "Contoh: Budi Santoso / Sarah",
+      modal_phone_placeholder: "Contoh: 0812-3456-7890",
+      modal_notes_placeholder: "Preferensi terapis, fokus area pemijatan, atau perayaan khusus...",
+      modal_guest_1: "1 Orang",
+      modal_guest_2: "2 Orang",
+      modal_guest_3: "3 Orang",
+      modal_guest_4: "4 Orang",
+      modal_guest_5: "5+ Orang",
       modal_submit: "Kirim Permintaan Reservasi",
-      modal_success_title: "Reservasi Terkirim",
-      modal_btn_wa: "Lanjut Konfirmasi Cepat ke WhatsApp",
+      modal_success_title: "Reservasi Anda Telah Diterima",
+      modal_btn_wa: "Konfirmasi Langsung di WhatsApp",
       modal_btn_close: "Tutup Jendela"
     }
   };
 
-  // Language management
+  // Language management (Default English for international guests)
   let currentLang = localStorage.getItem('massaji_spa_lang') || 'en';
+
+  function updateBilingualCards(lang) {
+    const isId = lang === 'id';
+    document.querySelectorAll('.promo-card, .package-card, .treatment-card').forEach(card => {
+      const titleEl = card.querySelector('.card-title');
+      if (titleEl) {
+        const val = isId ? (card.dataset.nameId || card.dataset.nameEn) : card.dataset.nameEn;
+        if (val) titleEl.textContent = val;
+      }
+
+      const descEl = card.querySelector('.card-desc');
+      if (descEl) {
+        const val = isId ? (card.dataset.descId || card.dataset.descEn) : card.dataset.descEn;
+        if (val) descEl.textContent = val;
+      }
+
+      const durEl = card.querySelector('.card-duration');
+      if (durEl) {
+        const val = isId ? (card.dataset.durId || card.dataset.durEn) : card.dataset.durEn;
+        if (val) durEl.textContent = val;
+      }
+
+      const tagEl = card.querySelector('.card-tag');
+      if (tagEl) {
+        const val = isId ? (card.dataset.tagId || card.dataset.tagEn) : card.dataset.tagEn;
+        if (val) tagEl.textContent = val;
+      }
+
+      const catEl = card.querySelector('.card-category');
+      if (catEl) {
+        const val = isId ? (card.dataset.catId || card.dataset.catEn) : card.dataset.catEn;
+        if (val) catEl.textContent = val;
+      }
+
+      const multiEl = card.querySelector('.card-multi-prices');
+      if (multiEl) {
+        const val = isId ? (card.dataset.multiId || card.dataset.multiEn) : card.dataset.multiEn;
+        if (val) multiEl.textContent = val;
+      }
+    });
+
+    // Update booking modal select service options & optgroups
+    const serviceSelect = document.getElementById('booking-service');
+    if (serviceSelect) {
+      serviceSelect.querySelectorAll('option').forEach(opt => {
+        const label = isId ? (opt.dataset.labelId || opt.dataset.labelEn) : opt.dataset.labelEn;
+        if (label) opt.textContent = label;
+      });
+      serviceSelect.querySelectorAll('optgroup').forEach(grp => {
+        const label = isId ? (grp.dataset.labelId || grp.dataset.labelEn) : grp.dataset.labelEn;
+        if (label) grp.label = label;
+      });
+    }
+  }
 
   function applyLanguage(lang) {
     currentLang = lang;
@@ -199,12 +325,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Translate text contents
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       if (i18n[lang] && i18n[lang][key]) {
         el.textContent = i18n[lang][key];
       }
     });
+
+    // Translate placeholder attributes
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (i18n[lang] && i18n[lang][key]) {
+        el.placeholder = i18n[lang][key];
+      }
+    });
+
+    // Update cards & booking options dynamically in real-time
+    updateBilingualCards(lang);
+
+    // Update Popup WhatsApp prefilled message
+    const popupWaBtn = document.getElementById('popup-wa-btn');
+    if (popupWaBtn) {
+      const waMsg = lang === 'en'
+        ? "Hello Massaji Spa, I would like to claim the End Year 2026 Big Promotion."
+        : "Halo Massaji Spa, saya ingin mengklaim Promo Akhir Tahun 2026.";
+      popupWaBtn.href = `https://wa.me/6281236695755?text=${encodeURIComponent(waMsg)}`;
+    }
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -214,6 +361,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   applyLanguage(currentLang);
+
+  // ========================================================
+  // 1.1 PROMO FLYER POPUP (AUTO POPUP ON FIRST VISIT)
+  // ========================================================
+  const promoPopup = document.getElementById('promo-flyer-popup');
+
+  window.openPromoPopup = function() {
+    if (promoPopup) {
+      promoPopup.classList.remove('hidden');
+      promoPopup.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closePromoPopup = function() {
+    if (promoPopup) {
+      promoPopup.classList.add('hidden');
+      promoPopup.classList.remove('flex');
+      document.body.style.overflow = '';
+      sessionStorage.setItem('massaji_promo_popup_seen', 'true');
+    }
+  };
+
+  if (promoPopup) {
+    promoPopup.addEventListener('click', (e) => {
+      if (e.target === promoPopup) {
+        closePromoPopup();
+      }
+    });
+  }
+
+  // Auto-trigger on first visit of this browser session
+  const hasSeenPromo = sessionStorage.getItem('massaji_promo_popup_seen');
+  if (!hasSeenPromo) {
+    setTimeout(() => {
+      openPromoPopup();
+    }, 750);
+  }
 
   // ========================================================
   // 2. MOBILE NAVIGATION
@@ -234,14 +419,53 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // 3. PACKAGES CATEGORY TABS FILTERING
+  // 3. PACKAGES: TABS + LIVE SEARCH FILTERING
   // ========================================================
   const packageTabs = document.querySelectorAll('.package-tab-btn');
   const packageCards = document.querySelectorAll('.package-card');
+  const packageSearchInput = document.getElementById('package-search-input');
+  const packageSearchClear = document.getElementById('package-search-clear');
+  const noPackagesMsg = document.getElementById('no-packages-found');
+  let currentPackageCat = 'all';
+
+  function filterPackages() {
+    const query = packageSearchInput ? packageSearchInput.value.toLowerCase().trim() : '';
+    let visibleCount = 0;
+
+    if (packageSearchClear) {
+      if (query.length > 0) {
+        packageSearchClear.classList.remove('hidden');
+      } else {
+        packageSearchClear.classList.add('hidden');
+      }
+    }
+
+    packageCards.forEach(card => {
+      const catMatch = currentPackageCat === 'all' || card.dataset.category === currentPackageCat;
+      const searchData = (card.dataset.search || card.textContent).toLowerCase();
+      const queryMatch = !query || searchData.includes(query);
+
+      if (catMatch && queryMatch) {
+        card.style.display = 'flex';
+        card.style.opacity = '1';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (noPackagesMsg) {
+      if (visibleCount === 0) {
+        noPackagesMsg.classList.remove('hidden');
+      } else {
+        noPackagesMsg.classList.add('hidden');
+      }
+    }
+  }
 
   packageTabs.forEach(btn => {
     btn.addEventListener('click', () => {
-      const category = btn.dataset.category;
+      currentPackageCat = btn.dataset.category;
 
       packageTabs.forEach(b => {
         b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
@@ -251,35 +475,87 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
       btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
 
-      packageCards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 200);
-        }
-      });
+      filterPackages();
     });
   });
 
+  if (packageSearchInput) {
+    packageSearchInput.addEventListener('input', filterPackages);
+  }
+
+  if (packageSearchClear) {
+    packageSearchClear.addEventListener('click', () => {
+      packageSearchInput.value = '';
+      filterPackages();
+      packageSearchInput.focus();
+    });
+  }
+
+  window.resetPackageSearch = function() {
+    if (packageSearchInput) packageSearchInput.value = '';
+    currentPackageCat = 'all';
+    packageTabs.forEach((btn, idx) => {
+      if (idx === 0) {
+        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      } else {
+        btn.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      }
+    });
+    filterPackages();
+  };
+
   // ========================================================
-  // 4. MENU CATEGORY TABS FILTERING
+  // 4. MENU: TABS + LIVE SEARCH FILTERING
   // ========================================================
-  const filterButtons = document.querySelectorAll('.menu-filter-btn');
+  const menuFilterButtons = document.querySelectorAll('.menu-filter-btn');
   const menuCards = document.querySelectorAll('#menu-cards-container .treatment-card');
+  const menuSearchInput = document.getElementById('menu-search-input');
+  const menuSearchClear = document.getElementById('menu-search-clear');
+  const noMenuMsg = document.getElementById('no-menu-found');
+  let currentMenuCat = 'all';
 
-  filterButtons.forEach(btn => {
+  function filterMenu() {
+    const query = menuSearchInput ? menuSearchInput.value.toLowerCase().trim() : '';
+    let visibleCount = 0;
+
+    if (menuSearchClear) {
+      if (query.length > 0) {
+        menuSearchClear.classList.remove('hidden');
+      } else {
+        menuSearchClear.classList.add('hidden');
+      }
+    }
+
+    menuCards.forEach(card => {
+      const catMatch = currentMenuCat === 'all' || card.dataset.category === currentMenuCat;
+      const searchData = (card.dataset.search || card.textContent).toLowerCase();
+      const queryMatch = !query || searchData.includes(query);
+
+      if (catMatch && queryMatch) {
+        card.style.display = 'flex';
+        card.style.opacity = '1';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (noMenuMsg) {
+      if (visibleCount === 0) {
+        noMenuMsg.classList.remove('hidden');
+      } else {
+        noMenuMsg.classList.add('hidden');
+      }
+    }
+  }
+
+  menuFilterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const category = btn.dataset.category;
+      currentMenuCat = btn.dataset.category;
 
-      filterButtons.forEach(b => {
+      menuFilterButtons.forEach(b => {
         b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
         b.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
       });
@@ -287,23 +563,36 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
       btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
 
-      menuCards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 200);
-        }
-      });
+      filterMenu();
     });
   });
+
+  if (menuSearchInput) {
+    menuSearchInput.addEventListener('input', filterMenu);
+  }
+
+  if (menuSearchClear) {
+    menuSearchClear.addEventListener('click', () => {
+      menuSearchInput.value = '';
+      filterMenu();
+      menuSearchInput.focus();
+    });
+  }
+
+  window.resetMenuSearch = function() {
+    if (menuSearchInput) menuSearchInput.value = '';
+    currentMenuCat = 'all';
+    menuFilterButtons.forEach((btn, idx) => {
+      if (idx === 0) {
+        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      } else {
+        btn.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      }
+    });
+    filterMenu();
+  };
 
   // ========================================================
   // 5. BOOKING MODAL
@@ -331,7 +620,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
         if (!matchFound) {
-          // If not matched, select option value or match partial
           for (let i = 0; i < serviceSelect.options.length; i++) {
             if (serviceSelect.options[i].value.toLowerCase().includes(serviceName.toLowerCase()) ||
                 serviceName.toLowerCase().includes(serviceSelect.options[i].value.toLowerCase())) {

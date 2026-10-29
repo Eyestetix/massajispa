@@ -87,21 +87,22 @@ $csrf_token = generate_csrf_token();
     
     <!-- Navigation Tabs -->
     <div class="flex border-b border-stone-800 gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
-      <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-brand-gold text-brand-gold flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Kontak & Notifikasi Email
-      </button>
-      <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        Menu & Harga Treatment
-        <span class="px-2 py-0.5 text-[10px] rounded-full bg-stone-800 text-stone-400 font-mono"><?php echo count($menu); ?></span>
+      <button onclick="switchTab('home')" id="btn-tab-home" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-brand-gold text-brand-gold flex items-center gap-2 whitespace-nowrap transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        Setting Home (Hero &amp; About)
       </button>
       <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-        Banner Promo
-        <?php if (!empty($promo['active'])): ?>
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <?php endif; ?>
+        Promo Akhir Tahun &amp; Flyer
+      </button>
+      <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        Menu &amp; Harga Treatment
+        <span class="px-2 py-0.5 text-[10px] rounded-full bg-stone-800 text-stone-400 font-mono"><?php echo count($menu); ?></span>
+      </button>
+      <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Kontak &amp; Reservasi
       </button>
       <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -112,6 +113,118 @@ $csrf_token = generate_csrf_token();
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
         Keamanan
       </button>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- TAB 0: SETTING HOME (HERO & ABOUT MASSAJI SPA) -->
+    <!-- ======================================================== -->
+    <div id="tab-home" class="tab-content space-y-8">
+      <form id="form-home" class="space-y-8">
+        <input type="hidden" name="action" value="save_home">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+
+        <!-- Hero Section Settings -->
+        <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 pb-4 mb-6 border-b border-stone-800">
+            <span class="w-8 h-8 rounded-lg bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">1</span>
+            <div>
+              <h2 class="font-serif text-2xl font-semibold text-stone-100">Bagian Hero (Banner Utama Depan)</h2>
+              <p class="text-xs text-stone-400">Atur judul pembuka, slogan, dan gambar utama yang pertama kali dilihat pengunjung.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 space-y-4">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Judul Hero (Baris 1)</label>
+                <input type="text" name="hero_title_1" value="<?php echo htmlspecialchars($settings['hero_title_1'] ?? 'Find Your Balance.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Slogan Hero (Baris 2 - Huruf Miring)</label>
+                <input type="text" name="hero_title_2" value="<?php echo htmlspecialchars($settings['hero_title_2'] ?? 'Rediscover Serenity.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm italic font-serif text-brand-gold focus:border-brand-gold focus:outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Deskripsi Lengkap Hero</label>
+                <textarea name="hero_desc" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-300 leading-relaxed focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['hero_desc'] ?? ''); ?></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Path / File Gambar Hero</label>
+                <input type="text" id="php-hero-image" name="hero_image" value="<?php echo htmlspecialchars($settings['hero_image'] ?? 'assets/images/massaji-hero.jpg'); ?>" oninput="document.getElementById('php-preview-hero').src='../' + this.value" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs font-mono text-stone-300 focus:border-brand-gold focus:outline-none">
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <button type="button" onclick="document.getElementById('php-hero-image').value='assets/images/massaji-hero.jpg'; document.getElementById('php-preview-hero').src='../assets/images/massaji-hero.jpg';" class="px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-brand-gold text-[11px]">massaji-hero.jpg</button>
+                  <button type="button" onclick="document.getElementById('php-hero-image').value='assets/images/gambar2.jpg'; document.getElementById('php-preview-hero').src='../assets/images/gambar2.jpg';" class="px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-brand-gold text-[11px]">gambar2.jpg</button>
+                  <button type="button" onclick="document.getElementById('php-hero-image').value='assets/images/massaji-reception.jpg'; document.getElementById('php-preview-hero').src='../assets/images/massaji-reception.jpg';" class="px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-brand-gold text-[11px]">massaji-reception.jpg</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col justify-center">
+              <span class="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">Live Preview Gambar Hero</span>
+              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative">
+                <img id="php-preview-hero" src="../<?php echo htmlspecialchars($settings['hero_image'] ?? 'assets/images/massaji-hero.jpg'); ?>" class="w-full h-full object-cover" onerror="this.src='../assets/images/MASAGE.JPG'">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Section Settings -->
+        <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 pb-4 mb-6 border-b border-stone-800">
+            <span class="w-8 h-8 rounded-lg bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">2</span>
+            <div>
+              <h2 class="font-serif text-2xl font-semibold text-stone-100">Bagian About Massaji Spa</h2>
+              <p class="text-xs text-stone-400">Profil tradisi penyembuhan Bali, kebersihan bintang lima, dan gambar pendukung.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Judul About (Baris 1)</label>
+                  <input type="text" name="about_title_1" value="<?php echo htmlspecialchars($settings['about_title_1'] ?? 'Rooted in Bali.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Slogan About (Baris 2)</label>
+                  <input type="text" name="about_title_2" value="<?php echo htmlspecialchars($settings['about_title_2'] ?? 'Created for Your Wellbeing.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm italic font-serif text-brand-gold focus:border-brand-gold focus:outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Deskripsi Paragraf 1</label>
+                <textarea name="about_desc_1" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-300 leading-relaxed focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['about_desc_1'] ?? ''); ?></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Deskripsi Paragraf 2</label>
+                <textarea name="about_desc_2" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-300 leading-relaxed focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['about_desc_2'] ?? ''); ?></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Path / File Gambar About</label>
+                <input type="text" id="php-about-image" name="about_image" value="<?php echo htmlspecialchars($settings['about_image'] ?? 'assets/images/massaji-about.jpg'); ?>" oninput="document.getElementById('php-preview-about').src='../' + this.value" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs font-mono text-stone-300 focus:border-brand-gold focus:outline-none">
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col justify-center">
+              <span class="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">Live Preview Gambar About</span>
+              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative">
+                <img id="php-preview-about" src="../<?php echo htmlspecialchars($settings['about_image'] ?? 'assets/images/massaji-about.jpg'); ?>" class="w-full h-full object-cover" onerror="this.src='../assets/images/gambar2.jpg'">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-terracotta to-amber-700 hover:from-amber-600 hover:to-brand-terracotta text-white font-medium text-sm shadow-xl flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Simpan Tampilan Home
+          </button>
+        </div>
+      </form>
     </div>
 
     <!-- ======================================================== -->
@@ -229,13 +342,30 @@ $csrf_token = generate_csrf_token();
         </button>
       </div>
 
+      <!-- Search Bar for Admin Menu -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <input 
+          type="text" 
+          id="admin-search-input" 
+          oninput="searchAdminMenu(this.value)" 
+          placeholder="Cari menu perawatan / paket (ketik nama, deskripsi, durasi, harga)..." 
+          class="w-full pl-10 pr-10 py-3 rounded-xl border border-stone-800 bg-stone-950 text-sm text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-gold">
+      </div>
+
       <!-- Menu Category Filters for Admin View -->
       <div class="flex gap-2 overflow-x-auto pb-2">
         <button onclick="filterAdminMenu('all')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-800 text-stone-200 text-xs font-medium hover:bg-stone-700 transition" data-filter="all">Semua (<?php echo count($menu); ?>)</button>
+        <button onclick="filterAdminMenu('promo')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="promo">Promo Akhir Tahun</button>
         <button onclick="filterAdminMenu('massage')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="massage">Massage & Body</button>
-        <button onclick="filterAdminMenu('beauty')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="beauty">Facial & Scrub</button>
-        <button onclick="filterAdminMenu('reflexology')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="reflexology">Reflexology</button>
-        <button onclick="filterAdminMenu('packages')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="packages">Spa Packages</button>
+        <button onclick="filterAdminMenu('slimming')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="slimming">Slimming RF</button>
+        <button onclick="filterAdminMenu('packages-single')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="packages-single">Single Packages</button>
+        <button onclick="filterAdminMenu('packages-couple')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="packages-couple">Couple Packages</button>
+        <button onclick="filterAdminMenu('spa')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="spa">Spa Rituals</button>
+        <button onclick="filterAdminMenu('facial')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="facial">Facial</button>
+        <button onclick="filterAdminMenu('nail')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="nail">Nail</button>
       </div>
 
       <!-- Menu Items List -->
@@ -482,58 +612,110 @@ $csrf_token = generate_csrf_token();
       <h3 id="modal-title" class="font-serif text-2xl font-semibold text-stone-100 mb-1">Tambah Treatment Baru</h3>
       <p class="text-xs text-stone-400 mb-6">Isi rincian layanan pijat atau perawatan spa di bawah ini.</p>
 
-      <form id="form-menu-item" class="space-y-4">
+      <form id="form-menu-item" class="space-y-4 text-xs">
         <input type="hidden" id="menu-item-id" name="id" value="">
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
 
-        <div>
-          <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Kategori Layanan</label>
-          <select id="menu-item-category" name="category" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            <option value="massage">Massage & Body Work</option>
-            <option value="beauty">Facial, Scrub & Body Care</option>
-            <option value="reflexology">Reflexology & Express</option>
-            <option value="packages">Signature Spa Packages</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Nama Perawatan</label>
-          <input type="text" id="menu-item-name" name="name" required placeholder="Contoh: Traditional Balinese Massage"
-            class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Durasi</label>
-            <input type="text" id="menu-item-duration" name="duration" placeholder="Contoh: 60 / 90 Menit"
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
+        <!-- English Section -->
+        <div class="p-3.5 rounded-xl bg-stone-900/80 border border-stone-800 space-y-3">
+          <div class="flex items-center gap-2 pb-1.5 border-b border-stone-800">
+            <span>🇬🇧</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-brand-gold">Informasi Bahasa Inggris (Default Website)</span>
           </div>
           <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Harga (IDR)</label>
-            <input type="number" id="menu-item-price" name="price" required placeholder="Contoh: 185000"
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none font-mono">
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Nama Perawatan (EN) *</label>
+            <input type="text" id="menu-item-name" name="name" required placeholder="Contoh: Balinese Traditional Massage (120 mins)"
+              class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
           </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Deskripsi Manfaat & Teknik</label>
-          <textarea id="menu-item-desc" name="description" rows="3" placeholder="Deskripsikan sensasi pijatan, minyak yang digunakan, dan manfaatnya..."
-            class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none"></textarea>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4 items-center pt-2">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Durasi (EN) *</label>
+              <input type="text" id="menu-item-duration" name="duration" placeholder="Contoh: 120 Mins"
+                class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Badge Tag (EN)</label>
+              <input type="text" id="menu-item-tag" name="tag" placeholder="Misal: Now 300K / Signature"
+                class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+            </div>
+          </div>
           <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Label Tag (Opsional)</label>
-            <input type="text" id="menu-item-tag" name="tag" placeholder="Misal: Best Seller / Signature"
-              class="w-full px-4 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Keterangan Multi-Prices (EN)</label>
+            <input type="text" id="menu-item-multi-prices" name="multi_prices" placeholder="Contoh: 60m: 215K | 90m: 285K | 120m: 345K"
+              class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
           </div>
-          <div class="flex items-center gap-2 pt-4">
-            <input type="checkbox" id="menu-item-featured" name="is_featured" value="1" class="w-4 h-4 rounded text-brand-terracotta bg-stone-900 border-stone-700">
-            <label for="menu-item-featured" class="text-xs text-stone-300">Tandai sebagai Menu Populer</label>
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Deskripsi Treatment (EN)</label>
+            <textarea id="menu-item-desc" name="description" rows="2" placeholder="Deskripsikan dalam bahasa Inggris..."
+              class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none"></textarea>
           </div>
         </div>
 
-        <div class="flex justify-end gap-3 pt-6 border-t border-stone-800">
+        <!-- Indonesian Section -->
+        <div class="p-3.5 rounded-xl bg-amber-950/20 border border-amber-900/40 space-y-3">
+          <div class="flex items-center gap-2 pb-1.5 border-b border-amber-900/40">
+            <span>🇮🇩</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-amber-400">Informasi Bahasa Indonesia (Mode ID)</span>
+          </div>
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Nama Perawatan (ID) *</label>
+            <input type="text" id="menu-item-name-id" name="name_id" required placeholder="Contoh: Pijat Tradisional Bali (120 menit)"
+              class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Durasi (ID)</label>
+              <input type="text" id="menu-item-duration-id" name="duration_id" placeholder="Contoh: 120 Menit"
+                class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Badge Tag (ID)</label>
+              <input type="text" id="menu-item-tag-id" name="tag_id" placeholder="Misal: Kini 300K / Terfavorit"
+                class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Keterangan Multi-Prices (ID)</label>
+            <input type="text" id="menu-item-multi-prices-id" name="multi_prices_id" placeholder="Contoh: Paha: Kini 550K | Perut: Kini 650K"
+              class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Deskripsi Treatment (ID)</label>
+            <textarea id="menu-item-desc-id" name="description_id" rows="2" placeholder="Deskripsikan dengan copywriting bahasa Indonesia alami..."
+              class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Category & Pricing -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Kategori</label>
+            <select id="menu-item-category" name="category" class="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+              <option value="promo">Promo Akhir Tahun</option>
+              <option value="packages-single">Single Packages</option>
+              <option value="packages-couple">Couple Packages</option>
+              <option value="packages-group">Group Packages</option>
+              <option value="massage">Massage & Body</option>
+              <option value="slimming">Slimming RF</option>
+              <option value="spa">Spa Rituals</option>
+              <option value="facial">Facial</option>
+              <option value="nail">Nail</option>
+              <option value="additional">Additional</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-brand-gold mb-1">Harga Final (Rp) *</label>
+            <input type="number" id="menu-item-price" name="price" required placeholder="300000"
+              class="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs font-bold text-brand-gold focus:border-brand-gold focus:outline-none font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Harga Normal (Rp)</label>
+            <input type="number" id="menu-item-normal-price" name="normal_price" placeholder="345000"
+              class="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-400 focus:border-brand-gold focus:outline-none font-mono">
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-stone-800">
           <button type="button" onclick="closeMenuModal()" class="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium transition">Batal</button>
           <button type="submit" class="px-5 py-2 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white text-xs font-medium shadow transition">Simpan Perawatan</button>
         </div>
@@ -601,12 +783,22 @@ $csrf_token = generate_csrf_token();
       });
     }
 
+    setupAjaxForm('form-home');
     setupAjaxForm('form-settings');
     setupAjaxForm('form-promo');
     setupAjaxForm('form-password', () => document.getElementById('form-password').reset());
 
-    // Filter Admin Menu
+    // Search & Filter Admin Menu
+    let activeCategory = 'all';
+    let searchKeyword = '';
+
+    function searchAdminMenu(kw) {
+      searchKeyword = (kw || '').toLowerCase().trim();
+      applyAdminMenuFilters();
+    }
+
     function filterAdminMenu(category) {
+      activeCategory = category;
       document.querySelectorAll('.admin-filter-btn').forEach(btn => {
         if (btn.dataset.filter === category) {
           btn.classList.add('bg-stone-800', 'text-stone-200');
@@ -616,8 +808,18 @@ $csrf_token = generate_csrf_token();
           btn.classList.add('bg-stone-900', 'text-stone-400');
         }
       });
+      applyAdminMenuFilters();
+    }
+
+    function applyAdminMenuFilters() {
       document.querySelectorAll('#admin-menu-list .menu-card').forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
+        const cat = card.dataset.category || '';
+        const text = card.textContent.toLowerCase();
+
+        const matchCat = (activeCategory === 'all' || cat === activeCategory);
+        const matchKw = (!searchKeyword || text.includes(searchKeyword));
+
+        if (matchCat && matchKw) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
@@ -640,12 +842,24 @@ $csrf_token = generate_csrf_token();
       document.getElementById('modal-title').textContent = 'Edit Layanan Treatment';
       document.getElementById('menu-item-id').value = item.id || '';
       document.getElementById('menu-item-category').value = item.category || 'massage';
+      
+      // English fields
       document.getElementById('menu-item-name').value = item.name || '';
       document.getElementById('menu-item-duration').value = item.duration || '';
-      document.getElementById('menu-item-price').value = item.price || '';
-      document.getElementById('menu-item-desc').value = item.description || '';
       document.getElementById('menu-item-tag').value = item.tag || '';
-      document.getElementById('menu-item-featured').checked = !!item.is_featured;
+      document.getElementById('menu-item-multi-prices').value = item.multi_prices || '';
+      document.getElementById('menu-item-desc').value = item.description || '';
+
+      // Indonesian fields
+      document.getElementById('menu-item-name-id').value = item.name_id || item.name || '';
+      document.getElementById('menu-item-duration-id').value = item.duration_id || item.duration || '';
+      document.getElementById('menu-item-tag-id').value = item.tag_id || item.tag || '';
+      document.getElementById('menu-item-multi-prices-id').value = item.multi_prices_id || item.multi_prices || '';
+      document.getElementById('menu-item-desc-id').value = item.description_id || item.description || '';
+
+      // Pricing
+      document.getElementById('menu-item-price').value = item.price || '';
+      document.getElementById('menu-item-normal-price').value = item.normal_price || '';
 
       document.getElementById('menu-modal').classList.remove('hidden');
       document.getElementById('menu-modal').classList.add('flex');
@@ -656,22 +870,40 @@ $csrf_token = generate_csrf_token();
       document.getElementById('menu-modal').classList.remove('flex');
     }
 
-    // Handle Add/Edit Form submit
+    // Handle Add/Edit Form submit (Dual Language Preservation)
     document.getElementById('form-menu-item').addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('menu-item-id').value.trim();
       const isEdit = id !== '';
 
+      const name = document.getElementById('menu-item-name').value.trim();
+      const nameId = document.getElementById('menu-item-name-id').value.trim() || name;
+      const duration = document.getElementById('menu-item-duration').value.trim();
+      const durationId = document.getElementById('menu-item-duration-id').value.trim() || duration;
+      const tag = document.getElementById('menu-item-tag').value.trim();
+      const tagId = document.getElementById('menu-item-tag-id').value.trim() || tag;
+      const multiPrices = document.getElementById('menu-item-multi-prices').value.trim();
+      const multiPricesId = document.getElementById('menu-item-multi-prices-id').value.trim() || multiPrices;
+      const desc = document.getElementById('menu-item-desc').value.trim();
+      const descId = document.getElementById('menu-item-desc-id').value.trim() || desc;
+      const normalPriceVal = document.getElementById('menu-item-normal-price').value.trim();
+
       const newItem = {
         id: isEdit ? id : 'item-' + Date.now(),
         category: document.getElementById('menu-item-category').value,
-        name: document.getElementById('menu-item-name').value.trim(),
-        duration: document.getElementById('menu-item-duration').value.trim(),
+        name: name,
+        duration: duration,
         price: parseInt(document.getElementById('menu-item-price').value.replace(/[^0-9]/g, '')) || 0,
-        description: document.getElementById('menu-item-desc').value.trim(),
-        tag: document.getElementById('menu-item-tag').value.trim(),
-        is_featured: document.getElementById('menu-item-featured').checked
+        description: desc,
+        name_id: nameId,
+        duration_id: durationId,
+        tag: tag,
+        tag_id: tagId,
+        description_id: descId
       };
+      if (normalPriceVal) newItem.normal_price = parseInt(normalPriceVal.replace(/[^0-9]/g, '')) || null;
+      if (multiPrices) newItem.multi_prices = multiPrices;
+      if (multiPricesId) newItem.multi_prices_id = multiPricesId;
 
       if (isEdit) {
         allMenuItems = allMenuItems.map(it => it.id === id ? newItem : it);

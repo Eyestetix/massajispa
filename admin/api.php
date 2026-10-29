@@ -47,24 +47,74 @@ switch ($action) {
     // Save General & Contact Settings
     // ----------------------------------------------------
     case 'save_settings':
+    case 'save_home':
         $settings = read_json_file($settings_file, get_settings());
 
-        $settings['site_name']        = !empty($_POST['site_name']) ? trim(strip_tags($_POST['site_name'])) : $settings['site_name'];
-        $settings['tagline']          = !empty($_POST['tagline']) ? trim(strip_tags($_POST['tagline'])) : $settings['tagline'];
-        $settings['subtagline']       = !empty($_POST['subtagline']) ? trim(strip_tags($_POST['subtagline'])) : $settings['subtagline'];
-        $settings['booking_email']    = !empty($_POST['booking_email']) ? filter_var(trim($_POST['booking_email']), FILTER_SANITIZE_EMAIL) : $settings['booking_email'];
-        $settings['whatsapp_number']  = !empty($_POST['whatsapp_number']) ? preg_replace('/[^0-9]/', '', trim($_POST['whatsapp_number'])) : $settings['whatsapp_number'];
-        $settings['phone']            = !empty($_POST['phone']) ? trim(strip_tags($_POST['phone'])) : $settings['phone'];
-        $settings['address']          = !empty($_POST['address']) ? trim(strip_tags($_POST['address'])) : $settings['address'];
-        $settings['google_maps_link'] = !empty($_POST['google_maps_link']) ? trim($_POST['google_maps_link']) : $settings['google_maps_link'];
-        $settings['opening_hours']    = !empty($_POST['opening_hours']) ? trim(strip_tags($_POST['opening_hours'])) : $settings['opening_hours'];
-        $settings['instagram']        = !empty($_POST['instagram']) ? trim($_POST['instagram']) : $settings['instagram'];
+        $fields = [
+            'site_name', 'tagline', 'subtagline', 'booking_email', 
+            'whatsapp_number', 'phone', 'whatsapp_number_2', 'phone_2',
+            'address', 'google_maps_link', 'opening_hours', 'instagram',
+            'hero_title_1', 'hero_title_2', 'hero_desc', 'hero_image',
+            'about_title_1', 'about_title_2', 'about_desc_1', 'about_desc_2', 'about_image',
+            'promo_title', 'promo_subtitle', 'promo_validity', 'promo_flyer_image'
+        ];
+
+        foreach ($fields as $f) {
+            if (isset($_POST[$f])) {
+                $settings[$f] = trim($_POST[$f]);
+            }
+        }
 
         if (write_json_file($settings_file, $settings)) {
-            echo json_encode(['success' => true, 'message' => 'Pengaturan kontak, email notifikasi & WhatsApp berhasil disimpan!']);
+            @exec('python3 ' . escapeshellarg(__DIR__ . '/../build_preview.py'));
+            echo json_encode(['success' => true, 'message' => 'Pengaturan berhasil disimpan!', 'settings' => $settings]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Gagal menulis ke file data/settings.json. Periksa izin akses folder.']);
         }
+        break;
+
+    case 'save_single_item':
+        if (!isset($_POST['item'])) {
+            echo json_encode(['success' => false, 'message' => 'Data item tidak ditemukan.']);
+            exit;
+        }
+        $target_item = json_decode($_POST['item'], true);
+        if (!is_array($target_item) || empty($target_item['name'])) {
+            echo json_encode(['success' => false, 'message' => 'Format item tidak valid.']);
+            exit;
+        }
+        $menu = read_json_file($menu_file, []);
+        $found = false;
+        foreach ($menu as $idx => $it) {
+            if ($it['id'] === $target_item['id']) {
+                $menu[$idx] = $target_item;
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            $menu[] = $target_item;
+        }
+        if (write_json_file($menu_file, $menu)) {
+            @exec('python3 ' . escapeshellarg(__DIR__ . '/../build_preview.py'));
+            echo json_encode(['success' => true, 'message' => "Treatment '{$target_item['name']}' berhasil diperbarui!"]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Gagal menulis ke menu.json.']);
+        }
+        break;
+
+    case 'get_available_images':
+        $img_dir = __DIR__ . '/../assets/images';
+        $imgs = [];
+        if (is_dir($img_dir)) {
+            $files = scandir($img_dir);
+            foreach ($files as $fn) {
+                if (in_array(strtolower(pathinfo($fn, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp', 'svg'])) {
+                    $imgs[] = 'assets/images/' . $fn;
+                }
+            }
+        }
+        echo json_encode(['success' => true, 'images' => $imgs]);
         break;
 
     // ----------------------------------------------------
@@ -102,23 +152,38 @@ switch ($action) {
             exit;
         }
 
-        // Clean & sanitize each menu item
+        // Clean & sanitize each menu item preserving all bilingual fields
         $cleaned_menu = [];
         foreach ($decoded_menu as $item) {
             if (empty($item['name'])) continue;
-            $cleaned_menu[] = [
-                'id'          => !empty($item['id']) ? preg_replace('/[^a-zA-Z0-9_-]/', '-', strtolower($item['id'])) : uniqid('item-'),
-                'category'    => !empty($item['category']) ? trim(strip_tags($item['category'])) : 'massage',
-                'name'        => trim(strip_tags($item['name'])),
-                'duration'    => !empty($item['duration']) ? trim(strip_tags($item['duration'])) : '60 Menit',
-                'price'       => isset($item['price']) ? intval(preg_replace('/[^0-9]/', '', (string)$item['price'])) : 0,
-                'description' => !empty($item['description']) ? trim(strip_tags($item['description'])) : '',
-                'is_featured' => !empty($item['is_featured']) && ($item['is_featured'] === true || $item['is_featured'] === '1' || $item['is_featured'] === 1),
-                'tag'         => !empty($item['tag']) ? trim(strip_tags($item['tag'])) : ''
+            $entry = [
+                'id'             => !empty($item['id']) ? preg_replace('/[^a-zA-Z0-9_-]/', '-', strtolower($item['id'])) : uniqid('item-'),
+                'category'       => !empty($item['category']) ? trim(strip_tags($item['category'])) : 'massage',
+                'name'           => trim(strip_tags($item['name'])),
+                'duration'       => !empty($item['duration']) ? trim(strip_tags($item['duration'])) : '60 Menit',
+                'price'          => isset($item['price']) ? intval(preg_replace('/[^0-9]/', '', (string)$item['price'])) : 0,
+                'description'    => !empty($item['description']) ? trim(strip_tags($item['description'])) : '',
+                'is_featured'    => !empty($item['is_featured']) && ($item['is_featured'] === true || $item['is_featured'] === '1' || $item['is_featured'] === 1),
+                'tag'            => !empty($item['tag']) ? trim(strip_tags($item['tag'])) : '',
+                'name_id'        => !empty($item['name_id']) ? trim(strip_tags($item['name_id'])) : trim(strip_tags($item['name'])),
+                'duration_id'    => !empty($item['duration_id']) ? trim(strip_tags($item['duration_id'])) : (!empty($item['duration']) ? trim(strip_tags($item['duration'])) : '60 Menit'),
+                'tag_id'         => !empty($item['tag_id']) ? trim(strip_tags($item['tag_id'])) : (!empty($item['tag']) ? trim(strip_tags($item['tag'])) : ''),
+                'description_id' => !empty($item['description_id']) ? trim(strip_tags($item['description_id'])) : (!empty($item['description']) ? trim(strip_tags($item['description'])) : '')
             ];
+            if (!empty($item['normal_price'])) {
+                $entry['normal_price'] = intval(preg_replace('/[^0-9]/', '', (string)$item['normal_price']));
+            }
+            if (!empty($item['multi_prices'])) {
+                $entry['multi_prices'] = trim(strip_tags($item['multi_prices']));
+            }
+            if (!empty($item['multi_prices_id'])) {
+                $entry['multi_prices_id'] = trim(strip_tags($item['multi_prices_id']));
+            }
+            $cleaned_menu[] = $entry;
         }
 
         if (write_json_file($menu_file, $cleaned_menu)) {
+            @exec('python3 ' . escapeshellarg(__DIR__ . '/../build_preview.py'));
             echo json_encode(['success' => true, 'message' => 'Daftar menu dan harga berhasil diperbarui!', 'total' => count($cleaned_menu)]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Gagal menulis ke menu.json.']);

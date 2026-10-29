@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: index.php');
         exit;
     } else {
-        $error = 'Password salah. Password default awal adalah: massaji2026';
+        $error = 'Password salah. Silakan periksa kembali password Anda.';
     }
 }
 $csrf_token = generate_csrf_token();
@@ -78,7 +78,6 @@ $csrf_token = generate_csrf_token();
           <input type="password" id="password" name="password" required autofocus placeholder="Masukkan password admin..."
             class="w-full px-4 py-3 bg-stone-950/80 border border-stone-800 rounded-xl text-stone-100 placeholder-stone-600 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition duration-200">
         </div>
-        <p class="text-[11px] text-stone-500 mt-1.5">Password awal bawaan sistem: <span class="text-stone-400 font-mono">massaji2026</span></p>
       </div>
 
       <button type="submit"

@@ -45,8 +45,8 @@
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#BAE0FD] shadow-sm transition duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo (Official Member-1 Logo with object-contain) -->
-      <a href="index.html" class="flex items-center gap-3.5 group">
+      <!-- Brand Logo (Official Member-1 Logo) -->
+      <a href="./" class="flex items-center gap-3.5 group">
         <div class="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-[#BAE0FD] p-1 group-hover:scale-105 transition duration-300">
           <img src="assets/images/member-1.png" alt="Massaji Spa Bali Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/images/member.png';">
         </div>
@@ -57,13 +57,13 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Menu (Order: Promo, Paket, Treatment Menu, About, Reviews, Contact) -->
+      <!-- Desktop Navigation Menu (Default English) -->
       <nav class="hidden lg:flex items-center gap-7 text-[14px] font-semibold text-[#475569]">
         <a href="#promotion" class="hover:text-[#1E3A8A] text-[#1E3A8A] font-bold flex items-center gap-1.5 transition">
           <span class="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse"></span>
-          <span data-i18n="nav_promo">Promo</span>
+          <span data-i18n="nav_promo">End Year Promo</span>
         </a>
-        <a href="#packages" class="hover:text-[#1E3A8A] transition" data-i18n="nav_packages">Paket Spa</a>
+        <a href="#packages" class="hover:text-[#1E3A8A] transition" data-i18n="nav_packages">Spa Packages</a>
         <a href="#menu" class="hover:text-[#1E3A8A] transition" data-i18n="nav_menu">Treatment Menu</a>
         <a href="#about" class="hover:text-[#1E3A8A] transition" data-i18n="nav_about">About Us</a>
         <a href="#reviews" class="hover:text-[#1E3A8A] transition" data-i18n="nav_reviews">Reviews (4.8★)</a>
@@ -73,10 +73,10 @@
       <!-- Header Actions (Bilingual Toggle + WhatsApp + Booking CTA) -->
       <div class="hidden sm:flex items-center gap-3.5">
         
-        <!-- Language Switcher Toggle (ID / EN) -->
+        <!-- Language Switcher Toggle (EN Default Active) -->
         <div class="inline-flex items-center p-0.5 bg-[#F0F8FF] rounded-lg border border-[#BAE0FD] text-[11px] font-bold">
-          <button class="lang-btn px-2.5 py-1 rounded-md transition text-[#475569] hover:text-[#141E3C]" data-lang="id">ID</button>
           <button class="lang-btn px-2.5 py-1 rounded-md transition bg-[#1E3A8A] text-white" data-lang="en">EN</button>
+          <button class="lang-btn px-2.5 py-1 rounded-md transition text-[#475569] hover:text-[#141E3C]" data-lang="id">ID</button>
         </div>
 
         <a href="https://wa.me/6281236695755?text=Hello%20Massaji Spa Bali%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20spa%20treatment." target="_blank" class="px-3.5 py-2 rounded-lg border border-emerald-300 hover:border-emerald-600 bg-emerald-50/80 text-emerald-800 text-xs font-bold tracking-wider flex items-center gap-1.5 transition duration-200 shadow-sm">
@@ -99,13 +99,13 @@
       <div class="flex items-center justify-between pb-3 border-b border-[#BAE0FD]">
         <span class="text-xs font-bold text-[#475569] uppercase tracking-wider">Language / Bahasa:</span>
         <div class="inline-flex items-center p-0.5 bg-[#F0F8FF] rounded-lg border border-[#BAE0FD] text-xs font-bold">
-          <button class="lang-btn px-3 py-1 rounded-md transition text-[#475569]" data-lang="id">ID</button>
           <button class="lang-btn px-3 py-1 rounded-md transition bg-[#1E3A8A] text-white" data-lang="en">EN</button>
+          <button class="lang-btn px-3 py-1 rounded-md transition text-[#475569]" data-lang="id">ID</button>
         </div>
       </div>
 
-      <a href="#promotion" class="block text-sm font-bold text-[#1E3A8A]" data-i18n="nav_promo">Promo</a>
-      <a href="#packages" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_packages">Paket Spa</a>
+      <a href="#promotion" class="block text-sm font-bold text-[#1E3A8A]" data-i18n="nav_promo">End Year Promo</a>
+      <a href="#packages" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_packages">Spa Packages</a>
       <a href="#menu" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_menu">Treatment Menu</a>
       <a href="#about" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_about">About Us</a>
       <a href="#reviews" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_reviews">Reviews (4.8★)</a>
@@ -146,8 +146,8 @@
           <button onclick="openBookingModal()" class="btn-primary" data-i18n="hero_btn_book">
             Book Your Treatment
           </button>
-          <a href="#packages" class="btn-secondary" data-i18n="hero_btn_explore">
-            Explore Spa Packages
+          <a href="#promotion" class="btn-secondary" data-i18n="hero_btn_explore">
+            View End Year Promo
           </a>
         </div>
 
@@ -155,7 +155,7 @@
           <div class="flex text-amber-500 tracking-tighter text-sm">★★★★★</div>
           <span class="font-bold text-[#141E3C]" data-i18n="stat_rating">4.8★ Verified Reviews</span>
           <span class="text-[#0284C7]">&bull;</span>
-          <span data-i18n="stat_count">(560+ Guests in Canggu)</span>
+          <span data-i18n="stat_count">(560+ Delighted Guests in Canggu)</span>
         </div>
       </div>
 
@@ -188,7 +188,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
           </div>
           <div>
-            <span class="block text-xs sm:text-sm font-bold text-[#141E3C]" data-i18n="trust_1">Authentic Balinese Treatments</span>
+            <span class="block text-xs sm:text-sm font-bold text-[#141E3C]" data-i18n="trust_1">Authentic Balinese Healing Rituals</span>
           </div>
         </div>
 
@@ -215,7 +215,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </div>
           <div>
-            <span class="block text-xs sm:text-sm font-bold text-[#141E3C]" data-i18n="trust_4">Private, Clean &amp; Quiet Suites</span>
+            <span class="block text-xs sm:text-sm font-bold text-[#141E3C]" data-i18n="trust_4">Private, Serene &amp; Spotless Suites</span>
           </div>
         </div>
 
@@ -224,7 +224,7 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 4. SECTION 1: PROMO (MARCH 2026 PROMOTION) -->
+  <!-- 4. SECTION 1: PROMO (END YEAR 2026 BIG PROMOTION) -->
   <!-- ========================================== -->
   <section id="promotion" class="py-24 bg-gradient-to-br from-[#141E3C] via-[#1E3A8A] to-[#141E3C] text-white relative overflow-hidden">
     <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-[#0284C7]/20 blur-3xl pointer-events-none"></div>
@@ -232,116 +232,180 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest text-[#BAE0FD] uppercase block mb-2" data-i18n="promo_eyebrow">Limited-Time Special</span>
+        <span class="text-xs font-bold tracking-widest text-[#BAE0FD] uppercase block mb-2" data-i18n="promo_eyebrow">Limited-Time Special Offer</span>
         <h2 class="font-serif section-headline text-white mb-3" data-i18n="promo_title">
-          March 2026 Promotion
+          END YEAR 2026 Big Promotion
         </h2>
         <p class="text-sky-100/80 text-sm sm:text-base font-light" data-i18n="promo_desc">
-          Exclusive discounts on our highly requested therapies. Reservation is required prior to your visit.
+          Celebrate the year-end season with curated rejuvenation specials by Massaji Spa Bali. Enjoy exclusive savings on signature massages, body contouring, and rose petal rituals.
         </p>
       </div>
 
-      <!-- 3 Promo Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- 4 Promo Cards Responsive Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl">
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+             data-name-en="Bali Traditional Massage (120 mins)" data-name-id="Pijat Tradisional Bali (120 menit)"
+             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex." data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Now 300K" data-tag-id="Kini 300K"
+             data-cat-en="Special Promo" data-cat-id="Promo Spesial"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#BAE0FD] font-mono text-xs font-semibold">120 Mins</span>
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
-                Save 35K
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">120 Mins</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+                Now 300K
               </span>
             </div>
-            <h3 class="font-serif text-2xl font-bold text-white mb-2 leading-snug">
-              Hot Stone Massage (Promo)
+            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
+              Bali Traditional Massage (120 mins)
             </h3>
-            <p class="text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-6 font-light">
-              Feel the warmth of smooth stones &amp; professional hands working deeply into your muscles to ease tightness and chronic joint pains. Sun-bathed volcano stones.
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex.
             </p>
+            
           </div>
-          <div class="pt-4 border-t border-sky-300/20 flex items-center justify-between">
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold">Special Promo Rate</span>
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
               <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 390.000</span>
-                <span class="font-serif text-2xl font-bold text-[#BAE0FD] font-mono">Rp 355.000</span>
+                <span class="text-xs text-sky-200 line-through mr-2">Rp 345.000</span>
+                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 300.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Hot Stone Massage (Promo)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md">
-              Book Promo
+            <button onclick="openBookingModal('Bali Traditional Massage (120 mins)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+              Claim Promo Rate
             </button>
           </div>
         </div>
 
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl">
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+             data-name-en="Deep Tissue Massage (90 mins)" data-name-id="Pijat Deep Tissue (90 menit)"
+             data-desc-en="A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension." data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika."
+             data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-tag-en="Now 285K" data-tag-id="Kini 285K"
+             data-cat-en="Special Promo" data-cat-id="Promo Spesial"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#BAE0FD] font-mono text-xs font-semibold">120 Mins</span>
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
-                Save 50K
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">90 Mins</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+                Now 285K
               </span>
             </div>
-            <h3 class="font-serif text-2xl font-bold text-white mb-2 leading-snug">
-              Anti Cellulite Treatment (Promo)
+            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
+              Deep Tissue Massage (90 mins)
             </h3>
-            <p class="text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-6 font-light">
-              Intensive version of cellulite massage with Grayatory Machine percussion. Includes Foot Bath, coffee scrub (15m), infrared wrap (15m), cellulite massage (45m), skin roller (15m), grayatory machine (30m).
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+              A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension.
             </p>
+            
           </div>
-          <div class="pt-4 border-t border-sky-300/20 flex items-center justify-between">
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold">Special Promo Rate</span>
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
               <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 500.000</span>
-                <span class="font-serif text-2xl font-bold text-[#BAE0FD] font-mono">Rp 450.000</span>
+                <span class="text-xs text-sky-200 line-through mr-2">Rp 310.000</span>
+                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 285.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Anti Cellulite Treatment (Promo)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md">
-              Book Promo
+            <button onclick="openBookingModal('Deep Tissue Massage (90 mins)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+              Claim Promo Rate
             </button>
           </div>
         </div>
 
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl">
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+             data-name-en="Body Slimming Treatment (Tummy / Thigh)" data-name-id="Perawatan Body Slimming (Perut / Paha)"
+             data-desc-en="Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub." data-desc-id="Terapi pembentukan kontur tubuh modern dengan Cavitation RF untuk memecah sel lemak membandel dan mengencangkan kulit. Termasuk lulur kopi gratis."
+             data-dur-en="Cavitation RF" data-dur-id="Cavitation RF"
+             data-tag-en="Save Up To 250K" data-tag-id="Hemat Hingga 250K"
+             data-cat-en="Special Promo" data-cat-id="Promo Spesial"
+             data-multi-en="Thigh: Now 550K (was 850K) | Tummy: Now 650K (was 900K)" data-multi-id="Paha: Kini 550K (Normal 850K) | Perut: Kini 650K (Normal 900K)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#BAE0FD] font-mono text-xs font-semibold">15 Mins</span>
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
-                Special Deal
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">Cavitation RF</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+                Save Up To 250K
               </span>
             </div>
-            <h3 class="font-serif text-2xl font-bold text-white mb-2 leading-snug">
-              Hydrating Facial Mask (Promo)
+            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
+              Body Slimming Treatment (Tummy / Thigh)
             </h3>
-            <p class="text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-6 font-light">
-              Enriched with hyaluronic acid, glycerin &amp; ceramides to deeply hydrate skin, soothe dryness, and improve texture.
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+              Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub.
             </p>
+            
+        <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-white/10 border border-sky-300/30 text-[11px] font-mono text-[#BAE0FD] font-semibold">
+          Thigh: Now 550K (was 850K) | Tummy: Now 650K (was 900K)
+        </div>
           </div>
-          <div class="pt-4 border-t border-sky-300/20 flex items-center justify-between">
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold">Special Promo Rate</span>
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
               <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 125.000</span>
-                <span class="font-serif text-2xl font-bold text-[#BAE0FD] font-mono">Rp 100.000</span>
+                <span class="text-xs text-sky-200 line-through mr-2">Rp 850.000</span>
+                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 550.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Hydrating Facial Mask (Promo)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md">
-              Book Promo
+            <button onclick="openBookingModal('Body Slimming Treatment (Tummy / Thigh)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+              Claim Promo Rate
+            </button>
+          </div>
+        </div>
+
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+             data-name-en="Rose Bali Spa (120 mins)" data-name-id="Rose Bali Spa (120 menit)"
+             data-desc-en="Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles." data-desc-id="Kemewahan ekstrak mawar kaya antioksidan serta vitamin A dan C yang meremajakan sel kulit, menyamarkan kerutan, dan memberikan keharuman elegan sepanjang hari."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Now 600K" data-tag-id="Kini 600K"
+             data-cat-en="Special Promo" data-cat-id="Promo Spesial"
+             data-multi-en="" data-multi-id="">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">120 Mins</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+                Now 600K
+              </span>
+            </div>
+            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
+              Rose Bali Spa (120 mins)
+            </h3>
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+              Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles.
+            </p>
+            
+          </div>
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <div class="flex items-baseline">
+                <span class="text-xs text-sky-200 line-through mr-2">Rp 725.000</span>
+                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 600.000</span>
+              </div>
+            </div>
+            <button onclick="openBookingModal('Rose Bali Spa (120 mins)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+              Claim Promo Rate
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Reservation Notice Bar -->
+      <!-- Reservation Notice Bar (Flyer Info) -->
       <div class="mt-12 p-4 sm:p-5 rounded-2xl bg-white/5 border border-sky-300/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sky-100">
         <div class="flex items-center gap-2.5">
           <svg class="w-5 h-5 text-[#BAE0FD] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <span><strong>Reservation Terms:</strong> Valid throughout the month. Reservation is required prior to visit via WhatsApp or Website.</span>
+          <span><strong data-i18n="promo_valid_label">Validity Period:</strong> <span data-i18n="promo_validity">Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)</span></span>
         </div>
-        <div class="flex items-center gap-3 font-mono font-bold text-white">
-          <a href="tel:+6281236695755" class="hover:text-[#BAE0FD] transition">+62 812 3669 5755</a>
+        <div class="flex flex-wrap items-center gap-3 font-mono font-bold text-white">
+          <a href="tel:+6281236695755" class="hover:text-[#BAE0FD] transition">+62 812-3669-5755</a>
           <span>&bull;</span>
-          <a href="tel:+628113857188" class="hover:text-[#BAE0FD] transition">+62 811 3857 188</a>
+          <a href="tel:+628113857188" class="hover:text-[#BAE0FD] transition">+62 811-3857-188</a>
+          <button onclick="openPromoPopup()" class="ml-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-sky-300/40 text-[11px] font-sans text-[#BAE0FD] transition cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <span data-i18n="promo_flyer_btn">Official Promo Flyer</span>
+          </button>
         </div>
       </div>
 
@@ -349,22 +413,38 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 5. SECTION 2: PAKET (CURATED SPA PACKAGES) -->
+  <!-- 5. SECTION 2: PAKET (CURATED SPA PACKAGES WITH SEARCH) -->
   <!-- ========================================== -->
   <section id="packages" class="py-24 bg-[#F0F8FF]/80 border-b border-[#BAE0FD]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="text-center max-w-3xl mx-auto mb-10">
         <span class="eyebrow-tag" data-i18n="packages_eyebrow">Curated Spa Rituals</span>
         <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
           Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
         </h2>
         <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
-          Thoughtfully designed treatment combinations for singles, couples, and groups seeking profound rejuvenation in Bali.
+          Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
         </p>
 
+        <!-- Live Search Bar for Packages -->
+        <div class="mt-6 max-w-md mx-auto relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            id="package-search-input" 
+            placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
+            data-i18n-placeholder="pkg_search_placeholder"
+            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+          <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
         <!-- Package Filter Tabs -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
           <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
             <span data-i18n="pkg_tab_all">All Packages</span> (11)
           </button>
@@ -383,411 +463,512 @@
       <!-- Packages Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-single">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-single" 
+             data-search="oh! so relax (single package) oh! so relax (paket personal) foot bath, full balinese body massage, completed with body scrub to exfoliate dead skin cells. choose your favourite body scrub scent. kombinasi menenangkan 60 menit pijat tradisional bali dilanjutkan 30 menit refleksi kaki untuk menyegarkan kembali tubuh yang letih sehabis beraktivitas. single package (1 person) paket personal (1 orang) 90 mins (1 person) 90 menit (1 orang)"
+             data-name-en="Oh! So Relax (Single Package)" data-name-id="Oh! So Relax (Paket Personal)"
+             data-desc-en="Foot Bath, Full Balinese Body Massage, completed with Body Scrub to exfoliate dead skin cells. Choose your favourite Body Scrub scent." data-desc-id="Kombinasi menenangkan 60 menit Pijat Tradisional Bali dilanjutkan 30 menit Refleksi Kaki untuk menyegarkan kembali tubuh yang letih sehabis beraktivitas."
+             data-dur-en="90 Mins (1 Person)" data-dur-id="90 Menit (1 Orang)"
+             data-tag-en="Popular 1 Pax" data-tag-id="Paling Populer"
+             data-cat-en="Single Package (1 Person)" data-cat-id="Paket Personal (1 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins (1 Person)
+                <span class="card-duration">90 Mins (1 Person)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Popular 1 Pax
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Oh! So Relax (Single Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Foot Bath, Full Balinese Body Massage, completed with Body Scrub to exfoliate dead skin cells. Choose your favourite Body Scrub scent.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 335.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Oh! So Relax (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Oh! So Relax (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-single">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-single" 
+             data-search="traditional healing massage (single package) traditional healing massage (paket personal) foot bath, full balinese body massage (75 mins) completed with balinese warm boreh body mask (15 mins) using 100% herbal mixtures (cloves, black cumin, neem, ashitaba). perpaduan 60 menit pijat relaksasi tubuh bali dengan 30 menit terapi totok wajah akupresur alami untuk melancarkan sirkulasi dan memancarkan kesegaran alami wajah. single package (1 person) paket personal (1 orang) 90 mins (1 person) 90 menit (1 orang)"
+             data-name-en="Traditional Healing Massage (Single Package)" data-name-id="Traditional Healing Massage (Paket Personal)"
+             data-desc-en="Foot Bath, Full Balinese Body Massage (75 mins) completed with Balinese warm Boreh Body Mask (15 mins) using 100% herbal mixtures (Cloves, black cumin, neem, Ashitaba)." data-desc-id="Perpaduan 60 menit pijat relaksasi tubuh Bali dengan 30 menit terapi totok wajah akupresur alami untuk melancarkan sirkulasi dan memancarkan kesegaran alami wajah."
+             data-dur-en="90 Mins (1 Person)" data-dur-id="90 Menit (1 Orang)"
+             data-tag-en="Herbal Healing" data-tag-id="Signature Bali"
+             data-cat-en="Single Package (1 Person)" data-cat-id="Paket Personal (1 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins (1 Person)
+                <span class="card-duration">90 Mins (1 Person)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Herbal Healing
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Traditional Healing Massage (Single Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Foot Bath, Full Balinese Body Massage (75 mins) completed with Balinese warm Boreh Body Mask (15 mins) using 100% herbal mixtures (Cloves, black cumin, neem, Ashitaba).
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 450.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Traditional Healing Massage (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Traditional Healing Massage (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-single">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-single" 
+             data-search="me, myself &amp; massaji (single package) me, myself &amp; massaji (paket personal) foot bath, massaji signature massage (90 mins), hot himalayan salt body compress (15 mins), sandalwood body mask (15 mins), flower bath with aromatherapy (30 mins). waktu istimewa untuk diri anda: 60 menit pijat tradisional bali, lulur tubuh alami pilihan, masker tubuh melembapkan, dan relaksasi berendam di bathtub bunga aromatik. single package (1 person) paket personal (1 orang) 150 mins (1 person) 150 menit (1 orang)"
+             data-name-en="Me, Myself &amp; Massaji (Single Package)" data-name-id="Me, Myself &amp; Massaji (Paket Personal)"
+             data-desc-en="Foot bath, Massaji Signature Massage (90 mins), Hot Himalayan Salt Body Compress (15 mins), Sandalwood Body Mask (15 mins), Flower bath with aromatherapy (30 mins)." data-desc-id="Waktu istimewa untuk diri Anda: 60 menit Pijat Tradisional Bali, lulur tubuh alami pilihan, masker tubuh melembapkan, dan relaksasi berendam di bathtub bunga aromatik."
+             data-dur-en="150 Mins (1 Person)" data-dur-id="150 Menit (1 Orang)"
+             data-tag-en="Signature 1 Pax" data-tag-id="Ritual Lengkap"
+             data-cat-en="Single Package (1 Person)" data-cat-id="Paket Personal (1 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                150 Mins (1 Person)
+                <span class="card-duration">150 Mins (1 Person)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Signature 1 Pax
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Me, Myself &amp; Massaji (Single Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Foot bath, Massaji Signature Massage (90 mins), Hot Himalayan Salt Body Compress (15 mins), Sandalwood Body Mask (15 mins), Flower bath with aromatherapy (30 mins).
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 785.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Me, Myself &amp; Massaji (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Me, Myself &amp; Massaji (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-single">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-single" 
+             data-search="forever young luxury ritual (single package) forever young luxury ritual (paket personal) footbath, hot stone massage (90m), body scrub (20m), facial massage &amp; mask (45m), basic nail (60m), flower bath (25m). free instant tightening mask, snack &amp; hot drink in bathtub. perjalanan relaksasi paripurna 4 jam: pijat tradisional bali 60 menit, facial botani biokos 60 menit, lulur tubuh 30 menit, masker tubuh 30 menit, dan manicure pedicure lengkap. single package (1 person) paket personal (1 orang) 4 hours (1 person) 4 jam (1 orang)"
+             data-name-en="Forever Young Luxury Ritual (Single Package)" data-name-id="Forever Young Luxury Ritual (Paket Personal)"
+             data-desc-en="Footbath, Hot Stone Massage (90m), Body scrub (20m), Facial Massage &amp; Mask (45m), Basic Nail (60m), Flower bath (25m). FREE instant tightening mask, snack &amp; hot drink in bathtub." data-desc-id="Perjalanan relaksasi paripurna 4 jam: Pijat Tradisional Bali 60 menit, facial botani Biokos 60 menit, lulur tubuh 30 menit, masker tubuh 30 menit, dan manicure pedicure lengkap."
+             data-dur-en="4 Hours (1 Person)" data-dur-id="4 Jam (1 Orang)"
+             data-tag-en="4-Hour Luxury" data-tag-id="Kemewahan Penuh"
+             data-cat-en="Single Package (1 Person)" data-cat-id="Paket Personal (1 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Single Package (1 Person)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                4 Hours (1 Person)
+                <span class="card-duration">4 Hours (1 Person)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 4-Hour Luxury
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Forever Young Luxury Ritual (Single Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Footbath, Hot Stone Massage (90m), Body scrub (20m), Facial Massage &amp; Mask (45m), Basic Nail (60m), Flower bath (25m). FREE instant tightening mask, snack &amp; hot drink in bathtub.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 1.000.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Forever Young Luxury Ritual (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Forever Young Luxury Ritual (Single Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-couple">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-couple" 
+             data-search="simply us (couple package) simply us (paket pasangan) footbath, balinese body massage (90 mins), romantic flower bath with candle and aromatherapy (15 mins). price for 2 persons. momen romantis berdua di suite privat: 90 menit pijat tubuh bersama terapis berpengalaman dan 15 menit berendam di bathtub taburan kelopak bunga mawar segar. couple package (2 persons) paket pasangan (2 orang) 105 mins (2 persons) 105 menit (2 orang)"
+             data-name-en="Simply Us (Couple Package)" data-name-id="Simply Us (Paket Pasangan)"
+             data-desc-en="Footbath, Balinese Body Massage (90 mins), Romantic Flower Bath with candle and aromatherapy (15 mins). Price for 2 persons." data-desc-id="Momen romantis berdua di suite privat: 90 menit pijat tubuh bersama terapis berpengalaman dan 15 menit berendam di bathtub taburan kelopak bunga mawar segar."
+             data-dur-en="105 Mins (2 Persons)" data-dur-id="105 Menit (2 Orang)"
+             data-tag-en="Best Value 2 Pax" data-tag-id="Favorit Pasangan"
+             data-cat-en="Couple Package (2 Persons)" data-cat-id="Paket Pasangan (2 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                105 Mins (2 Persons)
+                <span class="card-duration">105 Mins (2 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Best Value 2 Pax
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Simply Us (Couple Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Footbath, Balinese Body Massage (90 mins), Romantic Flower Bath with candle and aromatherapy (15 mins). Price for 2 persons.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 700.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Simply Us (Couple Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Simply Us (Couple Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-couple">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-couple" 
+             data-search="jaen sajan (couple package) jaen sajan (paket pasangan) footbath, balinese body massage (90 mins), hot himalayan salt relaxing body compress (15 mins), romantic flower bath with aromatherapy (15 mins). price for 2 persons. istilah bali untuk kenikmatan sejati: 60 menit pijat tradisional bali berdua, dilanjutkan 45 menit lulur rempah aromatik, dan 15 menit mandi bunga menenangkan. couple package (2 persons) paket pasangan (2 orang) 120 mins (2 persons) 120 menit (2 orang)"
+             data-name-en="Jaen Sajan (Couple Package)" data-name-id="Jaen Sajan (Paket Pasangan)"
+             data-desc-en="Footbath, Balinese Body Massage (90 mins), Hot Himalayan Salt Relaxing Body Compress (15 mins), Romantic Flower bath with aromatherapy (15 mins). Price for 2 persons." data-desc-id="Istilah Bali untuk kenikmatan sejati: 60 menit Pijat Tradisional Bali berdua, dilanjutkan 45 menit lulur rempah aromatik, dan 15 menit mandi bunga menenangkan."
+             data-dur-en="120 Mins (2 Persons)" data-dur-id="120 Menit (2 Orang)"
+             data-tag-en="Deep Relaxation" data-tag-id="Sensasi Khas Bali"
+             data-cat-en="Couple Package (2 Persons)" data-cat-id="Paket Pasangan (2 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins (2 Persons)
+                <span class="card-duration">120 Mins (2 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Deep Relaxation
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Jaen Sajan (Couple Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Footbath, Balinese Body Massage (90 mins), Hot Himalayan Salt Relaxing Body Compress (15 mins), Romantic Flower bath with aromatherapy (15 mins). Price for 2 persons.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 900.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Jaen Sajan (Couple Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Jaen Sajan (Couple Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-couple">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-couple" 
+             data-search="luh muani (couple package) luh muani (paket pasangan) footbath, swedish body massage (90 mins), magnolia mint body scrub (15 mins), hydrating facial mask (15 mins), romantic flower bath with aromatherapy (15 mins). price for 2 persons. harmonisasi tubuh dan pikiran berdua: 60 menit pijat tradisional bali, 45 menit totok wajah akupresur alami, serta 15 menit relaksasi mandi bunga mawar. couple package (2 persons) paket pasangan (2 orang) 120 mins (2 persons) 120 menit (2 orang)"
+             data-name-en="Luh Muani (Couple Package)" data-name-id="Luh Muani (Paket Pasangan)"
+             data-desc-en="Footbath, Swedish Body Massage (90 mins), Magnolia Mint Body Scrub (15 mins), Hydrating facial mask (15 mins), Romantic Flower bath with aromatherapy (15 mins). Price for 2 persons." data-desc-id="Harmonisasi tubuh dan pikiran berdua: 60 menit Pijat Tradisional Bali, 45 menit totok wajah akupresur alami, serta 15 menit relaksasi mandi bunga mawar."
+             data-dur-en="120 Mins (2 Persons)" data-dur-id="120 Menit (2 Orang)"
+             data-tag-en="Couple Glow" data-tag-id="Harmoni Pasangan"
+             data-cat-en="Couple Package (2 Persons)" data-cat-id="Paket Pasangan (2 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins (2 Persons)
+                <span class="card-duration">120 Mins (2 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Couple Glow
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Luh Muani (Couple Package)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Footbath, Swedish Body Massage (90 mins), Magnolia Mint Body Scrub (15 mins), Hydrating facial mask (15 mins), Romantic Flower bath with aromatherapy (15 mins). Price for 2 persons.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 1.150.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Luh Muani (Couple Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Luh Muani (Couple Package)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-couple">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-couple" 
+             data-search="romantic rose bali couple spa romantic rose bali couple spa infra red body wrap (10 mins), full body massage (75 mins), rose body scrub (20 mins), rose body mask (20 mins), flower bath and aromatherapy (15 mins). fresh rose blended daily. kemewahan beraroma mawar untuk anda berdua: pijat tradisional bali 60 menit, lulur mawar murni 45 menit, masker tubuh mawar 15 menit, dan mandi kelopak mawar 15 menit. couple package (2 persons) paket pasangan (2 orang) 135 mins (2 persons) 135 menit (2 orang)"
+             data-name-en="Romantic Rose Bali Couple Spa" data-name-id="Romantic Rose Bali Couple Spa"
+             data-desc-en="Infra Red Body Wrap (10 mins), Full Body Massage (75 mins), Rose Body Scrub (20 mins), Rose Body Mask (20 mins), Flower Bath and aromatherapy (15 mins). Fresh rose blended daily." data-desc-id="Kemewahan beraroma mawar untuk Anda berdua: Pijat Tradisional Bali 60 menit, lulur mawar murni 45 menit, masker tubuh mawar 15 menit, dan mandi kelopak mawar 15 menit."
+             data-dur-en="135 Mins (2 Persons)" data-dur-id="135 Menit (2 Orang)"
+             data-tag-en="Pure Rose" data-tag-id="Paling Romantis"
+             data-cat-en="Couple Package (2 Persons)" data-cat-id="Paket Pasangan (2 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                135 Mins (2 Persons)
+                <span class="card-duration">135 Mins (2 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Pure Rose
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Romantic Rose Bali Couple Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Infra Red Body Wrap (10 mins), Full Body Massage (75 mins), Rose Body Scrub (20 mins), Rose Body Mask (20 mins), Flower Bath and aromatherapy (15 mins). Fresh rose blended daily.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 1.475.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Romantic Rose Bali Couple Spa')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Romantic Rose Bali Couple Spa')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-couple">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-couple" 
+             data-search="jegeg bali lavender couple spa jegeg bali lavender couple spa infra red body wrap (10 mins), full balinese massage (75 mins), lavender body scrub (20 mins), lavender body mask (20 mins), face mask (10 mins), flower bath with aromatherapy (15 mins). relaksasi lavender yang menenangkan saraf: pijat tradisional bali 60 menit, facial botani 45 menit, lulur lavender 30 menit, dan mandi bunga aromaterapi 15 menit. couple package (2 persons) paket pasangan (2 orang) 150 mins (2 persons) 150 menit (2 orang)"
+             data-name-en="Jegeg Bali Lavender Couple Spa" data-name-id="Jegeg Bali Lavender Couple Spa"
+             data-desc-en="Infra Red Body Wrap (10 mins), Full Balinese Massage (75 mins), Lavender Body Scrub (20 mins), Lavender Body Mask (20 mins), Face Mask (10 mins), Flower Bath with aromatherapy (15 mins)." data-desc-id="Relaksasi lavender yang menenangkan saraf: Pijat Tradisional Bali 60 menit, facial botani 45 menit, lulur lavender 30 menit, dan mandi bunga aromaterapi 15 menit."
+             data-dur-en="150 Mins (2 Persons)" data-dur-id="150 Menit (2 Orang)"
+             data-tag-en="VIP Sanctuary" data-tag-id="Ketenangan Murni"
+             data-cat-en="Couple Package (2 Persons)" data-cat-id="Paket Pasangan (2 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Couple Package (2 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                150 Mins (2 Persons)
+                <span class="card-duration">150 Mins (2 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 VIP Sanctuary
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Jegeg Bali Lavender Couple Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               Infra Red Body Wrap (10 mins), Full Balinese Massage (75 mins), Lavender Body Scrub (20 mins), Lavender Body Mask (20 mins), Face Mask (10 mins), Flower Bath with aromatherapy (15 mins).
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 2.650.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Jegeg Bali Lavender Couple Spa')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Jegeg Bali Lavender Couple Spa')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-group">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-group" 
+             data-search="bali bagus package (group 4 pax) bali bagus package (group 4 orang) 4 pax balinese traditional massage (120 mins). ancient art of massage with gentle stretches, acupressure, reflexology and aromatherapy to bring 4 guests into profound serenity. pilihan ideal untuk keluarga atau sahabat (4 orang): 60 menit pijat tradisional bali, 45 menit lulur tubuh alami pilihan, dan 15 menit mandi bunga bersama. group package (4 persons) paket rombongan (4 orang) 120 mins (4 persons) 120 menit (4 orang)"
+             data-name-en="Bali Bagus Package (Group 4 Pax)" data-name-id="Bali Bagus Package (Group 4 Orang)"
+             data-desc-en="4 Pax Balinese Traditional Massage (120 mins). Ancient art of massage with gentle stretches, acupressure, reflexology and aromatherapy to bring 4 guests into profound serenity." data-desc-id="Pilihan ideal untuk keluarga atau sahabat (4 orang): 60 menit Pijat Tradisional Bali, 45 menit lulur tubuh alami pilihan, dan 15 menit mandi bunga bersama."
+             data-dur-en="120 Mins (4 Persons)" data-dur-id="120 Menit (4 Orang)"
+             data-tag-en="Save 130K (4 Pax)" data-tag-id="Rombongan 4 Orang"
+             data-cat-en="Group Package (4 Persons)" data-cat-id="Paket Rombongan (4 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Group Package (4 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Group Package (4 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins (4 Persons)
+                <span class="card-duration">120 Mins (4 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Save 130K (4 Pax)
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Bali Bagus Package (Group 4 Pax)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               4 Pax Balinese Traditional Massage (120 mins). Ancient art of massage with gentle stretches, acupressure, reflexology and aromatherapy to bring 4 guests into profound serenity.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 <span class="text-xs text-[#94A3B8] line-through mr-1.5">Rp 1.380.000</span>
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 1.250.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Bali Bagus Package (Group 4 Pax)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Bali Bagus Package (Group 4 Pax)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
 
-        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" data-category="packages-group">
+        <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             data-category="packages-group" 
+             data-search="bali kuat package (group 4 pax) bali kuat package (group 4 orang) 2 pax deep tissue massage (90 mins) + 2 pax massaji signature massage (90 mins). strong pressure and customized modalities for 4 guests. paket kebugaran 4 orang: 60 menit pijat tradisional bali dan 30 menit refleksi kaki untuk menyegarkan seluruh anggota rombongan. group package (4 persons) paket rombongan (4 orang) 90 mins (4 persons) 90 menit (4 orang)"
+             data-name-en="Bali Kuat Package (Group 4 Pax)" data-name-id="Bali Kuat Package (Group 4 Orang)"
+             data-desc-en="2 Pax Deep Tissue Massage (90 mins) + 2 Pax Massaji Signature Massage (90 mins). Strong pressure and customized modalities for 4 guests." data-desc-id="Paket kebugaran 4 orang: 60 menit Pijat Tradisional Bali dan 30 menit Refleksi Kaki untuk menyegarkan seluruh anggota rombongan."
+             data-dur-en="90 Mins (4 Persons)" data-dur-id="90 Menit (4 Orang)"
+             data-tag-en="Save 95K (4 Pax)" data-tag-id="Rombongan 4 Orang"
+             data-cat-en="Group Package (4 Persons)" data-cat-id="Paket Rombongan (4 Orang)">
           <div>
             <div class="flex items-center justify-between text-xs mb-2">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Group Package (4 Persons)</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Group Package (4 Persons)</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins (4 Persons)
+                <span class="card-duration">90 Mins (4 Persons)</span>
               </span>
             </div>
             <div class="mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Save 95K (4 Pax)
               </span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2.5">
               Bali Kuat Package (Group 4 Pax)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed mb-6 font-light">
               2 Pax Deep Tissue Massage (90 mins) + 2 Pax Massaji Signature Massage (90 mins). Strong pressure and customized modalities for 4 guests.
             </p>
           </div>
           <div class="mt-auto pt-4 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">Nett Price</span>
+              <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="pkg_from_price">From Price</span>
               <div class="flex items-baseline">
                 <span class="text-xs text-[#94A3B8] line-through mr-1.5">Rp 1.420.000</span>
                 <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp 1.325.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Bali Kuat Package (Group 4 Pax)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
-              Book Package
+            <button onclick="openBookingModal('Bali Kuat Package (Group 4 Pax)')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="pkg_btn_book">
+              Reserve Package
             </button>
           </div>
         </div>
+      </div>
+
+      <!-- No Packages Found Message -->
+      <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+        <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
+        <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+          <span data-i18n="pkg_tab_all">All Packages</span>
+        </button>
       </div>
 
     </div>
   </section>
 
   <!-- ========================================== -->
-  <!-- 6. SECTION 3: TREATMENT MENU & PRICING -->
+  <!-- 6. SECTION 3: TREATMENT MENU & PRICING WITH SEARCH -->
   <!-- ========================================== -->
   <section id="menu" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
-    <div class="text-center max-w-3xl mx-auto mb-14">
-      <span class="eyebrow-tag" data-i18n="menu_eyebrow">Full Spa Catalog</span>
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="eyebrow-tag" data-i18n="menu_eyebrow">Complete Spa Catalog</span>
       <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
         Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
       </h2>
       <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
-        Complete individual treatment menu with honest, transparent pricing in Canggu &amp; Kerobokan.
+        Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
       </p>
 
+      <!-- Live Search Bar for Treatments -->
+      <div class="mt-6 max-w-md mx-auto relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <input 
+          type="text" 
+          id="menu-search-input" 
+          placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
+          data-i18n-placeholder="menu_search_placeholder"
+          class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+        <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
       <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
         <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
           <span data-i18n="cat_all">All Treatments</span> (43)
         </button>
@@ -815,29 +996,37 @@
     <!-- Treatment Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="balinese traditional massage pijat tradisional bali ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. pijatan khas bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-name-en="Balinese Traditional Massage" data-name-id="Pijat Tradisional Bali"
+             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation." data-desc-id="Pijatan khas Bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat."
+             data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
+             data-tag-en="Signature Bali" data-tag-id="Signature"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="60m: 215K | 90m: 285K | 120m: 345K" data-multi-id="60m: 215K | 90m: 285K | 120m: 345K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                60 / 90 / 120 Mins
+                <span class="card-duration">60 / 90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Signature Bali
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Medium, Strong)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Balinese Traditional Massage
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               60m: 215K | 90m: 285K | 120m: 345K
             </div>
           </div>
@@ -852,29 +1041,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="swedish relaxing massage pijat relaksasi swedish scientific massage techniques based on western concepts of anatomy and physiology to aid with detoxing and breaking up muscle knots with long smooth gliding strokes. teknik pijatan gaya eropa dengan gerakan mengusap panjang dan ritmis yang dirancang khusus untuk meredakan stres dan menenangkan pikiran. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-name-en="Swedish Relaxing Massage" data-name-id="Pijat Relaksasi Swedish"
+             data-desc-en="Scientific massage techniques based on western concepts of anatomy and physiology to aid with detoxing and breaking up muscle knots with long smooth gliding strokes." data-desc-id="Teknik pijatan gaya Eropa dengan gerakan mengusap panjang dan ritmis yang dirancang khusus untuk meredakan stres dan menenangkan pikiran."
+             data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
+             data-tag-en="Gentle Care" data-tag-id="Lembut &amp; Menenangkan"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="60m: 200K | 90m: 270K | 120m: 335K" data-multi-id="60m: 200K | 90m: 270K | 120m: 335K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                60 / 90 / 120 Mins
+                <span class="card-duration">60 / 90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Gentle Care
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Swedish Relaxing Massage
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Scientific massage techniques based on western concepts of anatomy and physiology to aid with detoxing and breaking up muscle knots with long smooth gliding strokes.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               60m: 200K | 90m: 270K | 120m: 335K
             </div>
           </div>
@@ -889,29 +1086,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="deep tissue / sports massage pijat deep tissue / sports designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. pijatan bertekanan kuat menjangkau lapisan otot terdalam. sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di canggu. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-name-en="Deep Tissue / Sports Massage" data-name-id="Pijat Deep Tissue / Sports"
+             data-desc-en="Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension." data-desc-id="Pijatan bertekanan kuat menjangkau lapisan otot terdalam. Sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di Canggu."
+             data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
+             data-tag-en="Surfer Favorite" data-tag-id="Tekanan Kuat"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="60m: 235K | 90m: 310K | 120m: 385K" data-multi-id="60m: 235K | 90m: 310K | 120m: 385K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                60 / 90 / 120 Mins
+                <span class="card-duration">60 / 90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Surfer Favorite
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Strong)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Deep Tissue / Sports Massage
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               60m: 235K | 90m: 310K | 120m: 385K
             </div>
           </div>
@@ -926,29 +1131,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="hot stone healing massage pijat terapi batu hangat (hot stone) feel the warmth of smooth stones and professional hands working deeply into your muscles to ease muscle tightness and chronic joint pains. volcano stones sun-bathed to stabilize energy. batu basal vulkanik hangat dialirkan di sepanjang meridian tubuh untuk melonggarkan otot tegang, membuang racun, dan memberikan kehangatan mendalam. body massage pijat tradisional tubuh 90 / 120 mins 90 / 120 menit"
+             data-name-en="Hot Stone Healing Massage" data-name-id="Pijat Terapi Batu Hangat (Hot Stone)"
+             data-desc-en="Feel the warmth of smooth stones and professional hands working deeply into your muscles to ease muscle tightness and chronic joint pains. Volcano stones sun-bathed to stabilize energy." data-desc-id="Batu basal vulkanik hangat dialirkan di sepanjang meridian tubuh untuk melonggarkan otot tegang, membuang racun, dan memberikan kehangatan mendalam."
+             data-dur-en="90 / 120 Mins" data-dur-id="90 / 120 Menit"
+             data-tag-en="Healing Warmth" data-tag-id="Terapi Hangat"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="90m: 315K | 120m: 390K" data-multi-id="90m: 315K | 120m: 390K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 / 120 Mins
+                <span class="card-duration">90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Healing Warmth
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft, Medium)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Hot Stone Healing Massage
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Feel the warmth of smooth stones and professional hands working deeply into your muscles to ease muscle tightness and chronic joint pains. Volcano stones sun-bathed to stabilize energy.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               90m: 315K | 120m: 390K
             </div>
           </div>
@@ -963,29 +1176,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="massaji signature massage (advance) massaji signature massage (advance) developed over years combining the finest massage essence around the world (deep pressure, acupressure, folding massage). performed exclusively by senior therapists. kombinasi eksklusif teknik tradisional bali, lomi-lomi hawaii, dan peregangan thailand yang disesuaikan secara khusus dengan kondisi tubuh anda. body massage pijat tradisional tubuh 90 / 120 mins 90 / 120 menit"
+             data-name-en="Massaji Signature Massage (Advance)" data-name-id="Massaji Signature Massage (Advance)"
+             data-desc-en="Developed over years combining the finest massage essence around the world (deep pressure, acupressure, folding massage). Performed exclusively by senior therapists." data-desc-id="Kombinasi eksklusif teknik Tradisional Bali, Lomi-Lomi Hawaii, dan peregangan Thailand yang disesuaikan secara khusus dengan kondisi tubuh Anda."
+             data-dur-en="90 / 120 Mins" data-dur-id="90 / 120 Menit"
+             data-tag-en="Master Technique" data-tag-id="Kombinasi Terbaik"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="90m: 400K | 120m: 500K" data-multi-id="90m: 400K | 120m: 500K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 / 120 Mins
+                <span class="card-duration">90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Master Technique
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Strong, Flexible)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Massaji Signature Massage (Advance)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Developed over years combining the finest massage essence around the world (deep pressure, acupressure, folding massage). Performed exclusively by senior therapists.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               90m: 400K | 120m: 500K
             </div>
           </div>
@@ -1000,29 +1221,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="pre natal (pregnancy massage) pijat pre natal (khusus ibu hamil) specially designed and customized for pregnant women and changing hormones. helps relax tense muscles, ease sore spots, and improve circulation safely by senior therapists. pijatan lembut dan aman oleh terapis bersertifikat, dirancang untuk meredakan nyeri punggung bawah, bengkak pada kaki, dan kelelahan selama kehamilan. body massage pijat tradisional tubuh 90 / 120 mins 90 / 120 menit"
+             data-name-en="Pre Natal (Pregnancy Massage)" data-name-id="Pijat Pre Natal (Khusus Ibu Hamil)"
+             data-desc-en="Specially designed and customized for pregnant women and changing hormones. Helps relax tense muscles, ease sore spots, and improve circulation safely by senior therapists." data-desc-id="Pijatan lembut dan aman oleh terapis bersertifikat, dirancang untuk meredakan nyeri punggung bawah, bengkak pada kaki, dan kelelahan selama kehamilan."
+             data-dur-en="90 / 120 Mins" data-dur-id="90 / 120 Menit"
+             data-tag-en="Certified Care" data-tag-id="Terapis Tersertifikasi"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="90m: 375K | 120m: 450K" data-multi-id="90m: 375K | 120m: 450K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 / 120 Mins
+                <span class="card-duration">90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Certified Care
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft, Medium)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Pre Natal (Pregnancy Massage)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Specially designed and customized for pregnant women and changing hormones. Helps relax tense muscles, ease sore spots, and improve circulation safely by senior therapists.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               90m: 375K | 120m: 450K
             </div>
           </div>
@@ -1037,29 +1266,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="foot reflexology refleksi kaki tradisional ancient art of stimulating pressure points on feet corresponding to internal organs and glands to restore natural energy flow and equalized well-being throughout the body. stimulasi titik-titik saraf pada telapak kaki yang terhubung dengan organ tubuh, membantu melancarkan sirkulasi darah dan menyegarkan langkah anda. body massage pijat tradisional tubuh 30 / 60 / 90 / 120 mins 30 / 60 / 90 / 120 menit"
+             data-name-en="Foot Reflexology" data-name-id="Refleksi Kaki Tradisional"
+             data-desc-en="Ancient art of stimulating pressure points on feet corresponding to internal organs and glands to restore natural energy flow and equalized well-being throughout the body." data-desc-id="Stimulasi titik-titik saraf pada telapak kaki yang terhubung dengan organ tubuh, membantu melancarkan sirkulasi darah dan menyegarkan langkah Anda."
+             data-dur-en="30 / 60 / 90 / 120 Mins" data-dur-id="30 / 60 / 90 / 120 Menit"
+             data-tag-en="Vital Points" data-tag-id="Penyegaran Kaki"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="30m: 135K | 60m: 185K | 90m: 235K | 120m: 285K" data-multi-id="30m: 135K | 60m: 185K | 90m: 235K | 120m: 285K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 / 60 / 90 / 120 Mins
+                <span class="card-duration">30 / 60 / 90 / 120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Vital Points
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft, Medium)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Foot Reflexology
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Ancient art of stimulating pressure points on feet corresponding to internal organs and glands to restore natural energy flow and equalized well-being throughout the body.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               30m: 135K | 60m: 185K | 90m: 235K | 120m: 285K
             </div>
           </div>
@@ -1074,29 +1311,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="head &amp; shoulder tension relief pijat kepala, leher &amp; bahu focuses on built-up stress and muscle tension in neck and shoulders. helps relieve headaches, improve concentration, and encourage deep, restorative sleep. fokus pada area punggung atas, pundak, dan kulit kepala untuk melepaskan ketegangan akibat terlalu lama duduk di depan komputer atau perjalanan jauh. body massage pijat tradisional tubuh 30 / 60 mins 30 / 60 menit"
+             data-name-en="Head &amp; Shoulder Tension Relief" data-name-id="Pijat Kepala, Leher &amp; Bahu"
+             data-desc-en="Focuses on built-up stress and muscle tension in neck and shoulders. Helps relieve headaches, improve concentration, and encourage deep, restorative sleep." data-desc-id="Fokus pada area punggung atas, pundak, dan kulit kepala untuk melepaskan ketegangan akibat terlalu lama duduk di depan komputer atau perjalanan jauh."
+             data-dur-en="30 / 60 Mins" data-dur-id="30 / 60 Menit"
+             data-tag-en="Fast Relief" data-tag-id="Redakan Kaku"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="30m: 160K | 60m: 200K" data-multi-id="30m: 160K | 60m: 200K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 / 60 Mins
+                <span class="card-duration">30 / 60 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Fast Relief
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft, Medium, Strong)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Head &amp; Shoulder Tension Relief
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Focuses on built-up stress and muscle tension in neck and shoulders. Helps relieve headaches, improve concentration, and encourage deep, restorative sleep.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               30m: 160K | 60m: 200K
             </div>
           </div>
@@ -1111,25 +1356,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="focused back massage pijat khusus punggung developed from years of experience focusing on the back area only. tailored specifically for busy travelers on the go and in a rush. perawatan terarah pada area pinggang dan tulang punggung untuk meredakan rasa pegal dan kaku otot secara instan. body massage pijat tradisional tubuh 45 mins 45 menit"
+             data-name-en="Focused Back Massage" data-name-id="Pijat Khusus Punggung"
+             data-desc-en="Developed from years of experience focusing on the back area only. Tailored specifically for busy travelers on the go and in a rush." data-desc-id="Perawatan terarah pada area pinggang dan tulang punggung untuk meredakan rasa pegal dan kaku otot secara instan."
+             data-dur-en="45 Mins" data-dur-id="45 Menit"
+             data-tag-en="Targeted" data-tag-id="Fokus Punggung"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                45 Mins
+                <span class="card-duration">45 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Targeted
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft, Medium, Strong)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Focused Back Massage
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Developed from years of experience focusing on the back area only. Tailored specifically for busy travelers on the go and in a rush.
             </p>
             
@@ -1145,25 +1398,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="acupressure facial massage totok wajah akupresur stimulates facial blood circulation, relaxes delicate facial muscles, and enhances skin elasticity for tension relief and a brighter complexion. pijatan titik akupresur pada wajah untuk melancarkan aliran darah, mengurangi ketegangan otot wajah, dan membantu mengencangkan kulit secara alami. body massage pijat tradisional tubuh 30 mins 30 menit"
+             data-name-en="Acupressure Facial Massage" data-name-id="Totok Wajah Akupresur"
+             data-desc-en="Stimulates facial blood circulation, relaxes delicate facial muscles, and enhances skin elasticity for tension relief and a brighter complexion." data-desc-id="Pijatan titik akupresur pada wajah untuk melancarkan aliran darah, mengurangi ketegangan otot wajah, dan membantu mengencangkan kulit secara alami."
+             data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-tag-en="Glow" data-tag-id="Kulit Segar"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 Mins
+                <span class="card-duration">30 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Glow
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Soft, Gentle)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Acupressure Facial Massage
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Stimulates facial blood circulation, relaxes delicate facial muscles, and enhances skin elasticity for tension relief and a brighter complexion.
             </p>
             
@@ -1179,25 +1440,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="massage">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="massage" 
+             data-search="cellulite massage with machine pijat selulit dengan mesin khusus focus on thigh, buttock, or arm. deep tissue manipulation, kneading &amp; skin rolling (60m) combined with percussion gryatory machine (30m) to break down fat deposits and improve lymphatic drainage. kombinasi pijat manual dan bantuan mesin khusus untuk merangsang drainase limfatik, memecah timbunan selulit, dan menghaluskan permukaan kulit. body massage pijat tradisional tubuh 90 mins 90 menit"
+             data-name-en="Cellulite Massage with Machine" data-name-id="Pijat Selulit dengan Mesin Khusus"
+             data-desc-en="Focus on Thigh, Buttock, or Arm. Deep tissue manipulation, kneading &amp; skin rolling (60m) combined with percussion Gryatory machine (30m) to break down fat deposits and improve lymphatic drainage." data-desc-id="Kombinasi pijat manual dan bantuan mesin khusus untuk merangsang drainase limfatik, memecah timbunan selulit, dan menghaluskan permukaan kulit."
+             data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-tag-en="Contouring" data-tag-id="Pengencangan"
+             data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins
+                <span class="card-duration">90 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Contouring
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Medium, Strong)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Cellulite Massage with Machine
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Focus on Thigh, Buttock, or Arm. Deep tissue manipulation, kneading &amp; skin rolling (60m) combined with percussion Gryatory machine (30m) to break down fat deposits and improve lymphatic drainage.
             </p>
             
@@ -1213,25 +1482,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="slimming">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="slimming" 
+             data-search="anti cellulite full treatment perawatan anti-selulit lengkap focus: thigh or buttock. includes foot bath, coffee body scrub (15m), infrared body wrap (15m), cellulite massage (45m), skin roller (15m), and grayatory percussion machine (30m). free coffee scrub on affected area. perawatan menyeluruh: lulur pengelupasan selulit, pijatan limfatik dengan krim pembakar lemak, dan masker pembungkus tubuh untuk hasil optimal. slimming &amp; cellulite slimming &amp; selulit 120 mins 120 menit"
+             data-name-en="Anti Cellulite Full Treatment" data-name-id="Perawatan Anti-Selulit Lengkap"
+             data-desc-en="Focus: Thigh or Buttock. Includes Foot Bath, coffee body scrub (15m), infrared body wrap (15m), cellulite massage (45m), skin roller (15m), and Grayatory percussion machine (30m). Free coffee scrub on affected area." data-desc-id="Perawatan menyeluruh: lulur pengelupasan selulit, pijatan limfatik dengan krim pembakar lemak, dan masker pembungkus tubuh untuk hasil optimal."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Full Protocol" data-tag-id="Paket Kontur"
+             data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Full Protocol
               </span>
               <span class="text-[10px] text-[#64748B] italic ml-1 font-sans">(Medium, Strong)</span>
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Anti Cellulite Full Treatment
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Focus: Thigh or Buttock. Includes Foot Bath, coffee body scrub (15m), infrared body wrap (15m), cellulite massage (45m), skin roller (15m), and Grayatory percussion machine (30m). Free coffee scrub on affected area.
             </p>
             
@@ -1247,25 +1524,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="slimming">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="slimming" 
+             data-search="body slimming cavitation rf (arm) body slimming cavitation rf (lengan) radio frequency cavitation generates heat in deep skin layers to stimulate collagen, elastin, and break down fat cells for arm contouring. free coffee body scrub included. terapi gelombang ultrasonik cavitation dan radio frequency terarah untuk mengurangi lingkar lengan atas dan mengencangkan kulit kendur. slimming &amp; cellulite slimming &amp; selulit 135 mins 135 menit"
+             data-name-en="Body Slimming Cavitation RF (Arm)" data-name-id="Body Slimming Cavitation RF (Lengan)"
+             data-desc-en="Radio frequency cavitation generates heat in deep skin layers to stimulate collagen, elastin, and break down fat cells for arm contouring. FREE coffee body scrub included." data-desc-id="Terapi gelombang ultrasonik Cavitation dan Radio Frequency terarah untuk mengurangi lingkar lengan atas dan mengencangkan kulit kendur."
+             data-dur-en="135 Mins" data-dur-id="135 Menit"
+             data-tag-en="Cavitation RF" data-tag-id="Target Lengan"
+             data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                135 Mins
+                <span class="card-duration">135 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Cavitation RF
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Body Slimming Cavitation RF (Arm)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Radio frequency cavitation generates heat in deep skin layers to stimulate collagen, elastin, and break down fat cells for arm contouring. FREE coffee body scrub included.
             </p>
             
@@ -1281,25 +1566,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="slimming">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="slimming" 
+             data-search="body slimming cavitation rf (thigh) body slimming cavitation rf (paha) targeted rf slimming for thighs to break down stubborn fat cells, tone skin, and improve contour. includes complimentary coffee body scrub for enhanced absorption. pengencangan dan pembentukan area paha serta bokong dengan teknologi rf modern untuk mengurangi selulit dan meratakan kontur kaki. slimming &amp; cellulite slimming &amp; selulit 135 mins 135 menit"
+             data-name-en="Body Slimming Cavitation RF (Thigh)" data-name-id="Body Slimming Cavitation RF (Paha)"
+             data-desc-en="Targeted RF slimming for thighs to break down stubborn fat cells, tone skin, and improve contour. Includes complimentary coffee body scrub for enhanced absorption." data-desc-id="Pengencangan dan pembentukan area paha serta bokong dengan teknologi RF modern untuk mengurangi selulit dan meratakan kontur kaki."
+             data-dur-en="135 Mins" data-dur-id="135 Menit"
+             data-tag-en="Cavitation RF" data-tag-id="Target Paha"
+             data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                135 Mins
+                <span class="card-duration">135 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Cavitation RF
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Body Slimming Cavitation RF (Thigh)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Targeted RF slimming for thighs to break down stubborn fat cells, tone skin, and improve contour. Includes complimentary coffee body scrub for enhanced absorption.
             </p>
             
@@ -1315,25 +1608,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="slimming">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="slimming" 
+             data-search="body slimming cavitation rf (tummy) body slimming cavitation rf (perut) intensive abdominal cavitation rf treatment to reduce stubborn tummy fat and tighten skin tissue. includes complimentary coffee body scrub. fokus pada area perut dan pinggang untuk memecah lemak subkutan membandel, merampingkan lingkar pinggang, dan mengencangkan otot perut. slimming &amp; cellulite slimming &amp; selulit 135 mins 135 menit"
+             data-name-en="Body Slimming Cavitation RF (Tummy)" data-name-id="Body Slimming Cavitation RF (Perut)"
+             data-desc-en="Intensive abdominal cavitation RF treatment to reduce stubborn tummy fat and tighten skin tissue. Includes complimentary coffee body scrub." data-desc-id="Fokus pada area perut dan pinggang untuk memecah lemak subkutan membandel, merampingkan lingkar pinggang, dan mengencangkan otot perut."
+             data-dur-en="135 Mins" data-dur-id="135 Menit"
+             data-tag-en="Best Slimming" data-tag-id="Target Perut"
+             data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                135 Mins
+                <span class="card-duration">135 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Best Slimming
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Body Slimming Cavitation RF (Tummy)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Intensive abdominal cavitation RF treatment to reduce stubborn tummy fat and tighten skin tissue. Includes complimentary coffee body scrub.
             </p>
             
@@ -1349,25 +1650,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="aloe vera body treatment spa aloe vera sunburn relief body spa pure aloe vera and honey remedy. includes foot bath + balinese massage (75m), aloe vera body mask (15m), and aloe vera facial treatment (30m) to soothe and deeply hydrate sun-exposed skin. pilihan utama sehabis berjemur di pantai: gel lidah buaya murni dingin yang menyejukkan kulit terbakar matahari, dilanjutkan pijat relaksasi lembut. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
+             data-name-en="Aloe Vera Body Treatment Spa" data-name-id="Aloe Vera Sunburn Relief Body Spa"
+             data-desc-en="Pure aloe vera and honey remedy. Includes Foot Bath + Balinese Massage (75m), Aloe vera body mask (15m), and Aloe vera facial treatment (30m) to soothe and deeply hydrate sun-exposed skin." data-desc-id="Pilihan utama sehabis berjemur di pantai: gel lidah buaya murni dingin yang menyejukkan kulit terbakar matahari, dilanjutkan pijat relaksasi lembut."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Sun Soothing" data-tag-id="Penenang Kulit"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Sun Soothing
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Aloe Vera Body Treatment Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Pure aloe vera and honey remedy. Includes Foot Bath + Balinese Massage (75m), Aloe vera body mask (15m), and Aloe vera facial treatment (30m) to soothe and deeply hydrate sun-exposed skin.
             </p>
             
@@ -1383,25 +1692,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="balinese boreh warming herbal spa balinese boreh warming herbal spa fresh herbs daily blended. foot bath, traditional balinese massage (75m), warming balinese boreh scrub (30m), and flower bath with bali jasmine salt (15m) to relieve joint and muscle soreness. tradisi ramuan rempah khas bali (cengkeh, jahe, pala, dan beras) yang menghangatkan tubuh dari dalam, melemaskan persendian, dan membuang angin. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
+             data-name-en="Balinese Boreh Warming Herbal Spa" data-name-id="Balinese Boreh Warming Herbal Spa"
+             data-desc-en="Fresh herbs daily blended. Foot bath, Traditional Balinese Massage (75m), warming Balinese Boreh scrub (30m), and Flower Bath with Bali Jasmine salt (15m) to relieve joint and muscle soreness." data-desc-id="Tradisi ramuan rempah khas Bali (cengkeh, jahe, pala, dan beras) yang menghangatkan tubuh dari dalam, melemaskan persendian, dan membuang angin."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Authentic Ritual" data-tag-id="Tradisi Leluhur"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Authentic Ritual
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Balinese Boreh Warming Herbal Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Fresh herbs daily blended. Foot bath, Traditional Balinese Massage (75m), warming Balinese Boreh scrub (30m), and Flower Bath with Bali Jasmine salt (15m) to relieve joint and muscle soreness.
             </p>
             
@@ -1417,25 +1734,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="green tea &amp; matcha detox spa green tea &amp; matcha detox spa pure matcha &amp; green tea antioxidants. foot bath + balinese massage (75m), green tea scrub (20m), hot himalayan salt &amp; flower back compress (10m), flower bath with aromatherapy (15m). kaya antioksidan polifenol untuk mendetoksifikasi racun kulit, mengangkat sel kulit mati, dan mengembalikan kesegaran alami tubuh. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
+             data-name-en="Green Tea &amp; Matcha Detox Spa" data-name-id="Green Tea &amp; Matcha Detox Spa"
+             data-desc-en="Pure matcha &amp; green tea antioxidants. Foot Bath + Balinese Massage (75m), Green Tea scrub (20m), Hot Himalayan Salt &amp; Flower back compress (10m), Flower Bath with aromatherapy (15m)." data-desc-id="Kaya antioksidan polifenol untuk mendetoksifikasi racun kulit, mengangkat sel kulit mati, dan mengembalikan kesegaran alami tubuh."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Antioxidant" data-tag-id="Detoks Alami"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Antioxidant
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Green Tea &amp; Matcha Detox Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Pure matcha &amp; green tea antioxidants. Foot Bath + Balinese Massage (75m), Green Tea scrub (20m), Hot Himalayan Salt &amp; Flower back compress (10m), Flower Bath with aromatherapy (15m).
             </p>
             
@@ -1451,25 +1776,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="rose bali anti-aging spa rose bali anti-aging body spa rich in vitamins a &amp; c. foot bath, full body massage (60m), rose scrub (25m), rose body mask (20m), flower bath with aromatherapy (15m) to smooth skin and boost natural collagen. perawatan lulur dan masker bunga mawar aromatik yang melembutkan tekstur kulit, menjaga elastisitas, dan memberikan aroma mewah tahan lama. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
+             data-name-en="Rose Bali Anti-Aging Spa" data-name-id="Rose Bali Anti-Aging Body Spa"
+             data-desc-en="Rich in vitamins A &amp; C. Foot bath, Full body Massage (60m), Rose scrub (25m), Rose Body Mask (20m), Flower bath with aromatherapy (15m) to smooth skin and boost natural collagen." data-desc-id="Perawatan lulur dan masker bunga mawar aromatik yang melembutkan tekstur kulit, menjaga elastisitas, dan memberikan aroma mewah tahan lama."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Botanical Rose" data-tag-id="Peremajaan Kulit"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Botanical Rose
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Rose Bali Anti-Aging Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Rich in vitamins A &amp; C. Foot bath, Full body Massage (60m), Rose scrub (25m), Rose Body Mask (20m), Flower bath with aromatherapy (15m) to smooth skin and boost natural collagen.
             </p>
             
@@ -1485,25 +1818,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="refreshing pear vanilla spa refreshing pear vanilla body spa natural antioxidant with pure vanilla extract &amp; vitamin b. foot bath, balinese massage (75m), pear &amp; vanilla body scrub (15m), body mask (15m), flower bath with aromatherapy (15m). perpaduan manis dan segar buah pir serta vanila lembut yang menghidrasi kulit kering, mencerahkan warna kulit, dan menenangkan indra. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
+             data-name-en="Refreshing Pear Vanilla Spa" data-name-id="Refreshing Pear Vanilla Body Spa"
+             data-desc-en="Natural antioxidant with pure vanilla extract &amp; Vitamin B. Foot bath, Balinese Massage (75m), Pear &amp; Vanilla Body Scrub (15m), Body Mask (15m), Flower bath with aromatherapy (15m)." data-desc-id="Perpaduan manis dan segar buah pir serta vanila lembut yang menghidrasi kulit kering, mencerahkan warna kulit, dan menenangkan indra."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Special Ingredient" data-tag-id="Aroma Manis"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Special Ingredient
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Refreshing Pear Vanilla Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Natural antioxidant with pure vanilla extract &amp; Vitamin B. Foot bath, Balinese Massage (75m), Pear &amp; Vanilla Body Scrub (15m), Body Mask (15m), Flower bath with aromatherapy (15m).
             </p>
             
@@ -1519,25 +1860,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="magnolia &amp; mint body spa magnolia &amp; mint refreshing spa magnolia bark &amp; flower reduces anxiety and tension. footbath, infrared detox wrap (15m), facial massage (15m), balinese massage (75m), magnolia &amp; mint scrub (20m), mask (15m), flower bath (25m). sensasi dingin menyegarkan dari daun mint berpadu keharuman bunga cempaka magnolia yang membangkitkan energi dan meredakan kelelahan tubuh. body spa treatment ritual body spa &amp; lulur 150 mins 150 menit"
+             data-name-en="Magnolia &amp; Mint Body Spa" data-name-id="Magnolia &amp; Mint Refreshing Spa"
+             data-desc-en="Magnolia bark &amp; flower reduces anxiety and tension. Footbath, Infrared detox wrap (15m), Facial Massage (15m), Balinese Massage (75m), Magnolia &amp; mint scrub (20m), mask (15m), Flower Bath (25m)." data-desc-id="Sensasi dingin menyegarkan dari daun mint berpadu keharuman bunga cempaka magnolia yang membangkitkan energi dan meredakan kelelahan tubuh."
+             data-dur-en="150 Mins" data-dur-id="150 Menit"
+             data-tag-en="Special Ingredient" data-tag-id="Sensasi Dingin"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                150 Mins
+                <span class="card-duration">150 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Special Ingredient
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Magnolia &amp; Mint Body Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Magnolia bark &amp; flower reduces anxiety and tension. Footbath, Infrared detox wrap (15m), Facial Massage (15m), Balinese Massage (75m), Magnolia &amp; mint scrub (20m), mask (15m), Flower Bath (25m).
             </p>
             
@@ -1553,25 +1902,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="sandalwood &amp; turmeric spa sandalwood &amp; turmeric royal spa iconic woody sandalwood calming aroma and pure active curcumin turmeric. foot bath, infrared wrap (15m), facial massage (15m), balinese massage (75m), scrub (20m), mask (15m), flower bath (25m). rahasia kecantikan putri keraton dengan lulur kunyit murni dan kayu cendana aromatik untuk mencerahkan kulit serta menjadikannya halus berseri. body spa treatment ritual body spa &amp; lulur 150 mins 150 menit"
+             data-name-en="Sandalwood &amp; Turmeric Spa" data-name-id="Sandalwood &amp; Turmeric Royal Spa"
+             data-desc-en="Iconic woody sandalwood calming aroma and pure active curcumin turmeric. Foot Bath, Infrared wrap (15m), Facial Massage (15m), Balinese Massage (75m), Scrub (20m), Mask (15m), Flower Bath (25m)." data-desc-id="Rahasia kecantikan putri keraton dengan lulur kunyit murni dan kayu cendana aromatik untuk mencerahkan kulit serta menjadikannya halus berseri."
+             data-dur-en="150 Mins" data-dur-id="150 Menit"
+             data-tag-en="Special Ingredient" data-tag-id="Lulur Keraton"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                150 Mins
+                <span class="card-duration">150 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Special Ingredient
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Sandalwood &amp; Turmeric Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Iconic woody sandalwood calming aroma and pure active curcumin turmeric. Foot Bath, Infrared wrap (15m), Facial Massage (15m), Balinese Massage (75m), Scrub (20m), Mask (15m), Flower Bath (25m).
             </p>
             
@@ -1587,25 +1944,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="spa">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="spa" 
+             data-search="lavender rosemary mint body spa lavender rosemary mint body spa pure lavender and natural rosemary analgesic. foot bath, infrared wrap (15m), facial massage (15m), balinese massage (75m), rosemary scrub (20m), lavender mask (15m), flower bath (25m). aromaterapi lavender menenangkan dipadu rosemary dan mint untuk mengatasi insomnia, meredakan ketegangan saraf, dan memberikan relaksasi total. body spa treatment ritual body spa &amp; lulur 150 mins 150 menit"
+             data-name-en="Lavender Rosemary Mint Body Spa" data-name-id="Lavender Rosemary Mint Body Spa"
+             data-desc-en="Pure lavender and natural rosemary analgesic. Foot Bath, Infrared wrap (15m), Facial Massage (15m), Balinese Massage (75m), Rosemary Scrub (20m), Lavender Mask (15m), Flower Bath (25m)." data-desc-id="Aromaterapi lavender menenangkan dipadu rosemary dan mint untuk mengatasi insomnia, meredakan ketegangan saraf, dan memberikan relaksasi total."
+             data-dur-en="150 Mins" data-dur-id="150 Menit"
+             data-tag-en="Special Ingredient" data-tag-id="Tidur Nyenyak"
+             data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                150 Mins
+                <span class="card-duration">150 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Special Ingredient
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Lavender Rosemary Mint Body Spa
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Pure lavender and natural rosemary analgesic. Foot Bath, Infrared wrap (15m), Facial Massage (15m), Balinese Massage (75m), Rosemary Scrub (20m), Lavender Mask (15m), Flower Bath (25m).
             </p>
             
@@ -1621,25 +1986,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="biokos botanical facial (60 mins) biokos botanical facial (60 menit) facial cleansing, facial acupressure massage, facial scrub, and nourishing botanical facial mask. perawatan wajah alami dengan produk biokos berbahan botani aktif untuk membersihkan pori-pori secara mendalam dan menjaga kelembapan kulit. facial treatment perawatan wajah 60 mins 60 menit"
+             data-name-en="Biokos Botanical Facial (60 Mins)" data-name-id="Biokos Botanical Facial (60 Menit)"
+             data-desc-en="Facial Cleansing, Facial Acupressure Massage, Facial Scrub, and nourishing Botanical Facial Mask." data-desc-id="Perawatan wajah alami dengan produk Biokos berbahan botani aktif untuk membersihkan pori-pori secara mendalam dan menjaga kelembapan kulit."
+             data-dur-en="60 Mins" data-dur-id="60 Menit"
+             data-tag-en="Pure Botanical" data-tag-id="Bahan Botani"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                60 Mins
+                <span class="card-duration">60 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Pure Botanical
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Biokos Botanical Facial (60 Mins)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Facial Cleansing, Facial Acupressure Massage, Facial Scrub, and nourishing Botanical Facial Mask.
             </p>
             
@@ -1655,25 +2028,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="biokos deluxe facial (90 mins) biokos deluxe facial (90 menit) face cleansing, facial massage, scrub, mask, combined with relaxing head &amp; shoulder massage (30 mins). pembersihan menyeluruh, penguapan, ekstraksi komedo lembut, pijat totok wajah akupresur, dan masker nutrisi untuk wajah tampak cerah berseri. facial treatment perawatan wajah 90 mins 90 menit"
+             data-name-en="Biokos Deluxe Facial (90 Mins)" data-name-id="Biokos Deluxe Facial (90 Menit)"
+             data-desc-en="Face Cleansing, Facial Massage, Scrub, Mask, combined with relaxing Head &amp; Shoulder Massage (30 mins)." data-desc-id="Pembersihan menyeluruh, penguapan, ekstraksi komedo lembut, pijat totok wajah akupresur, dan masker nutrisi untuk wajah tampak cerah berseri."
+             data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-tag-en="Deluxe Glow" data-tag-id="Perawatan Lengkap"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins
+                <span class="card-duration">90 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Deluxe Glow
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Biokos Deluxe Facial (90 Mins)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Face Cleansing, Facial Massage, Scrub, Mask, combined with relaxing Head &amp; Shoulder Massage (30 mins).
             </p>
             
@@ -1689,25 +2070,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="biokos ultimate deep facial (120 mins) biokos ultimate deep facial (120 menit) face cleansing, face massage, scrub, mask, face steam, facial extraction, and relaxing head &amp; shoulder massage (30 mins). facial lengkap dengan perawatan intensif serum anti-penuaan, masker kolagen premium, dan pijat leher serta pundak yang menenangkan. facial treatment perawatan wajah 120 mins 120 menit"
+             data-name-en="Biokos Ultimate Deep Facial (120 Mins)" data-name-id="Biokos Ultimate Deep Facial (120 Menit)"
+             data-desc-en="Face Cleansing, Face Massage, Scrub, Mask, Face Steam, Facial Extraction, and relaxing Head &amp; Shoulder Massage (30 mins)." data-desc-id="Facial lengkap dengan perawatan intensif serum anti-penuaan, masker kolagen premium, dan pijat leher serta pundak yang menenangkan."
+             data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-tag-en="Deep Cleanse" data-tag-id="Perawatan Paripurna"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                120 Mins
+                <span class="card-duration">120 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Deep Cleanse
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Biokos Ultimate Deep Facial (120 Mins)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Face Cleansing, Face Massage, Scrub, Mask, Face Steam, Facial Extraction, and relaxing Head &amp; Shoulder Massage (30 mins).
             </p>
             
@@ -1723,25 +2112,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="hi-frequency machine with violet rays terapi wajah high-frequency violet rays safe electrical currents to oxygenate skin, eliminate acne-causing bacteria, reduce inflammation, tighten pores, and boost collagen. teknologi sinar frekuensi tinggi untuk membunuh bakteri penyebab jerawat, mengecilkan pori-pori, dan mempercepat regenerasi sel kulit. facial treatment perawatan wajah 10 mins 10 menit"
+             data-name-en="Hi-Frequency Machine with Violet Rays" data-name-id="Terapi Wajah High-Frequency Violet Rays"
+             data-desc-en="Safe electrical currents to oxygenate skin, eliminate acne-causing bacteria, reduce inflammation, tighten pores, and boost collagen." data-desc-id="Teknologi sinar frekuensi tinggi untuk membunuh bakteri penyebab jerawat, mengecilkan pori-pori, dan mempercepat regenerasi sel kulit."
+             data-dur-en="10 Mins" data-dur-id="10 Menit"
+             data-tag-en="Clinical Add-on" data-tag-id="Anti-Bakteri"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                10 Mins
+                <span class="card-duration">10 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Clinical Add-on
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Hi-Frequency Machine with Violet Rays
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Safe electrical currents to oxygenate skin, eliminate acne-causing bacteria, reduce inflammation, tighten pores, and boost collagen.
             </p>
             
@@ -1757,25 +2154,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="cold light led facial therapy terapi wajah led cold light therapy specific led wavelengths combined with cold compress technology to soothe, tighten pores, boost collagen, and accelerate deep serum absorption. penyinaran led cahaya dingin untuk menenangkan kemerahan kulit, merangsang pembentukan kolagen baru, dan mencerahkan warna kulit kusam. facial treatment perawatan wajah 10 mins 10 menit"
+             data-name-en="Cold Light LED Facial Therapy" data-name-id="Terapi Wajah LED Cold Light Therapy"
+             data-desc-en="Specific LED wavelengths combined with cold compress technology to soothe, tighten pores, boost collagen, and accelerate deep serum absorption." data-desc-id="Penyinaran LED cahaya dingin untuk menenangkan kemerahan kulit, merangsang pembentukan kolagen baru, dan mencerahkan warna kulit kusam."
+             data-dur-en="10 Mins" data-dur-id="10 Menit"
+             data-tag-en="Clinical Add-on" data-tag-id="Terapi Cahaya"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                10 Mins
+                <span class="card-duration">10 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Clinical Add-on
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Cold Light LED Facial Therapy
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Specific LED wavelengths combined with cold compress technology to soothe, tighten pores, boost collagen, and accelerate deep serum absorption.
             </p>
             
@@ -1791,25 +2196,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="rf facial machine for wrinkle (face iron) mesin rf wajah anti-kerutan (face iron) non-surgical radio frequency skin treatment heating deep layers to stimulate collagen and elastin for firmer, smoother skin and contoured facial lines. gelombang radio frekuensi yang menghantarkan panas lembut ke lapisan kolagen dermis untuk mengencangkan garis halus dan membentuk v-shape wajah. facial treatment perawatan wajah 15 mins 15 menit"
+             data-name-en="RF Facial Machine for Wrinkle (Face Iron)" data-name-id="Mesin RF Wajah Anti-Kerutan (Face Iron)"
+             data-desc-en="Non-surgical radio frequency skin treatment heating deep layers to stimulate collagen and elastin for firmer, smoother skin and contoured facial lines." data-desc-id="Gelombang radio frekuensi yang menghantarkan panas lembut ke lapisan kolagen dermis untuk mengencangkan garis halus dan membentuk V-shape wajah."
+             data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-tag-en="Anti-Aging RF" data-tag-id="Pengencangan Wajah"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                15 Mins
+                <span class="card-duration">15 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Anti-Aging RF
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               RF Facial Machine for Wrinkle (Face Iron)
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Non-surgical radio frequency skin treatment heating deep layers to stimulate collagen and elastin for firmer, smoother skin and contoured facial lines.
             </p>
             
@@ -1825,25 +2238,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="facial">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="facial" 
+             data-search="instant firming kaolin mask masker pengencang instan kaolin clay kaolin clay mask absorbs excess oil, detoxifies pores, reduces acne, soothes redness, and tightens facial contours. masker lumpur kaolin mineral murni yang menyerap minyak berlebih, membersihkan kotoran pori, dan memberikan efek kulit kencang instan. facial treatment perawatan wajah 15 mins 15 menit"
+             data-name-en="Instant Firming Kaolin Mask" data-name-id="Masker Pengencang Instan Kaolin Clay"
+             data-desc-en="Kaolin clay mask absorbs excess oil, detoxifies pores, reduces acne, soothes redness, and tightens facial contours." data-desc-id="Masker lumpur kaolin mineral murni yang menyerap minyak berlebih, membersihkan kotoran pori, dan memberikan efek kulit kencang instan."
+             data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-tag-en="Detox Mask" data-tag-id="Masker Lumpur"
+             data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                15 Mins
+                <span class="card-duration">15 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Detox Mask
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Instant Firming Kaolin Mask
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Kaolin clay mask absorbs excess oil, detoxifies pores, reduces acne, soothes redness, and tightens facial contours.
             </p>
             
@@ -1859,25 +2280,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="nail">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="nail" 
+             data-search="deluxe hands spa with nail gel deluxe hands spa dengan kutek gel nail cutting, nail shaping, cuticle grooming, hand soak, hand scrub, hand mask, hand massage, and long-lasting nail gel polish. perawatan tangan mewah: perendaman aromaterapi, pembersihan kutikula, scrubbing halus, pijatan tangan, dan aplikasi cat kuku gel tahan lama. nail service layanan &amp; seni kuku 90 mins 90 menit"
+             data-name-en="Deluxe Hands Spa with Nail Gel" data-name-id="Deluxe Hands Spa dengan Kutek Gel"
+             data-desc-en="Nail Cutting, Nail Shaping, Cuticle Grooming, Hand Soak, Hand Scrub, Hand Mask, Hand Massage, and long-lasting Nail Gel polish." data-desc-id="Perawatan tangan mewah: perendaman aromaterapi, pembersihan kutikula, scrubbing halus, pijatan tangan, dan aplikasi cat kuku gel tahan lama."
+             data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-tag-en="Complete Care" data-tag-id="Perawatan Tangan"
+             data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins
+                <span class="card-duration">90 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Complete Care
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Deluxe Hands Spa with Nail Gel
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Nail Cutting, Nail Shaping, Cuticle Grooming, Hand Soak, Hand Scrub, Hand Mask, Hand Massage, and long-lasting Nail Gel polish.
             </p>
             
@@ -1893,25 +2322,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="nail">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="nail" 
+             data-search="deluxe foot spa with nail gel deluxe foot spa dengan kutek gel nail cutting, shaping, cuticle grooming, foot soak, callus removal, foot scrub, hand mask, calf massage, and nail gel polish. perawatan kaki komprehensif: perendaman garam mineral, pengikisan kulit kapalan, pijat kaki menenangkan, dan polesan cat kuku gel berkualitas. nail service layanan &amp; seni kuku 90 mins 90 menit"
+             data-name-en="Deluxe Foot Spa with Nail Gel" data-name-id="Deluxe Foot Spa dengan Kutek Gel"
+             data-desc-en="Nail Cutting, Shaping, Cuticle Grooming, Foot Soak, Callus Removal, Foot Scrub, Hand Mask, Calf Massage, and Nail Gel polish." data-desc-id="Perawatan kaki komprehensif: perendaman garam mineral, pengikisan kulit kapalan, pijat kaki menenangkan, dan polesan cat kuku gel berkualitas."
+             data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-tag-en="Complete Care" data-tag-id="Perawatan Kaki"
+             data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                90 Mins
+                <span class="card-duration">90 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Complete Care
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Deluxe Foot Spa with Nail Gel
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Nail Cutting, Shaping, Cuticle Grooming, Foot Soak, Callus Removal, Foot Scrub, Hand Mask, Calf Massage, and Nail Gel polish.
             </p>
             
@@ -1927,29 +2364,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="nail">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="nail" 
+             data-search="basic nail hand or foot with gel manikur / pedikur dasar dengan gel nail cutting, nail shaping, cuticle grooming, and basic nail gel application. pembentukan kuku rapi, perapian kutikula, dan pulasan kutek gel warna pilihan anda dengan hasil kilau sempurna dan tahan lama. nail service layanan &amp; seni kuku 60 mins 60 menit"
+             data-name-en="Basic Nail Hand or Foot with Gel" data-name-id="Manikur / Pedikur Dasar dengan Gel"
+             data-desc-en="Nail Cutting, Nail Shaping, Cuticle Grooming, and Basic Nail Gel application." data-desc-id="Pembentukan kuku rapi, perapian kutikula, dan pulasan kutek gel warna pilihan Anda dengan hasil kilau sempurna dan tahan lama."
+             data-dur-en="60 Mins" data-dur-id="60 Menit"
+             data-tag-en="Essentials" data-tag-id="Kuku Cantik"
+             data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
+             data-multi-en="Nail Hand: 150K | Foot: 150K" data-multi-id="Nail Hand: 150K | Foot: 150K">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                60 Mins
+                <span class="card-duration">60 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Essentials
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Basic Nail Hand or Foot with Gel
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Nail Cutting, Nail Shaping, Cuticle Grooming, and Basic Nail Gel application.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               Nail Hand: 150K | Foot: 150K
             </div>
           </div>
@@ -1964,25 +2409,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="nail">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="nail" 
+             data-search="dr. feeto callus removal treatment perawatan penghilang kapalan dr. feeto fast and efficient treatment removing calluses and cracked heels for velvety smooth, soft, and beautiful feet. formula khusus dr. feeto untuk mengikis lapisan kulit mati dan tumit pecah-pecah secara lembut, mengembalikan kelembutan alami telapak kaki. nail service layanan &amp; seni kuku 60 mins 60 menit"
+             data-name-en="Dr. Feeto Callus Removal Treatment" data-name-id="Perawatan Penghilang Kapalan Dr. Feeto"
+             data-desc-en="Fast and efficient treatment removing calluses and cracked heels for velvety smooth, soft, and beautiful feet." data-desc-id="Formula khusus Dr. Feeto untuk mengikis lapisan kulit mati dan tumit pecah-pecah secara lembut, mengembalikan kelembutan alami telapak kaki."
+             data-dur-en="60 Mins" data-dur-id="60 Menit"
+             data-tag-en="Smooth Heels" data-tag-id="Kaki Lembut"
+             data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                60 Mins
+                <span class="card-duration">60 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Smooth Heels
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Dr. Feeto Callus Removal Treatment
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Fast and efficient treatment removing calluses and cracked heels for velvety smooth, soft, and beautiful feet.
             </p>
             
@@ -1998,29 +2451,37 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="nail">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="nail" 
+             data-search="nail gel remover &amp; custom art pembersihan kutek gel &amp; nail art kustom professional nail gel removal, french nail gel, cat eye gel, marble design, and aurora chrome nail art. pembersihan kutek gel lama secara aman tanpa merusak lapisan kuku asli, serta layanan kreasi nail art motif kustom sesuai selera anda. nail service layanan &amp; seni kuku service add-on layanan tambahan"
+             data-name-en="Nail Gel Remover &amp; Custom Art" data-name-id="Pembersihan Kutek Gel &amp; Nail Art Kustom"
+             data-desc-en="Professional nail gel removal, French Nail Gel, Cat Eye Gel, Marble Design, and Aurora chrome nail art." data-desc-id="Pembersihan kutek gel lama secara aman tanpa merusak lapisan kuku asli, serta layanan kreasi nail art motif kustom sesuai selera Anda."
+             data-dur-en="Service Add-on" data-dur-id="Layanan Tambahan"
+             data-tag-en="Art &amp; Removal" data-tag-id="Nail Art"
+             data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
+             data-multi-en="Gel Remover: 100K | French/Cat Eye/Aurora: 10K/nail | Marble: 15K/nail" data-multi-id="Gel Remover: 100K | French/Cat Eye/Aurora: 10K/nail | Marble: 15K/nail">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                Service Add-on
+                <span class="card-duration">Service Add-on</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Art &amp; Removal
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Nail Gel Remover &amp; Custom Art
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Professional nail gel removal, French Nail Gel, Cat Eye Gel, Marble Design, and Aurora chrome nail art.
             </p>
             
-            <div class="mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
+            <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
               Gel Remover: 100K | French/Cat Eye/Aurora: 10K/nail | Marble: 15K/nail
             </div>
           </div>
@@ -2035,25 +2496,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="flower bath with aromatherapy mandi berendam bunga aromaterapi indulge yourself with fresh exotic flower petals, soothing aromatherapy, and mineral salt soak after any spa session. berendam santai di bathtub yang dipenuhi kelopak bunga mawar segar dan tetesan minyak aromaterapi murni untuk ketenangan jiwa seutuhnya. additional service layanan tambahan 30 mins 30 menit"
+             data-name-en="Flower Bath with Aromatherapy" data-name-id="Mandi Berendam Bunga Aromaterapi"
+             data-desc-en="Indulge yourself with fresh exotic flower petals, soothing aromatherapy, and mineral salt soak after any spa session." data-desc-id="Berendam santai di bathtub yang dipenuhi kelopak bunga mawar segar dan tetesan minyak aromaterapi murni untuk ketenangan jiwa seutuhnya."
+             data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-tag-en="Self Care" data-tag-id="Sensasi Mewah"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 Mins
+                <span class="card-duration">30 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Self Care
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Flower Bath with Aromatherapy
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Indulge yourself with fresh exotic flower petals, soothing aromatherapy, and mineral salt soak after any spa session.
             </p>
             
@@ -2069,25 +2538,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="homemade oatmeal &amp; rice body scrub lulur alami oatmeal &amp; beras tradisional oatmeal &amp; rice powder exfoliates dead skin cells, prevents ingrown hair, and improves hydration. choose your favourite scent. racikan lulur alami oatmeal dan butiran beras halus untuk mengangkat kotoran serta sel kulit mati, menjadikan kulit selembut sutra. additional service layanan tambahan 30 mins 30 menit"
+             data-name-en="Homemade Oatmeal &amp; Rice Body Scrub" data-name-id="Lulur Alami Oatmeal &amp; Beras Tradisional"
+             data-desc-en="Oatmeal &amp; rice powder exfoliates dead skin cells, prevents ingrown hair, and improves hydration. Choose your favourite scent." data-desc-id="Racikan lulur alami oatmeal dan butiran beras halus untuk mengangkat kotoran serta sel kulit mati, menjadikan kulit selembut sutra."
+             data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-tag-en="Exfoliation" data-tag-id="Eksfoliasi Lembut"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 Mins
+                <span class="card-duration">30 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Exfoliation
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Homemade Oatmeal &amp; Rice Body Scrub
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Oatmeal &amp; rice powder exfoliates dead skin cells, prevents ingrown hair, and improves hydration. Choose your favourite scent.
             </p>
             
@@ -2103,25 +2580,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="calming oatmeal body mask masker tubuh menenangkan oatmeal calms skin irritation, reduces redness, ideal for sensitive and sun-damaged skin, leaving it soft and supple. masker tubuh kaya nutrisi yang menyejukkan kulit sensitif, meredakan iritasi, serta mengembalikan kelembapan alami kulit tubuh. additional service layanan tambahan 30 mins 30 menit"
+             data-name-en="Calming Oatmeal Body Mask" data-name-id="Masker Tubuh Menenangkan Oatmeal"
+             data-desc-en="Calms skin irritation, reduces redness, ideal for sensitive and sun-damaged skin, leaving it soft and supple." data-desc-id="Masker tubuh kaya nutrisi yang menyejukkan kulit sensitif, meredakan iritasi, serta mengembalikan kelembapan alami kulit tubuh."
+             data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-tag-en="Soothe" data-tag-id="Nutrisi Kulit"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 Mins
+                <span class="card-duration">30 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Soothe
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Calming Oatmeal Body Mask
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Calms skin irritation, reduces redness, ideal for sensitive and sun-damaged skin, leaving it soft and supple.
             </p>
             
@@ -2137,25 +2622,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="hot himalayan salt &amp; flower compress kompres hangat garam himalaya &amp; bunga rich in mineral traces (iron, potassium, magnesium) to soothe deep muscle tension and muscle cramps on legs, shoulders &amp; back. kompres hangat butiran garam merah muda himalaya dan rempah bunga kering pada titik pegal untuk meredakan ketegangan otot mendalam. additional service layanan tambahan 15 mins 15 menit"
+             data-name-en="Hot Himalayan Salt &amp; Flower Compress" data-name-id="Kompres Hangat Garam Himalaya &amp; Bunga"
+             data-desc-en="Rich in mineral traces (iron, potassium, magnesium) to soothe deep muscle tension and muscle cramps on legs, shoulders &amp; back." data-desc-id="Kompres hangat butiran garam merah muda Himalaya dan rempah bunga kering pada titik pegal untuk meredakan ketegangan otot mendalam."
+             data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-tag-en="Mineral Heat" data-tag-id="Terapi Alami"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                15 Mins
+                <span class="card-duration">15 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Mineral Heat
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Hot Himalayan Salt &amp; Flower Compress
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Rich in mineral traces (iron, potassium, magnesium) to soothe deep muscle tension and muscle cramps on legs, shoulders &amp; back.
             </p>
             
@@ -2171,25 +2664,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="detoxifying infra red body wrap bungkus tubuh detoksifikasi infra red deep penetrating infrared heat promotes sweating, detoxification, calorie burning, and temporary joint/muscle pain relief. selimut sauna sinar inframerah gelombang jauh yang merangsang keringat detoks, membakar kalori, dan melancarkan metabolisme tubuh. additional service layanan tambahan 30 mins 30 menit"
+             data-name-en="Detoxifying Infra Red Body Wrap" data-name-id="Bungkus Tubuh Detoksifikasi Infra Red"
+             data-desc-en="Deep penetrating infrared heat promotes sweating, detoxification, calorie burning, and temporary joint/muscle pain relief." data-desc-id="Selimut sauna sinar inframerah gelombang jauh yang merangsang keringat detoks, membakar kalori, dan melancarkan metabolisme tubuh."
+             data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-tag-en="Infrared" data-tag-id="Detoks Panas"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                30 Mins
+                <span class="card-duration">30 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Infrared
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Detoxifying Infra Red Body Wrap
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Deep penetrating infrared heat promotes sweating, detoxification, calorie burning, and temporary joint/muscle pain relief.
             </p>
             
@@ -2205,25 +2706,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="hydrating facial mask add-on tambahan masker wajah menghidrasi hyaluronic acid, glycerin &amp; ceramides to soothe dryness, lock in moisture, and restore skin suppleness. tambahan masker wajah kaya serum pelembap intensif yang dapat dipadukan dengan perawatan spa tubuh pilihan anda. additional service layanan tambahan 15 mins 15 menit"
+             data-name-en="Hydrating Facial Mask Add-on" data-name-id="Tambahan Masker Wajah Menghidrasi"
+             data-desc-en="Hyaluronic acid, glycerin &amp; ceramides to soothe dryness, lock in moisture, and restore skin suppleness." data-desc-id="Tambahan masker wajah kaya serum pelembap intensif yang dapat dipadukan dengan perawatan spa tubuh pilihan Anda."
+             data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-tag-en="Hydration" data-tag-id="Ekstra Hidrasi"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                15 Mins
+                <span class="card-duration">15 Mins</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Hydration
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Hydrating Facial Mask Add-on
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Hyaluronic acid, glycerin &amp; ceramides to soothe dryness, lock in moisture, and restore skin suppleness.
             </p>
             
@@ -2239,25 +2748,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="exclusive spa gift voucher card voucher hadiah spa eksklusif the ideal gift for your special one. we provide a luxury gift voucher card with any treatment chosen from our menu. hadiah istimewa paling berkesan untuk orang tercinta. kartu voucher mewah yang dapat ditukarkan dengan pilihan perawatan apa pun di menu kami. additional service layanan tambahan custom treatment perawatan kustom"
+             data-name-en="Exclusive Spa Gift Voucher Card" data-name-id="Voucher Hadiah Spa Eksklusif"
+             data-desc-en="The ideal gift for your special one. We provide a luxury gift voucher card with any treatment chosen from our menu." data-desc-id="Hadiah istimewa paling berkesan untuk orang tercinta. Kartu voucher mewah yang dapat ditukarkan dengan pilihan perawatan apa pun di menu kami."
+             data-dur-en="Custom Treatment" data-dur-id="Perawatan Kustom"
+             data-tag-en="Gift Card" data-tag-id="Gift Card"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                Custom Treatment
+                <span class="card-duration">Custom Treatment</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Gift Card
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Exclusive Spa Gift Voucher Card
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               The ideal gift for your special one. We provide a luxury gift voucher card with any treatment chosen from our menu.
             </p>
             
@@ -2273,25 +2790,33 @@
           </div>
         </div>
 
-        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" data-category="additional">
+        <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             data-category="additional" 
+             data-search="birthday / anniversary surprise package paket kejutan ulang tahun / anniversary sweet memorable surprise setup: simple flower bouquet, romantic candles around bathtub, aromatherapy flower bath, and mini birthday cake. dekorasi romantis suite spa dengan lilin aromatik, taburan kelopak bunga khusus ucapan selamat, dan ucapan personal untuk merayakan momen bahagia anda. additional service layanan tambahan romantic add-on sentuhan romantis"
+             data-name-en="Birthday / Anniversary Surprise Package" data-name-id="Paket Kejutan Ulang Tahun / Anniversary"
+             data-desc-en="Sweet memorable surprise setup: Simple flower bouquet, romantic candles around bathtub, aromatherapy flower bath, and mini birthday cake." data-desc-id="Dekorasi romantis suite spa dengan lilin aromatik, taburan kelopak bunga khusus ucapan selamat, dan ucapan personal untuk merayakan momen bahagia Anda."
+             data-dur-en="Romantic Add-on" data-dur-id="Sentuhan Romantis"
+             data-tag-en="Celebration" data-tag-id="Momen Spesial"
+             data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
+             data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-1.5">
-              <span class="text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
+              <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
               <span class="text-[#64748B] font-mono text-[11px] flex items-center gap-1 font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                Romantic Add-on
+                <span class="card-duration">Romantic Add-on</span>
               </span>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
+              <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
                 Celebration
               </span>
               
             </div>
-            <h3 class="font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
+            <h3 class="card-title font-serif text-xl sm:text-[22px] font-bold text-[#141E3C] leading-snug mb-2">
               Birthday / Anniversary Surprise Package
             </h3>
-            <p class="text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
               Sweet memorable surprise setup: Simple flower bouquet, romantic candles around bathtub, aromatherapy flower bath, and mini birthday cake.
             </p>
             
@@ -2306,6 +2831,14 @@
             </button>
           </div>
         </div>
+    </div>
+
+    <!-- No Treatments Found Message -->
+    <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+      <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
+      <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+        <span data-i18n="cat_all">All Treatments</span>
+      </button>
     </div>
 
   </section>
@@ -2334,21 +2867,21 @@
           </h2>
 
           <p class="text-[#475569] text-base leading-relaxed font-light" data-i18n="about_desc_1">
-            Nestled in a peaceful pocket of Kerobokan and Canggu, <strong>Massaji Spa</strong> was created to deliver authentic Balinese healing traditions with five-star cleanliness at honest, accessible prices.
+            Nestled in a peaceful pocket of Kerobokan and Canggu, Massaji Spa was created to deliver authentic Balinese healing traditions with five-star cleanliness at honest, accessible prices.
           </p>
 
           <p class="text-[#475569] text-base leading-relaxed font-light" data-i18n="about_desc_2">
-            From warming traditional Balinese Boreh spice wraps and slimming RF cavitation to certified prenatal therapy for mothers-to-be—our experienced therapists tailor every pressure point to your body's individual needs.
+            From warming traditional Balinese Boreh spice wraps and slimming RF cavitation to certified prenatal therapy for mothers-to-be—our experienced therapists tailor every pressure point to your body&#x27;s individual needs.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-[#BAE0FD]">
             <div>
-              <h4 class="font-bold text-sm text-[#141E3C] mb-1" data-i18n="about_val_1">Pure Essential Oils</h4>
-              <p class="text-xs text-[#475569]" data-i18n="about_val_1_desc">Frangipani, lemongrass, lavender, and traditional natural spices.</p>
+              <h4 class="font-bold text-sm text-[#141E3C] mb-1" data-i18n="about_val_1">Pure Botanical Oils</h4>
+              <p class="text-xs text-[#475569]" data-i18n="about_val_1_desc">Fresh frangipani, uplifting lemongrass, calming lavender, and native spice blends.</p>
             </div>
             <div>
-              <h4 class="font-bold text-sm text-[#141E3C] mb-1" data-i18n="about_val_2">Absolute Hygiene</h4>
-              <p class="text-xs text-[#475569]" data-i18n="about_val_2_desc">Freshly laundered linens and towels for every single guest session.</p>
+              <h4 class="font-bold text-sm text-[#141E3C] mb-1" data-i18n="about_val_2">Five-Star Hygiene</h4>
+              <p class="text-xs text-[#475569]" data-i18n="about_val_2_desc">Crisp, freshly laundered linens and sanitized private suites for every single guest.</p>
             </div>
           </div>
         </div>
@@ -2364,12 +2897,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="eyebrow-tag" data-i18n="reviews_eyebrow">Guest Testimonials</span>
+        <span class="eyebrow-tag" data-i18n="reviews_eyebrow">Guest Experiences</span>
         <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3" data-i18n="reviews_title">
-          Trusted by Travelers Across the Globe
+          Cherished by Travelers Worldwide
         </h2>
         <p class="text-[#475569] text-sm sm:text-base font-light" data-i18n="reviews_summary">
-          4.8 out of 5.0 based on 560+ verified reviews in Canggu &amp; Kerobokan.
+          Rated 4.8 out of 5.0 across 560+ verified reviews in Canggu &amp; Kerobokan.
         </p>
       </div>
 
@@ -2379,7 +2912,7 @@
         <div class="treatment-card p-6 flex flex-col justify-between">
           <div>
             <div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
-            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-light italic">
+            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-light italic" data-i18n="review_1_text">
               "The 2-Hour Balinese Massage here is hands down the best massage I've experienced in Bali. Super clean rooms, calming scent, and therapists who truly understand pressure points."
             </p>
           </div>
@@ -2392,7 +2925,7 @@
         <div class="treatment-card p-6 flex flex-col justify-between">
           <div>
             <div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
-            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-light italic">
+            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-light italic" data-i18n="review_2_text">
               "We booked the Simply Us couple package and it was pure bliss! The romantic flower bath and massage were extraordinary. Highly recommended when visiting Canggu!"
             </p>
           </div>
@@ -2405,7 +2938,7 @@
         <div class="treatment-card p-6 flex flex-col justify-between">
           <div>
             <div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
-            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-light italic">
+            <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-light italic" data-i18n="review_3_text">
               "As a regular surfer in Canggu, their Deep Tissue and Hot Stone massage solved all my shoulder stiffness. Honest prices, incredible technique, five-star cleanliness."
             </p>
           </div>
@@ -2428,14 +2961,14 @@
       
       <!-- Contact Details -->
       <div class="lg:col-span-5 space-y-6">
-        <span class="eyebrow-tag" data-i18n="contact_eyebrow">Visit Us</span>
+        <span class="eyebrow-tag" data-i18n="contact_eyebrow">Visit Our Sanctuary</span>
         
         <h2 class="font-serif section-headline text-[#141E3C]" data-i18n="contact_title">
           Location &amp; Opening Hours
         </h2>
 
         <p class="text-[#475569] text-base font-light leading-relaxed" data-i18n="contact_desc">
-          Conveniently located along the main Canggu / Kerobokan route with dedicated parking for scooters and cars.
+          Conveniently situated along the main Canggu / Kerobokan route with secure, dedicated on-site parking for scooters and cars.
         </p>
 
         <div class="space-y-4 pt-2 text-sm text-[#475569]">
@@ -2444,10 +2977,10 @@
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             </div>
             <div>
-              <span class="font-bold text-[#141E3C] block" data-i18n="contact_address_label">Physical Address</span>
+              <span class="font-bold text-[#141E3C] block" data-i18n="contact_address_label">Sanctuary Address</span>
               <span>Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361</span>
               <a href="https://maps.google.com/?q=Massaji+Spa+Bali+Canggu" target="_blank" class="block text-[#0284C7] font-semibold text-xs mt-1 hover:underline" data-i18n="contact_maps_link">
-                Open Directions in Google Maps &rarr;
+                Get Directions in Google Maps &rarr;
               </a>
             </div>
           </div>
@@ -2457,7 +2990,7 @@
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <div>
-              <span class="font-bold text-[#141E3C] block" data-i18n="contact_hours_label">Opening Hours</span>
+              <span class="font-bold text-[#141E3C] block" data-i18n="contact_hours_label">Visiting Hours</span>
               <span data-i18n="contact_hours_val">Daily: 10:00 AM – 9:00 PM WITA</span>
             </div>
           </div>
@@ -2467,7 +3000,7 @@
               <svg class="w-4 h-4 fill-current text-emerald-700" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
             </div>
             <div>
-              <span class="font-bold text-[#141E3C] block" data-i18n="contact_chat_label">Instant Reservation</span>
+              <span class="font-bold text-[#141E3C] block" data-i18n="contact_chat_label">Instant WhatsApp Booking</span>
               <a href="https://wa.me/6281236695755?text=Hello%20Massaji Spa Bali%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20spa%20treatment." target="_blank" class="text-emerald-800 font-bold hover:underline">
                 +62 812-3669-5755 (WhatsApp Direct)
               </a>
@@ -2513,16 +3046,16 @@
               <span class="text-[9px] uppercase tracking-widest text-sky-200 block">Canggu &bull; Bali</span>
             </div>
           </div>
-          <p class="text-white/60 leading-relaxed font-light">
+          <p class="text-white/60 leading-relaxed font-light" data-i18n="footer_tagline">
             Authentic Balinese Massage, Curated Spa Packages &amp; Holistic Wellness Sanctuary in Kerobokan and Canggu.
           </p>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h4 class="text-white font-bold uppercase tracking-wider mb-4 text-[11px]">Explore</h4>
+          <h4 class="text-white font-bold uppercase tracking-wider mb-4 text-[11px]" data-i18n="footer_explore">Explore</h4>
           <ul class="space-y-2.5 font-light">
-            <li><a href="#promotion" class="hover:text-white transition" data-i18n="nav_promo">Special Promo</a></li>
+            <li><a href="#promotion" class="hover:text-white transition" data-i18n="nav_promo">End Year Promo</a></li>
             <li><a href="#packages" class="hover:text-white transition" data-i18n="nav_packages">Spa Packages</a></li>
             <li><a href="#menu" class="hover:text-white transition" data-i18n="nav_menu">Treatment Menu</a></li>
             <li><a href="#about" class="hover:text-white transition" data-i18n="nav_about">About Us</a></li>
@@ -2532,19 +3065,19 @@
 
         <!-- Operating Hours -->
         <div>
-          <h4 class="text-white font-bold uppercase tracking-wider mb-4 text-[11px]">Visiting Hours</h4>
-          <p class="text-white/80 font-medium mb-1">Open Every Day</p>
-          <p class="text-white/60 mb-3">10:00 AM – 9:00 PM WITA</p>
-          <p class="text-white/60 text-[11px]">Prior booking via WhatsApp is recommended to secure your preferred private treatment suite.</p>
+          <h4 class="text-white font-bold uppercase tracking-wider mb-4 text-[11px]" data-i18n="footer_visiting_hours_title">Visiting Hours</h4>
+          <p class="text-white/80 font-medium mb-1" data-i18n="footer_visiting_days">Open Every Day</p>
+          <p class="text-white/60 mb-3" data-i18n="contact_hours_val">10:00 AM – 9:00 PM WITA</p>
+          <p class="text-white/60 text-[11px]" data-i18n="footer_visiting_note">Prior booking via WhatsApp is recommended to secure your preferred private treatment suite.</p>
         </div>
 
         <!-- Admin & Direct Reservation -->
         <div>
-          <h4 class="text-white font-bold uppercase tracking-wider mb-4 text-[11px]">Direct Contact</h4>
+          <h4 class="text-white font-bold uppercase tracking-wider mb-4 text-[11px]" data-i18n="footer_contact_title">Direct Contact</h4>
           <p class="text-white/80 mb-2">WhatsApp: +62 812-3669-5755</p>
           <p class="text-white/80 mb-4">Phone: +62 811-3857-188</p>
           <a href="admin/" class="inline-flex items-center gap-1.5 text-[11px] text-[#BAE0FD] hover:underline font-semibold">
-            <span>Staff / Admin Portal &rarr;</span>
+            <span data-i18n="footer_admin_link">Staff / Admin Portal &rarr;</span>
           </a>
         </div>
 
@@ -2558,13 +3091,60 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- 11. INTERACTIVE BOOKING MODAL -->
+  <!-- 11. PROMO FLYER POPUP MODAL (AUTO-POPUP FIRST VISIT) -->
+  <!-- ========================================== -->
+  <div id="promo-flyer-popup" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-3 sm:p-5 transition-all duration-300">
+    <div class="bg-gradient-to-br from-[#141E3C] via-[#1E3A8A] to-[#141E3C] text-white rounded-3xl max-w-md sm:max-w-lg w-full p-5 sm:p-6 shadow-2xl border-2 border-sky-300/40 relative max-h-[92vh] overflow-y-auto flex flex-col items-center">
+      
+      <!-- Close Button -->
+      <button onclick="closePromoPopup()" class="absolute top-3.5 right-3.5 p-2 rounded-full bg-white/10 hover:bg-white/25 text-white/80 hover:text-white transition cursor-pointer" title="Close Popup">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Badge Header -->
+      <div class="text-center mb-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-[#141E3C] font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md" data-i18n="popup_badge">
+          🎉 SPECIAL LIMITED OFFER
+        </span>
+        <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mt-1.5 leading-snug" data-i18n="popup_title">
+          END YEAR 2026 Big Promotion
+        </h3>
+        <p class="text-sky-200 text-xs font-light mt-0.5" data-i18n="popup_validity">
+          Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)
+        </p>
+      </div>
+
+      <!-- Flyer Image with Zoom Effect -->
+      <div class="w-full rounded-2xl overflow-hidden border border-sky-300/30 shadow-xl bg-black/30 mb-4 flex items-center justify-center">
+        <img src="assets/images/promo-flyer-2026.jpeg" alt="Massaji Spa End Year Promotion Flyer" class="w-full h-auto max-h-[48vh] object-contain cursor-pointer hover:scale-[1.02] transition duration-300" onclick="closePromoPopup(); window.location.href='#promotion';">
+      </div>
+
+      <!-- Action Buttons Bar -->
+      <div class="w-full flex flex-col sm:flex-row items-center gap-2.5 pt-1">
+        <a href="https://wa.me/6281236695755?text=Hello%20Massaji%20Spa%2C%20I%20would%20like%20to%20claim%20the%20End%20Year%202026%20Big%20Promotion." target="_blank" id="popup-wa-btn" class="w-full sm:flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider text-center shadow-lg transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span data-i18n="popup_btn_wa">Claim Promo via WhatsApp</span>
+        </a>
+        <button onclick="closePromoPopup(); window.location.href='#promotion';" class="w-full sm:w-auto py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-[#BAE0FD] font-bold text-xs uppercase tracking-wider text-center transition cursor-pointer" data-i18n="popup_btn_explore">
+          Explore Promo Details &rarr;
+        </button>
+      </div>
+
+      <button onclick="closePromoPopup()" class="mt-2.5 text-[11px] text-white/50 hover:text-white/80 transition underline cursor-pointer" data-i18n="popup_btn_skip">
+        Continue to Website
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 12. INTERACTIVE BOOKING MODAL -->
   <!-- ========================================== -->
   <div id="booking-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#BAE0FD] relative my-8">
       
       <!-- Close Button -->
-      <button id="modal-close-btn" class="absolute top-5 right-5 p-2 rounded-full text-[#475569] hover:text-[#141E3C] hover:bg-[#F0F8FF] transition">
+      <button id="modal-close-btn" class="absolute top-5 right-5 p-2 rounded-full text-[#475569] hover:text-[#141E3C] hover:bg-[#F0F8FF] transition cursor-pointer">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
 
@@ -2572,115 +3152,116 @@
       <form id="booking-form" class="space-y-4">
         <div>
           <span class="text-[10px] font-bold uppercase tracking-widest text-[#0284C7] block mb-1" data-i18n="modal_eyebrow">Direct Reservation</span>
-          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141E3C]" data-i18n="modal_title">Book Your Spa Treatment</h3>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141E3C]" data-i18n="modal_title">Reserve Your Spa Session</h3>
           <p class="text-xs text-[#475569] mt-1 font-light" data-i18n="modal_desc">
-            Your booking inquiry will be sent directly to our reception email and formatted for instant WhatsApp confirmation.
+            Your appointment request will be promptly delivered to our receptionist for instant confirmation via WhatsApp.
           </p>
         </div>
 
         <div class="space-y-3 pt-2">
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_name">Full Name *</label>
-            <input type="text" name="name" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="e.g. Sarah Jenkins">
+            <input type="text" name="name" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="e.g. Sarah Jenkins / Michael" data-i18n-placeholder="modal_name_placeholder">
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_phone">WhatsApp / Phone *</label>
-              <input type="tel" name="phone" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="+61 400 000 000">
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_phone">WhatsApp / Mobile Number *</label>
+              <input type="tel" name="phone" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="e.g. +62 812-3456-7890" data-i18n-placeholder="modal_phone_placeholder">
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_email">Email Address</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_email">Email Address (Optional)</label>
               <input type="email" name="email" class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="sarah@example.com">
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_service">Select Treatment / Package *</label>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_service">Select Treatment or Package *</label>
             <select name="service" id="booking-service" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-white">
-              <optgroup label="Special Monthly Promotions">
-                <option value="Hot Stone Massage (Promo)">Hot Stone Massage (Promo) (Rp 355.000)</option>
-                <option value="Anti Cellulite Treatment (Promo)">Anti Cellulite Treatment (Promo) (Rp 450.000)</option>
-                <option value="Hydrating Facial Mask (Promo)">Hydrating Facial Mask (Promo) (Rp 100.000)</option>
+              <optgroup label="End Year 2026 Big Promotion" data-label-en="End Year 2026 Big Promotion" data-label-id="Promo Akhir Tahun 2026">
+                <option value="Bali Traditional Massage (120 mins)" data-label-en="Bali Traditional Massage (120 mins) (Rp 300.000)" data-label-id="Pijat Tradisional Bali (120 menit) (Rp 300.000)">Bali Traditional Massage (120 mins) (Rp 300.000)</option>
+                <option value="Deep Tissue Massage (90 mins)" data-label-en="Deep Tissue Massage (90 mins) (Rp 285.000)" data-label-id="Pijat Deep Tissue (90 menit) (Rp 285.000)">Deep Tissue Massage (90 mins) (Rp 285.000)</option>
+                <option value="Body Slimming Treatment (Tummy / Thigh)" data-label-en="Body Slimming Treatment (Tummy / Thigh) (Rp 550.000)" data-label-id="Perawatan Body Slimming (Perut / Paha) (Rp 550.000)">Body Slimming Treatment (Tummy / Thigh) (Rp 550.000)</option>
+                <option value="Rose Bali Spa (120 mins)" data-label-en="Rose Bali Spa (120 mins) (Rp 600.000)" data-label-id="Rose Bali Spa (120 menit) (Rp 600.000)">Rose Bali Spa (120 mins) (Rp 600.000)</option>
               </optgroup>
-              <optgroup label="Single Packages (1 Person)">
-                <option value="Oh! So Relax (Single Package)">Oh! So Relax (Single Package) (Rp 335.000)</option>
-                <option value="Traditional Healing Massage (Single Package)">Traditional Healing Massage (Single Package) (Rp 450.000)</option>
-                <option value="Me, Myself &amp; Massaji (Single Package)">Me, Myself &amp; Massaji (Single Package) (Rp 785.000)</option>
-                <option value="Forever Young Luxury Ritual (Single Package)">Forever Young Luxury Ritual (Single Package) (Rp 1.000.000)</option>
+              <optgroup label="Single Packages (1 Person)" data-label-en="Single Packages (1 Person)" data-label-id="Paket Personal (1 Orang)">
+                <option value="Oh! So Relax (Single Package)" data-label-en="Oh! So Relax (Single Package) (Rp 335.000)" data-label-id="Oh! So Relax (Paket Personal) (Rp 335.000)">Oh! So Relax (Single Package) (Rp 335.000)</option>
+                <option value="Traditional Healing Massage (Single Package)" data-label-en="Traditional Healing Massage (Single Package) (Rp 450.000)" data-label-id="Traditional Healing Massage (Paket Personal) (Rp 450.000)">Traditional Healing Massage (Single Package) (Rp 450.000)</option>
+                <option value="Me, Myself &amp; Massaji (Single Package)" data-label-en="Me, Myself &amp; Massaji (Single Package) (Rp 785.000)" data-label-id="Me, Myself &amp; Massaji (Paket Personal) (Rp 785.000)">Me, Myself &amp; Massaji (Single Package) (Rp 785.000)</option>
+                <option value="Forever Young Luxury Ritual (Single Package)" data-label-en="Forever Young Luxury Ritual (Single Package) (Rp 1.000.000)" data-label-id="Forever Young Luxury Ritual (Paket Personal) (Rp 1.000.000)">Forever Young Luxury Ritual (Single Package) (Rp 1.000.000)</option>
               </optgroup>
-              <optgroup label="Couple Packages (2 Persons)">
-                <option value="Simply Us (Couple Package)">Simply Us (Couple Package) (Rp 700.000)</option>
-                <option value="Jaen Sajan (Couple Package)">Jaen Sajan (Couple Package) (Rp 900.000)</option>
-                <option value="Luh Muani (Couple Package)">Luh Muani (Couple Package) (Rp 1.150.000)</option>
-                <option value="Romantic Rose Bali Couple Spa">Romantic Rose Bali Couple Spa (Rp 1.475.000)</option>
-                <option value="Jegeg Bali Lavender Couple Spa">Jegeg Bali Lavender Couple Spa (Rp 2.650.000)</option>
+              <optgroup label="Couple Packages (2 Persons)" data-label-en="Couple Packages (2 Persons)" data-label-id="Paket Pasangan (2 Orang)">
+                <option value="Simply Us (Couple Package)" data-label-en="Simply Us (Couple Package) (Rp 700.000)" data-label-id="Simply Us (Paket Pasangan) (Rp 700.000)">Simply Us (Couple Package) (Rp 700.000)</option>
+                <option value="Jaen Sajan (Couple Package)" data-label-en="Jaen Sajan (Couple Package) (Rp 900.000)" data-label-id="Jaen Sajan (Paket Pasangan) (Rp 900.000)">Jaen Sajan (Couple Package) (Rp 900.000)</option>
+                <option value="Luh Muani (Couple Package)" data-label-en="Luh Muani (Couple Package) (Rp 1.150.000)" data-label-id="Luh Muani (Paket Pasangan) (Rp 1.150.000)">Luh Muani (Couple Package) (Rp 1.150.000)</option>
+                <option value="Romantic Rose Bali Couple Spa" data-label-en="Romantic Rose Bali Couple Spa (Rp 1.475.000)" data-label-id="Romantic Rose Bali Couple Spa (Rp 1.475.000)">Romantic Rose Bali Couple Spa (Rp 1.475.000)</option>
+                <option value="Jegeg Bali Lavender Couple Spa" data-label-en="Jegeg Bali Lavender Couple Spa (Rp 2.650.000)" data-label-id="Jegeg Bali Lavender Couple Spa (Rp 2.650.000)">Jegeg Bali Lavender Couple Spa (Rp 2.650.000)</option>
               </optgroup>
-              <optgroup label="Group Packages (4 Persons)">
-                <option value="Bali Bagus Package (Group 4 Pax)">Bali Bagus Package (Group 4 Pax) (Rp 1.250.000)</option>
-                <option value="Bali Kuat Package (Group 4 Pax)">Bali Kuat Package (Group 4 Pax) (Rp 1.325.000)</option>
+              <optgroup label="Group Packages (4 Persons)" data-label-en="Group Packages (4 Persons)" data-label-id="Paket Rombongan (4 Orang)">
+                <option value="Bali Bagus Package (Group 4 Pax)" data-label-en="Bali Bagus Package (Group 4 Pax) (Rp 1.250.000)" data-label-id="Bali Bagus Package (Group 4 Orang) (Rp 1.250.000)">Bali Bagus Package (Group 4 Pax) (Rp 1.250.000)</option>
+                <option value="Bali Kuat Package (Group 4 Pax)" data-label-en="Bali Kuat Package (Group 4 Pax) (Rp 1.325.000)" data-label-id="Bali Kuat Package (Group 4 Orang) (Rp 1.325.000)">Bali Kuat Package (Group 4 Pax) (Rp 1.325.000)</option>
               </optgroup>
-              <optgroup label="Body Massage & Advance Body Therapy">
-                <option value="Balinese Traditional Massage">Balinese Traditional Massage (Rp 215.000)</option>
-                <option value="Swedish Relaxing Massage">Swedish Relaxing Massage (Rp 200.000)</option>
-                <option value="Deep Tissue / Sports Massage">Deep Tissue / Sports Massage (Rp 235.000)</option>
-                <option value="Hot Stone Healing Massage">Hot Stone Healing Massage (Rp 315.000)</option>
-                <option value="Massaji Signature Massage (Advance)">Massaji Signature Massage (Advance) (Rp 400.000)</option>
-                <option value="Pre Natal (Pregnancy Massage)">Pre Natal (Pregnancy Massage) (Rp 375.000)</option>
-                <option value="Foot Reflexology">Foot Reflexology (Rp 135.000)</option>
-                <option value="Head &amp; Shoulder Tension Relief">Head &amp; Shoulder Tension Relief (Rp 160.000)</option>
-                <option value="Focused Back Massage">Focused Back Massage (Rp 200.000)</option>
-                <option value="Acupressure Facial Massage">Acupressure Facial Massage (Rp 150.000)</option>
-                <option value="Cellulite Massage with Machine">Cellulite Massage with Machine (Rp 350.000)</option>
+              <optgroup label="Body Massage &amp; Advance Body Therapy" data-label-en="Body Massage &amp; Advance Body Therapy" data-label-id="Pijat Tubuh &amp; Terapi Lanjutan">
+                <option value="Balinese Traditional Massage" data-label-en="Balinese Traditional Massage (Rp 215.000)" data-label-id="Pijat Tradisional Bali (Rp 215.000)">Balinese Traditional Massage (Rp 215.000)</option>
+                <option value="Swedish Relaxing Massage" data-label-en="Swedish Relaxing Massage (Rp 200.000)" data-label-id="Pijat Relaksasi Swedish (Rp 200.000)">Swedish Relaxing Massage (Rp 200.000)</option>
+                <option value="Deep Tissue / Sports Massage" data-label-en="Deep Tissue / Sports Massage (Rp 235.000)" data-label-id="Pijat Deep Tissue / Sports (Rp 235.000)">Deep Tissue / Sports Massage (Rp 235.000)</option>
+                <option value="Hot Stone Healing Massage" data-label-en="Hot Stone Healing Massage (Rp 315.000)" data-label-id="Pijat Terapi Batu Hangat (Hot Stone) (Rp 315.000)">Hot Stone Healing Massage (Rp 315.000)</option>
+                <option value="Massaji Signature Massage (Advance)" data-label-en="Massaji Signature Massage (Advance) (Rp 400.000)" data-label-id="Massaji Signature Massage (Advance) (Rp 400.000)">Massaji Signature Massage (Advance) (Rp 400.000)</option>
+                <option value="Pre Natal (Pregnancy Massage)" data-label-en="Pre Natal (Pregnancy Massage) (Rp 375.000)" data-label-id="Pijat Pre Natal (Khusus Ibu Hamil) (Rp 375.000)">Pre Natal (Pregnancy Massage) (Rp 375.000)</option>
+                <option value="Foot Reflexology" data-label-en="Foot Reflexology (Rp 135.000)" data-label-id="Refleksi Kaki Tradisional (Rp 135.000)">Foot Reflexology (Rp 135.000)</option>
+                <option value="Head &amp; Shoulder Tension Relief" data-label-en="Head &amp; Shoulder Tension Relief (Rp 160.000)" data-label-id="Pijat Kepala, Leher &amp; Bahu (Rp 160.000)">Head &amp; Shoulder Tension Relief (Rp 160.000)</option>
+                <option value="Focused Back Massage" data-label-en="Focused Back Massage (Rp 200.000)" data-label-id="Pijat Khusus Punggung (Rp 200.000)">Focused Back Massage (Rp 200.000)</option>
+                <option value="Acupressure Facial Massage" data-label-en="Acupressure Facial Massage (Rp 150.000)" data-label-id="Totok Wajah Akupresur (Rp 150.000)">Acupressure Facial Massage (Rp 150.000)</option>
+                <option value="Cellulite Massage with Machine" data-label-en="Cellulite Massage with Machine (Rp 350.000)" data-label-id="Pijat Selulit dengan Mesin Khusus (Rp 350.000)">Cellulite Massage with Machine (Rp 350.000)</option>
               </optgroup>
-              <optgroup label="Body Slimming & Anti-Cellulite RF">
-                <option value="Anti Cellulite Full Treatment">Anti Cellulite Full Treatment (Rp 500.000)</option>
-                <option value="Body Slimming Cavitation RF (Arm)">Body Slimming Cavitation RF (Arm) (Rp 700.000)</option>
-                <option value="Body Slimming Cavitation RF (Thigh)">Body Slimming Cavitation RF (Thigh) (Rp 850.000)</option>
-                <option value="Body Slimming Cavitation RF (Tummy)">Body Slimming Cavitation RF (Tummy) (Rp 900.000)</option>
+              <optgroup label="Body Slimming &amp; Anti-Cellulite RF" data-label-en="Body Slimming &amp; Anti-Cellulite RF" data-label-id="Body Slimming &amp; Anti-Selulit RF">
+                <option value="Anti Cellulite Full Treatment" data-label-en="Anti Cellulite Full Treatment (Rp 500.000)" data-label-id="Perawatan Anti-Selulit Lengkap (Rp 500.000)">Anti Cellulite Full Treatment (Rp 500.000)</option>
+                <option value="Body Slimming Cavitation RF (Arm)" data-label-en="Body Slimming Cavitation RF (Arm) (Rp 700.000)" data-label-id="Body Slimming Cavitation RF (Lengan) (Rp 700.000)">Body Slimming Cavitation RF (Arm) (Rp 700.000)</option>
+                <option value="Body Slimming Cavitation RF (Thigh)" data-label-en="Body Slimming Cavitation RF (Thigh) (Rp 850.000)" data-label-id="Body Slimming Cavitation RF (Paha) (Rp 850.000)">Body Slimming Cavitation RF (Thigh) (Rp 850.000)</option>
+                <option value="Body Slimming Cavitation RF (Tummy)" data-label-en="Body Slimming Cavitation RF (Tummy) (Rp 900.000)" data-label-id="Body Slimming Cavitation RF (Perut) (Rp 900.000)">Body Slimming Cavitation RF (Tummy) (Rp 900.000)</option>
               </optgroup>
-              <optgroup label="Body Spa Rituals & Special Botanicals">
-                <option value="Aloe Vera Body Treatment Spa">Aloe Vera Body Treatment Spa (Rp 500.000)</option>
-                <option value="Balinese Boreh Warming Herbal Spa">Balinese Boreh Warming Herbal Spa (Rp 600.000)</option>
-                <option value="Green Tea &amp; Matcha Detox Spa">Green Tea &amp; Matcha Detox Spa (Rp 675.000)</option>
-                <option value="Rose Bali Anti-Aging Spa">Rose Bali Anti-Aging Spa (Rp 725.000)</option>
-                <option value="Refreshing Pear Vanilla Spa">Refreshing Pear Vanilla Spa (Rp 875.000)</option>
-                <option value="Magnolia &amp; Mint Body Spa">Magnolia &amp; Mint Body Spa (Rp 850.000)</option>
-                <option value="Sandalwood &amp; Turmeric Spa">Sandalwood &amp; Turmeric Spa (Rp 875.000)</option>
-                <option value="Lavender Rosemary Mint Body Spa">Lavender Rosemary Mint Body Spa (Rp 900.000)</option>
+              <optgroup label="Body Spa Rituals &amp; Special Botanicals" data-label-en="Body Spa Rituals &amp; Special Botanicals" data-label-id="Ritual Body Spa &amp; Rempah Alami">
+                <option value="Aloe Vera Body Treatment Spa" data-label-en="Aloe Vera Body Treatment Spa (Rp 500.000)" data-label-id="Aloe Vera Sunburn Relief Body Spa (Rp 500.000)">Aloe Vera Body Treatment Spa (Rp 500.000)</option>
+                <option value="Balinese Boreh Warming Herbal Spa" data-label-en="Balinese Boreh Warming Herbal Spa (Rp 600.000)" data-label-id="Balinese Boreh Warming Herbal Spa (Rp 600.000)">Balinese Boreh Warming Herbal Spa (Rp 600.000)</option>
+                <option value="Green Tea &amp; Matcha Detox Spa" data-label-en="Green Tea &amp; Matcha Detox Spa (Rp 675.000)" data-label-id="Green Tea &amp; Matcha Detox Spa (Rp 675.000)">Green Tea &amp; Matcha Detox Spa (Rp 675.000)</option>
+                <option value="Rose Bali Anti-Aging Spa" data-label-en="Rose Bali Anti-Aging Spa (Rp 725.000)" data-label-id="Rose Bali Anti-Aging Body Spa (Rp 725.000)">Rose Bali Anti-Aging Spa (Rp 725.000)</option>
+                <option value="Refreshing Pear Vanilla Spa" data-label-en="Refreshing Pear Vanilla Spa (Rp 875.000)" data-label-id="Refreshing Pear Vanilla Body Spa (Rp 875.000)">Refreshing Pear Vanilla Spa (Rp 875.000)</option>
+                <option value="Magnolia &amp; Mint Body Spa" data-label-en="Magnolia &amp; Mint Body Spa (Rp 850.000)" data-label-id="Magnolia &amp; Mint Refreshing Spa (Rp 850.000)">Magnolia &amp; Mint Body Spa (Rp 850.000)</option>
+                <option value="Sandalwood &amp; Turmeric Spa" data-label-en="Sandalwood &amp; Turmeric Spa (Rp 875.000)" data-label-id="Sandalwood &amp; Turmeric Royal Spa (Rp 875.000)">Sandalwood &amp; Turmeric Spa (Rp 875.000)</option>
+                <option value="Lavender Rosemary Mint Body Spa" data-label-en="Lavender Rosemary Mint Body Spa (Rp 900.000)" data-label-id="Lavender Rosemary Mint Body Spa (Rp 900.000)">Lavender Rosemary Mint Body Spa (Rp 900.000)</option>
               </optgroup>
-              <optgroup label="Facial Treatments & Machine Care">
-                <option value="Biokos Botanical Facial (60 Mins)">Biokos Botanical Facial (60 Mins) (Rp 350.000)</option>
-                <option value="Biokos Deluxe Facial (90 Mins)">Biokos Deluxe Facial (90 Mins) (Rp 450.000)</option>
-                <option value="Biokos Ultimate Deep Facial (120 Mins)">Biokos Ultimate Deep Facial (120 Mins) (Rp 575.000)</option>
-                <option value="Hi-Frequency Machine with Violet Rays">Hi-Frequency Machine with Violet Rays (Rp 125.000)</option>
-                <option value="Cold Light LED Facial Therapy">Cold Light LED Facial Therapy (Rp 125.000)</option>
-                <option value="RF Facial Machine for Wrinkle (Face Iron)">RF Facial Machine for Wrinkle (Face Iron) (Rp 275.000)</option>
-                <option value="Instant Firming Kaolin Mask">Instant Firming Kaolin Mask (Rp 150.000)</option>
+              <optgroup label="Facial Treatments &amp; Machine Care" data-label-en="Facial Treatments &amp; Machine Care" data-label-id="Perawatan Wajah &amp; Teknologi Mesin">
+                <option value="Biokos Botanical Facial (60 Mins)" data-label-en="Biokos Botanical Facial (60 Mins) (Rp 350.000)" data-label-id="Biokos Botanical Facial (60 Menit) (Rp 350.000)">Biokos Botanical Facial (60 Mins) (Rp 350.000)</option>
+                <option value="Biokos Deluxe Facial (90 Mins)" data-label-en="Biokos Deluxe Facial (90 Mins) (Rp 450.000)" data-label-id="Biokos Deluxe Facial (90 Menit) (Rp 450.000)">Biokos Deluxe Facial (90 Mins) (Rp 450.000)</option>
+                <option value="Biokos Ultimate Deep Facial (120 Mins)" data-label-en="Biokos Ultimate Deep Facial (120 Mins) (Rp 575.000)" data-label-id="Biokos Ultimate Deep Facial (120 Menit) (Rp 575.000)">Biokos Ultimate Deep Facial (120 Mins) (Rp 575.000)</option>
+                <option value="Hi-Frequency Machine with Violet Rays" data-label-en="Hi-Frequency Machine with Violet Rays (Rp 125.000)" data-label-id="Terapi Wajah High-Frequency Violet Rays (Rp 125.000)">Hi-Frequency Machine with Violet Rays (Rp 125.000)</option>
+                <option value="Cold Light LED Facial Therapy" data-label-en="Cold Light LED Facial Therapy (Rp 125.000)" data-label-id="Terapi Wajah LED Cold Light Therapy (Rp 125.000)">Cold Light LED Facial Therapy (Rp 125.000)</option>
+                <option value="RF Facial Machine for Wrinkle (Face Iron)" data-label-en="RF Facial Machine for Wrinkle (Face Iron) (Rp 275.000)" data-label-id="Mesin RF Wajah Anti-Kerutan (Face Iron) (Rp 275.000)">RF Facial Machine for Wrinkle (Face Iron) (Rp 275.000)</option>
+                <option value="Instant Firming Kaolin Mask" data-label-en="Instant Firming Kaolin Mask (Rp 150.000)" data-label-id="Masker Pengencang Instan Kaolin Clay (Rp 150.000)">Instant Firming Kaolin Mask (Rp 150.000)</option>
               </optgroup>
-              <optgroup label="Nail Services & Nail Art">
-                <option value="Deluxe Hands Spa with Nail Gel">Deluxe Hands Spa with Nail Gel (Rp 350.000)</option>
-                <option value="Deluxe Foot Spa with Nail Gel">Deluxe Foot Spa with Nail Gel (Rp 350.000)</option>
-                <option value="Basic Nail Hand or Foot with Gel">Basic Nail Hand or Foot with Gel (Rp 150.000)</option>
-                <option value="Dr. Feeto Callus Removal Treatment">Dr. Feeto Callus Removal Treatment (Rp 225.000)</option>
-                <option value="Nail Gel Remover &amp; Custom Art">Nail Gel Remover &amp; Custom Art (Rp 100.000)</option>
+              <optgroup label="Nail Services &amp; Nail Art" data-label-en="Nail Services &amp; Nail Art" data-label-id="Layanan Kuku &amp; Seni Manikur">
+                <option value="Deluxe Hands Spa with Nail Gel" data-label-en="Deluxe Hands Spa with Nail Gel (Rp 350.000)" data-label-id="Deluxe Hands Spa dengan Kutek Gel (Rp 350.000)">Deluxe Hands Spa with Nail Gel (Rp 350.000)</option>
+                <option value="Deluxe Foot Spa with Nail Gel" data-label-en="Deluxe Foot Spa with Nail Gel (Rp 350.000)" data-label-id="Deluxe Foot Spa dengan Kutek Gel (Rp 350.000)">Deluxe Foot Spa with Nail Gel (Rp 350.000)</option>
+                <option value="Basic Nail Hand or Foot with Gel" data-label-en="Basic Nail Hand or Foot with Gel (Rp 150.000)" data-label-id="Manikur / Pedikur Dasar dengan Gel (Rp 150.000)">Basic Nail Hand or Foot with Gel (Rp 150.000)</option>
+                <option value="Dr. Feeto Callus Removal Treatment" data-label-en="Dr. Feeto Callus Removal Treatment (Rp 225.000)" data-label-id="Perawatan Penghilang Kapalan Dr. Feeto (Rp 225.000)">Dr. Feeto Callus Removal Treatment (Rp 225.000)</option>
+                <option value="Nail Gel Remover &amp; Custom Art" data-label-en="Nail Gel Remover &amp; Custom Art (Rp 100.000)" data-label-id="Pembersihan Kutek Gel &amp; Nail Art Kustom (Rp 100.000)">Nail Gel Remover &amp; Custom Art (Rp 100.000)</option>
               </optgroup>
-              <optgroup label="Additional Services & Surprise Packages">
-                <option value="Flower Bath with Aromatherapy">Flower Bath with Aromatherapy (Rp 175.000)</option>
-                <option value="Homemade Oatmeal &amp; Rice Body Scrub">Homemade Oatmeal &amp; Rice Body Scrub (Rp 150.000)</option>
-                <option value="Calming Oatmeal Body Mask">Calming Oatmeal Body Mask (Rp 150.000)</option>
-                <option value="Hot Himalayan Salt &amp; Flower Compress">Hot Himalayan Salt &amp; Flower Compress (Rp 100.000)</option>
-                <option value="Detoxifying Infra Red Body Wrap">Detoxifying Infra Red Body Wrap (Rp 125.000)</option>
-                <option value="Hydrating Facial Mask Add-on">Hydrating Facial Mask Add-on (Rp 125.000)</option>
-                <option value="Exclusive Spa Gift Voucher Card">Exclusive Spa Gift Voucher Card (Rp 40.000)</option>
-                <option value="Birthday / Anniversary Surprise Package">Birthday / Anniversary Surprise Package (Rp 425.000)</option>
+              <optgroup label="Additional Services &amp; Surprise Packages" data-label-en="Additional Services &amp; Surprise Packages" data-label-id="Layanan Tambahan &amp; Paket Kejutan">
+                <option value="Flower Bath with Aromatherapy" data-label-en="Flower Bath with Aromatherapy (Rp 175.000)" data-label-id="Mandi Berendam Bunga Aromaterapi (Rp 175.000)">Flower Bath with Aromatherapy (Rp 175.000)</option>
+                <option value="Homemade Oatmeal &amp; Rice Body Scrub" data-label-en="Homemade Oatmeal &amp; Rice Body Scrub (Rp 150.000)" data-label-id="Lulur Alami Oatmeal &amp; Beras Tradisional (Rp 150.000)">Homemade Oatmeal &amp; Rice Body Scrub (Rp 150.000)</option>
+                <option value="Calming Oatmeal Body Mask" data-label-en="Calming Oatmeal Body Mask (Rp 150.000)" data-label-id="Masker Tubuh Menenangkan Oatmeal (Rp 150.000)">Calming Oatmeal Body Mask (Rp 150.000)</option>
+                <option value="Hot Himalayan Salt &amp; Flower Compress" data-label-en="Hot Himalayan Salt &amp; Flower Compress (Rp 100.000)" data-label-id="Kompres Hangat Garam Himalaya &amp; Bunga (Rp 100.000)">Hot Himalayan Salt &amp; Flower Compress (Rp 100.000)</option>
+                <option value="Detoxifying Infra Red Body Wrap" data-label-en="Detoxifying Infra Red Body Wrap (Rp 125.000)" data-label-id="Bungkus Tubuh Detoksifikasi Infra Red (Rp 125.000)">Detoxifying Infra Red Body Wrap (Rp 125.000)</option>
+                <option value="Hydrating Facial Mask Add-on" data-label-en="Hydrating Facial Mask Add-on (Rp 125.000)" data-label-id="Tambahan Masker Wajah Menghidrasi (Rp 125.000)">Hydrating Facial Mask Add-on (Rp 125.000)</option>
+                <option value="Exclusive Spa Gift Voucher Card" data-label-en="Exclusive Spa Gift Voucher Card (Rp 40.000)" data-label-id="Voucher Hadiah Spa Eksklusif (Rp 40.000)">Exclusive Spa Gift Voucher Card (Rp 40.000)</option>
+                <option value="Birthday / Anniversary Surprise Package" data-label-en="Birthday / Anniversary Surprise Package (Rp 425.000)" data-label-id="Paket Kejutan Ulang Tahun / Anniversary (Rp 425.000)">Birthday / Anniversary Surprise Package (Rp 425.000)</option>
               </optgroup>
             </select>
           </div>
 
           <div class="grid grid-cols-3 gap-3">
             <div class="col-span-1">
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_date">Date *</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_date">Appointment Date *</label>
               <input type="date" name="date" id="booking-date" required class="w-full px-3 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-[#F0F8FF]/30">
             </div>
             <div class="col-span-1">
@@ -2696,26 +3277,26 @@
               </select>
             </div>
             <div class="col-span-1">
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_guests">Guests</label>
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_guests">Number of Guests</label>
               <select name="guests" class="w-full px-3 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-white">
-                <option value="1">1 Person</option>
-                <option value="2" selected>2 Persons</option>
-                <option value="3">3 Persons</option>
-                <option value="4">4 Persons</option>
-                <option value="5+">5+ Persons</option>
+                <option value="1" data-i18n="modal_guest_1">1 Person</option>
+                <option value="2" data-i18n="modal_guest_2" selected>2 Persons</option>
+                <option value="3" data-i18n="modal_guest_3">3 Persons</option>
+                <option value="4" data-i18n="modal_guest_4">4 Persons</option>
+                <option value="5+" data-i18n="modal_guest_5">5+ Persons</option>
               </select>
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_notes">Special Requests (Optional)</label>
-            <textarea name="notes" rows="2" class="w-full px-3.5 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="Preferred therapist gender, focus areas, or occasion details..."></textarea>
+            <textarea name="notes" rows="2" class="w-full px-3.5 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="Therapist preferences, tension focus areas, or anniversary celebration..." data-i18n-placeholder="modal_notes_placeholder"></textarea>
           </div>
         </div>
 
         <div id="booking-error-msg" class="hidden text-xs text-rose-600 bg-rose-50 p-2.5 rounded-lg border border-rose-200"></div>
 
-        <button type="submit" id="booking-submit-btn" class="w-full py-3.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider shadow-lg transition duration-200" data-i18n="modal_submit">
+        <button type="submit" id="booking-submit-btn" class="w-full py-3.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider shadow-lg transition duration-200 cursor-pointer" data-i18n="modal_submit">
           Submit Reservation Request
         </button>
       </form>
@@ -2727,13 +3308,13 @@
         </div>
         <h3 class="font-serif text-2xl font-bold text-[#141E3C]" data-i18n="modal_success_title">Reservation Received</h3>
         <p id="booking-summary-text" class="text-xs text-[#475569] leading-relaxed max-w-sm mx-auto font-light">
-          Your inquiry has been processed. Please confirm directly on WhatsApp for instant confirmation.
+          Your appointment request has been received. Please confirm directly on WhatsApp for instant confirmation.
         </p>
         <div class="pt-4 flex flex-col gap-2.5">
-          <a id="wa-confirm-link" href="#" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow transition flex items-center justify-center gap-2">
+          <a id="wa-confirm-link" href="#" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow transition flex items-center justify-center gap-2" data-i18n="modal_btn_wa">
             Confirm Instantly on WhatsApp
           </a>
-          <button onclick="closeBookingModal()" class="w-full py-2.5 rounded-xl border border-[#BAE0FD] text-[#475569] hover:bg-[#F0F8FF] font-bold text-xs uppercase tracking-wider transition" data-i18n="modal_btn_close">
+          <button onclick="closeBookingModal()" class="w-full py-2.5 rounded-xl border border-[#BAE0FD] text-[#475569] hover:bg-[#F0F8FF] font-bold text-xs uppercase tracking-wider transition cursor-pointer" data-i18n="modal_btn_close">
             Close Window
           </button>
         </div>
