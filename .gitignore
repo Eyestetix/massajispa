@@ -4,3 +4,11 @@ __pycache__/
 *.pyc
 .system_generated/
 scratch/
+
+# User uploads in production
+assets/uploads/*
+!assets/uploads/.gitkeep
+!assets/uploads/.htaccess
+
+# Runtime booking logs
+data/bookings.json

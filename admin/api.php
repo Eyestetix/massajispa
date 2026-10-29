@@ -272,51 +272,120 @@ switch ($action) {
         break;
 
     // ----------------------------------------------------
-    // Upload Image
+    // Upload Image (Separated to assets/uploads/ with Validation)
     // ----------------------------------------------------
     case 'upload_image':
-        $img_dir = __DIR__ . '/../assets/images/';
-        if (!is_dir($img_dir)) {
-            @mkdir($img_dir, 0755, true);
+        $upload_dir = __DIR__ . '/../assets/uploads/';
+        if (!is_dir($upload_dir)) {
+            @mkdir($upload_dir, 0755, true);
+        }
+        if (!is_writable($upload_dir)) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'Direktori upload tidak dapat ditulis. Periksa izin akses folder assets/uploads.']);
+            exit;
         }
 
-        // Check if sent via $_FILES
+        $allowed_exts = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        $max_file_size = 8 * 1024 * 1024; // 8MB
+
+        // 1. Check if sent via multipart $_FILES
         if (!empty($_FILES['image']['tmp_name'])) {
+            $tmp_file = $_FILES['image']['tmp_name'];
             $orig_name = basename($_FILES['image']['name']);
-            $clean_name = preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $orig_name);
-            $target = $img_dir . $clean_name;
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $file_size = $_FILES['image']['size'];
+
+            if ($file_size > $max_file_size) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Ukuran file melebihi batas maksimal (8MB).']);
+                exit;
+            }
+
+            $ext = strtolower(pathinfo($orig_name, PATHINFO_EXTENSION));
+            if (!in_array($ext, $allowed_exts, true)) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Format file tidak didukung. Hanya file JPG, PNG, WEBP, dan GIF yang diizinkan.']);
+                exit;
+            }
+
+            // Verify real image
+            $img_info = @getimagesize($tmp_file);
+            if ($img_info === false) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'File bukan gambar yang valid.']);
+                exit;
+            }
+
+            $clean_stem = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($orig_name, PATHINFO_FILENAME));
+            $clean_stem = substr($clean_stem, 0, 40);
+            $unique_name = $clean_stem . '_' . date('Ymd_His') . '.' . $ext;
+            $target = $upload_dir . $unique_name;
+
+            if (move_uploaded_file($tmp_file, $target)) {
                 echo json_encode([
                     'success' => true,
-                    'path' => 'assets/images/' . $clean_name,
-                    'message' => 'Gambar berhasil diupload!'
+                    'path' => 'assets/uploads/' . $unique_name,
+                    'filename' => $unique_name,
+                    'message' => 'Gambar berhasil diunggah ke assets/uploads/'
                 ]);
                 exit;
             }
         }
 
-        // Check if sent via base64 JSON
+        // 2. Check if sent via base64 JSON payload
         $raw = file_get_contents('php://input');
         $json = json_decode($raw, true);
         if ($json && !empty($json['data'])) {
             $fname = !empty($json['filename']) ? basename($json['filename']) : 'upload.jpg';
-            $clean_name = preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $fname);
+            $ext = strtolower(pathinfo($fname, PATHINFO_EXTENSION));
+            if (!in_array($ext, $allowed_exts, true)) {
+                $ext = 'jpg';
+            }
+
             $data = $json['data'];
             if (strpos($data, ',') !== false) {
                 $data = explode(',', $data)[1];
             }
             $bin = base64_decode($data);
-            if ($bin && file_put_contents($img_dir . $clean_name, $bin)) {
+
+            if ($bin === false) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Data base64 tidak valid.']);
+                exit;
+            }
+
+            if (strlen($bin) > $max_file_size) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Ukuran file melebihi batas maksimal (8MB).']);
+                exit;
+            }
+
+            $clean_stem = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($fname, PATHINFO_FILENAME));
+            $clean_stem = substr($clean_stem, 0, 40);
+            $unique_name = $clean_stem . '_' . date('Ymd_His') . '.' . $ext;
+            $target = $upload_dir . $unique_name;
+
+            if (file_put_contents($target, $bin)) {
+                // Verify real image
+                $img_info = @getimagesize($target);
+                if ($img_info === false) {
+                    @unlink($target);
+                    http_response_code(400);
+                    echo json_encode(['success' => false, 'message' => 'File yang diunggah bukan format gambar yang valid.']);
+                    exit;
+                }
+
                 echo json_encode([
                     'success' => true,
-                    'path' => 'assets/images/' . $clean_name,
-                    'message' => 'Gambar berhasil diupload!'
+                    'path' => 'assets/uploads/' . $unique_name,
+                    'filename' => $unique_name,
+                    'message' => 'Gambar berhasil diunggah ke assets/uploads/'
                 ]);
                 exit;
             }
         }
 
-        echo json_encode(['success' => false, 'message' => 'Gagal mengunggah file.']);
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Gagal mengunggah file. Data file tidak ditemukan atau izin folder bermasalah.']);
         break;
 
     // ----------------------------------------------------

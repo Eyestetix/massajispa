@@ -265,6 +265,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
             elif action == 'upload_image':
                 import base64
                 import re
+                import time
 
                 file_data = fields.get('data') # Base64 string from JSON
                 filename = fields.get('filename', '')
@@ -286,22 +287,32 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                         file_bytes = None
 
                 if file_bytes:
-                    clean_name = re.sub(r'[^a-zA-Z0-9_\.-]', '_', os.path.basename(out_filename))
-                    name_root, ext = os.path.splitext(clean_name)
-                    if not ext:
-                        ext = '.jpg'
-                    final_filename = f"{name_root}{ext}"
-                    save_path = os.path.join(DIRECTORY, 'assets', 'images', final_filename)
-                    with open(save_path, 'wb') as f:
-                        f.write(file_bytes)
-                    
-                    rel_path = f"assets/images/{final_filename}"
-                    resp = {
-                        'success': True,
-                        'path': rel_path,
-                        'filename': final_filename,
-                        'message': f'Gambar "{final_filename}" berhasil diunggah & disimpan!'
-                    }
+                    if len(file_bytes) > 8 * 1024 * 1024:
+                        resp = {'success': False, 'message': 'Ukuran file melebihi batas 8MB.'}
+                    else:
+                        clean_name = re.sub(r'[^a-zA-Z0-9_\.-]', '_', os.path.basename(out_filename))
+                        name_root, ext = os.path.splitext(clean_name)
+                        ext = ext.lower()
+                        if ext not in ['.jpg', '.jpeg', '.png', '.webp', '.gif']:
+                            ext = '.jpg'
+                        name_root = name_root[:40]
+                        timestamp = time.strftime('%Y%m%d_%H%M%S')
+                        final_filename = f"{name_root}_{timestamp}{ext}"
+
+                        upload_dir = os.path.join(DIRECTORY, 'assets', 'uploads')
+                        os.makedirs(upload_dir, exist_ok=True)
+                        save_path = os.path.join(upload_dir, final_filename)
+
+                        with open(save_path, 'wb') as f:
+                            f.write(file_bytes)
+
+                        rel_path = f"assets/uploads/{final_filename}"
+                        resp = {
+                            'success': True,
+                            'path': rel_path,
+                            'filename': final_filename,
+                            'message': f'Gambar "{final_filename}" berhasil diunggah ke assets/uploads/'
+                        }
                 else:
                     resp = {'success': False, 'message': 'Tidak ada data file yang diterima.'}
 

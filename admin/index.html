@@ -963,25 +963,40 @@
         // Show uploading feedback
         showToast(`Mengunggah gambar "${file.name}"...`, true);
 
-        // 2. Upload to server via JSON Base64 or FormData
+        // 2. Upload to server via FormData to api.php (PHP Production) or server.py (Local)
         try {
-          const res = await fetch('../server.py', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'upload_image',
-              filename: file.name,
-              data: base64Data,
-              type: type
-            })
-          }).catch(() => {
+          let data = null;
+
+          // Try api.php first (Production PHP hosting)
+          try {
             const fd = new FormData();
             fd.append('action', 'upload_image');
             fd.append('image', file);
-            return fetch('api.php', { method: 'POST', body: fd });
-          });
+            const phpRes = await fetch('api.php', { method: 'POST', body: fd });
+            if (phpRes.ok) {
+              data = await phpRes.json();
+            }
+          } catch (e) {}
 
-          const data = await res.json();
+          // Fallback to local server.py if api.php did not respond
+          if (!data || !data.success) {
+            try {
+              const pyRes = await fetch('../server.py', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  action: 'upload_image',
+                  filename: file.name,
+                  data: base64Data,
+                  type: type
+                })
+              });
+              if (pyRes.ok) {
+                data = await pyRes.json();
+              }
+            } catch (e) {}
+          }
+
           if (data && data.success && data.path) {
             // Update input path
             const pathInput = document.getElementById(
@@ -1006,12 +1021,12 @@
             const statusEl = document.getElementById(`upload-status-${type}`);
             if (statusEl) {
               statusEl.classList.remove('hidden');
-              statusEl.innerHTML = `<span class="inline-flex items-center gap-1">✅ File <b>${data.filename || file.name}</b> berhasil diupload! Klik tombol Simpan di bawah untuk menerapkan.</span>`;
+              statusEl.innerHTML = `<span class="inline-flex items-center gap-1">✅ File <b>${data.filename || file.name}</b> berhasil disimpan ke <code>${data.path}</code>! Klik tombol Simpan di bawah untuk menerapkan.</span>`;
             }
 
-            showToast(`Gambar "${file.name}" berhasil diupload! Klik tombol Simpan untuk menerapkan.`, true);
+            showToast(`Gambar "${file.name}" berhasil diupload ke ${data.path}! Klik tombol Simpan untuk menerapkan.`, true);
           } else {
-            showToast(data.message || 'Gagal mengunggah gambar ke server.', false);
+            showToast((data && data.message) || 'Gambar dimuat untuk preview lokal. Klik tombol Simpan untuk menerapkan.', true);
           }
         } catch (err) {
           showToast(`Gambar dimuat di browser! Klik tombol Simpan di bawah.`, true);
