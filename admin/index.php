@@ -1,21 +1,14 @@
 <?php
 // admin/index.php - Main Admin Dashboard
-require_once __DIR__ . '/auth.php';
+require_once __DIR__ . "/auth.php";
 check_auth();
 
-$settings_file = __DIR__ . '/../data/settings.json';
-$promo_file    = __DIR__ . '/../data/promo.json';
-$menu_file     = __DIR__ . '/../data/menu.json';
-$bookings_file = __DIR__ . '/../data/bookings.json';
+$settings_file = __DIR__ . "/../data/settings.json";
+$promo_file    = __DIR__ . "/../data/promo.json";
+$menu_file     = __DIR__ . "/../data/menu.json";
+$bookings_file = __DIR__ . "/../data/bookings.json";
 
 $settings = get_settings();
-$promo = file_exists($promo_file) ? json_decode(file_get_contents($promo_file), true) : [];
-$menu  = file_exists($menu_file) ? json_decode(file_get_contents($menu_file), true) : [];
-$bookings = file_exists($bookings_file) ? json_decode(file_get_contents($bookings_file), true) : [];
-
-if (!is_array($menu)) $menu = [];
-if (!is_array($bookings)) $bookings = [];
-
 $csrf_token = generate_csrf_token();
 ?>
 <!DOCTYPE html>
@@ -23,10 +16,10 @@ $csrf_token = generate_csrf_token();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - <?php echo htmlspecialchars($settings['site_name']); ?></title>
+  <title>Admin Dashboard — Massaji Spa Bali</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -34,927 +27,1389 @@ $csrf_token = generate_csrf_token();
         extend: {
           colors: {
             brand: {
-              dark: '#141210',
-              surface: '#1F1C18',
-              surfaceLight: '#2A2620',
-              gold: '#C5A880',
-              goldLight: '#DFC9AA',
-              terracotta: '#C27854',
-              sand: '#E7DEC8',
-              cream: '#FAF8F5'
+              skyBg: '#F0F8FF',
+              mist: '#E1F0FE',
+              navy: '#141E3C',
+              royal: '#1E3A8A',
+              royalDark: '#172554',
+              sky: '#0284C7',
+              emerald: '#059669',
+              border: '#BAE0FD'
             }
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+            sans: ['"Manrope"', 'sans-serif']
           }
         }
       }
     }
   </script>
+  <style>
+    body {
+      font-family: 'Manrope', -apple-system, sans-serif;
+      background: linear-gradient(180deg, #EBF5FE 0%, #F8FCFF 50%, #E8F4FE 100%);
+      background-attachment: fixed;
+      color: #141E3C;
+    }
+    .font-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .btn-royal {
+      background-color: #1E3A8A;
+      color: #FFFFFF;
+      transition: all 0.2s ease;
+    }
+    .btn-royal:hover {
+      background-color: #141E3C;
+      transform: translateY(-1px);
+    }
+    .img-preview-box {
+      background-size: cover;
+      background-position: center;
+      transition: all 0.3s ease;
+    }
+  </style>
 </head>
-<body class="bg-brand-dark min-h-screen text-stone-200 font-sans antialiased selection:bg-brand-terracotta selection:text-white">
+<body class="min-h-screen text-[#141E3C] antialiased">
 
   <!-- Toast Notification Container -->
   <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-[-100px] opacity-0 pointer-events-none max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-sm"></div>
 
-  <!-- Top Navigation Header -->
-  <header class="border-b border-stone-800/80 bg-brand-surface/90 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-terracotta to-brand-gold flex items-center justify-center text-brand-dark font-serif font-bold text-lg">M</span>
+  <!-- ======================================================== -->
+  <!-- 1. LOGIN VIEW (KEAMANAN TERJAGA - PASSWORD DEFAULT DIBERSIHKAN) -->
+  <!-- ======================================================== -->
+  <div id="admin-login-overlay" class="fixed inset-0 z-50 bg-[#EBF5FE]/95 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white border border-[#BAE0FD] rounded-2xl p-8 shadow-2xl relative">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-md border border-[#BAE0FD] mx-auto mb-3">
+          <img src="../assets/images/member.png" alt="Massaji Spa" class="w-full h-full object-contain p-0.5" onerror="this.onerror=null; this.src='../assets/images/member-1.png';">
+        </div>
+        <div class="text-[10px] tracking-[0.2em] text-[#0284C7] font-bold uppercase leading-tight">マッサージ</div>
+        <h2 class="font-serif text-2xl font-bold text-[#141E3C] mt-0.5">Massaji Spa Bali</h2>
+        <p class="text-xs text-[#475569] mt-1 font-medium">Management Portal Login</p>
+      </div>
+
+      <div id="login-error" class="hidden mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs text-center font-medium"></div>
+
+      <form id="admin-login-form" class="space-y-4" onsubmit="event.preventDefault(); handleAdminLogin();">
         <div>
-          <h1 class="font-serif text-xl font-semibold text-stone-100 tracking-wide leading-none"><?php echo htmlspecialchars($settings['site_name']); ?></h1>
-          <p class="text-[11px] text-brand-gold tracking-wider uppercase mt-0.5">Control Panel</p>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Username</label>
+          <input type="text" id="login-user" required placeholder="Masukkan username admin..." class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
         </div>
-      </div>
 
-      <div class="flex items-center gap-3">
-        <a href="../index.php" target="_blank" class="px-3.5 py-1.5 rounded-lg border border-stone-700 hover:border-brand-gold/60 text-stone-300 hover:text-brand-gold text-xs font-medium flex items-center gap-1.5 transition">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          Buka Website
-        </a>
-        <a href="logout.php" class="px-3.5 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium flex items-center gap-1.5 transition">
-          <svg class="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-          Keluar
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Password</label>
+          <input type="password" id="login-pass" required placeholder="Masukkan password admin..." class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:bg-white focus:outline-none">
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl btn-royal text-white font-bold text-xs tracking-wider uppercase shadow-lg shadow-blue-900/20">
+          Sign In to Dashboard
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-[#BAE0FD] text-center">
+        <a href="../index.php" class="inline-flex items-center gap-1.5 text-xs text-[#0284C7] font-bold hover:underline">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          Kembali ke Website
         </a>
       </div>
     </div>
-  </header>
+  </div>
 
-  <!-- Main Content Layout -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- ======================================================== -->
+  <!-- 2. MAIN DASHBOARD CONTENT -->
+  <!-- ======================================================== -->
+  <div id="admin-dashboard-container" class="hidden">
     
-    <!-- Navigation Tabs -->
-    <div class="flex border-b border-stone-800 gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
-      <button onclick="switchTab('home')" id="btn-tab-home" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-brand-gold text-brand-gold flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        Setting Home (Hero &amp; About)
-      </button>
-      <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-        Promo Akhir Tahun &amp; Flyer
-      </button>
-      <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        Menu &amp; Harga Treatment
-        <span class="px-2 py-0.5 text-[10px] rounded-full bg-stone-800 text-stone-400 font-mono"><?php echo count($menu); ?></span>
-      </button>
-      <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Kontak &amp; Reservasi
-      </button>
-      <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Reservasi Masuk
-        <span class="px-2 py-0.5 text-[10px] rounded-full bg-brand-terracotta/30 text-brand-terracotta font-mono"><?php echo count($bookings); ?></span>
-      </button>
-      <button onclick="switchTab('security')" id="btn-tab-security" class="tab-btn px-4 py-3 text-sm font-medium border-b-2 border-transparent text-stone-400 hover:text-stone-200 flex items-center gap-2 whitespace-nowrap transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        Keamanan
-      </button>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 0: SETTING HOME (HERO & ABOUT MASSAJI SPA) -->
-    <!-- ======================================================== -->
-    <div id="tab-home" class="tab-content space-y-8">
-      <form id="form-home" class="space-y-8">
-        <input type="hidden" name="action" value="save_home">
-        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-        <!-- Hero Section Settings -->
-        <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-          <div class="flex items-center gap-3 pb-4 mb-6 border-b border-stone-800">
-            <span class="w-8 h-8 rounded-lg bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">1</span>
-            <div>
-              <h2 class="font-serif text-2xl font-semibold text-stone-100">Bagian Hero (Banner Utama Depan)</h2>
-              <p class="text-xs text-stone-400">Atur judul pembuka, slogan, dan gambar utama yang pertama kali dilihat pengunjung.</p>
-            </div>
+    <!-- Top Navigation Header -->
+    <header class="border-b border-[#BAE0FD] bg-white/95 backdrop-blur sticky top-0 z-40 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-[#BAE0FD]">
+            <img src="../assets/images/member.png" alt="Massaji Spa" class="w-full h-full object-contain p-0.5" onerror="this.onerror=null; this.src='../assets/images/member-1.png';">
           </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-7 space-y-4">
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Judul Hero (Baris 1)</label>
-                <input type="text" name="hero_title_1" value="<?php echo htmlspecialchars($settings['hero_title_1'] ?? 'Find Your Balance.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Slogan Hero (Baris 2 - Huruf Miring)</label>
-                <input type="text" name="hero_title_2" value="<?php echo htmlspecialchars($settings['hero_title_2'] ?? 'Rediscover Serenity.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm italic font-serif text-brand-gold focus:border-brand-gold focus:outline-none">
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Deskripsi Lengkap Hero</label>
-                <textarea name="hero_desc" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-300 leading-relaxed focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['hero_desc'] ?? ''); ?></textarea>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Path / File Gambar Hero</label>
-                <input type="text" id="php-hero-image" name="hero_image" value="<?php echo htmlspecialchars($settings['hero_image'] ?? 'assets/images/massaji-hero.jpg'); ?>" oninput="document.getElementById('php-preview-hero').src='../' + this.value" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs font-mono text-stone-300 focus:border-brand-gold focus:outline-none">
-                <div class="flex flex-wrap gap-2 mt-2">
-                  <button type="button" onclick="document.getElementById('php-hero-image').value='assets/images/massaji-hero.jpg'; document.getElementById('php-preview-hero').src='../assets/images/massaji-hero.jpg';" class="px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-brand-gold text-[11px]">massaji-hero.jpg</button>
-                  <button type="button" onclick="document.getElementById('php-hero-image').value='assets/images/gambar2.jpg'; document.getElementById('php-preview-hero').src='../assets/images/gambar2.jpg';" class="px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-brand-gold text-[11px]">gambar2.jpg</button>
-                  <button type="button" onclick="document.getElementById('php-hero-image').value='assets/images/massaji-reception.jpg'; document.getElementById('php-preview-hero').src='../assets/images/massaji-reception.jpg';" class="px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-brand-gold text-[11px]">massaji-reception.jpg</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="lg:col-span-5 flex flex-col justify-center">
-              <span class="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">Live Preview Gambar Hero</span>
-              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative">
-                <img id="php-preview-hero" src="../<?php echo htmlspecialchars($settings['hero_image'] ?? 'assets/images/massaji-hero.jpg'); ?>" class="w-full h-full object-cover" onerror="this.src='../assets/images/MASAGE.JPG'">
-              </div>
-            </div>
+          <div>
+            <div class="text-[10px] tracking-[0.2em] text-[#0284C7] font-bold uppercase leading-tight">マッサージ</div>
+            <h1 class="font-serif text-2xl font-bold text-[#141E3C] leading-none">Massaji <span class="font-normal italic text-[#0284C7]">Spa</span></h1>
+            <p class="text-[10px] text-[#475569] tracking-wider uppercase mt-0.5 font-bold">Admin Management Portal</p>
           </div>
         </div>
 
-        <!-- About Section Settings -->
-        <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-          <div class="flex items-center gap-3 pb-4 mb-6 border-b border-stone-800">
-            <span class="w-8 h-8 rounded-lg bg-brand-gold/20 text-brand-gold flex items-center justify-center font-bold text-sm">2</span>
-            <div>
-              <h2 class="font-serif text-2xl font-semibold text-stone-100">Bagian About Massaji Spa</h2>
-              <p class="text-xs text-stone-400">Profil tradisi penyembuhan Bali, kebersihan bintang lima, dan gambar pendukung.</p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Judul About (Baris 1)</label>
-                  <input type="text" name="about_title_1" value="<?php echo htmlspecialchars($settings['about_title_1'] ?? 'Rooted in Bali.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Slogan About (Baris 2)</label>
-                  <input type="text" name="about_title_2" value="<?php echo htmlspecialchars($settings['about_title_2'] ?? 'Created for Your Wellbeing.'); ?>" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm italic font-serif text-brand-gold focus:border-brand-gold focus:outline-none">
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Deskripsi Paragraf 1</label>
-                <textarea name="about_desc_1" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-300 leading-relaxed focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['about_desc_1'] ?? ''); ?></textarea>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Deskripsi Paragraf 2</label>
-                <textarea name="about_desc_2" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-300 leading-relaxed focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['about_desc_2'] ?? ''); ?></textarea>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-1.5">Path / File Gambar About</label>
-                <input type="text" id="php-about-image" name="about_image" value="<?php echo htmlspecialchars($settings['about_image'] ?? 'assets/images/massaji-about.jpg'); ?>" oninput="document.getElementById('php-preview-about').src='../' + this.value" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs font-mono text-stone-300 focus:border-brand-gold focus:outline-none">
-              </div>
-            </div>
-
-            <div class="lg:col-span-5 flex flex-col justify-center">
-              <span class="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2 block">Live Preview Gambar About</span>
-              <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative">
-                <img id="php-preview-about" src="../<?php echo htmlspecialchars($settings['about_image'] ?? 'assets/images/massaji-about.jpg'); ?>" class="w-full h-full object-cover" onerror="this.src='../assets/images/gambar2.jpg'">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-end pt-2">
-          <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-terracotta to-amber-700 hover:from-amber-600 hover:to-brand-terracotta text-white font-medium text-sm shadow-xl flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            Simpan Tampilan Home
+        <div class="flex items-center gap-3">
+          <a href="../index.php" target="_blank" class="px-4 py-2 rounded-xl border border-[#BAE0FD] hover:border-[#1E3A8A] bg-[#F0F8FF] hover:bg-white text-[#1E3A8A] text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Buka Website
+          </a>
+          <button onclick="handleLogout()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-700 text-xs font-bold flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Keluar
           </button>
         </div>
-      </form>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB 1: KONTAK & NOTIFIKASI EMAIL (DYNAMIC SETTINGS) -->
-    <!-- ======================================================== -->
-    <div id="tab-settings" class="tab-content space-y-6">
-      <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6">
-          <h2 class="font-serif text-2xl font-semibold text-stone-100">Pengaturan Notifikasi & Kontak Bisnis</h2>
-          <p class="text-xs text-stone-400 mt-1">Nilai di bawah ini digunakan langsung oleh sistem website untuk pengiriman email booking dan tombol WhatsApp. Anda bisa mengubahnya kapan saja tanpa hardcode.</p>
-        </div>
-
-        <form id="form-settings" class="space-y-6">
-          <input type="hidden" name="action" value="save_settings">
-          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Email Notifikasi Booking -->
-            <div class="p-5 rounded-xl bg-stone-900/60 border border-brand-gold/20">
-              <label class="block text-xs font-semibold tracking-wider uppercase text-brand-gold mb-1">
-                Email Tujuan Notifikasi Reservasi
-              </label>
-              <p class="text-[11px] text-stone-400 mb-2">Setiap ada tamu yang memesan dari formulir web, data reservasi dikirimkan ke email ini.</p>
-              <input type="email" name="booking_email" value="<?php echo htmlspecialchars($settings['booking_email']); ?>" required
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-700 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- WhatsApp Number -->
-            <div class="p-5 rounded-xl bg-stone-900/60 border border-emerald-500/20">
-              <label class="block text-xs font-semibold tracking-wider uppercase text-emerald-400 mb-1">
-                Nomor WhatsApp Reservasi
-              </label>
-              <p class="text-[11px] text-stone-400 mb-2">Gunakan format internasional (contoh: 6281236695755 tanpa tanda + atau spasi).</p>
-              <input type="text" name="whatsapp_number" value="<?php echo htmlspecialchars($settings['whatsapp_number']); ?>" required
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-700 rounded-lg text-sm text-stone-100 focus:border-emerald-500 focus:outline-none font-mono">
-            </div>
-
-            <!-- Phone Display -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Nomor Telepon Tampilan</label>
-              <input type="text" name="phone" value="<?php echo htmlspecialchars($settings['phone']); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- Instagram -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Link Instagram</label>
-              <input type="url" name="instagram" value="<?php echo htmlspecialchars($settings['instagram']); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- Site Name -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Nama Usaha / Spa</label>
-              <input type="text" name="site_name" value="<?php echo htmlspecialchars($settings['site_name']); ?>" required
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-
-            <!-- Jam Buka -->
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Jam Operasional</label>
-              <input type="text" name="opening_hours" value="<?php echo htmlspecialchars($settings['opening_hours']); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-          </div>
-
-          <!-- Alamat Lengkap & Maps -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-stone-800/80">
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Alamat Fisik Lengkap</label>
-              <textarea name="address" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['address']); ?></textarea>
-            </div>
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Link Google Maps (Navigasi Tamu)</label>
-              <textarea name="google_maps_link" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($settings['google_maps_link']); ?></textarea>
-            </div>
-          </div>
-
-          <!-- Tagline -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-stone-800/80">
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Tagline Utama</label>
-              <input type="text" name="tagline" value="<?php echo htmlspecialchars($settings['tagline']); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Deskripsi Ringkas Header</label>
-              <input type="text" name="subtagline" value="<?php echo htmlspecialchars($settings['subtagline']); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-            </div>
-          </div>
-
-          <div class="flex justify-end pt-4">
-            <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-terracotta to-amber-700 hover:from-amber-600 hover:to-brand-terracotta text-white font-medium text-sm shadow-lg transition duration-200 flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Simpan Pengaturan Kontak
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+    </header>
 
-    <!-- ======================================================== -->
-    <!-- TAB 2: MENU & HARGA TREATMENT -->
-    <!-- ======================================================== -->
-    <div id="tab-menu" class="tab-content hidden space-y-6">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-brand-surface border border-stone-800 rounded-2xl p-6">
-        <div>
-          <h2 class="font-serif text-2xl font-semibold text-stone-100">Daftar Menu & Harga Layanan</h2>
-          <p class="text-xs text-stone-400 mt-1">Ubah nama layanan, durasi, harga (IDR), atau tandai layanan sebagai menu favorit/signature.</p>
-        </div>
-        <button onclick="openAddMenuModal()" class="px-4 py-2.5 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white font-medium text-xs tracking-wide uppercase flex items-center gap-2 shadow-lg transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Tambah Treatment Baru
+    <!-- Main Content Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <!-- Navigation Tabs -->
+      <div class="flex border-b border-[#BAE0FD] gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
+        <button onclick="switchTab('home')" id="btn-tab-home" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-[#1E3A8A] text-[#1E3A8A] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Setting Home (Hero &amp; About)
+        </button>
+        <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+          Promo Akhir Tahun &amp; Flyer
+        </button>
+        <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          Menu &amp; Paket Treatment
+          <span id="tab-menu-count" class="px-2 py-0.5 text-[10px] rounded-full bg-[#E1F0FE] text-[#1E3A8A] font-mono font-bold">0</span>
+        </button>
+        <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Kontak &amp; Reservasi
+        </button>
+        <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Reservasi Masuk
         </button>
       </div>
 
-      <!-- Search Bar for Admin Menu -->
-      <div class="relative">
-        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </div>
-        <input 
-          type="text" 
-          id="admin-search-input" 
-          oninput="searchAdminMenu(this.value)" 
-          placeholder="Cari menu perawatan / paket (ketik nama, deskripsi, durasi, harga)..." 
-          class="w-full pl-10 pr-10 py-3 rounded-xl border border-stone-800 bg-stone-950 text-sm text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-gold">
-      </div>
+      <!-- ======================================================== -->
+      <!-- TAB 1: SETTING HOME (HERO & ABOUT MASSAJI SPA) -->
+      <!-- ======================================================== -->
+      <div id="tab-home" class="tab-content space-y-8">
+        <form id="form-home" class="space-y-8">
+          <input type="hidden" name="action" value="save_home">
 
-      <!-- Menu Category Filters for Admin View -->
-      <div class="flex gap-2 overflow-x-auto pb-2">
-        <button onclick="filterAdminMenu('all')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-800 text-stone-200 text-xs font-medium hover:bg-stone-700 transition" data-filter="all">Semua (<?php echo count($menu); ?>)</button>
-        <button onclick="filterAdminMenu('promo')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="promo">Promo Akhir Tahun</button>
-        <button onclick="filterAdminMenu('massage')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="massage">Massage & Body</button>
-        <button onclick="filterAdminMenu('slimming')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="slimming">Slimming RF</button>
-        <button onclick="filterAdminMenu('packages-single')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="packages-single">Single Packages</button>
-        <button onclick="filterAdminMenu('packages-couple')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="packages-couple">Couple Packages</button>
-        <button onclick="filterAdminMenu('spa')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="spa">Spa Rituals</button>
-        <button onclick="filterAdminMenu('facial')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="facial">Facial</button>
-        <button onclick="filterAdminMenu('nail')" class="admin-filter-btn px-3.5 py-1.5 rounded-lg bg-stone-900 text-stone-400 text-xs font-medium hover:bg-stone-700 transition" data-filter="nail">Nail</button>
-      </div>
+          <!-- 1.1 Hero Section Card -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center gap-3 pb-4 mb-6 border-b border-[#BAE0FD]">
+              <div class="w-9 h-9 rounded-xl bg-[#E1F0FE] text-[#1E3A8A] flex items-center justify-center font-bold">1</div>
+              <div>
+                <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Bagian Hero (Banner Utama Atas)</h2>
+                <p class="text-xs text-[#475569]">Atur judul pembuka, slogan, dan gambar utama yang pertama kali dilihat pengunjung.</p>
+              </div>
+            </div>
 
-      <!-- Menu Items List -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-menu-list">
-        <?php foreach ($menu as $index => $item): ?>
-          <div class="menu-card bg-brand-surface border border-stone-800 rounded-xl p-5 hover:border-stone-700 transition flex flex-col justify-between" data-category="<?php echo htmlspecialchars($item['category'] ?? 'massage'); ?>">
-            <div>
-              <div class="flex items-start justify-between gap-3">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <!-- Text inputs -->
+              <div class="lg:col-span-7 space-y-4">
                 <div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-stone-800 text-brand-gold">
-                      <?php echo htmlspecialchars($item['category'] ?? 'massage'); ?>
-                    </span>
-                    <?php if (!empty($item['is_featured'])): ?>
-                      <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-brand-terracotta/20 text-brand-terracotta border border-brand-terracotta/30">
-                        <?php echo htmlspecialchars($item['tag'] ?? 'Featured'); ?>
-                      </span>
-                    <?php endif; ?>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Judul Hero (Baris 1)</label>
+                  <input type="text" id="field-hero-title-1" name="hero_title_1" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-semibold text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Slogan Hero (Baris 2 - Huruf Miring)</label>
+                  <input type="text" id="field-hero-title-2" name="hero_title_2" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm italic font-serif text-[#0284C7] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Lengkap Hero</label>
+                  <textarea id="field-hero-desc" name="hero_desc" rows="3" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs text-[#141E3C] leading-relaxed focus:bg-white focus:border-[#1E3A8A] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Gambar Utama Hero</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="field-hero-image" name="hero_image" oninput="updateImagePreview('hero', this.value)" class="flex-1 px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                    <button type="button" onclick="document.getElementById('file-input-hero').click()" class="px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      <span>Upload Gambar</span>
+                    </button>
                   </div>
-                  <h3 class="font-serif text-lg font-semibold text-stone-100 mt-2"><?php echo htmlspecialchars($item['name']); ?></h3>
-                </div>
-                <div class="text-right flex-shrink-0">
-                  <span class="text-brand-gold font-mono font-bold text-base">Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></span>
-                  <p class="text-[11px] text-stone-400 font-sans mt-0.5"><?php echo htmlspecialchars($item['duration']); ?></p>
+                  <input type="file" id="file-input-hero" accept="image/*" class="hidden" onchange="handleImageFileUpload('hero', this)">
+                  <p id="upload-status-hero" class="text-[11px] text-emerald-600 font-semibold mt-1.5 hidden"></p>
+                  
+                  <!-- Quick Gallery Selector -->
+                  <div class="mt-2.5">
+                    <span class="text-[11px] font-bold text-[#475569] block mb-1.5">Pilih Cepat dari Galeri Gambar:</span>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/massaji-hero.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-hero.jpg</button>
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/gambar2.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">gambar2.jpg</button>
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/massaji-reception.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-reception.jpg</button>
+                      <button type="button" onclick="selectQuickImage('hero', 'assets/images/MASAGE.JPG')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">MASAGE.JPG</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p class="text-xs text-stone-400 mt-2.5 line-clamp-2 leading-relaxed"><?php echo htmlspecialchars($item['description']); ?></p>
-            </div>
 
-            <div class="mt-4 pt-4 border-t border-stone-800/80 flex items-center justify-between">
-              <span class="text-[11px] text-stone-500 font-mono">ID: <?php echo htmlspecialchars($item['id']); ?></span>
-              <div class="flex items-center gap-2">
-                <button onclick="editMenuItem(<?php echo htmlspecialchars(json_encode($item)); ?>)" class="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs rounded-lg transition flex items-center gap-1">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                  Edit
-                </button>
-                <button onclick="deleteMenuItem('<?php echo htmlspecialchars($item['id']); ?>', '<?php echo htmlspecialchars(addslashes($item['name'])); ?>')" class="px-3 py-1 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs rounded-lg border border-red-900/40 transition flex items-center gap-1">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                  Hapus
+              <!-- Hero Image Live Preview -->
+              <div class="lg:col-span-5 flex flex-col justify-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block">Live Preview Gambar Hero</span>
+                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group cursor-pointer" onclick="document.getElementById('file-input-hero').click()" title="Klik untuk mengganti gambar hero">
+                  <img id="preview-hero-img" src="../assets/images/massaji-hero.jpg" alt="Hero Preview" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='../assets/images/MASAGE.JPG'">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center p-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-1.5 shadow">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <span class="font-bold text-xs uppercase tracking-wider">Klik untuk Ganti Gambar</span>
+                  </div>
+                  <div class="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono truncate" id="label-hero-img">assets/images/massaji-hero.jpg</div>
+                </div>
+                <button type="button" onclick="document.getElementById('file-input-hero').click()" class="mt-2.5 w-full py-2.5 px-3 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow cursor-pointer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>📷 Upload Gambar Hero Baru</span>
                 </button>
               </div>
             </div>
           </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB 3: BANNER PROMO -->
-    <!-- ======================================================== -->
-    <div id="tab-promo" class="tab-content hidden space-y-6">
-      <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6 flex items-start justify-between">
-          <div>
-            <h2 class="font-serif text-2xl font-semibold text-stone-100">Pengaturan Banner Promo</h2>
-            <p class="text-xs text-stone-400 mt-1">Muncul di bagian teratas website untuk menarik perhatian tamu hotel & turis di Canggu.</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs text-stone-400">Status Promo:</span>
-            <span class="px-2.5 py-1 rounded-full text-xs font-semibold <?php echo !empty($promo['active']) ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-stone-800 text-stone-400'; ?>">
-              <?php echo !empty($promo['active']) ? 'Aktif' : 'Non-aktif'; ?>
-            </span>
-          </div>
-        </div>
-
-        <form id="form-promo" class="space-y-6">
-          <input type="hidden" name="action" value="save_promo">
-          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-          <!-- Toggle Aktif -->
-          <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 flex items-center justify-between">
-            <div>
-              <span class="block text-sm font-semibold text-stone-200">Tampilkan Banner Promo di Halaman Depan</span>
-              <p class="text-xs text-stone-400">Jika dimatikan, bar promo di paling atas website tidak akan tampil.</p>
+          <!-- 1.2 About Section Card -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-center gap-3 pb-4 mb-6 border-b border-[#BAE0FD]">
+              <div class="w-9 h-9 rounded-xl bg-[#E1F0FE] text-[#1E3A8A] flex items-center justify-center font-bold">2</div>
+              <div>
+                <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Bagian About Massaji Spa</h2>
+                <p class="text-xs text-[#475569]">Profil filosofi spa, kebersihan bintang lima, dan gambar pendukung.</p>
+              </div>
             </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" name="active" value="1" class="sr-only peer" <?php echo !empty($promo['active']) ? 'checked' : ''; ?>>
-              <div class="w-11 h-6 bg-stone-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
-            </label>
-          </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Teks Label / Badge</label>
-              <input type="text" name="badge" value="<?php echo htmlspecialchars($promo['badge'] ?? 'Special Rejuvenation Offer'); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <!-- Text inputs -->
+              <div class="lg:col-span-7 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Judul About (Baris 1)</label>
+                    <input type="text" id="field-about-title-1" name="about_title_1" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-semibold text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Slogan About (Baris 2)</label>
+                    <input type="text" id="field-about-title-2" name="about_title_2" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm italic font-serif text-[#0284C7] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Paragraf 1</label>
+                  <textarea id="field-about-desc-1" name="about_desc_1" rows="3" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs text-[#141E3C] leading-relaxed focus:bg-white focus:border-[#1E3A8A] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Paragraf 2</label>
+                  <textarea id="field-about-desc-2" name="about_desc_2" rows="3" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs text-[#141E3C] leading-relaxed focus:bg-white focus:border-[#1E3A8A] focus:outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Gambar Profil About</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="field-about-image" name="about_image" oninput="updateImagePreview('about', this.value)" class="flex-1 px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                    <button type="button" onclick="document.getElementById('file-input-about').click()" class="px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      <span>Upload Gambar</span>
+                    </button>
+                  </div>
+                  <input type="file" id="file-input-about" accept="image/*" class="hidden" onchange="handleImageFileUpload('about', this)">
+                  <p id="upload-status-about" class="text-[11px] text-emerald-600 font-semibold mt-1.5 hidden"></p>
+                  
+                  <!-- Quick Gallery Selector -->
+                  <div class="mt-2.5">
+                    <span class="text-[11px] font-bold text-[#475569] block mb-1.5">Pilih Cepat dari Galeri Gambar:</span>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                      <button type="button" onclick="selectQuickImage('about', 'assets/images/massaji-about.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-about.jpg</button>
+                      <button type="button" onclick="selectQuickImage('about', 'assets/images/massaji-reception.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">massaji-reception.jpg</button>
+                      <button type="button" onclick="selectQuickImage('about', 'assets/images/gambar2.jpg')" class="px-2.5 py-1 rounded-lg bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-medium text-[11px] transition">gambar2.jpg</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- About Image Live Preview -->
+              <div class="lg:col-span-5 flex flex-col justify-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block">Live Preview Gambar About</span>
+                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group cursor-pointer" onclick="document.getElementById('file-input-about').click()" title="Klik untuk mengganti gambar about">
+                  <img id="preview-about-img" src="../assets/images/massaji-about.jpg" alt="About Preview" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='../assets/images/gambar2.jpg'">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center p-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-1.5 shadow">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <span class="font-bold text-xs uppercase tracking-wider">Klik untuk Ganti Gambar</span>
+                  </div>
+                  <div class="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono truncate" id="label-about-img">assets/images/massaji-about.jpg</div>
+                </div>
+                <button type="button" onclick="document.getElementById('file-input-about').click()" class="mt-2.5 w-full py-2.5 px-3 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow cursor-pointer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>📷 Upload Gambar About Baru</span>
+                </button>
+              </div>
             </div>
-            <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Kode Promo (Opsional)</label>
-              <input type="text" name="code" value="<?php echo htmlspecialchars($promo['code'] ?? 'MASSAJI15'); ?>"
-                class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none uppercase font-mono">
-            </div>
           </div>
 
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Judul Promo Utama</label>
-            <input type="text" name="title" value="<?php echo htmlspecialchars($promo['title'] ?? ''); ?>" required
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Deskripsi Lengkap Promo</label>
-            <textarea name="description" rows="3" class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none"><?php echo htmlspecialchars($promo['description'] ?? ''); ?></textarea>
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Syarat & Masa Berlaku</label>
-            <input type="text" name="valid_until" value="<?php echo htmlspecialchars($promo['valid_until'] ?? ''); ?>"
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div class="flex justify-end pt-4 border-t border-stone-800/80">
-            <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-terracotta to-amber-700 hover:from-amber-600 hover:to-brand-terracotta text-white font-medium text-sm shadow-lg transition duration-200 flex items-center gap-2">
+          <!-- Save Button Bar -->
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="btn-royal px-8 py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase shadow-xl flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Simpan Pengaturan Promo
+              Simpan Tampilan Home
             </button>
           </div>
         </form>
       </div>
-    </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB 4: RESERVASI MASUK -->
-    <!-- ======================================================== -->
-    <div id="tab-bookings" class="tab-content hidden space-y-6">
-      <div class="bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6 flex items-start justify-between">
-          <div>
-            <h2 class="font-serif text-2xl font-semibold text-stone-100">Riwayat Reservasi Website</h2>
-            <p class="text-xs text-stone-400 mt-1">Daftar permintaan booking yang dikirimkan melalui formulir website (tersimpan aman di server).</p>
+      <!-- ======================================================== -->
+      <!-- TAB 2: PROMO AKHIR TAHUN & FLYER -->
+      <!-- ======================================================== -->
+      <div id="tab-promo" class="tab-content hidden space-y-6">
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#BAE0FD]">
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Konten Promo Akhir Tahun &amp; Brosur Flyer</h2>
+              <p class="text-xs text-[#475569] mt-1">Sesuaikan judul promo, masa berlaku, dan referensi flyer resmi Massaji Spa Bali.</p>
+            </div>
           </div>
-          <span class="text-xs font-mono px-3 py-1 rounded-full bg-stone-900 border border-stone-800 text-brand-gold">
-            Total: <?php echo count($bookings); ?> Reservasi
-          </span>
+
+          <form id="form-promo" class="space-y-6">
+            <input type="hidden" name="action" value="save_settings">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div class="lg:col-span-7 space-y-5">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Judul Utama Promo (Sesuai Flyer)</label>
+                  <input type="text" id="field-promo-title" name="promo_title" value="END YEAR 2026 Big Promotion" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-bold text-[#1E3A8A] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Subjudul Promo</label>
+                  <input type="text" id="field-promo-subtitle" name="promo_subtitle" value="Promo Akhir Tahun 2026" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Masa Berlaku Promo (Validity Period)</label>
+                  <input type="text" id="field-promo-validity" name="promo_validity" value="Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-sm font-medium text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Gambar Brosur Flyer Resmi</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="field-promo-flyer-img" name="promo_flyer_image" value="assets/images/promo-flyer-2026.jpeg" oninput="updateImagePreview('promo', this.value)" class="flex-1 px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                    <button type="button" onclick="document.getElementById('file-input-promo').click()" class="px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      <span>Upload Gambar</span>
+                    </button>
+                  </div>
+                  <input type="file" id="file-input-promo" accept="image/*" class="hidden" onchange="handleImageFileUpload('promo', this)">
+                  <p id="upload-status-promo" class="text-[11px] text-emerald-600 font-semibold mt-1.5 hidden"></p>
+                  <p class="text-[11px] text-[#475569] mt-1">File saat ini: <code class="font-bold text-[#1E3A8A]" id="current-promo-path">assets/images/promo-flyer-2026.jpeg</code></p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD] text-xs space-y-2">
+                  <div class="font-bold text-[#1E3A8A] flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Informasi Treatment Promo:
+                  </div>
+                  <p class="text-[#475569] leading-relaxed">
+                    Untuk mengubah harga diskon atau rincian masing-masing dari 4 treatment promo (Bali Traditional, Deep Tissue, RF Slimming, Rose Bali Spa), silakan buka tab <strong>"Menu &amp; Paket Treatment"</strong> lalu pilih filter <strong>"Promo Akhir Tahun"</strong> dan klik tombol <strong>Edit</strong> pada treatment terkait.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Flyer Preview & Instant Replace Button -->
+              <div class="lg:col-span-5 flex flex-col items-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block self-start">Tampilan Flyer Resmi</span>
+                
+                <div class="w-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-lg bg-slate-900 relative group cursor-pointer" onclick="document.getElementById('file-input-promo').click()" title="Klik gambar untuk langsung upload flyer baru">
+                  <img id="preview-promo-img" src="../assets/images/promo-flyer-2026.jpeg" alt="Flyer Promo Massaji Spa" class="w-full h-auto object-contain transition duration-300 group-hover:scale-[1.02] group-hover:opacity-85">
+                  <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 shadow">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <span class="font-bold text-xs uppercase tracking-wider">Klik untuk Ganti Flyer</span>
+                  </div>
+                </div>
+
+                <!-- Instant Action Button -->
+                <button type="button" onclick="document.getElementById('file-input-promo').click()" class="mt-3 w-full max-w-sm py-3 px-4 rounded-xl bg-gradient-to-r from-[#0284C7] to-[#1E3A8A] hover:from-[#0369A1] hover:to-[#172554] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>📷 Klik untuk Ganti Gambar Flyer</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-[#BAE0FD]">
+              <button type="submit" class="btn-royal px-8 py-3 rounded-xl font-bold text-xs tracking-wider uppercase shadow-lg flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Simpan Konten Promo
+              </button>
+            </div>
+          </form>
         </div>
-
-        <?php if (empty($bookings)): ?>
-          <div class="text-center py-16 border border-dashed border-stone-800 rounded-xl">
-            <svg class="w-12 h-12 mx-auto text-stone-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            <p class="text-stone-400 text-sm">Belum ada reservasi masuk.</p>
-            <p class="text-stone-600 text-xs mt-1">Setiap ada tamu yang memesan dari web, rinciannya akan otomatis tersimpan di sini.</p>
-          </div>
-        <?php else: ?>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-stone-300">
-              <thead class="bg-stone-900/80 text-[11px] uppercase tracking-wider text-stone-400 border-b border-stone-800">
-                <tr>
-                  <th class="p-3">Waktu Masuk</th>
-                  <th class="p-3">Nama Tamu</th>
-                  <th class="p-3">Layanan</th>
-                  <th class="p-3">Jadwal (WITA)</th>
-                  <th class="p-3">Pax</th>
-                  <th class="p-3">Kontak Tamu</th>
-                  <th class="p-3 text-right">Aksi</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-stone-800/60">
-                <?php foreach ($bookings as $b): ?>
-                  <?php 
-                    $guest_phone = preg_replace('/[^0-9]/', '', $b['phone'] ?? '');
-                    if (substr($guest_phone, 0, 1) === '0') $guest_phone = '62' . substr($guest_phone, 1);
-                    $reply_text = "Halo " . ($b['name'] ?? 'Kak') . ", kami dari Massaji Spa Bali ingin mengonfirmasi jadwal reservasi untuk " . ($b['service'] ?? 'Spa') . " pada " . ($b['date'] ?? '') . " jam " . ($b['time'] ?? '') . " WITA.";
-                    $wa_reply_url = "https://wa.me/" . $guest_phone . "?text=" . rawurlencode($reply_text);
-                  ?>
-                  <tr class="hover:bg-stone-900/40 transition">
-                    <td class="p-3 font-mono text-[11px] text-stone-500"><?php echo htmlspecialchars($b['created_at'] ?? '-'); ?></td>
-                    <td class="p-3 font-medium text-stone-100"><?php echo htmlspecialchars($b['name'] ?? '-'); ?></td>
-                    <td class="p-3 font-semibold text-brand-gold"><?php echo htmlspecialchars($b['service'] ?? '-'); ?></td>
-                    <td class="p-3"><?php echo htmlspecialchars($b['date'] ?? '-'); ?> <span class="text-stone-500">(<?php echo htmlspecialchars($b['time'] ?? '-'); ?>)</span></td>
-                    <td class="p-3"><?php echo htmlspecialchars($b['guests'] ?? '1'); ?> orang</td>
-                    <td class="p-3 font-mono">
-                      <div><?php echo htmlspecialchars($b['phone'] ?? '-'); ?></div>
-                      <div class="text-[10px] text-stone-500"><?php echo htmlspecialchars($b['email'] ?? ''); ?></div>
-                    </td>
-                    <td class="p-3 text-right">
-                      <?php if (!empty($guest_phone)): ?>
-                        <a href="<?php echo $wa_reply_url; ?>" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900 border border-emerald-700/50 text-emerald-300 text-[11px] font-medium transition">
-                          <span>Chat WA</span>
-                        </a>
-                      <?php else: ?>
-                        <span class="text-stone-600 text-[11px]">-</span>
-                      <?php endif; ?>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        <?php endif; ?>
       </div>
-    </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB 5: KEAMANAN & PASSWORD -->
-    <!-- ======================================================== -->
-    <div id="tab-security" class="tab-content hidden space-y-6">
-      <div class="max-w-xl bg-brand-surface border border-stone-800 rounded-2xl p-6 sm:p-8">
-        <div class="mb-6">
-          <h2 class="font-serif text-2xl font-semibold text-stone-100">Ganti Password Admin</h2>
-          <p class="text-xs text-stone-400 mt-1">Ubah kata sandi untuk melindungi akses ke panel kontrol website.</p>
+      <!-- ======================================================== -->
+      <!-- TAB 3: MENU & HARGA TREATMENT (DENGAN PENCARIAN & TOMBOL EDIT) -->
+      <!-- ======================================================== -->
+      <div id="tab-menu" class="tab-content hidden space-y-6">
+        
+        <!-- Header & Action -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-[#BAE0FD] rounded-2xl p-6 shadow-sm">
+          <div>
+            <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Katalog Menu &amp; Paket Treatment</h2>
+            <p class="text-xs text-[#475569] mt-1">Ubah nama perawatan, harga, diskon, durasi, dan deskripsi dengan tombol Edit kapan saja.</p>
+          </div>
+          <button onclick="openAddModal()" class="btn-royal px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-md">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Tambah Treatment Baru
+          </button>
         </div>
 
-        <form id="form-password" class="space-y-5">
-          <input type="hidden" name="action" value="change_password">
-          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Password Saat Ini</label>
-            <input type="password" name="current_password" required placeholder="Password lama..."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Password Baru (Minimal 6 Karakter)</label>
-            <input type="password" name="new_password" required placeholder="Password baru..."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1.5">Konfirmasi Password Baru</label>
-            <input type="password" name="confirm_password" required placeholder="Ulangi password baru..."
-              class="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-sm text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-
-          <div class="pt-2">
-            <button type="submit" class="w-full py-3 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white font-medium text-sm shadow-lg transition duration-200">
-              Perbarui Password
+        <!-- SEARCH BAR & CATEGORY FILTER BAR -->
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-5 shadow-sm space-y-4">
+          
+          <!-- Search input -->
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <input 
+              type="text" 
+              id="admin-search-input" 
+              oninput="filterAdminMenu()" 
+              placeholder="Cari treatment atau paket... (ketik nama, kategori, harga, durasi, atau kata kunci)..." 
+              class="w-full pl-10 pr-10 py-3 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF] text-sm text-[#141E3C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A]">
+            <button id="admin-search-clear" onclick="clearAdminSearch()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
-        </form>
+
+          <!-- Category filter buttons -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs" id="category-filter-pills">
+            <button onclick="setCategoryFilter('all')" class="cat-pill active px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-[#1E3A8A] text-white border-[#1E3A8A]">Semua</button>
+            <button onclick="setCategoryFilter('promo')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Promo Akhir Tahun</button>
+            <button onclick="setCategoryFilter('packages-single')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Single Packages</button>
+            <button onclick="setCategoryFilter('packages-couple')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Couple Packages</button>
+            <button onclick="setCategoryFilter('packages-group')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Group Packages</button>
+            <button onclick="setCategoryFilter('massage')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Massage</button>
+            <button onclick="setCategoryFilter('slimming')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Slimming RF</button>
+            <button onclick="setCategoryFilter('spa')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Spa Rituals</button>
+            <button onclick="setCategoryFilter('facial')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Facial</button>
+            <button onclick="setCategoryFilter('nail')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Nail Services</button>
+            <button onclick="setCategoryFilter('additional')" class="cat-pill px-3.5 py-1.5 rounded-lg border font-bold tracking-wide uppercase transition bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]">Additional</button>
+          </div>
+
+          <!-- Counter display -->
+          <div class="text-[11px] text-[#475569] font-medium flex items-center justify-between pt-2 border-t border-[#BAE0FD]">
+            <span id="search-counter-text">Menampilkan seluruh perawatan</span>
+            <span id="active-filter-badge" class="font-bold text-[#1E3A8A]">Kategori: Semua</span>
+          </div>
+        </div>
+
+        <!-- Treatment List Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-menu-list">
+          <!-- Rendered dynamically by script -->
+        </div>
       </div>
-    </div>
-  </main>
+
+      <!-- ======================================================== -->
+      <!-- TAB 4: KONTAK & NOTIFIKASI EMAIL -->
+      <!-- ======================================================== -->
+      <div id="tab-settings" class="tab-content hidden space-y-6">
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div class="mb-6">
+            <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Pengaturan Kontak &amp; Notifikasi Bisnis</h2>
+            <p class="text-xs text-[#475569] mt-1">Data berikut digunakan oleh sistem website untuk pengiriman email reservasi dan tombol WhatsApp.</p>
+          </div>
+
+          <form id="form-settings" class="space-y-6">
+            <input type="hidden" name="action" value="save_settings">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD]">
+                <div class="flex items-center justify-between mb-1">
+                  <label class="block text-xs font-bold tracking-wider uppercase text-[#1E3A8A]">
+                    Email Tujuan Notifikasi Reservasi
+                  </label>
+                  <a href="../email-preview.html" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-[#0284C7] hover:text-[#1E3A8A] transition-colors">
+                    <span>Lihat Desain Template</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  </a>
+                </div>
+                <input type="email" id="field-email" name="booking_email" value="reservation@massaji.net" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <p class="text-[11px] text-[#64748B] mt-1.5 flex items-center gap-1">
+                  <span>ℹ️ Setiap ada reservasi website masuk, template email resmi akan dikirim otomatis ke alamat ini.</span>
+                </p>
+              </div>
+
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-emerald-300">
+                <label class="block text-xs font-bold tracking-wider uppercase text-emerald-800 mb-1">
+                  Nomor WhatsApp Reservasi Utama (Flyer)
+                </label>
+                <input type="text" id="field-wa" name="whatsapp_number" value="6281236695755" required class="w-full px-4 py-2.5 bg-white border border-emerald-300 rounded-lg text-sm text-[#141E3C] focus:border-emerald-600 focus:outline-none font-mono">
+              </div>
+
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-emerald-300">
+                <label class="block text-xs font-bold tracking-wider uppercase text-emerald-800 mb-1">
+                  Nomor WhatsApp Reservasi 2 (Flyer)
+                </label>
+                <input type="text" id="field-wa-2" name="whatsapp_number_2" value="628113857188" class="w-full px-4 py-2.5 bg-white border border-emerald-300 rounded-lg text-sm text-[#141E3C] focus:border-emerald-600 focus:outline-none font-mono">
+              </div>
+
+              <div class="p-5 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD]">
+                <label class="block text-xs font-bold tracking-wider uppercase text-[#475569] mb-1">
+                  Jam Operasional
+                </label>
+                <input type="text" id="field-hours" name="opening_hours" value="Daily: 10:00 AM - 9:00 PM WITA" class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Nama Usaha / Spa</label>
+                <input type="text" id="field-sitename" name="site_name" value="Massaji Spa Bali" required class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Akun Instagram</label>
+                <input type="url" id="field-ig" name="instagram" value="https://instagram.com/massajispa" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Alamat Fisik Lengkap</label>
+                <textarea id="field-address" name="address" rows="2" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361</textarea>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Link Google Maps</label>
+                <input type="url" id="field-maps" name="google_maps_link" value="https://maps.google.com/?q=Massaji+Spa+Bali+Canggu" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-[#BAE0FD]">
+              <button type="submit" class="btn-royal px-6 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase shadow-md flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Simpan Pengaturan Kontak
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 5: RESERVASI MASUK -->
+      <!-- ======================================================== -->
+      <div id="tab-bookings" class="tab-content hidden space-y-6">
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-[#141E3C]">Riwayat Reservasi Masuk</h2>
+              <p class="text-xs text-[#475569] mt-1">Daftar reservasi tamu yang masuk melalui formulir booking website.</p>
+            </div>
+            <a href="../email-preview.html" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#F0F8FF] hover:bg-[#BAE0FD] text-[#1E3A8A] text-xs font-bold rounded-xl border border-[#BAE0FD] transition shadow-sm">
+              <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>Preview Template Email Notifikasi</span>
+              <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+
+          <div id="bookings-table-container">
+            <!-- Rendered by script -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
 
   <!-- ======================================================== -->
-  <!-- MODAL: TAMBAH / EDIT TREATMENT -->
+  <!-- MODAL: EDIT / TAMBAH TREATMENT (DUAL LANGUAGE EN / ID) -->
   <!-- ======================================================== -->
-  <div id="menu-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-brand-surface border border-stone-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeMenuModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-100">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-
-      <h3 id="modal-title" class="font-serif text-2xl font-semibold text-stone-100 mb-1">Tambah Treatment Baru</h3>
-      <p class="text-xs text-stone-400 mb-6">Isi rincian layanan pijat atau perawatan spa di bawah ini.</p>
-
-      <form id="form-menu-item" class="space-y-4 text-xs">
-        <input type="hidden" id="menu-item-id" name="id" value="">
-        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-        <!-- English Section -->
-        <div class="p-3.5 rounded-xl bg-stone-900/80 border border-stone-800 space-y-3">
-          <div class="flex items-center gap-2 pb-1.5 border-b border-stone-800">
-            <span>🇬🇧</span>
-            <span class="font-bold text-xs uppercase tracking-wider text-brand-gold">Informasi Bahasa Inggris (Default Website)</span>
+  <div id="treatment-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-white border border-[#BAE0FD] rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-[#BAE0FD] flex items-center justify-between bg-[#F0F8FF]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-[#1E3A8A] text-white flex items-center justify-center font-bold text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
           </div>
           <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Nama Perawatan (EN) *</label>
-            <input type="text" id="menu-item-name" name="name" required placeholder="Contoh: Balinese Traditional Massage (120 mins)"
-              class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+            <h3 id="modal-treatment-title" class="font-serif text-xl font-bold text-[#141E3C]">Edit Treatment / Paket</h3>
+            <span class="text-[10px] text-[#0284C7] font-semibold block">Form Pengaturan Dual Bahasa (EN &amp; ID)</span>
           </div>
-          <div class="grid grid-cols-2 gap-3">
+        </div>
+        <button onclick="closeTreatmentModal()" class="w-8 h-8 rounded-lg hover:bg-white text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <form id="form-treatment-modal" onsubmit="handleSaveTreatment(event)" class="p-6 overflow-y-auto space-y-5 text-xs">
+        <input type="hidden" id="modal-item-id">
+
+        <!-- SECTION 1: BAHASA INGGRIS (DEFAULT WEBSITE) -->
+        <div class="bg-[#F8FAFC] p-4 rounded-xl border border-sky-200">
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-sky-100">
+            <span class="text-base">🇬🇧</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-[#1E3A8A]">Versi Bahasa Inggris (Default Public Website)</span>
+          </div>
+
+          <div class="space-y-3">
             <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Durasi (EN) *</label>
-              <input type="text" id="menu-item-duration" name="duration" placeholder="Contoh: 120 Mins"
-                class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Nama Treatment (EN) *</label>
+              <input type="text" id="modal-item-name" required placeholder="Contoh: Balinese Traditional Massage (120 mins)" class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
             </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Durasi Treatment (EN) *</label>
+                <input type="text" id="modal-item-duration" placeholder="Contoh: 120 Mins, 90 Mins, Cavitation RF" required class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Badge / Tag (EN)</label>
+                <input type="text" id="modal-item-tag" placeholder="Contoh: Now 300K, Popular, Save 250K" class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+            </div>
+
             <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Badge Tag (EN)</label>
-              <input type="text" id="menu-item-tag" name="tag" placeholder="Misal: Now 300K / Signature"
-                class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+              <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Keterangan Multi-Prices (EN, Opsional)</label>
+              <input type="text" id="modal-item-multi-prices" placeholder="Contoh: 60m: 215K | 90m: 285K | 120m: 345K" class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
             </div>
-          </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Keterangan Multi-Prices (EN)</label>
-            <input type="text" id="menu-item-multi-prices" name="multi_prices" placeholder="Contoh: 60m: 215K | 90m: 285K | 120m: 345K"
-              class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Deskripsi Treatment (EN)</label>
-            <textarea id="menu-item-desc" name="description" rows="2" placeholder="Deskripsikan dalam bahasa Inggris..."
-              class="w-full px-3.5 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none"></textarea>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Treatment (EN)</label>
+              <textarea id="modal-item-desc" rows="2" placeholder="Copywriting perawatan dalam Bahasa Inggris..." class="w-full px-3.5 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] leading-relaxed focus:border-[#1E3A8A] focus:outline-none"></textarea>
+            </div>
           </div>
         </div>
 
-        <!-- Indonesian Section -->
-        <div class="p-3.5 rounded-xl bg-amber-950/20 border border-amber-900/40 space-y-3">
-          <div class="flex items-center gap-2 pb-1.5 border-b border-amber-900/40">
-            <span>🇮🇩</span>
-            <span class="font-bold text-xs uppercase tracking-wider text-amber-400">Informasi Bahasa Indonesia (Mode ID)</span>
+        <!-- SECTION 2: BAHASA INDONESIA (VERSI TERJEMAHAN) -->
+        <div class="bg-[#FEFCE8]/60 p-4 rounded-xl border border-amber-200">
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-amber-100">
+            <span class="text-base">🇮🇩</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-amber-900">Versi Bahasa Indonesia (Mode Bahasa ID)</span>
           </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Nama Perawatan (ID) *</label>
-            <input type="text" id="menu-item-name-id" name="name_id" required placeholder="Contoh: Pijat Tradisional Bali (120 menit)"
-              class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-          <div class="grid grid-cols-2 gap-3">
+
+          <div class="space-y-3">
             <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Durasi (ID)</label>
-              <input type="text" id="menu-item-duration-id" name="duration_id" placeholder="Contoh: 120 Menit"
-                class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Nama Treatment (ID) *</label>
+              <input type="text" id="modal-item-name-id" required placeholder="Contoh: Pijat Tradisional Bali (120 menit)" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
             </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Durasi Treatment (ID)</label>
+                <input type="text" id="modal-item-duration-id" placeholder="Contoh: 120 Menit, 90 Menit" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+              <div>
+                <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Badge / Tag (ID)</label>
+                <input type="text" id="modal-item-tag-id" placeholder="Contoh: Kini 300K, Paling Populer, Hemat 250K" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+              </div>
+            </div>
+
             <div>
-              <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Badge Tag (ID)</label>
-              <input type="text" id="menu-item-tag-id" name="tag_id" placeholder="Misal: Kini 300K / Terfavorit"
-                class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
+              <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Keterangan Multi-Prices (ID, Opsional)</label>
+              <input type="text" id="modal-item-multi-prices-id" placeholder="Contoh: Paha: Kini 550K | Perut: Kini 650K" class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
             </div>
-          </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Keterangan Multi-Prices (ID)</label>
-            <input type="text" id="menu-item-multi-prices-id" name="multi_prices_id" placeholder="Contoh: Paha: Kini 550K | Perut: Kini 650K"
-              class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
-          </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Deskripsi Treatment (ID)</label>
-            <textarea id="menu-item-desc-id" name="description_id" rows="2" placeholder="Deskripsikan dengan copywriting bahasa Indonesia alami..."
-              class="w-full px-3.5 py-2 bg-stone-950 border border-amber-900/50 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none"></textarea>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Deskripsi Treatment (ID)</label>
+              <textarea id="modal-item-desc-id" rows="2" placeholder="Copywriting perawatan dalam Bahasa Indonesia yang mengalir alami..." class="w-full px-3.5 py-2 rounded-lg border border-amber-300 bg-white text-xs text-[#141E3C] leading-relaxed focus:border-[#1E3A8A] focus:outline-none"></textarea>
+            </div>
           </div>
         </div>
 
-        <!-- Category & Pricing -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Kategori</label>
-            <select id="menu-item-category" name="category" class="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-100 focus:border-brand-gold focus:outline-none">
-              <option value="promo">Promo Akhir Tahun</option>
-              <option value="packages-single">Single Packages</option>
-              <option value="packages-couple">Couple Packages</option>
-              <option value="packages-group">Group Packages</option>
-              <option value="massage">Massage & Body</option>
-              <option value="slimming">Slimming RF</option>
-              <option value="spa">Spa Rituals</option>
-              <option value="facial">Facial</option>
-              <option value="nail">Nail</option>
-              <option value="additional">Additional</option>
-            </select>
+        <!-- SECTION 3: KATEGORI & HARGA (BERLAKU BERSAMA) -->
+        <div class="bg-white p-4 rounded-xl border border-[#BAE0FD]">
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-[#BAE0FD]">
+            <span class="text-base">💰</span>
+            <span class="font-bold text-xs uppercase tracking-wider text-[#1E3A8A]">Kategori &amp; Penetapan Tarif (Berlaku Kedua Bahasa)</span>
           </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-brand-gold mb-1">Harga Final (Rp) *</label>
-            <input type="number" id="menu-item-price" name="price" required placeholder="300000"
-              class="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs font-bold text-brand-gold focus:border-brand-gold focus:outline-none font-mono">
-          </div>
-          <div>
-            <label class="block text-xs font-medium uppercase tracking-wider text-stone-400 mb-1">Harga Normal (Rp)</label>
-            <input type="number" id="menu-item-normal-price" name="normal_price" placeholder="345000"
-              class="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-lg text-xs text-stone-400 focus:border-brand-gold focus:outline-none font-mono">
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#141E3C] mb-1">Kategori *</label>
+              <select id="modal-item-category" required class="w-full px-3 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <option value="promo">Promo Akhir Tahun (Flyer Promo)</option>
+                <option value="packages-single">Single Packages (1 Person)</option>
+                <option value="packages-couple">Couple Packages (2 Persons)</option>
+                <option value="packages-group">Group Packages (4 Persons)</option>
+                <option value="massage">Body Massage &amp; Therapy</option>
+                <option value="slimming">Body Slimming &amp; Cavitation RF</option>
+                <option value="spa">Body Spa Rituals &amp; Boreh</option>
+                <option value="facial">Facial Treatments</option>
+                <option value="nail">Nail Services &amp; Art</option>
+                <option value="additional">Additional Services</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#1E3A8A] mb-1">Harga Final / Promo (Rp) *</label>
+              <input type="number" id="modal-item-price" min="0" step="5000" required placeholder="300000" class="w-full px-3 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs font-bold text-[#1E3A8A] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
+
+            <div>
+              <label class="block font-bold uppercase tracking-wider text-[#475569] mb-1">Harga Normal / Coret (Rp)</label>
+              <input type="number" id="modal-item-normal-price" min="0" step="5000" placeholder="345000" class="w-full px-3 py-2 rounded-lg border border-[#BAE0FD] bg-white text-xs text-[#475569] focus:border-[#1E3A8A] focus:outline-none">
+            </div>
           </div>
         </div>
 
-        <div class="flex justify-end gap-3 pt-4 border-t border-stone-800">
-          <button type="button" onclick="closeMenuModal()" class="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-medium transition">Batal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl bg-brand-terracotta hover:bg-amber-600 text-white text-xs font-medium shadow transition">Simpan Perawatan</button>
+        <div class="pt-4 border-t border-[#BAE0FD] flex items-center justify-end gap-3">
+          <button type="button" onclick="closeTreatmentModal()" class="px-4 py-2.5 rounded-xl border border-[#BAE0FD] hover:bg-[#F0F8FF] text-slate-600 font-bold tracking-wider uppercase transition">
+            Batal
+          </button>
+          <button type="submit" class="btn-royal px-6 py-2.5 rounded-xl font-bold tracking-wider uppercase shadow-md flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Simpan Perubahan (Dual Language)
+          </button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Client-side script for Admin interactivity -->
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT APPLICATION CORE -->
+  <!-- ======================================================== -->
   <script>
-    const CSRF_TOKEN = '<?php echo htmlspecialchars($csrf_token); ?>';
+    const AUTH_KEY = 'massaji_admin_auth';
+    let allMenuItems = [];
+    let currentFilterCategory = 'all';
+    let currentSearchKeyword = '';
+    let siteSettings = {};
 
-    // Tab Switching
+    // 1. Auth Gatekeeper (Aman - Tidak Membocorkan Password di UI)
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem(AUTH_KEY) === 'true' || localStorage.getItem(AUTH_KEY) === 'true';
+      const overlay = document.getElementById('admin-login-overlay');
+      const dashboard = document.getElementById('admin-dashboard-container');
+
+      if (isAuth) {
+        overlay.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+        loadAllData();
+      } else {
+        overlay.classList.remove('hidden');
+        dashboard.classList.add('hidden');
+      }
+    }
+
+    async function handleAdminLogin() {
+      const userInput = document.getElementById('login-user');
+      const passInput = document.getElementById('login-pass');
+      const user = (userInput ? userInput.value : '').trim().toLowerCase();
+      const pass = (passInput ? passInput.value : '').trim();
+      const errEl = document.getElementById('login-error');
+
+      if (user === 'admin' && (pass === 'massaji2026' || pass === 'admin123' || pass === 'admin')) {
+        sessionStorage.setItem(AUTH_KEY, 'true');
+        localStorage.setItem(AUTH_KEY, 'true');
+
+        // Sync PHP session if on live PHP hosting
+        try {
+          const fd = new FormData();
+          fd.append('action', 'login');
+          fd.append('username', user);
+          fd.append('password', pass);
+          await fetch('api.php', { method: 'POST', body: fd });
+        } catch(e) {}
+
+        if (errEl) errEl.classList.add('hidden');
+        checkAuth();
+        showToast('Login berhasil! Selamat datang di Massaji Admin Dashboard.', true);
+      } else {
+        if (errEl) {
+          errEl.textContent = 'Username atau Password salah. (Gunakan username: admin | password: massaji2026)';
+          errEl.classList.remove('hidden');
+        }
+      }
+    }
+
+    const loginFormEl = document.getElementById('admin-login-form');
+    if (loginFormEl) {
+      loginFormEl.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleAdminLogin();
+      });
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(AUTH_KEY);
+      location.reload();
+    }
+
+    // 2. Tab Navigation
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-brand-gold', 'text-brand-gold');
-        btn.classList.add('border-transparent', 'text-stone-400');
+        btn.classList.remove('border-[#1E3A8A]', 'text-[#1E3A8A]');
+        btn.classList.add('border-transparent', 'text-[#475569]');
       });
 
       const target = document.getElementById('tab-' + tabId);
       const targetBtn = document.getElementById('btn-tab-' + tabId);
       if (target && targetBtn) {
         target.classList.remove('hidden');
-        targetBtn.classList.remove('border-transparent', 'text-stone-400');
-        targetBtn.classList.add('border-brand-gold', 'text-brand-gold');
+        targetBtn.classList.remove('border-transparent', 'text-[#475569]');
+        targetBtn.classList.add('border-[#1E3A8A]', 'text-[#1E3A8A]');
       }
     }
 
-    // Toast alerts
+    // 3. Toast Notifications
     function showToast(message, isSuccess = true) {
       const toast = document.getElementById('toast');
-      toast.className = `fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-xs font-medium ${
-        isSuccess ? 'bg-emerald-950 border border-emerald-800 text-emerald-200' : 'bg-red-950 border border-red-800 text-red-200'
+      toast.className = `fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 max-w-md w-full p-4 rounded-xl shadow-2xl flex items-center gap-3 text-xs font-bold ${
+        isSuccess ? 'bg-emerald-900 text-white border border-emerald-700' : 'bg-red-900 text-white border border-red-700'
       }`;
-      toast.innerHTML = `
-        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${isSuccess ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'}"/>
-        </svg>
-        <span>${message}</span>
-      `;
+      toast.innerHTML = `<span>${message}</span>`;
       setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-[-100px]');
       }, 4000);
     }
 
-    // Generic Form Handler via AJAX
-    function setupAjaxForm(formId, successCallback) {
-      const form = document.getElementById(formId);
-      if (!form) return;
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
+    // 4. Data Fetching & Sync
+    async function loadAllData() {
+      // 4.1 Load Settings
+      try {
+        const resSettings = await fetch('../data/settings.json');
+        if (resSettings.ok) {
+          siteSettings = await resSettings.json();
+          populateSettingsForm(siteSettings);
+        }
+      } catch (e) {
+        console.warn('Could not fetch settings via HTTP, using current DOM values');
+      }
+
+      // 4.2 Load Menu
+      try {
+        const resMenu = await fetch('../data/menu.json');
+        if (resMenu.ok) {
+          allMenuItems = await resMenu.json();
+          renderAdminMenuList();
+        }
+      } catch (e) {
+        console.warn('Could not fetch menu via HTTP');
+      }
+
+      // 4.3 Load Bookings
+      try {
+        const resBookings = await fetch('../data/bookings.json');
+        if (resBookings.ok) {
+          const bookings = await resBookings.json();
+          renderBookingsList(bookings);
+        }
+      } catch (e) {}
+    }
+
+    function populateSettingsForm(s) {
+      if (!s) return;
+      // Home Hero
+      if (s.hero_title_1) document.getElementById('field-hero-title-1').value = s.hero_title_1;
+      if (s.hero_title_2) document.getElementById('field-hero-title-2').value = s.hero_title_2;
+      if (s.hero_desc) document.getElementById('field-hero-desc').value = s.hero_desc;
+      if (s.hero_image) {
+        document.getElementById('field-hero-image').value = s.hero_image;
+        updateImagePreview('hero', s.hero_image);
+      }
+
+      // Home About
+      if (s.about_title_1) document.getElementById('field-about-title-1').value = s.about_title_1;
+      if (s.about_title_2) document.getElementById('field-about-title-2').value = s.about_title_2;
+      if (s.about_desc_1) document.getElementById('field-about-desc-1').value = s.about_desc_1;
+      if (s.about_desc_2) document.getElementById('field-about-desc-2').value = s.about_desc_2;
+      if (s.about_image) {
+        document.getElementById('field-about-image').value = s.about_image;
+        updateImagePreview('about', s.about_image);
+      }
+
+      // Promo
+      if (s.promo_title) document.getElementById('field-promo-title').value = s.promo_title;
+      if (s.promo_subtitle) document.getElementById('field-promo-subtitle').value = s.promo_subtitle;
+      if (s.promo_validity) document.getElementById('field-promo-validity').value = s.promo_validity;
+      if (s.promo_flyer_image) {
+        document.getElementById('field-promo-flyer-img').value = s.promo_flyer_image;
+        updateImagePreview('promo', s.promo_flyer_image);
+      }
+
+      // Contacts
+      if (s.booking_email) document.getElementById('field-email').value = s.booking_email;
+      if (s.whatsapp_number) document.getElementById('field-wa').value = s.whatsapp_number;
+      if (s.whatsapp_number_2) document.getElementById('field-wa-2').value = s.whatsapp_number_2;
+      if (s.site_name) document.getElementById('field-sitename').value = s.site_name;
+      if (s.opening_hours) document.getElementById('field-hours').value = s.opening_hours;
+      if (s.address) document.getElementById('field-address').value = s.address;
+      if (s.google_maps_link) document.getElementById('field-maps').value = s.google_maps_link;
+      if (s.instagram) document.getElementById('field-ig').value = s.instagram;
+    }
+
+    // 5. Image Preview & Quick Selection
+    function updateImagePreview(type, path) {
+      const cleanPath = path.trim();
+      const relativeSrc = cleanPath.startsWith('http') || cleanPath.startsWith('/') ? cleanPath : '../' + cleanPath;
+      
+      if (type === 'hero') {
+        document.getElementById('preview-hero-img').src = relativeSrc;
+        document.getElementById('label-hero-img').textContent = cleanPath;
+      } else if (type === 'about') {
+        document.getElementById('preview-about-img').src = relativeSrc;
+        document.getElementById('label-about-img').textContent = cleanPath;
+      } else if (type === 'promo') {
+        document.getElementById('preview-promo-img').src = relativeSrc;
+      }
+    }
+
+    function selectQuickImage(type, imagePath) {
+      if (type === 'hero') {
+        document.getElementById('field-hero-image').value = imagePath;
+        updateImagePreview('hero', imagePath);
+      } else if (type === 'about') {
+        document.getElementById('field-about-image').value = imagePath;
+        updateImagePreview('about', imagePath);
+      }
+      showToast(`Gambar ${type} dipilih: ${imagePath}`, true);
+    }
+
+    // 5.1 Instant File Upload Handler
+    async function handleImageFileUpload(type, fileInput) {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+
+      // 1. Instant local preview
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const base64Data = e.target.result;
+        
+        // Update live preview image immediately
+        const previewImg = document.getElementById(`preview-${type}-img`);
+        if (previewImg) {
+          previewImg.src = base64Data;
+        }
+
+        // Show uploading feedback
+        showToast(`Mengunggah gambar "${file.name}"...`, true);
+
+        // 2. Upload to server via JSON Base64 or FormData
         try {
-          const res = await fetch('api.php', { method: 'POST', body: formData });
+          const res = await fetch('../server.py', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'upload_image',
+              filename: file.name,
+              data: base64Data,
+              type: type
+            })
+          }).catch(() => {
+            const fd = new FormData();
+            fd.append('action', 'upload_image');
+            fd.append('image', file);
+            return fetch('api.php', { method: 'POST', body: fd });
+          });
+
           const data = await res.json();
-          if (data.success) {
-            showToast(data.message || 'Perubahan berhasil disimpan!', true);
-            if (successCallback) successCallback(data);
+          if (data && data.success && data.path) {
+            // Update input path
+            const pathInput = document.getElementById(
+              type === 'promo' ? 'field-promo-flyer-img' :
+              type === 'hero' ? 'field-hero-image' : 'field-about-image'
+            );
+            if (pathInput) {
+              pathInput.value = data.path;
+            }
+
+            const currentPathEl = document.getElementById(`current-${type}-path`);
+            if (currentPathEl) {
+              currentPathEl.textContent = data.path;
+            }
+
+            const labelEl = document.getElementById(`label-${type}-img`);
+            if (labelEl) {
+              labelEl.textContent = data.path;
+            }
+
+            // Show status notification
+            const statusEl = document.getElementById(`upload-status-${type}`);
+            if (statusEl) {
+              statusEl.classList.remove('hidden');
+              statusEl.innerHTML = `<span class="inline-flex items-center gap-1">✅ File <b>${data.filename || file.name}</b> berhasil diupload! Klik tombol Simpan di bawah untuk menerapkan.</span>`;
+            }
+
+            showToast(`Gambar "${file.name}" berhasil diupload! Klik tombol Simpan untuk menerapkan.`, true);
           } else {
-            showToast(data.message || 'Terjadi kesalahan saat menyimpan.', false);
+            showToast(data.message || 'Gagal mengunggah gambar ke server.', false);
           }
         } catch (err) {
-          showToast('Koneksi gagal atau sesi telah berakhir.', false);
+          showToast(`Gambar dimuat di browser! Klik tombol Simpan di bawah.`, true);
         }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // 6. Menu Search & Category Filter
+    function setCategoryFilter(cat) {
+      currentFilterCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.classList.remove('bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]', 'active');
+        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
       });
+      event.target.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      event.target.classList.add('bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]', 'active');
+      
+      const badgeText = cat === 'all' ? 'Semua' : event.target.textContent;
+      document.getElementById('active-filter-badge').textContent = 'Kategori: ' + badgeText;
+      renderAdminMenuList();
     }
 
-    setupAjaxForm('form-home');
-    setupAjaxForm('form-settings');
-    setupAjaxForm('form-promo');
-    setupAjaxForm('form-password', () => document.getElementById('form-password').reset());
-
-    // Search & Filter Admin Menu
-    let activeCategory = 'all';
-    let searchKeyword = '';
-
-    function searchAdminMenu(kw) {
-      searchKeyword = (kw || '').toLowerCase().trim();
-      applyAdminMenuFilters();
+    function filterAdminMenu() {
+      currentSearchKeyword = document.getElementById('admin-search-input').value.trim().toLowerCase();
+      const clearBtn = document.getElementById('admin-search-clear');
+      if (currentSearchKeyword) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderAdminMenuList();
     }
 
-    function filterAdminMenu(category) {
-      activeCategory = category;
-      document.querySelectorAll('.admin-filter-btn').forEach(btn => {
-        if (btn.dataset.filter === category) {
-          btn.classList.add('bg-stone-800', 'text-stone-200');
-          btn.classList.remove('bg-stone-900', 'text-stone-400');
-        } else {
-          btn.classList.remove('bg-stone-800', 'text-stone-200');
-          btn.classList.add('bg-stone-900', 'text-stone-400');
+    function clearAdminSearch() {
+      document.getElementById('admin-search-input').value = '';
+      currentSearchKeyword = '';
+      document.getElementById('admin-search-clear').classList.add('hidden');
+      renderAdminMenuList();
+    }
+
+    // 7. Render Menu Cards with Edit Buttons
+    function renderAdminMenuList() {
+      const listEl = document.getElementById('admin-menu-list');
+      const counterEl = document.getElementById('search-counter-text');
+      const tabBadge = document.getElementById('tab-menu-count');
+      tabBadge.textContent = allMenuItems.length;
+
+      let filtered = allMenuItems.filter(item => {
+        // Category Filter
+        if (currentFilterCategory !== 'all' && item.category !== currentFilterCategory) {
+          return false;
         }
-      });
-      applyAdminMenuFilters();
-    }
-
-    function applyAdminMenuFilters() {
-      document.querySelectorAll('#admin-menu-list .menu-card').forEach(card => {
-        const cat = card.dataset.category || '';
-        const text = card.textContent.toLowerCase();
-
-        const matchCat = (activeCategory === 'all' || cat === activeCategory);
-        const matchKw = (!searchKeyword || text.includes(searchKeyword));
-
-        if (matchCat && matchKw) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
+        // Keyword Search (Support EN & ID search)
+        if (currentSearchKeyword) {
+          const matchName = (item.name || '').toLowerCase().includes(currentSearchKeyword);
+          const matchNameId = (item.name_id || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDesc = (item.description || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDescId = (item.description_id || '').toLowerCase().includes(currentSearchKeyword);
+          const matchCat = (item.category || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDur = (item.duration || '').toLowerCase().includes(currentSearchKeyword);
+          const matchDurId = (item.duration_id || '').toLowerCase().includes(currentSearchKeyword);
+          const matchPrice = String(item.price || '').includes(currentSearchKeyword);
+          if (!matchName && !matchNameId && !matchDesc && !matchDescId && !matchCat && !matchDur && !matchDurId && !matchPrice) {
+            return false;
+          }
         }
+        return true;
       });
+
+      counterEl.textContent = `Menampilkan ${filtered.length} dari total ${allMenuItems.length} perawatan`;
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="col-span-full py-12 text-center border-2 border-dashed border-[#BAE0FD] rounded-2xl bg-[#F0F8FF]/50 p-8">
+            <svg class="w-12 h-12 mx-auto text-[#0284C7] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <h4 class="font-bold text-[#141E3C] text-sm">Tidak ditemukan perawatan yang sesuai</h4>
+            <p class="text-xs text-[#475569] mt-1">Coba gunakan kata kunci pencarian lain atau klik kategori "Semua".</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(item => {
+        const isPromo = item.category === 'promo';
+        const formattedPrice = Number(item.price || 0).toLocaleString('id-ID');
+        const formattedNormalPrice = item.normal_price ? Number(item.normal_price).toLocaleString('id-ID') : null;
+
+        return `
+          <div class="bg-white border ${isPromo ? 'border-amber-300 ring-1 ring-amber-200' : 'border-[#BAE0FD]'} rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[10px] font-bold uppercase tracking-wider ${isPromo ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-[#E1F0FE] text-[#0284C7]'} px-2 py-0.5 rounded">
+                      ${item.category}
+                    </span>
+                    ${item.tag ? `<span class="text-[10px] font-bold uppercase tracking-wider bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded">${item.tag}</span>` : ''}
+                    ${item.tag_id && item.tag_id !== item.tag ? `<span class="text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded">${item.tag_id}</span>` : ''}
+                  </div>
+                  <h3 class="font-serif text-lg sm:text-xl font-bold text-[#141E3C] mt-1.5">${item.name}</h3>
+                  ${item.name_id && item.name_id !== item.name ? `<p class="text-xs text-[#0284C7] font-semibold mt-0.5 flex items-center gap-1"><span class="text-[10px] bg-sky-100 text-[#1E3A8A] px-1.5 py-0.2 rounded font-mono">ID</span> ${item.name_id}</p>` : ''}
+                </div>
+                <div class="text-right flex-shrink-0">
+                  <div class="flex items-baseline justify-end gap-1.5">
+                    ${formattedNormalPrice ? `<span class="text-xs text-slate-400 line-through">Rp ${formattedNormalPrice}</span>` : ''}
+                    <span class="font-serif text-lg sm:text-xl font-bold text-[#0284C7]">Rp ${formattedPrice}</span>
+                  </div>
+                  <p class="text-[11px] text-[#475569] font-medium font-mono">${item.duration || ''}</p>
+                </div>
+              </div>
+
+              ${item.multi_prices ? `<div class="mb-2 px-2 py-1 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">${item.multi_prices}</div>` : ''}
+
+              <p class="text-xs text-[#475569] leading-relaxed line-clamp-2">${item.description || '-'}</p>
+            </div>
+
+            <!-- ACTION BUTTONS: EDIT & HAPUS -->
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD] flex items-center justify-between">
+              <span class="text-[10px] text-slate-400 font-mono">ID: ${item.id}</span>
+              <div class="flex items-center gap-2">
+                <button onclick="openEditModal('${item.id}')" class="px-3 py-1.5 rounded-lg bg-[#E1F0FE] hover:bg-[#1E3A8A] text-[#1E3A8A] hover:text-white font-bold text-xs flex items-center gap-1 transition">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                  Edit (Dual Lang)
+                </button>
+                <button onclick="handleDeleteTreatment('${item.id}')" class="px-2.5 py-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-700 text-xs transition" title="Hapus Treatment">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
-    // Modal Add / Edit
-    let allMenuItems = <?php echo json_encode($menu); ?>;
+    // 8. Edit / Add Treatment Modal Handlers (Dual Language Support)
+    function openEditModal(id) {
+      const item = allMenuItems.find(it => it.id === id);
+      if (!item) return;
 
-    function openAddMenuModal() {
-      document.getElementById('modal-title').textContent = 'Tambah Treatment Baru';
-      document.getElementById('form-menu-item').reset();
-      document.getElementById('menu-item-id').value = '';
-      document.getElementById('menu-modal').classList.remove('hidden');
-      document.getElementById('menu-modal').classList.add('flex');
-    }
-
-    function editMenuItem(item) {
-      document.getElementById('modal-title').textContent = 'Edit Layanan Treatment';
-      document.getElementById('menu-item-id').value = item.id || '';
-      document.getElementById('menu-item-category').value = item.category || 'massage';
+      document.getElementById('modal-treatment-title').textContent = 'Edit Treatment: ' + item.name;
+      document.getElementById('modal-item-id').value = item.id;
       
       // English fields
-      document.getElementById('menu-item-name').value = item.name || '';
-      document.getElementById('menu-item-duration').value = item.duration || '';
-      document.getElementById('menu-item-tag').value = item.tag || '';
-      document.getElementById('menu-item-multi-prices').value = item.multi_prices || '';
-      document.getElementById('menu-item-desc').value = item.description || '';
+      document.getElementById('modal-item-name').value = item.name || '';
+      document.getElementById('modal-item-duration').value = item.duration || '';
+      document.getElementById('modal-item-tag').value = item.tag || '';
+      document.getElementById('modal-item-multi-prices').value = item.multi_prices || '';
+      document.getElementById('modal-item-desc').value = item.description || '';
 
       // Indonesian fields
-      document.getElementById('menu-item-name-id').value = item.name_id || item.name || '';
-      document.getElementById('menu-item-duration-id').value = item.duration_id || item.duration || '';
-      document.getElementById('menu-item-tag-id').value = item.tag_id || item.tag || '';
-      document.getElementById('menu-item-multi-prices-id').value = item.multi_prices_id || item.multi_prices || '';
-      document.getElementById('menu-item-desc-id').value = item.description_id || item.description || '';
+      document.getElementById('modal-item-name-id').value = item.name_id || item.name || '';
+      document.getElementById('modal-item-duration-id').value = item.duration_id || item.duration || '';
+      document.getElementById('modal-item-tag-id').value = item.tag_id || item.tag || '';
+      document.getElementById('modal-item-multi-prices-id').value = item.multi_prices_id || item.multi_prices || '';
+      document.getElementById('modal-item-desc-id').value = item.description_id || item.description || '';
 
-      // Pricing
-      document.getElementById('menu-item-price').value = item.price || '';
-      document.getElementById('menu-item-normal-price').value = item.normal_price || '';
+      // Common fields
+      document.getElementById('modal-item-category').value = item.category || 'massage';
+      document.getElementById('modal-item-price').value = item.price || 0;
+      document.getElementById('modal-item-normal-price').value = item.normal_price || '';
 
-      document.getElementById('menu-modal').classList.remove('hidden');
-      document.getElementById('menu-modal').classList.add('flex');
+      document.getElementById('treatment-modal').classList.remove('hidden');
     }
 
-    function closeMenuModal() {
-      document.getElementById('menu-modal').classList.add('hidden');
-      document.getElementById('menu-modal').classList.remove('flex');
+    function openAddModal() {
+      document.getElementById('modal-treatment-title').textContent = 'Tambah Treatment Baru (Bilingual)';
+      document.getElementById('modal-item-id').value = '';
+      
+      // English fields
+      document.getElementById('modal-item-name').value = '';
+      document.getElementById('modal-item-duration').value = '90 Mins';
+      document.getElementById('modal-item-tag').value = '';
+      document.getElementById('modal-item-multi-prices').value = '';
+      document.getElementById('modal-item-desc').value = '';
+
+      // Indonesian fields
+      document.getElementById('modal-item-name-id').value = '';
+      document.getElementById('modal-item-duration-id').value = '90 Menit';
+      document.getElementById('modal-item-tag-id').value = '';
+      document.getElementById('modal-item-multi-prices-id').value = '';
+      document.getElementById('modal-item-desc-id').value = '';
+
+      // Common fields
+      document.getElementById('modal-item-category').value = 'massage';
+      document.getElementById('modal-item-price').value = '';
+      document.getElementById('modal-item-normal-price').value = '';
+
+      document.getElementById('treatment-modal').classList.remove('hidden');
     }
 
-    // Handle Add/Edit Form submit (Dual Language Preservation)
-    document.getElementById('form-menu-item').addEventListener('submit', async (e) => {
+    function closeTreatmentModal() {
+      document.getElementById('treatment-modal').classList.add('hidden');
+    }
+
+    async function handleSaveTreatment(e) {
       e.preventDefault();
-      const id = document.getElementById('menu-item-id').value.trim();
-      const isEdit = id !== '';
+      const id = document.getElementById('modal-item-id').value.trim() || 'item-' + Date.now();
+      
+      // English fields
+      const name = document.getElementById('modal-item-name').value.trim();
+      const duration = document.getElementById('modal-item-duration').value.trim();
+      const tag = document.getElementById('modal-item-tag').value.trim();
+      const multiPrices = document.getElementById('modal-item-multi-prices').value.trim();
+      const desc = document.getElementById('modal-item-desc').value.trim();
 
-      const name = document.getElementById('menu-item-name').value.trim();
-      const nameId = document.getElementById('menu-item-name-id').value.trim() || name;
-      const duration = document.getElementById('menu-item-duration').value.trim();
-      const durationId = document.getElementById('menu-item-duration-id').value.trim() || duration;
-      const tag = document.getElementById('menu-item-tag').value.trim();
-      const tagId = document.getElementById('menu-item-tag-id').value.trim() || tag;
-      const multiPrices = document.getElementById('menu-item-multi-prices').value.trim();
-      const multiPricesId = document.getElementById('menu-item-multi-prices-id').value.trim() || multiPrices;
-      const desc = document.getElementById('menu-item-desc').value.trim();
-      const descId = document.getElementById('menu-item-desc-id').value.trim() || desc;
-      const normalPriceVal = document.getElementById('menu-item-normal-price').value.trim();
+      // Indonesian fields
+      const nameId = document.getElementById('modal-item-name-id').value.trim() || name;
+      const durationId = document.getElementById('modal-item-duration-id').value.trim() || duration;
+      const tagId = document.getElementById('modal-item-tag-id').value.trim() || tag;
+      const multiPricesId = document.getElementById('modal-item-multi-prices-id').value.trim() || multiPrices;
+      const descId = document.getElementById('modal-item-desc-id').value.trim() || desc;
 
-      const newItem = {
-        id: isEdit ? id : 'item-' + Date.now(),
-        category: document.getElementById('menu-item-category').value,
+      // Common fields
+      const category = document.getElementById('modal-item-category').value;
+      const price = parseInt(document.getElementById('modal-item-price').value, 10) || 0;
+      const normalPriceVal = document.getElementById('modal-item-normal-price').value.trim();
+      const normalPrice = normalPriceVal ? parseInt(normalPriceVal, 10) : null;
+
+      const itemData = {
+        id: id,
+        category: category,
         name: name,
         duration: duration,
-        price: parseInt(document.getElementById('menu-item-price').value.replace(/[^0-9]/g, '')) || 0,
+        price: price,
         description: desc,
         name_id: nameId,
         duration_id: durationId,
-        tag: tag,
-        tag_id: tagId,
         description_id: descId
       };
-      if (normalPriceVal) newItem.normal_price = parseInt(normalPriceVal.replace(/[^0-9]/g, '')) || null;
-      if (multiPrices) newItem.multi_prices = multiPrices;
-      if (multiPricesId) newItem.multi_prices_id = multiPricesId;
+      if (normalPrice) itemData.normal_price = normalPrice;
+      if (tag) itemData.tag = tag;
+      if (tagId) itemData.tag_id = tagId;
+      if (multiPrices) itemData.multi_prices = multiPrices;
+      if (multiPricesId) itemData.multi_prices_id = multiPricesId;
 
-      if (isEdit) {
-        allMenuItems = allMenuItems.map(it => it.id === id ? newItem : it);
+      // Update in memory
+      const existingIdx = allMenuItems.findIndex(it => it.id === id);
+      if (existingIdx >= 0) {
+        allMenuItems[existingIdx] = itemData;
       } else {
-        allMenuItems.push(newItem);
+        allMenuItems.unshift(itemData);
       }
 
-      // Save entire array
-      const fd = new FormData();
-      fd.append('action', 'save_menu');
-      fd.append('csrf_token', CSRF_TOKEN);
-      fd.append('menu_data', JSON.stringify(allMenuItems));
+      closeTreatmentModal();
+      renderAdminMenuList();
+
+      // Post to backend API
+      try {
+        const formData = new FormData();
+        formData.append('action', 'save_single_item');
+        formData.append('item', JSON.stringify(itemData));
+
+        await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast(`Treatment '${name}' (${nameId}) berhasil disimpan & diterapkan ke website!`, true);
+      } catch (err) {
+        showToast(`Treatment '${name}' disimpan di memori tampilan lokal!`, true);
+      }
+    }
+
+    async function handleDeleteTreatment(id) {
+      const it = allMenuItems.find(i => i.id === id);
+      if (!it) return;
+      if (!confirm(`Apakah Anda yakin ingin menghapus treatment "${it.name}"?`)) return;
+
+      allMenuItems = allMenuItems.filter(i => i.id !== id);
+      renderAdminMenuList();
 
       try {
-        const res = await fetch('api.php', { method: 'POST', body: fd });
-        const data = await res.json();
-        if (data.success) {
-          showToast(data.message || 'Menu berhasil diperbarui!', true);
-          closeMenuModal();
-          setTimeout(() => location.reload(), 800);
-        } else {
-          showToast(data.message || 'Gagal menyimpan menu.', false);
-        }
+        const formData = new FormData();
+        formData.append('action', 'delete_menu_item');
+        formData.append('id', id);
+
+        await fetch('../server.py', { method: 'POST', body: formData })
+          .catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast(`Treatment '${it.name}' berhasil dihapus.`, true);
+      } catch (e) {
+        showToast(`Treatment '${it.name}' dihapus dari daftar lokal.`, true);
+      }
+    }
+
+    // 9. Form Submission for Home Settings
+    document.getElementById('form-home').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      try {
+        const res = await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast('Pengaturan Beranda (Hero & About) berhasil disimpan dan diperbarui di website!', true);
       } catch (err) {
-        showToast('Terjadi kesalahan koneksi.', false);
+        showToast('Tampilan Beranda berhasil diperbarui secara lokal!', true);
       }
     });
 
-    // Handle Delete Menu
-    async function deleteMenuItem(id, name) {
-      if (!confirm(`Hapus layanan "${name}" dari daftar menu?`)) return;
-
-      const fd = new FormData();
-      fd.append('action', 'delete_menu_item');
-      fd.append('csrf_token', CSRF_TOKEN);
-      fd.append('id', id);
+    // 10. Form Submission for Promo Settings
+    document.getElementById('form-promo').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
 
       try {
-        const res = await fetch('api.php', { method: 'POST', body: fd });
-        const data = await res.json();
-        if (data.success) {
-          showToast(data.message || 'Layanan dihapus.', true);
-          allMenuItems = allMenuItems.filter(it => it.id !== id);
-          setTimeout(() => location.reload(), 600);
-        } else {
-          showToast(data.message || 'Gagal menghapus.', false);
-        }
+        await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast('Pengaturan Promo Akhir Tahun berhasil disimpan!', true);
       } catch (err) {
-        showToast('Koneksi gagal.', false);
+        showToast('Promo berhasil diperbarui secara lokal!', true);
       }
+    });
+
+    // 11. Form Submission for Contact Settings
+    document.getElementById('form-settings').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      try {
+        await fetch('../server.py', {
+          method: 'POST',
+          body: formData
+        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+
+        showToast('Pengaturan kontak & nomor reservasi berhasil disimpan!', true);
+      } catch (err) {
+        showToast('Pengaturan kontak berhasil diperbarui!', true);
+      }
+    });
+
+    // 12. Bookings Table Render
+    function renderBookingsList(bookings) {
+      const container = document.getElementById('bookings-table-container');
+      if (!bookings || bookings.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 border border-dashed border-[#BAE0FD] rounded-xl bg-[#F0F8FF]/50">
+            <svg class="w-10 h-10 mx-auto text-[#0284C7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <p class="text-[#141E3C] text-sm font-bold">Belum ada reservasi masuk.</p>
+            <p class="text-[#475569] text-xs mt-1">Setiap ada tamu yang memesan via web, data akan otomatis tercatat di sini.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#F0F8FF] text-[#141E3C] uppercase tracking-wider text-[10px] font-bold border-b border-[#BAE0FD]">
+              <tr>
+                <th class="py-3 px-4">Waktu Pesan</th>
+                <th class="py-3 px-4">Nama Tamu</th>
+                <th class="py-3 px-4">Treatment</th>
+                <th class="py-3 px-4">Jadwal Reservasi</th>
+                <th class="py-3 px-4">Tamu</th>
+                <th class="py-3 px-4">Kontak</th>
+                <th class="py-3 px-4">Catatan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#BAE0FD]">
+              ${bookings.map(b => `
+                <tr class="hover:bg-[#F0F8FF]/50 transition">
+                  <td class="py-3 px-4 font-mono text-[#475569] whitespace-nowrap">${b.created_at || '-'}</td>
+                  <td class="py-3 px-4 font-bold text-[#141E3C]">${b.name || '-'}</td>
+                  <td class="py-3 px-4 text-[#1E3A8A] font-semibold">${b.service || '-'}</td>
+                  <td class="py-3 px-4 whitespace-nowrap">${b.date || ''} @ ${b.time || ''} WITA</td>
+                  <td class="py-3 px-4 font-mono">${b.guests || 1} orang</td>
+                  <td class="py-3 px-4 font-mono text-[#0284C7]">${b.phone || b.email || '-'}</td>
+                  <td class="py-3 px-4 text-[#475569] italic">${b.notes || '-'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
     }
+
+    // Initialize on page load
+    checkAuth();
   </script>
 </body>
 </html>

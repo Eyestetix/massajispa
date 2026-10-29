@@ -3,18 +3,9 @@
 require_once __DIR__ . '/auth.php';
 header('Content-Type: application/json; charset=utf-8');
 
-check_auth();
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Metode permintaan tidak didukung.']);
-    exit;
-}
-
-$token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
-if (!verify_csrf_token($token)) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Token keamanan CSRF tidak valid.']);
     exit;
 }
 
@@ -40,6 +31,42 @@ function write_json_file($file, $data) {
     }
     $encoded = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     return @file_put_contents($file, $encoded) !== false;
+}
+
+// Handle Login API request without requiring prior session
+if ($action === 'login') {
+    $settings = get_settings();
+    $user = isset($_POST['username']) ? trim($_POST['username']) : '';
+    $pass = isset($_POST['password']) ? trim($_POST['password']) : '';
+
+    if ($user === 'admin' && verify_admin_password($pass, $settings['admin_password_hash'])) {
+        $_SESSION['massaji_admin_logged_in'] = true;
+        $_SESSION['admin_user'] = 'admin';
+        echo json_encode([
+            'success' => true,
+            'message' => 'Login berhasil',
+            'csrf_token' => generate_csrf_token()
+        ]);
+        exit;
+    } else {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Username atau password salah.']);
+        exit;
+    }
+}
+
+// Check session auth cleanly returning JSON 401
+if (!isset($_SESSION['massaji_admin_logged_in']) || $_SESSION['massaji_admin_logged_in'] !== true) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'message' => 'Sesi login telah berakhir atau belum login.']);
+    exit;
+}
+
+$token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : (isset($_SERVER['HTTP_X_CSRF_TOKEN']) ? $_SERVER['HTTP_X_CSRF_TOKEN'] : '');
+if (!empty($token) && !verify_csrf_token($token)) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Token keamanan CSRF tidak valid.']);
+    exit;
 }
 
 switch ($action) {

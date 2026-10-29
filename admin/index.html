@@ -768,7 +768,7 @@
       }
     }
 
-    function handleAdminLogin() {
+    async function handleAdminLogin() {
       const userInput = document.getElementById('login-user');
       const passInput = document.getElementById('login-pass');
       const user = (userInput ? userInput.value : '').trim().toLowerCase();
@@ -778,6 +778,16 @@
       if (user === 'admin' && (pass === 'massaji2026' || pass === 'admin123' || pass === 'admin')) {
         sessionStorage.setItem(AUTH_KEY, 'true');
         localStorage.setItem(AUTH_KEY, 'true');
+
+        // Sync PHP session if on live PHP hosting
+        try {
+          const fd = new FormData();
+          fd.append('action', 'login');
+          fd.append('username', user);
+          fd.append('password', pass);
+          await fetch('api.php', { method: 'POST', body: fd });
+        } catch(e) {}
+
         if (errEl) errEl.classList.add('hidden');
         checkAuth();
         showToast('Login berhasil! Selamat datang di Massaji Admin Dashboard.', true);
