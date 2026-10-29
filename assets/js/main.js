@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trust_1: "Authentic Balinese Healing Rituals",
       trust_2: "Certified & Experienced Therapists",
-      trust_3: "100% Pure Botanical Botanicals",
+      trust_3: "100% Pure Botanical Ingredients",
       trust_4: "Private, Serene & Spotless Suites",
 
       promo_eyebrow: "Limited-Time Special Offer",
-      promo_title: "END YEAR 2026 Big Promotion",
+      promo_title: 'End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>',
       promo_desc: "Celebrate the year-end season with curated rejuvenation specials by Massaji Spa Bali. Enjoy exclusive savings on signature massages, body contouring, and rose petal rituals.",
       promo_card_rate: "Special Promo Rate",
       promo_btn_book: "Claim Promo Rate",
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trust_4: "Ruang Privat, Tenang & Higienis",
 
       promo_eyebrow: "Penawaran Istimewa Terbatas",
-      promo_title: "END YEAR 2026 Big Promotion",
+      promo_title: 'Promo Besar <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Akhir Tahun 2026</span>',
       promo_desc: "Rayakan akhir tahun dengan perawatan istimewa berharga spesial dari Massaji Spa Bali. Dapatkan diskon eksklusif untuk memanjakan tubuh dan menyegarkan pikiran.",
       promo_card_rate: "Tarif Spesial Promo",
       promo_btn_book: "Klaim Promo Ini",
@@ -293,7 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const multiEl = card.querySelector('.card-multi-prices');
       if (multiEl) {
         const val = isId ? (card.dataset.multiId || card.dataset.multiEn) : card.dataset.multiEn;
-        if (val) multiEl.textContent = val;
+        if (val) {
+          if (val.includes('<')) multiEl.innerHTML = val;
+          else multiEl.textContent = val;
+        }
       }
     });
 
@@ -325,11 +328,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Translate text contents
+    // Translate text contents (support innerHTML when tags like span exist)
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       if (i18n[lang] && i18n[lang][key]) {
-        el.textContent = i18n[lang][key];
+        if (i18n[lang][key].includes('<')) {
+          el.innerHTML = i18n[lang][key];
+        } else {
+          el.textContent = i18n[lang][key];
+        }
       }
     });
 

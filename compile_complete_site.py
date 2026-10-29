@@ -29,7 +29,7 @@ hero_title_2 = html.escape(str(settings.get('hero_title_2', 'Rediscover Serenity
 hero_desc = html.escape(str(settings.get('hero_desc', 'Experience the restorative touch of authentic Balinese healing traditions, pure botanical aromatherapy, and tranquil private suites in the heart of Canggu.')))
 hero_image = str(settings.get('hero_image', 'assets/images/massaji-hero.jpg'))
 
-promo_title = html.escape(str(settings.get('promo_title', 'END YEAR 2026 Big Promotion')))
+promo_title = 'End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>'
 promo_subtitle = html.escape(str(settings.get('promo_subtitle', 'Promo Akhir Tahun 2026')))
 promo_validity = html.escape(str(settings.get('promo_validity', 'Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)')))
 promo_flyer_image = str(settings.get('promo_flyer_image', 'assets/images/promo-flyer-2026.jpeg'))
@@ -123,47 +123,56 @@ for item in promo_items:
     disc_badge = ''
     if item.get('normal_price'):
         norm = fmt_price(item['normal_price'])
-        disc_badge = f'<span class="text-xs text-sky-200 line-through mr-2">Rp {norm}</span>'
+        disc_badge = f'<span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp {norm}</span>'
     
     multi_html = ''
+    pills_en = ''
+    pills_id = ''
     if item.get('multi_prices'):
+        opts_en = [opt.strip() for opt in item['multi_prices'].split('|') if opt.strip()]
+        opts_id = [opt.strip() for opt in item.get('multi_prices_id', item['multi_prices']).split('|') if opt.strip()]
+        pills_en = ''.join([f'<span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">{html.escape(opt)}</span>' for opt in opts_en])
+        pills_id = ''.join([f'<span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">{html.escape(opt)}</span>' for opt in opts_id])
         multi_html = f'''
-        <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-white/10 border border-sky-300/30 text-[11px] font-mono text-[#BAE0FD] font-semibold">
-          {esc_multi_en}
+        <div class="card-multi-prices mb-3 flex flex-wrap gap-1.5">
+          {pills_en}
         </div>'''
 
+    esc_pills_en = html.escape(pills_en)
+    esc_pills_id = html.escape(pills_id)
+
     promo_cards_list.append(f'''
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
              data-desc-en="{esc_desc_en}" data-desc-id="{esc_desc_id}"
              data-dur-en="{esc_dur_en}" data-dur-id="{esc_dur_id}"
              data-tag-en="{esc_tag_en}" data-tag-id="{esc_tag_id}"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
-             data-multi-en="{esc_multi_en}" data-multi-id="{esc_multi_id}">
+             data-multi-en="{esc_pills_en}" data-multi-id="{esc_pills_id}">
           <div>
-            <div class="flex items-center justify-between text-xs mb-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">{esc_dur_en}</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+            <div class="flex items-center justify-between text-xs mb-3 gap-2">
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">{esc_dur_en}</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 {esc_tag_en}
               </span>
             </div>
             <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
               {esc_name_en}
             </h3>
-            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               {esc_desc_en}
             </p>
             {multi_html}
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline">
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
+            <div class="min-w-0">
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <div class="flex items-baseline gap-1.5 flex-wrap">
                 {disc_badge}
-                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp {fmt_price(item['price'])}</span>
+                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp {fmt_price(item['price'])}</span>
               </div>
             </div>
-            <button onclick="openBookingModal('{safe_js_name}')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+            <button onclick="openBookingModal('{safe_js_name}')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
               Claim Promo Rate
             </button>
           </div>
@@ -358,7 +367,7 @@ html_template = f'''<!DOCTYPE html>
       }}
     }}
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261029b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029c">
 </head>
 <body class="text-[#141E3C] antialiased font-sans selection:bg-[#1E3A8A] selection:text-white">
 
@@ -549,37 +558,47 @@ html_template = f'''<!DOCTYPE html>
   <!-- ========================================== -->
   <!-- 4. SECTION 1: PROMO (END YEAR 2026 BIG PROMOTION) -->
   <!-- ========================================== -->
-  <section id="promotion" class="py-24 bg-gradient-to-br from-[#141E3C] via-[#1E3A8A] to-[#141E3C] text-white relative overflow-hidden">
-    <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-[#0284C7]/20 blur-3xl pointer-events-none"></div>
+  <section id="promotion" class="py-20 sm:py-24 bg-gradient-to-b from-[#0F172A] via-[#141E3C] to-[#1E3A8A] text-white relative overflow-hidden">
+    <!-- Ambient Festive Glow Elements (Carefully constrained to prevent viewport overflow on Xiaomi & narrow mobile screens) -->
+    <div class="absolute top-0 right-0 w-80 h-80 bg-sky-500/15 rounded-full blur-3xl pointer-events-none transform translate-x-1/4 -translate-y-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none transform -translate-x-1/4 translate-y-1/4"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest text-[#BAE0FD] uppercase block mb-2" data-i18n="promo_eyebrow">Limited-Time Special Offer</span>
-        <h2 class="font-serif section-headline text-white mb-3" data-i18n="promo_title">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <!-- Festive Eyebrow Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-400/20 via-sky-400/20 to-amber-400/20 border border-amber-300/40 text-amber-200 text-xs font-bold tracking-[0.2em] uppercase shadow-lg backdrop-blur-sm mb-4">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <span data-i18n="promo_eyebrow">Limited-Time Special Offer</span>
+        </div>
+
+        <!-- High Impact Hero Headline -->
+        <h2 class="festive-headline font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 leading-[1.18]" data-i18n="promo_title">
           {promo_title}
         </h2>
-        <p class="text-sky-100/80 text-sm sm:text-base font-light" data-i18n="promo_desc">
+        
+        <p class="text-sky-100/90 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed" data-i18n="promo_desc">
           Celebrate the year-end season with curated rejuvenation specials by Massaji Spa Bali. Enjoy exclusive savings on signature massages, body contouring, and rose petal rituals.
         </p>
       </div>
 
       <!-- 4 Promo Cards Responsive Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
 {promo_cards_html}
       </div>
 
-      <!-- Reservation Notice Bar (Flyer Info) -->
-      <div class="mt-12 p-4 sm:p-5 rounded-2xl bg-white/5 border border-sky-300/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sky-100">
-        <div class="flex items-center gap-2.5">
+      <!-- Reservation Notice Bar (Flyer Info) - Phone 2 removed as per client markup in Image 3 -->
+      <div class="mt-12 p-4 sm:p-5 rounded-2xl bg-white/5 border border-sky-300/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sky-100 backdrop-blur-sm">
+        <div class="flex items-center gap-2.5 text-center sm:text-left">
           <svg class="w-5 h-5 text-[#BAE0FD] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span><strong data-i18n="promo_valid_label">Validity Period:</strong> <span data-i18n="promo_validity">{promo_validity}</span></span>
         </div>
-        <div class="flex flex-wrap items-center gap-3 font-mono font-bold text-white">
-          <a href="tel:{clean_phone_1}" class="hover:text-[#BAE0FD] transition">{phone_1}</a>
-          <span>&bull;</span>
-          <a href="tel:{clean_phone_2}" class="hover:text-[#BAE0FD] transition">{phone_2}</a>
-          <button onclick="openPromoPopup()" class="ml-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-sky-300/40 text-[11px] font-sans text-[#BAE0FD] transition cursor-pointer">
+        <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3 font-mono font-bold text-white">
+          <a href="tel:{clean_phone_1}" class="hover:text-[#BAE0FD] transition flex items-center gap-1.5 bg-white/10 px-3.5 py-1.5 rounded-lg border border-sky-300/20 shadow-sm">
+            <svg class="w-3.5 h-3.5 text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M6.597 18.193c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>{phone_1}</span>
+          </a>
+          <button onclick="openPromoPopup()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 border border-sky-300/40 text-[11px] font-sans text-[#BAE0FD] transition cursor-pointer shadow-sm">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
             <span data-i18n="promo_flyer_btn">Official Promo Flyer</span>
           </button>
@@ -1128,7 +1147,7 @@ html_template = f'''<!DOCTYPE html>
   </div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261029b"></script>
+  <script src="assets/js/main.js?v=20261029c"></script>
 </body>
 </html>'''
 

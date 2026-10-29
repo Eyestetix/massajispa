@@ -35,7 +35,7 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261029b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029c">
 </head>
 <body class="text-[#141E3C] antialiased font-sans selection:bg-[#1E3A8A] selection:text-white">
 
@@ -226,136 +226,145 @@
   <!-- ========================================== -->
   <!-- 4. SECTION 1: PROMO (END YEAR 2026 BIG PROMOTION) -->
   <!-- ========================================== -->
-  <section id="promotion" class="py-24 bg-gradient-to-br from-[#141E3C] via-[#1E3A8A] to-[#141E3C] text-white relative overflow-hidden">
-    <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-[#0284C7]/20 blur-3xl pointer-events-none"></div>
+  <section id="promotion" class="py-20 sm:py-24 bg-gradient-to-b from-[#0F172A] via-[#141E3C] to-[#1E3A8A] text-white relative overflow-hidden">
+    <!-- Ambient Festive Glow Elements (Carefully constrained to prevent viewport overflow on Xiaomi & narrow mobile screens) -->
+    <div class="absolute top-0 right-0 w-80 h-80 bg-sky-500/15 rounded-full blur-3xl pointer-events-none transform translate-x-1/4 -translate-y-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none transform -translate-x-1/4 translate-y-1/4"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
       
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest text-[#BAE0FD] uppercase block mb-2" data-i18n="promo_eyebrow">Limited-Time Special Offer</span>
-        <h2 class="font-serif section-headline text-white mb-3" data-i18n="promo_title">
-          END YEAR 2026 Big Promotion
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <!-- Festive Eyebrow Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-400/20 via-sky-400/20 to-amber-400/20 border border-amber-300/40 text-amber-200 text-xs font-bold tracking-[0.2em] uppercase shadow-lg backdrop-blur-sm mb-4">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <span data-i18n="promo_eyebrow">Limited-Time Special Offer</span>
+        </div>
+
+        <!-- High Impact Hero Headline -->
+        <h2 class="festive-headline font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 leading-[1.18]" data-i18n="promo_title">
+          End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>
         </h2>
-        <p class="text-sky-100/80 text-sm sm:text-base font-light" data-i18n="promo_desc">
+        
+        <p class="text-sky-100/90 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed" data-i18n="promo_desc">
           Celebrate the year-end season with curated rejuvenation specials by Massaji Spa Bali. Enjoy exclusive savings on signature massages, body contouring, and rose petal rituals.
         </p>
       </div>
 
       <!-- 4 Promo Cards Responsive Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Bali Traditional Massage (120 mins)" data-name-id="Pijat Tradisional Bali (120 menit)"
-             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex." data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam."
+             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage" data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam. CATATAN : Pijat tekanan sedang (Medium pressure massage)"
              data-dur-en="120 Mins" data-dur-id="120 Menit"
              data-tag-en="Now 300K" data-tag-id="Kini 300K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">120 Mins</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+            <div class="flex items-center justify-between text-xs mb-3 gap-2">
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">120 Mins</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 300K
               </span>
             </div>
             <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
               Bali Traditional Massage (120 mins)
             </h3>
-            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
-              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex.
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
+              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage
             </p>
             
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 345.000</span>
-                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 300.000</span>
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
+            <div class="min-w-0">
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <div class="flex items-baseline gap-1.5 flex-wrap">
+                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 345.000</span>
+                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 300.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Bali Traditional Massage (120 mins)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+            <button onclick="openBookingModal('Bali Traditional Massage (120 mins)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
               Claim Promo Rate
             </button>
           </div>
         </div>
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Deep Tissue Massage (90 mins)" data-name-id="Pijat Deep Tissue (90 menit)"
-             data-desc-en="A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension." data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika."
+             data-desc-en="A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage" data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika. CATATAN: Pijat tekanan kuat (Strong Pressure Massage)"
              data-dur-en="90 Mins" data-dur-id="90 Menit"
              data-tag-en="Now 285K" data-tag-id="Kini 285K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">90 Mins</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+            <div class="flex items-center justify-between text-xs mb-3 gap-2">
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">90 Mins</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 285K
               </span>
             </div>
             <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
               Deep Tissue Massage (90 mins)
             </h3>
-            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
-              A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension.
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
+              A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage
             </p>
             
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 310.000</span>
-                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 285.000</span>
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
+            <div class="min-w-0">
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <div class="flex items-baseline gap-1.5 flex-wrap">
+                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 310.000</span>
+                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 285.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Deep Tissue Massage (90 mins)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+            <button onclick="openBookingModal('Deep Tissue Massage (90 mins)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
               Claim Promo Rate
             </button>
           </div>
         </div>
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Body Slimming Treatment (Tummy / Thigh)" data-name-id="Perawatan Body Slimming (Perut / Paha)"
              data-desc-en="Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub." data-desc-id="Terapi pembentukan kontur tubuh modern dengan Cavitation RF untuk memecah sel lemak membandel dan mengencangkan kulit. Termasuk lulur kopi gratis."
              data-dur-en="Cavitation RF" data-dur-id="Cavitation RF"
              data-tag-en="Save Up To 250K" data-tag-id="Hemat Hingga 250K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
-             data-multi-en="Thigh: Now 550K (was 850K) | Tummy: Now 650K (was 900K)" data-multi-id="Paha: Kini 550K (Normal 850K) | Perut: Kini 650K (Normal 900K)">
+             data-multi-en="&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Thigh: Now 550K (was 850K)&lt;/span&gt;&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Tummy: Now 650K (was 900K)&lt;/span&gt;" data-multi-id="&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Paha: Kini 550K (Normal 850K)&lt;/span&gt;&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Perut: Kini 650K (Normal 900K)&lt;/span&gt;">
           <div>
-            <div class="flex items-center justify-between text-xs mb-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">Cavitation RF</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+            <div class="flex items-center justify-between text-xs mb-3 gap-2">
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">Cavitation RF</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Save Up To 250K
               </span>
             </div>
             <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
               Body Slimming Treatment (Tummy / Thigh)
             </h3>
-            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub.
             </p>
             
-        <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-white/10 border border-sky-300/30 text-[11px] font-mono text-[#BAE0FD] font-semibold">
-          Thigh: Now 550K (was 850K) | Tummy: Now 650K (was 900K)
+        <div class="card-multi-prices mb-3 flex flex-wrap gap-1.5">
+          <span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">Thigh: Now 550K (was 850K)</span><span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">Tummy: Now 650K (was 900K)</span>
         </div>
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 850.000</span>
-                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 550.000</span>
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
+            <div class="min-w-0">
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <div class="flex items-baseline gap-1.5 flex-wrap">
+                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 850.000</span>
+                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 550.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Body Slimming Treatment (Tummy / Thigh)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+            <button onclick="openBookingModal('Body Slimming Treatment (Tummy / Thigh)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
               Claim Promo Rate
             </button>
           </div>
         </div>
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 transition duration-300 shadow-xl"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Rose Bali Spa (120 mins)" data-name-id="Rose Bali Spa (120 menit)"
              data-desc-en="Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles." data-desc-id="Kemewahan ekstrak mawar kaya antioksidan serta vitamin A dan C yang meremajakan sel kulit, menyamarkan kerutan, dan memberikan keharuman elegan sepanjang hari."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
@@ -363,46 +372,47 @@
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold">120 Mins</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white">
+            <div class="flex items-center justify-between text-xs mb-3 gap-2">
+              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">120 Mins</span>
+              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 600K
               </span>
             </div>
             <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
               Rose Bali Spa (120 mins)
             </h3>
-            <p class="card-desc text-xs sm:text-[13px] text-sky-100/80 leading-relaxed mb-4 font-light">
+            <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles.
             </p>
             
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline">
-                <span class="text-xs text-sky-200 line-through mr-2">Rp 725.000</span>
-                <span class="font-serif text-xl sm:text-2xl font-bold text-[#BAE0FD] font-mono">Rp 600.000</span>
+          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
+            <div class="min-w-0">
+              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <div class="flex items-baseline gap-1.5 flex-wrap">
+                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 725.000</span>
+                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 600.000</span>
               </div>
             </div>
-            <button onclick="openBookingModal('Rose Bali Spa (120 mins)')" class="px-4 py-2 rounded-lg bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md" data-i18n="promo_btn_book">
+            <button onclick="openBookingModal('Rose Bali Spa (120 mins)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
               Claim Promo Rate
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Reservation Notice Bar (Flyer Info) -->
-      <div class="mt-12 p-4 sm:p-5 rounded-2xl bg-white/5 border border-sky-300/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sky-100">
-        <div class="flex items-center gap-2.5">
+      <!-- Reservation Notice Bar (Flyer Info) - Phone 2 removed as per client markup in Image 3 -->
+      <div class="mt-12 p-4 sm:p-5 rounded-2xl bg-white/5 border border-sky-300/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sky-100 backdrop-blur-sm">
+        <div class="flex items-center gap-2.5 text-center sm:text-left">
           <svg class="w-5 h-5 text-[#BAE0FD] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span><strong data-i18n="promo_valid_label">Validity Period:</strong> <span data-i18n="promo_validity">Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)</span></span>
         </div>
-        <div class="flex flex-wrap items-center gap-3 font-mono font-bold text-white">
-          <a href="tel:+6281236695755" class="hover:text-[#BAE0FD] transition">+62 812-3669-5755</a>
-          <span>&bull;</span>
-          <a href="tel:+628113857188" class="hover:text-[#BAE0FD] transition">+62 811-3857-188</a>
-          <button onclick="openPromoPopup()" class="ml-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-sky-300/40 text-[11px] font-sans text-[#BAE0FD] transition cursor-pointer">
+        <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3 font-mono font-bold text-white">
+          <a href="tel:+6281236695755" class="hover:text-[#BAE0FD] transition flex items-center gap-1.5 bg-white/10 px-3.5 py-1.5 rounded-lg border border-sky-300/20 shadow-sm">
+            <svg class="w-3.5 h-3.5 text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M6.597 18.193c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>+62 812-3669-5755</span>
+          </a>
+          <button onclick="openPromoPopup()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 border border-sky-300/40 text-[11px] font-sans text-[#BAE0FD] transition cursor-pointer shadow-sm">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
             <span data-i18n="promo_flyer_btn">Official Promo Flyer</span>
           </button>
@@ -998,9 +1008,9 @@
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
              data-category="massage" 
-             data-search="balinese traditional massage pijat tradisional bali ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. pijatan khas bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-search="balinese traditional massage pijat tradisional bali ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. note : medium pressure massage pijatan khas bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. catatan : pijat tekanan sedang (medium pressure massage) body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Balinese Traditional Massage" data-name-id="Pijat Tradisional Bali"
-             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation." data-desc-id="Pijatan khas Bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat."
+             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. NOTE : medium pressure massage" data-desc-id="Pijatan khas Bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. CATATAN : Pijat tekanan sedang (Medium pressure massage)"
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
              data-tag-en="Signature Bali" data-tag-id="Signature"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
@@ -1023,7 +1033,7 @@
               Balinese Traditional Massage
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
-              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation.
+              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. NOTE : medium pressure massage
             </p>
             
             <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
@@ -1088,9 +1098,9 @@
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
              data-category="massage" 
-             data-search="deep tissue / sports massage pijat deep tissue / sports designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. pijatan bertekanan kuat menjangkau lapisan otot terdalam. sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di canggu. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-search="deep tissue / sports massage pijat deep tissue / sports designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. note: strong pressure massage pijatan bertekanan kuat menjangkau lapisan otot terdalam. sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di canggu. catatan: pijat tekanan kuat (strong pressure massage) body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Deep Tissue / Sports Massage" data-name-id="Pijat Deep Tissue / Sports"
-             data-desc-en="Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension." data-desc-id="Pijatan bertekanan kuat menjangkau lapisan otot terdalam. Sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di Canggu."
+             data-desc-en="Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. NOTE: Strong Pressure Massage" data-desc-id="Pijatan bertekanan kuat menjangkau lapisan otot terdalam. Sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di Canggu. CATATAN: Pijat tekanan kuat (Strong Pressure Massage)"
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
              data-tag-en="Surfer Favorite" data-tag-id="Tekanan Kuat"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
@@ -1113,7 +1123,7 @@
               Deep Tissue / Sports Massage
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
-              Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension.
+              Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. NOTE: Strong Pressure Massage
             </p>
             
             <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
@@ -3107,7 +3117,7 @@
           🎉 SPECIAL LIMITED OFFER
         </span>
         <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mt-1.5 leading-snug" data-i18n="popup_title">
-          END YEAR 2026 Big Promotion
+          End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>
         </h3>
         <p class="text-sky-200 text-xs font-light mt-0.5" data-i18n="popup_validity">
           Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)
@@ -3324,6 +3334,6 @@
   </div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261029b"></script>
+  <script src="assets/js/main.js?v=20261029c"></script>
 </body>
 </html>
