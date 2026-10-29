@@ -263,7 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const titleEl = card.querySelector('.card-title');
       if (titleEl) {
         const val = isId ? (card.dataset.nameId || card.dataset.nameEn) : card.dataset.nameEn;
-        if (val) titleEl.textContent = val;
+        if (val) {
+          if (card.classList.contains('promo-card') && val.includes('(') && val.endsWith(')')) {
+            const match = val.match(/^(.*?)\s*(\(.*?\))$/);
+            if (match) {
+              titleEl.innerHTML = `${match[1]} <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">${match[2]}</span>`;
+            } else {
+              titleEl.textContent = val;
+            }
+          } else {
+            titleEl.textContent = val;
+          }
+        }
       }
 
       const descEl = card.querySelector('.card-desc');

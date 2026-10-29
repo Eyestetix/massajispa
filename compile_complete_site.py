@@ -116,33 +116,125 @@ for item in promo_items:
     esc_dur_id = html.escape(item.get('duration_id', item.get('duration', '')))
     esc_tag_en = html.escape(item.get('tag', 'Big Promo'))
     esc_tag_id = html.escape(item.get('tag_id', item.get('tag', 'Promo Besar')))
-    esc_multi_en = html.escape(item.get('multi_prices', ''))
-    esc_multi_id = html.escape(item.get('multi_prices_id', item.get('multi_prices', '')))
 
     safe_js_name = esc_name_en.replace("'", "\\'")
-    disc_badge = ''
-    if item.get('normal_price'):
-        norm = fmt_price(item['normal_price'])
-        disc_badge = f'<span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp {norm}</span>'
-    
-    multi_html = ''
-    pills_en = ''
-    pills_id = ''
-    if item.get('multi_prices'):
-        opts_en = [opt.strip() for opt in item['multi_prices'].split('|') if opt.strip()]
-        opts_id = [opt.strip() for opt in item.get('multi_prices_id', item['multi_prices']).split('|') if opt.strip()]
-        pills_en = ''.join([f'<span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">{html.escape(opt)}</span>' for opt in opts_en])
-        pills_id = ''.join([f'<span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">{html.escape(opt)}</span>' for opt in opts_id])
-        multi_html = f'''
-        <div class="card-multi-prices mb-3 flex flex-wrap gap-1.5">
-          {pills_en}
-        </div>'''
+    norm = fmt_price(item['normal_price']) if item.get('normal_price') else ''
 
-    esc_pills_en = html.escape(pills_en)
-    esc_pills_id = html.escape(pills_id)
+    # Formatting Title: split into Main Title and Subtitle in Parentheses
+    title_display_html = esc_name_en
+    if '(' in esc_name_en and esc_name_en.endswith(')'):
+        import re
+        m = re.match(r'^(.*?)\s*(\(.*?\))$', esc_name_en)
+        if m:
+            title_display_html = f'{m.group(1)} <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">{m.group(2)}</span>'
+
+    # Elegant SVG icons for category/duration
+    header_icon = '<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+    if 'Slimming' in item['name'] or 'Cavitation' in item['duration']:
+        header_icon = '<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5c1.5 2.5 4 4 6.5 4.5-1.5 3-4 4.5-6.5 9-2.5-4.5-5-6-6.5-9 2.5-.5 5-2 6.5-4.5z"/></svg>'
+    elif 'Rose' in item['name']:
+        header_icon = '<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 009-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 009 9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7c-2 1-3 3-2 5s3 3 5 2 3-3 2-5-3-3-5-2z"/></svg>'
+
+    if item.get('multi_prices'):
+        # Multi-option card: Body Slimming Treatment (Tummy / Thigh)
+        tummy_icon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5" /></svg>'
+        thigh_icon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v14" /><path stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2" d="M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6" /></svg>'
+
+        boxes_en = f'''<div class="card-multi-prices space-y-2.5 mb-4">
+  <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
+        {tummy_icon}
+      </div>
+      <div class="min-w-0">
+        <span class="block font-bold text-white text-sm">Tummy</span>
+        <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
+      </div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
+      <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
+      <span class="block font-bold text-white text-sm sm:text-base whitespace-nowrap">Rp 650.000</span>
+    </div>
+  </div>
+  <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
+        {thigh_icon}
+      </div>
+      <div class="min-w-0">
+        <span class="block font-bold text-white text-sm">Thigh</span>
+        <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
+      </div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
+      <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
+      <span class="block font-bold text-white text-sm sm:text-base whitespace-nowrap">Rp 550.000</span>
+    </div>
+  </div>
+</div>'''
+
+        boxes_id = f'''<div class="card-multi-prices space-y-2.5 mb-4">
+  <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
+        {tummy_icon}
+      </div>
+      <div class="min-w-0">
+        <span class="block font-bold text-white text-sm">Perut</span>
+        <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
+      </div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
+      <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">KINI</span>
+      <span class="block font-bold text-white text-sm sm:text-base whitespace-nowrap">Rp 650.000</span>
+    </div>
+  </div>
+  <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
+        {thigh_icon}
+      </div>
+      <div class="min-w-0">
+        <span class="block font-bold text-white text-sm">Paha</span>
+        <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
+      </div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
+      <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">KINI</span>
+      <span class="block font-bold text-white text-sm sm:text-base whitespace-nowrap">Rp 550.000</span>
+    </div>
+  </div>
+</div>'''
+
+        esc_pills_en = html.escape(boxes_en)
+        esc_pills_id = html.escape(boxes_id)
+
+        pricing_block_html = f'''
+          <div class="mt-auto pt-4 flex flex-col justify-end">
+            {boxes_en}
+            <button onclick="openBookingModal('{safe_js_name}')" class="w-full py-3.5 px-4 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] active:scale-[0.98] transition-all duration-200 font-bold text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer group">
+              <span data-i18n="promo_btn_book">Claim Promo Rate</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>'''
+    else:
+        esc_pills_en = ''
+        esc_pills_id = ''
+        pricing_block_html = f'''
+          <div class="mt-auto pt-4 flex flex-col justify-end">
+            <div class="mb-4">
+              <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#94A3B8] block mb-1" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <span class="text-xs sm:text-sm text-sky-200/60 line-through block font-medium mb-1">Rp {norm}</span>
+              <div class="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight leading-none">Rp {fmt_price(item['price'])}</div>
+            </div>
+            <button onclick="openBookingModal('{safe_js_name}')" class="w-full py-3.5 px-4 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] active:scale-[0.98] transition-all duration-200 font-bold text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer group">
+              <span data-i18n="promo_btn_book">Claim Promo Rate</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>'''
 
     promo_cards_list.append(f'''
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
              data-desc-en="{esc_desc_en}" data-desc-id="{esc_desc_id}"
              data-dur-en="{esc_dur_en}" data-dur-id="{esc_dur_id}"
@@ -150,32 +242,23 @@ for item in promo_items:
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="{esc_pills_en}" data-multi-id="{esc_pills_id}">
           <div>
-            <div class="flex items-center justify-between text-xs mb-3 gap-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">{esc_dur_en}</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-center justify-between text-xs mb-4 gap-2">
+              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
+                {header_icon}
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">{esc_dur_en}</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 {esc_tag_en}
               </span>
             </div>
-            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
-              {esc_name_en}
+            <h3 class="card-title font-serif text-2xl sm:text-[26px] font-bold text-white mb-2 leading-tight">
+              {title_display_html}
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               {esc_desc_en}
             </p>
-            {multi_html}
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
-            <div class="min-w-0">
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                {disc_badge}
-                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp {fmt_price(item['price'])}</span>
-              </div>
-            </div>
-            <button onclick="openBookingModal('{safe_js_name}')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
-              Claim Promo Rate
-            </button>
-          </div>
+          {pricing_block_html}
         </div>''')
 promo_cards_html = '\n'.join(promo_cards_list)
 

@@ -253,7 +253,7 @@
       <!-- 4 Promo Cards Responsive Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Bali Traditional Massage (120 mins)" data-name-id="Pijat Tradisional Bali (120 menit)"
              data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage" data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam. CATATAN : Pijat tekanan sedang (Medium pressure massage)"
              data-dur-en="120 Mins" data-dur-id="120 Menit"
@@ -261,35 +261,37 @@
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-3 gap-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">120 Mins</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-center justify-between text-xs mb-4 gap-2">
+              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">120 Mins</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 300K
               </span>
             </div>
-            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
-              Bali Traditional Massage (120 mins)
+            <h3 class="card-title font-serif text-2xl sm:text-[26px] font-bold text-white mb-2 leading-tight">
+              Bali Traditional Massage <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">(120 mins)</span>
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage
             </p>
-            
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
-            <div class="min-w-0">
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 345.000</span>
-                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 300.000</span>
-              </div>
+          
+          <div class="mt-auto pt-4 flex flex-col justify-end">
+            <div class="mb-4">
+              <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#94A3B8] block mb-1" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <span class="text-xs sm:text-sm text-sky-200/60 line-through block font-medium mb-1">Rp 345.000</span>
+              <div class="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight leading-none">Rp 300.000</div>
             </div>
-            <button onclick="openBookingModal('Bali Traditional Massage (120 mins)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
-              Claim Promo Rate
+            <button onclick="openBookingModal('Bali Traditional Massage (120 mins)')" class="w-full py-3.5 px-4 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] active:scale-[0.98] transition-all duration-200 font-bold text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer group">
+              <span data-i18n="promo_btn_book">Claim Promo Rate</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
         </div>
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Deep Tissue Massage (90 mins)" data-name-id="Pijat Deep Tissue (90 menit)"
              data-desc-en="A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage" data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika. CATATAN: Pijat tekanan kuat (Strong Pressure Massage)"
              data-dur-en="90 Mins" data-dur-id="90 Menit"
@@ -297,74 +299,164 @@
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-3 gap-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">90 Mins</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-center justify-between text-xs mb-4 gap-2">
+              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">90 Mins</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 285K
               </span>
             </div>
-            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
-              Deep Tissue Massage (90 mins)
+            <h3 class="card-title font-serif text-2xl sm:text-[26px] font-bold text-white mb-2 leading-tight">
+              Deep Tissue Massage <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">(90 mins)</span>
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage
             </p>
-            
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
-            <div class="min-w-0">
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 310.000</span>
-                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 285.000</span>
-              </div>
+          
+          <div class="mt-auto pt-4 flex flex-col justify-end">
+            <div class="mb-4">
+              <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#94A3B8] block mb-1" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <span class="text-xs sm:text-sm text-sky-200/60 line-through block font-medium mb-1">Rp 310.000</span>
+              <div class="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight leading-none">Rp 285.000</div>
             </div>
-            <button onclick="openBookingModal('Deep Tissue Massage (90 mins)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
-              Claim Promo Rate
+            <button onclick="openBookingModal('Deep Tissue Massage (90 mins)')" class="w-full py-3.5 px-4 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] active:scale-[0.98] transition-all duration-200 font-bold text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer group">
+              <span data-i18n="promo_btn_book">Claim Promo Rate</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
         </div>
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Body Slimming Treatment (Tummy / Thigh)" data-name-id="Perawatan Body Slimming (Perut / Paha)"
              data-desc-en="Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub." data-desc-id="Terapi pembentukan kontur tubuh modern dengan Cavitation RF untuk memecah sel lemak membandel dan mengencangkan kulit. Termasuk lulur kopi gratis."
              data-dur-en="Cavitation RF" data-dur-id="Cavitation RF"
              data-tag-en="Save Up To 250K" data-tag-id="Hemat Hingga 250K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
-             data-multi-en="&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Thigh: Now 550K (was 850K)&lt;/span&gt;&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Tummy: Now 650K (was 900K)&lt;/span&gt;" data-multi-id="&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Paha: Kini 550K (Normal 850K)&lt;/span&gt;&lt;span class=&quot;inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold&quot;&gt;Perut: Kini 650K (Normal 900K)&lt;/span&gt;">
+             data-multi-en="&lt;div class=&quot;card-multi-prices space-y-2.5 mb-4&quot;&gt;
+  &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
+    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
+      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
+        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5&quot; /&gt;&lt;/svg&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;min-w-0&quot;&gt;
+        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Tummy&lt;/span&gt;
+        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 900.000&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
+      &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;NOW&lt;/span&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm sm:text-base whitespace-nowrap&quot;&gt;Rp 650.000&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
+    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
+      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
+        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M12 7v14&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-dasharray=&quot;2 2&quot; d=&quot;M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6&quot; /&gt;&lt;/svg&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;min-w-0&quot;&gt;
+        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Thigh&lt;/span&gt;
+        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 850.000&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
+      &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;NOW&lt;/span&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm sm:text-base whitespace-nowrap&quot;&gt;Rp 550.000&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;" data-multi-id="&lt;div class=&quot;card-multi-prices space-y-2.5 mb-4&quot;&gt;
+  &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
+    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
+      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
+        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5&quot; /&gt;&lt;/svg&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;min-w-0&quot;&gt;
+        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Perut&lt;/span&gt;
+        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 900.000&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
+      &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;KINI&lt;/span&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm sm:text-base whitespace-nowrap&quot;&gt;Rp 650.000&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition&quot;&gt;
+    &lt;div class=&quot;flex items-center gap-3 min-w-0&quot;&gt;
+      &lt;div class=&quot;w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0&quot;&gt;
+        &lt;svg class=&quot;w-5 h-5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M12 7v14&quot; /&gt;&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-dasharray=&quot;2 2&quot; d=&quot;M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6&quot; /&gt;&lt;/svg&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;min-w-0&quot;&gt;
+        &lt;span class=&quot;block font-bold text-white text-sm&quot;&gt;Paha&lt;/span&gt;
+        &lt;span class=&quot;block text-xs text-sky-200/60 line-through&quot;&gt;Rp 850.000&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0&quot;&gt;
+      &lt;span class=&quot;block text-[9px] font-bold tracking-wider text-sky-300 uppercase&quot;&gt;KINI&lt;/span&gt;
+      &lt;span class=&quot;block font-bold text-white text-sm sm:text-base whitespace-nowrap&quot;&gt;Rp 550.000&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;">
           <div>
-            <div class="flex items-center justify-between text-xs mb-3 gap-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">Cavitation RF</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-center justify-between text-xs mb-4 gap-2">
+              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5c1.5 2.5 4 4 6.5 4.5-1.5 3-4 4.5-6.5 9-2.5-4.5-5-6-6.5-9 2.5-.5 5-2 6.5-4.5z"/></svg>
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">Cavitation RF</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Save Up To 250K
               </span>
             </div>
-            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
-              Body Slimming Treatment (Tummy / Thigh)
+            <h3 class="card-title font-serif text-2xl sm:text-[26px] font-bold text-white mb-2 leading-tight">
+              Body Slimming Treatment <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">(Tummy / Thigh)</span>
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub.
             </p>
-            
-        <div class="card-multi-prices mb-3 flex flex-wrap gap-1.5">
-          <span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">Thigh: Now 550K (was 850K)</span><span class="inline-block px-2.5 py-1 rounded-lg bg-white/10 border border-sky-300/30 whitespace-nowrap text-[11px] font-mono text-[#BAE0FD] font-semibold">Tummy: Now 650K (was 900K)</span>
-        </div>
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
-            <div class="min-w-0">
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 850.000</span>
-                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 550.000</span>
-              </div>
-            </div>
-            <button onclick="openBookingModal('Body Slimming Treatment (Tummy / Thigh)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
-              Claim Promo Rate
+          
+          <div class="mt-auto pt-4 flex flex-col justify-end">
+            <div class="card-multi-prices space-y-2.5 mb-4">
+  <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4c1 4-1 6-1 8s2 4 1 8M17 4c-1 4 1 6 1 8s-2 4-1 8" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h3m-1-1.5L7 12l-1 1.5M20 12h-3m1-1.5L17 12l1 1.5" /></svg>
+      </div>
+      <div class="min-w-0">
+        <span class="block font-bold text-white text-sm">Tummy</span>
+        <span class="block text-xs text-sky-200/60 line-through">Rp 900.000</span>
+      </div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
+      <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
+      <span class="block font-bold text-white text-sm sm:text-base whitespace-nowrap">Rp 650.000</span>
+    </div>
+  </div>
+  <div class="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-sky-300/20 flex items-center justify-between gap-3 hover:bg-white/10 transition">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-[#BAE0FD] flex-shrink-0">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v8c0 4-2 7-2 10M15 3v8c0 4 2 7 2 10" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v14" /><path stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2" d="M8 12c1 2 2 4 2 6M16 12c-1 2-2 4-2 6" /></svg>
+      </div>
+      <div class="min-w-0">
+        <span class="block font-bold text-white text-sm">Thigh</span>
+        <span class="block text-xs text-sky-200/60 line-through">Rp 850.000</span>
+      </div>
+    </div>
+    <div class="px-3 py-1.5 rounded-lg bg-[#0c1a30]/80 border border-sky-400/30 text-right flex-shrink-0">
+      <span class="block text-[9px] font-bold tracking-wider text-sky-300 uppercase">NOW</span>
+      <span class="block font-bold text-white text-sm sm:text-base whitespace-nowrap">Rp 550.000</span>
+    </div>
+  </div>
+</div>
+            <button onclick="openBookingModal('Body Slimming Treatment (Tummy / Thigh)')" class="w-full py-3.5 px-4 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] active:scale-[0.98] transition-all duration-200 font-bold text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer group">
+              <span data-i18n="promo_btn_book">Claim Promo Rate</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
         </div>
 
-        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-amber-300/40 transition duration-300 shadow-xl w-full min-w-0"
+        <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Rose Bali Spa (120 mins)" data-name-id="Rose Bali Spa (120 menit)"
              data-desc-en="Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles." data-desc-id="Kemewahan ekstrak mawar kaya antioksidan serta vitamin A dan C yang meremajakan sel kulit, menyamarkan kerutan, dan memberikan keharuman elegan sepanjang hari."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
@@ -372,30 +464,32 @@
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-3 gap-2">
-              <span class="card-duration text-[#BAE0FD] font-mono text-xs font-semibold whitespace-nowrap">120 Mins</span>
-              <span class="card-tag text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-center justify-between text-xs mb-4 gap-2">
+              <div class="flex items-center gap-1.5 text-[#BAE0FD]">
+                <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 009-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 009 9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7c-2 1-3 3-2 5s3 3 5 2 3-3 2-5-3-3-5-2z"/></svg>
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider">120 Mins</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 600K
               </span>
             </div>
-            <h3 class="card-title font-serif text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
-              Rose Bali Spa (120 mins)
+            <h3 class="card-title font-serif text-2xl sm:text-[26px] font-bold text-white mb-2 leading-tight">
+              Rose Bali Spa <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">(120 mins)</span>
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
               Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles.
             </p>
-            
           </div>
-          <div class="mt-auto pt-4 border-t border-sky-300/20 flex items-center justify-between gap-2.5">
-            <div class="min-w-0">
-              <span class="text-[10px] text-sky-200 uppercase tracking-wider block font-bold mb-0.5" data-i18n="promo_card_rate">Special Promo Rate</span>
-              <div class="flex items-baseline gap-1.5 flex-wrap">
-                <span class="whitespace-nowrap text-xs text-sky-200/70 line-through mr-1.5">Rp 725.000</span>
-                <span class="whitespace-nowrap font-mono text-xl sm:text-2xl font-bold text-[#BAE0FD]">Rp 600.000</span>
-              </div>
+          
+          <div class="mt-auto pt-4 flex flex-col justify-end">
+            <div class="mb-4">
+              <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#94A3B8] block mb-1" data-i18n="promo_card_rate">Special Promo Rate</span>
+              <span class="text-xs sm:text-sm text-sky-200/60 line-through block font-medium mb-1">Rp 725.000</span>
+              <div class="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight leading-none">Rp 600.000</div>
             </div>
-            <button onclick="openBookingModal('Rose Bali Spa (120 mins)')" class="whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] transition font-bold text-xs tracking-wider uppercase shadow-md flex-shrink-0 cursor-pointer" data-i18n="promo_btn_book">
-              Claim Promo Rate
+            <button onclick="openBookingModal('Rose Bali Spa (120 mins)')" class="w-full py-3.5 px-4 rounded-xl bg-white text-[#141E3C] hover:bg-[#BAE0FD] active:scale-[0.98] transition-all duration-200 font-bold text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 cursor-pointer group">
+              <span data-i18n="promo_btn_book">Claim Promo Rate</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
         </div>

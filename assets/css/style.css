@@ -52,6 +52,16 @@ body {
   max-width: 100%;
 }
 
+.promo-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.25);
+  border-color: rgba(186, 224, 253, 0.5);
+}
+
 .festive-headline {
   font-size: clamp(1.75rem, 5vw + 0.5rem, 3.25rem);
   line-height: 1.15;
