@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_admin_link: "Staff / Admin Portal →",
 
       popup_badge: "🎉 SPECIAL LIMITED OFFER",
-      popup_title: "END YEAR 2026 Big Promotion",
+      popup_title: 'END YEAR 2026 <span class="text-amber-300">BIG PROMOTION</span>',
       popup_validity: "Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)",
       popup_btn_wa: "Claim Promo via WhatsApp",
       popup_btn_explore: "Explore Promo Details →",
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer_admin_link: "Portal Staf / Admin →",
 
       popup_badge: "🎉 PENAWARAN SPESIAL TERBATAS",
-      popup_title: "END YEAR 2026 Big Promotion",
+      popup_title: 'PROMO BESAR AKHIR TAHUN 2026 <span class="text-amber-300">BIG PROMOTION</span>',
       popup_validity: "Berlaku : 1 Nov – 31 Des 2026 (Wajib reservasi sebelum kedatangan)",
       popup_btn_wa: "Klaim Promo via WhatsApp",
       popup_btn_explore: "Lihat Detail Promo →",

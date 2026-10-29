@@ -35,7 +35,7 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261029c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029d">
 </head>
 <body class="text-[#141E3C] antialiased font-sans selection:bg-[#1E3A8A] selection:text-white">
 
@@ -3113,13 +3113,13 @@
 
       <!-- Badge Header -->
       <div class="text-center mb-3">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-[#141E3C] font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md" data-i18n="popup_badge">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-400 text-[#141E3C] font-extrabold text-[10px] sm:text-xs uppercase tracking-widest shadow-md" data-i18n="popup_badge">
           🎉 SPECIAL LIMITED OFFER
         </span>
-        <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mt-1.5 leading-snug" data-i18n="popup_title">
-          End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>
+        <h3 class="font-sans text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white mt-2 mb-1 leading-tight drop-shadow-md" data-i18n="popup_title">
+          END YEAR 2026 <span class="text-amber-300">BIG PROMOTION</span>
         </h3>
-        <p class="text-sky-200 text-xs font-light mt-0.5" data-i18n="popup_validity">
+        <p class="text-sky-200 text-xs font-medium tracking-wide mt-1" data-i18n="popup_validity">
           Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)
         </p>
       </div>
@@ -3334,6 +3334,6 @@
   </div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261029c"></script>
+  <script src="assets/js/main.js?v=20261029d"></script>
 </body>
 </html>
