@@ -245,6 +245,54 @@ switch ($action) {
         break;
 
     // ----------------------------------------------------
+    // Upload Image
+    // ----------------------------------------------------
+    case 'upload_image':
+        $img_dir = __DIR__ . '/../assets/images/';
+        if (!is_dir($img_dir)) {
+            @mkdir($img_dir, 0755, true);
+        }
+
+        // Check if sent via $_FILES
+        if (!empty($_FILES['image']['tmp_name'])) {
+            $orig_name = basename($_FILES['image']['name']);
+            $clean_name = preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $orig_name);
+            $target = $img_dir . $clean_name;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+                echo json_encode([
+                    'success' => true,
+                    'path' => 'assets/images/' . $clean_name,
+                    'message' => 'Gambar berhasil diupload!'
+                ]);
+                exit;
+            }
+        }
+
+        // Check if sent via base64 JSON
+        $raw = file_get_contents('php://input');
+        $json = json_decode($raw, true);
+        if ($json && !empty($json['data'])) {
+            $fname = !empty($json['filename']) ? basename($json['filename']) : 'upload.jpg';
+            $clean_name = preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $fname);
+            $data = $json['data'];
+            if (strpos($data, ',') !== false) {
+                $data = explode(',', $data)[1];
+            }
+            $bin = base64_decode($data);
+            if ($bin && file_put_contents($img_dir . $clean_name, $bin)) {
+                echo json_encode([
+                    'success' => true,
+                    'path' => 'assets/images/' . $clean_name,
+                    'message' => 'Gambar berhasil diupload!'
+                ]);
+                exit;
+            }
+        }
+
+        echo json_encode(['success' => false, 'message' => 'Gagal mengunggah file.']);
+        break;
+
+    // ----------------------------------------------------
     // Change Admin Password
     // ----------------------------------------------------
     case 'change_password':

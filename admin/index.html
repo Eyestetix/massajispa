@@ -200,8 +200,16 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Path / URL Gambar Hero</label>
-                  <input type="text" id="field-hero-image" name="hero_image" oninput="updateImagePreview('hero', this.value)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Gambar Utama Hero</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="field-hero-image" name="hero_image" oninput="updateImagePreview('hero', this.value)" class="flex-1 px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                    <button type="button" onclick="document.getElementById('file-input-hero').click()" class="px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      <span>Upload Gambar</span>
+                    </button>
+                  </div>
+                  <input type="file" id="file-input-hero" accept="image/*" class="hidden" onchange="handleImageFileUpload('hero', this)">
+                  <p id="upload-status-hero" class="text-[11px] text-emerald-600 font-semibold mt-1.5 hidden"></p>
                   
                   <!-- Quick Gallery Selector -->
                   <div class="mt-2.5">
@@ -219,10 +227,20 @@
               <!-- Hero Image Live Preview -->
               <div class="lg:col-span-5 flex flex-col justify-center">
                 <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block">Live Preview Gambar Hero</span>
-                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group">
+                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group cursor-pointer" onclick="document.getElementById('file-input-hero').click()" title="Klik untuk mengganti gambar hero">
                   <img id="preview-hero-img" src="../assets/images/massaji-hero.jpg" alt="Hero Preview" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='../assets/images/MASAGE.JPG'">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center p-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-1.5 shadow">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <span class="font-bold text-xs uppercase tracking-wider">Klik untuk Ganti Gambar</span>
+                  </div>
                   <div class="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono truncate" id="label-hero-img">assets/images/massaji-hero.jpg</div>
                 </div>
+                <button type="button" onclick="document.getElementById('file-input-hero').click()" class="mt-2.5 w-full py-2.5 px-3 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow cursor-pointer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>📷 Upload Gambar Hero Baru</span>
+                </button>
               </div>
             </div>
           </div>
@@ -262,8 +280,16 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Path / URL Gambar About</label>
-                  <input type="text" id="field-about-image" name="about_image" oninput="updateImagePreview('about', this.value)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Gambar Profil About</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="field-about-image" name="about_image" oninput="updateImagePreview('about', this.value)" class="flex-1 px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                    <button type="button" onclick="document.getElementById('file-input-about').click()" class="px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      <span>Upload Gambar</span>
+                    </button>
+                  </div>
+                  <input type="file" id="file-input-about" accept="image/*" class="hidden" onchange="handleImageFileUpload('about', this)">
+                  <p id="upload-status-about" class="text-[11px] text-emerald-600 font-semibold mt-1.5 hidden"></p>
                   
                   <!-- Quick Gallery Selector -->
                   <div class="mt-2.5">
@@ -280,10 +306,20 @@
               <!-- About Image Live Preview -->
               <div class="lg:col-span-5 flex flex-col justify-center">
                 <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block">Live Preview Gambar About</span>
-                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group">
+                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-md bg-slate-100 relative group cursor-pointer" onclick="document.getElementById('file-input-about').click()" title="Klik untuk mengganti gambar about">
                   <img id="preview-about-img" src="../assets/images/massaji-about.jpg" alt="About Preview" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='../assets/images/gambar2.jpg'">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center p-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-1.5 shadow">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <span class="font-bold text-xs uppercase tracking-wider">Klik untuk Ganti Gambar</span>
+                  </div>
                   <div class="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono truncate" id="label-about-img">assets/images/massaji-about.jpg</div>
                 </div>
+                <button type="button" onclick="document.getElementById('file-input-about').click()" class="mt-2.5 w-full py-2.5 px-3 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow cursor-pointer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>📷 Upload Gambar About Baru</span>
+                </button>
               </div>
             </div>
           </div>
@@ -331,9 +367,17 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Path Gambar Brosur Flyer Resmi</label>
-                  <input type="text" id="field-promo-flyer-img" name="promo_flyer_image" value="assets/images/promo-flyer-2026.jpeg" oninput="updateImagePreview('promo', this.value)" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
-                  <p class="text-[11px] text-[#475569] mt-1">File flyer asli telah tersimpan di <code class="font-bold text-[#1E3A8A]">assets/images/promo-flyer-2026.jpeg</code></p>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1">Gambar Brosur Flyer Resmi</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="field-promo-flyer-img" name="promo_flyer_image" value="assets/images/promo-flyer-2026.jpeg" oninput="updateImagePreview('promo', this.value)" class="flex-1 px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-xl text-xs font-mono text-[#141E3C] focus:bg-white focus:border-[#1E3A8A] focus:outline-none">
+                    <button type="button" onclick="document.getElementById('file-input-promo').click()" class="px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      <span>Upload Gambar</span>
+                    </button>
+                  </div>
+                  <input type="file" id="file-input-promo" accept="image/*" class="hidden" onchange="handleImageFileUpload('promo', this)">
+                  <p id="upload-status-promo" class="text-[11px] text-emerald-600 font-semibold mt-1.5 hidden"></p>
+                  <p class="text-[11px] text-[#475569] mt-1">File saat ini: <code class="font-bold text-[#1E3A8A]" id="current-promo-path">assets/images/promo-flyer-2026.jpeg</code></p>
                 </div>
 
                 <div class="p-4 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD] text-xs space-y-2">
@@ -347,12 +391,25 @@
                 </div>
               </div>
 
-              <!-- Flyer Preview -->
+              <!-- Flyer Preview & Instant Replace Button -->
               <div class="lg:col-span-5 flex flex-col items-center">
                 <span class="text-xs font-bold uppercase tracking-wider text-[#475569] mb-2 block self-start">Tampilan Flyer Resmi</span>
-                <div class="w-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-lg bg-slate-900 relative">
-                  <img id="preview-promo-img" src="../assets/images/promo-flyer-2026.jpeg" alt="Flyer Promo Massaji Spa" class="w-full h-auto object-contain">
+                
+                <div class="w-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#BAE0FD] shadow-lg bg-slate-900 relative group cursor-pointer" onclick="document.getElementById('file-input-promo').click()" title="Klik gambar untuk langsung upload flyer baru">
+                  <img id="preview-promo-img" src="../assets/images/promo-flyer-2026.jpeg" alt="Flyer Promo Massaji Spa" class="w-full h-auto object-contain transition duration-300 group-hover:scale-[1.02] group-hover:opacity-85">
+                  <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2 shadow">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </div>
+                    <span class="font-bold text-xs uppercase tracking-wider">Klik untuk Ganti Flyer</span>
+                  </div>
                 </div>
+
+                <!-- Instant Action Button -->
+                <button type="button" onclick="document.getElementById('file-input-promo').click()" class="mt-3 w-full max-w-sm py-3 px-4 rounded-xl bg-gradient-to-r from-[#0284C7] to-[#1E3A8A] hover:from-[#0369A1] hover:to-[#172554] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  <span>📷 Klik untuk Ganti Gambar Flyer</span>
+                </button>
               </div>
             </div>
 
@@ -861,6 +918,82 @@
         updateImagePreview('about', imagePath);
       }
       showToast(`Gambar ${type} dipilih: ${imagePath}`, true);
+    }
+
+    // 5.1 Instant File Upload Handler
+    async function handleImageFileUpload(type, fileInput) {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+
+      // 1. Instant local preview
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const base64Data = e.target.result;
+        
+        // Update live preview image immediately
+        const previewImg = document.getElementById(`preview-${type}-img`);
+        if (previewImg) {
+          previewImg.src = base64Data;
+        }
+
+        // Show uploading feedback
+        showToast(`Mengunggah gambar "${file.name}"...`, true);
+
+        // 2. Upload to server via JSON Base64 or FormData
+        try {
+          const res = await fetch('../server.py', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'upload_image',
+              filename: file.name,
+              data: base64Data,
+              type: type
+            })
+          }).catch(() => {
+            const fd = new FormData();
+            fd.append('action', 'upload_image');
+            fd.append('image', file);
+            return fetch('api.php', { method: 'POST', body: fd });
+          });
+
+          const data = await res.json();
+          if (data && data.success && data.path) {
+            // Update input path
+            const pathInput = document.getElementById(
+              type === 'promo' ? 'field-promo-flyer-img' :
+              type === 'hero' ? 'field-hero-image' : 'field-about-image'
+            );
+            if (pathInput) {
+              pathInput.value = data.path;
+            }
+
+            const currentPathEl = document.getElementById(`current-${type}-path`);
+            if (currentPathEl) {
+              currentPathEl.textContent = data.path;
+            }
+
+            const labelEl = document.getElementById(`label-${type}-img`);
+            if (labelEl) {
+              labelEl.textContent = data.path;
+            }
+
+            // Show status notification
+            const statusEl = document.getElementById(`upload-status-${type}`);
+            if (statusEl) {
+              statusEl.classList.remove('hidden');
+              statusEl.innerHTML = `<span class="inline-flex items-center gap-1">✅ File <b>${data.filename || file.name}</b> berhasil diupload! Klik tombol Simpan di bawah untuk menerapkan.</span>`;
+            }
+
+            showToast(`Gambar "${file.name}" berhasil diupload! Klik tombol Simpan untuk menerapkan.`, true);
+          } else {
+            showToast(data.message || 'Gagal mengunggah gambar ke server.', false);
+          }
+        } catch (err) {
+          showToast(`Gambar dimuat di browser! Klik tombol Simpan di bawah.`, true);
+        }
+      };
+      reader.readAsDataURL(file);
     }
 
     // 6. Menu Search & Category Filter

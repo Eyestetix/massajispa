@@ -36,11 +36,16 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
         content_length = int(self.headers.get('Content-Length', 0))
         post_body = self.rfile.read(content_length)
 
-        # Parse form data (supporting multipart and urlencoded)
+        # Parse form data (supporting multipart, json and urlencoded)
         content_type = self.headers.get('Content-Type', '')
         fields = {}
 
-        if 'application/x-www-form-urlencoded' in content_type:
+        if 'application/json' in content_type:
+            try:
+                fields = json.loads(post_body.decode('utf-8'))
+            except Exception:
+                fields = {}
+        elif 'application/x-www-form-urlencoded' in content_type:
             fields = {k: v[0] for k, v in urllib.parse.parse_qs(post_body.decode('utf-8', errors='ignore')).items()}
         elif 'multipart/form-data' in content_type:
             # Simple multipart parser
@@ -50,12 +55,19 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 if b'Content-Disposition: form-data;' in part:
                     header, _, body = part.partition(b'\r\n\r\n')
                     body = body.rstrip(b'\r\n')
+                    header_str = header.decode('utf-8', errors='ignore')
                     m_name = None
-                    for line in header.decode('utf-8', errors='ignore').split('\r\n'):
+                    m_filename = None
+                    for line in header_str.split('\r\n'):
                         if 'name="' in line:
                             m_name = line.split('name="')[1].split('"')[0]
+                        if 'filename="' in line:
+                            m_filename = line.split('filename="')[1].split('"')[0]
                     if m_name:
-                        fields[m_name] = body.decode('utf-8', errors='ignore')
+                        if m_filename:
+                            fields[m_name] = {'filename': m_filename, 'bytes': body}
+                        else:
+                            fields[m_name] = body.decode('utf-8', errors='ignore')
 
         # -----------------------------------------------------------
         # Handle Booking Process Mock (matches booking-process.php)
@@ -151,7 +163,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
         # -----------------------------------------------------------
         # Handle Admin API Mock (matches admin/api.php)
         # -----------------------------------------------------------
-        if path.endswith('/api.php') or path.endswith('/admin/api.php'):
+        if path.endswith('/api.php') or path.endswith('/admin/api.php') or path.endswith('/server.py'):
             action = fields.get('action', '')
             resp = {'success': False, 'message': 'Aksi tidak dikenali.'}
 
@@ -249,6 +261,49 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
 
             elif action == 'change_password':
                 resp = {'success': True, 'message': 'Password admin berhasil diganti!'}
+
+            elif action == 'upload_image':
+                import base64
+                import re
+
+                file_data = fields.get('data') # Base64 string from JSON
+                filename = fields.get('filename', '')
+                file_obj = fields.get('image') # from multipart if sent
+
+                file_bytes = None
+                out_filename = ''
+
+                if file_obj and isinstance(file_obj, dict):
+                    out_filename = file_obj.get('filename', 'upload.jpg')
+                    file_bytes = file_obj.get('bytes')
+                elif file_data:
+                    out_filename = filename or 'upload.jpg'
+                    if ',' in file_data:
+                        file_data = file_data.split(',', 1)[1]
+                    try:
+                        file_bytes = base64.b64decode(file_data)
+                    except Exception as e:
+                        file_bytes = None
+
+                if file_bytes:
+                    clean_name = re.sub(r'[^a-zA-Z0-9_\.-]', '_', os.path.basename(out_filename))
+                    name_root, ext = os.path.splitext(clean_name)
+                    if not ext:
+                        ext = '.jpg'
+                    final_filename = f"{name_root}{ext}"
+                    save_path = os.path.join(DIRECTORY, 'assets', 'images', final_filename)
+                    with open(save_path, 'wb') as f:
+                        f.write(file_bytes)
+                    
+                    rel_path = f"assets/images/{final_filename}"
+                    resp = {
+                        'success': True,
+                        'path': rel_path,
+                        'filename': final_filename,
+                        'message': f'Gambar "{final_filename}" berhasil diunggah & disimpan!'
+                    }
+                else:
+                    resp = {'success': False, 'message': 'Tidak ada data file yang diterima.'}
 
             self.send_response(200)
             self.send_header('Content-Type', 'application/json; charset=utf-8')
