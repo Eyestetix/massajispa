@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLanguage(currentLang);
 
   // ========================================================
-  // 1.1 PROMO FLYER POPUP (AUTO POPUP ON FIRST VISIT)
+  // 1.1 PROMO FLYER POPUP (AUTO POPUP ON VISIT)
   // ========================================================
   const promoPopup = document.getElementById('promo-flyer-popup');
 
@@ -380,7 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
       promoPopup.classList.add('hidden');
       promoPopup.classList.remove('flex');
       document.body.style.overflow = '';
-      sessionStorage.setItem('massaji_promo_popup_seen', 'true');
     }
   };
 
@@ -392,13 +391,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Auto-trigger on first visit of this browser session
-  const hasSeenPromo = sessionStorage.getItem('massaji_promo_popup_seen');
-  if (!hasSeenPromo) {
-    setTimeout(() => {
-      openPromoPopup();
-    }, 750);
-  }
+  // Auto-trigger promo popup smoothly on page visit
+  setTimeout(() => {
+    openPromoPopup();
+  }, 600);
 
   // ========================================================
   // 2. MOBILE NAVIGATION

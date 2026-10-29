@@ -358,7 +358,7 @@ html_template = f'''<!DOCTYPE html>
       }}
     }}
   </script>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029b">
 </head>
 <body class="text-[#141E3C] antialiased font-sans selection:bg-[#1E3A8A] selection:text-white">
 
@@ -1128,7 +1128,7 @@ html_template = f'''<!DOCTYPE html>
   </div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20261029b"></script>
 </body>
 </html>'''
 
