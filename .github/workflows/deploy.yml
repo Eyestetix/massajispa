@@ -1,4 +1,4 @@
-name: Deploy to Production Hosting
+name: Deploy to Production Hosting (massaji.net)
 
 on:
   push:
@@ -6,9 +6,13 @@ on:
       - production
   workflow_dispatch:
 
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
 jobs:
   web-deploy:
-    name: Sync Files to Production Hosting
+    name: Sync Files to Biznet Hosting (massaji.net)
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get Latest Code
@@ -16,18 +20,30 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: 📂 Sync Files via FTP
+      - name: 📂 Sync Files via Explicit FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/
+          protocol: ftps
+          port: 21
+          server-dir: ./
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
             **/.github*/**
+            **/.DS_Store
+            **/__pycache__/**
+            *.pyc
             server.py
             compile_complete_site.py
             build_preview.py
             scratch/**
+            .system_generated/**
+            data/bookings.json
+            data/settings.json
+            data/menu.json
+            data/promo.json
+            assets/uploads/**
