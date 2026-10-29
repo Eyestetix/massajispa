@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview Template Email Reservasi - Massaji Spa Bali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0B1120;
+      color: #E2E8F0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Control Bar */
+    .top-bar {
+      background: #141E3C;
+      border-bottom: 1px solid #1E3A8A;
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 2px;
+      border: 1px solid #BAE0FD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: #BAE0FD;
+      font-weight: 500;
+    }
+
+    .view-toggles {
+      display: flex;
+      background: #0B1120;
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid #1E3A8A;
+    }
+
+    .view-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .view-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .view-btn.active {
+      background: #1E3A8A;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(30, 58, 138, 0.4);
+    }
+
+    .action-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-admin {
+      background: #0284C7;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-admin:hover {
+      background: #0369A1;
+      transform: translateY(-1px);
+    }
+
+    /* Preview Canvas */
+    .preview-canvas {
+      flex: 1;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: radial-gradient(circle at 50% 10%, #1E293B 0%, #0F172A 70%, #0B1120 100%);
+      overflow-y: auto;
+    }
+
+    .email-wrapper {
+      width: 100%;
+      max-width: 640px;
+      transition: max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .email-wrapper.mode-mobile {
+      max-width: 390px;
+    }
+
+    .email-wrapper.mode-full {
+      max-width: 800px;
+    }
+
+    /* Client Header Mockup */
+    .email-client-header {
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-bottom: none;
+      border-radius: 16px 16px 0 0;
+      padding: 16px 20px;
+    }
+
+    .client-dots {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .client-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+
+    .client-meta-row {
+      display: flex;
+      align-items: baseline;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .client-label {
+      width: 70px;
+      color: #94A3B8;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .client-value {
+      color: #F1F5F9;
+      font-weight: 500;
+    }
+
+    .client-subject {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #334155;
+    }
+
+    /* Email Body Container (The actual rendered email) */
+    .email-body-box {
+      border: 1px solid #334155;
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Control Header -->
+  <div class="top-bar">
+    <div class="brand-section">
+      <div class="brand-logo">
+        <img src="assets/images/member-1.png" alt="Massaji Spa">
+      </div>
+      <div>
+        <div class="brand-title">
+          <span>Massaji Spa Bali</span>
+          <span style="font-size: 11px; padding: 2px 8px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); color: #38BDF8; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.3);">Email Template</span>
+        </div>
+        <div class="brand-subtitle">Desain Notifikasi Email Reservasi Masuk (Brand-Aligned)</div>
+      </div>
+    </div>
+
+    <div class="view-toggles">
+      <button class="view-btn active" onclick="setViewMode('desktop', this)">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+        Desktop (620px)
+      </button>
+      <button class="view-btn" onclick="setViewMode('mobile', this)">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+        Mobile (390px)
+      </button>
+      <button class="view-btn" onclick="setViewMode('full', this)">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+        Lebar Penuh
+      </button>
+    </div>
+
+    <div class="action-links">
+      <a href="admin/" class="btn-admin">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"/></svg>
+        Kembali ke Panel Admin
+      </a>
+    </div>
+  </div>
+
+  <!-- Preview Canvas -->
+  <div class="preview-canvas">
+    <div id="emailWrapper" class="email-wrapper">
+      
+      <!-- Mail Client Top Mockup -->
+      <div class="email-client-header">
+        <div class="client-dots">
+          <div class="client-dot dot-red"></div>
+          <div class="client-dot dot-yellow"></div>
+          <div class="client-dot dot-green"></div>
+        </div>
+        <div class="client-meta-row">
+          <span class="client-label">Dari:</span>
+          <span class="client-value">Massaji Spa Bali &lt;reservation@massaji.net&gt;</span>
+        </div>
+        <div class="client-meta-row">
+          <span class="client-label">Kepada:</span>
+          <span class="client-value">Massaji Spa Admin &lt;reservation@massaji.net&gt;</span>
+        </div>
+        <div class="client-meta-row">
+          <span class="client-label">Waktu:</span>
+          <span class="client-value">Hari ini, 14:05 WITA</span>
+        </div>
+        <div class="client-subject">
+          [Booking Baru] Deep Tissue Massage (90 mins) - Sarah Jenkins (15 Nov 2026 14:00 WITA)
+        </div>
+      </div>
+
+      <!-- Actual Rendered Email Body -->
+      <div class="email-body-box">
+        
+        <!-- BEGIN ACTUAL EMAIL TEMPLATE -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 25px 12px; background-color: #EBF5FE; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #141E3C;">
+          <tr>
+            <td align="center">
+              
+              <!-- Main Card Container -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; border: 1px solid #BAE0FD; box-shadow: 0 12px 36px rgba(20, 30, 60, 0.08);">
+                
+                <!-- ============================================== -->
+                <!-- 1. HEADER (Deep Indigo & Sapphire Gradient) -->
+                <!-- ============================================== -->
+                <tr>
+                  <td style="background: #141E3C; background: linear-gradient(135deg, #141E3C 0%, #1E3A8A 55%, #141E3C 100%); padding: 36px 24px 30px; text-align: center; border-bottom: 2px solid #0284C7;">
+                    
+                    <!-- Brand Logo Emblem -->
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 12px;">
+                      <tr>
+                        <td style="width: 62px; height: 62px; border-radius: 50%; background-color: #FFFFFF; padding: 4px; border: 2px solid #BAE0FD; text-align: center; vertical-align: middle; box-shadow: 0 4px 14px rgba(0,0,0,0.25);">
+                          <img src="assets/images/member-1.png" alt="Massaji Spa Logo" width="54" height="54" style="width: 54px; height: 54px; border-radius: 50%; display: block; margin: 0 auto; object-fit: contain;">
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Katakana Brand Mark -->
+                    <div style="font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #BAE0FD; text-transform: uppercase; margin-bottom: 4px;">マッサージ</div>
+                    
+                    <!-- Brand Name -->
+                    <h1 style="margin: 0; font-size: 26px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.5px; line-height: 1.2;">
+                      Massaji <span style="font-style: italic; font-weight: 400; color: #BAE0FD;">Spa</span>
+                    </h1>
+                    
+                    <div style="font-size: 10px; font-weight: 700; letter-spacing: 2.5px; color: #94A3B8; text-transform: uppercase; margin-top: 4px;">CANGGU &bull; BALI</div>
+                    
+                    <!-- Badge Tag -->
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 18px auto 0;">
+                      <tr>
+                        <td style="background-color: rgba(2, 132, 199, 0.35); border: 1px solid #38BDF8; color: #E0F2FE; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; padding: 6px 18px; border-radius: 20px;">
+                          ✨ NOTIFIKASI RESERVASI MASUK
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+
+                <!-- ============================================== -->
+                <!-- 2. SUMMARY HIGHLIGHT CARD -->
+                <!-- ============================================== -->
+                <tr>
+                  <td style="padding: 28px 28px 12px;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #F0F8FF; border: 1px solid #BAE0FD; border-radius: 14px; padding: 20px;">
+                      <tr>
+                        <td>
+                          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0284C7; margin-bottom: 6px;">Layanan / Treatment yang Dipesan:</div>
+                          <div style="font-size: 20px; font-weight: 800; color: #141E3C; line-height: 1.3; margin-bottom: 14px;">Deep Tissue Massage (90 mins)</div>
+                          
+                          <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td style="padding-right: 8px; padding-bottom: 6px;">
+                                <div style="background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A;">
+                                  📅 15 Nov 2026
+                                </div>
+                              </td>
+                              <td style="padding-right: 8px; padding-bottom: 6px;">
+                                <div style="background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A;">
+                                  ⏰ 14:00 WITA
+                                </div>
+                              </td>
+                              <td style="padding-bottom: 6px;">
+                                <div style="background-color: #FFFFFF; border: 1px solid #BAE0FD; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1E3A8A;">
+                                  👥 2 Orang
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- ============================================== -->
+                <!-- 3. DETAILED INFORMATION TABLE -->
+                <!-- ============================================== -->
+                <tr>
+                  <td style="padding: 12px 28px 24px;">
+                    <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: #475569; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #E2E8F0;">
+                      Rincian Lengkap Tamu &amp; Reservasi
+                    </div>
+
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; font-size: 13px;">
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; width: 38%; background-color: #F8FCFF;">👤 Nama Lengkap</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700; font-size: 14px;">Sarah Jenkins</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">💆 Layanan Spa</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #0284C7; font-weight: 700;">Deep Tissue Massage (90 mins)</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">📅 Tanggal Perawatan</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">15 Nov 2026</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">⏰ Waktu / Jam</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">14:00 WITA</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">👥 Jumlah Tamu</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">2 Orang</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">📱 WhatsApp / Telp</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #059669; font-weight: 700;">
+                          <a href="tel:+6281234567890" style="color: #059669; text-decoration: none;">+62 812-3456-7890</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">✉️ Email Tamu</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C;">
+                          <a href="mailto:sarah.jenkins@example.com" style="color: #0284C7; text-decoration: none; font-weight: 600;">sarah.jenkins@example.com</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">📝 Permintaan Khusus</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-style: italic;">
+                          Mohon sediakan 2 terapis wanita dan aromaterapi lavender jika tersedia. Terima kasih!
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF;">🔖 ID Booking</td>
+                        <td style="padding: 11px 12px; border-bottom: 1px solid #F1F5F9; color: #475569; font-family: monospace; font-weight: 600;">BK-20261115-9482</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 11px 12px; color: #64748B; font-weight: 600; background-color: #F8FCFF;">⏱️ Waktu Pengajuan</td>
+                        <td style="padding: 11px 12px; color: #475569; font-size: 12px;">29 Okt 2026, 20:50 WITA</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- ============================================== -->
+                <!-- 4. INSTANT ACTION BUTTONS -->
+                <!-- ============================================== -->
+                <tr>
+                  <td style="padding: 0 28px 30px;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td align="center">
+                          <!-- WhatsApp Direct Reply Button -->
+                          <a href="https://wa.me/6281234567890?text=Halo%20Kak%20Sarah%20Jenkins%2C%20terima%20kasih%20telah%20melakukan%20reservasi%20di%20Massaji%20Spa%20Bali!%20Kami%20konfirmasi%20jadwal%20Deep%20Tissue%20Massage%20untuk%202%20orang%20pada%2015%20Nov%202026%20jam%2014%3A00%20WITA." target="_blank" style="display: block; width: 100%; box-sizing: border-box; background-color: #059669; color: #FFFFFF; padding: 15px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);">
+                            💬 Hubungi &amp; Balas Tamu via WhatsApp
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px;">
+                      <tr>
+                        <td width="48%" align="center">
+                          <a href="tel:+6281234567890" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center;">
+                            📞 Telepon Langsung
+                          </a>
+                        </td>
+                        <td width="4%"></td>
+                        <td width="48%" align="center">
+                          <a href="admin/" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center;">
+                            🔐 Buka Panel Admin
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- ============================================== -->
+                <!-- 5. FOOTER (Matching Massaji Spa Web Footer) -->
+                <!-- ============================================== -->
+                <tr>
+                  <td style="background-color: #141E3C; padding: 28px 24px; text-align: center; color: #94A3B8; font-size: 12px; border-top: 1px solid rgba(186, 224, 253, 0.2);">
+                    
+                    <!-- Footer Brand -->
+                    <div style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">
+                      Massaji <span style="color: #BAE0FD; font-style: italic; font-weight: 400;">Spa</span>
+                      <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #BAE0FD; margin-left: 6px;">Canggu &bull; Bali</span>
+                    </div>
+                    
+                    <p style="margin: 6px 0 12px; color: #CBD5E1; font-size: 11px; line-height: 1.5; max-width: 480px; margin-left: auto; margin-right: auto;">
+                      Authentic Balinese Massage, Curated Spa Packages &amp; Holistic Wellness Sanctuary in Kerobokan and Canggu.
+                    </p>
+
+                    <div style="color: #94A3B8; font-size: 11px; line-height: 1.6; margin-bottom: 12px;">
+                      📍 Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Bali 80361<br>
+                      🕒 Buka Setiap Hari: 10:00 AM – 9:00 PM WITA &bull; 📱 WA: +62 812-3669-5755
+                    </div>
+
+                    <div style="font-size: 10px; color: #64748B; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; margin-top: 12px;">
+                      &copy; 2026 Massaji Spa Bali. All rights reserved.<br>
+                      <span style="color: #475569;">Email ini dikirim otomatis oleh sistem reservasi website Massaji Spa Bali.</span>
+                    </div>
+
+                  </td>
+                </tr>
+
+              </table>
+
+            </td>
+          </tr>
+        </table>
+        <!-- END ACTUAL EMAIL TEMPLATE -->
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function setViewMode(mode, btn) {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const wrapper = document.getElementById('emailWrapper');
+      wrapper.classList.remove('mode-mobile', 'mode-full');
+
+      if (mode === 'mobile') {
+        wrapper.classList.add('mode-mobile');
+      } else if (mode === 'full') {
+        wrapper.classList.add('mode-full');
+      }
+    }
+  </script>
+
+</body>
+</html>
