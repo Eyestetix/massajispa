@@ -568,7 +568,7 @@ $csrf_token = generate_csrf_token();
 
               <div class="md:col-span-2">
                 <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-1.5">Link Google Maps</label>
-                <input type="url" id="field-maps" name="google_maps_link" value="https://maps.google.com/?q=Massaji+Spa+Bali+Canggu" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <input type="url" id="field-maps" name="google_maps_link" value="https://www.google.com/maps/place/Massaji+Spa+Bali/@-8.6451761,115.1593768,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd23899b3c269db:0x6cdb2c83c3f02d7c!8m2!3d-8.6451761!4d115.1619517!16s%2Fg%2F11c3k2xsjl" class="w-full px-4 py-2.5 bg-[#F0F8FF] border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
               </div>
             </div>
 

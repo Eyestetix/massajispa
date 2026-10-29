@@ -13,7 +13,7 @@ function get_settings() {
         'whatsapp_number' => '6281236695755',
         'phone' => '+62 812-3669-5755',
         'address' => 'Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361',
-        'google_maps_link' => 'https://maps.google.com/?q=Massaji+Spa+Bali+Canggu',
+        'google_maps_link' => 'https://www.google.com/maps/place/Massaji+Spa+Bali/@-8.6451761,115.1593768,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd23899b3c269db:0x6cdb2c83c3f02d7c!8m2!3d-8.6451761!4d115.1619517!16s%2Fg%2F11c3k2xsjl',
         'opening_hours' => 'Setiap Hari: 10:00 - 21:00 WITA',
         'instagram' => 'https://instagram.com/massajispa',
         'currency_label' => 'IDR',

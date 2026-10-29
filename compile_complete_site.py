@@ -879,9 +879,12 @@ html_template = f'''<!DOCTYPE html>
             <div>
               <span class="font-bold text-[#141E3C] block" data-i18n="contact_address_label">Sanctuary Address</span>
               <span>Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361</span>
-              <a href="https://maps.google.com/?q=Massaji+Spa+Bali+Canggu" target="_blank" class="block text-[#0284C7] font-semibold text-xs mt-1 hover:underline" data-i18n="contact_maps_link">
-                Get Directions in Google Maps &rarr;
-              </a>
+              <div class="mt-2.5">
+                <a href="https://www.google.com/maps/place/Massaji+Spa+Bali/@-8.6451761,115.1593768,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd23899b3c269db:0x6cdb2c83c3f02d7c!8m2!3d-8.6451761!4d115.1619517!16s%2Fg%2F11c3k2xsjl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#0284C7] hover:bg-[#1E3A8A] text-white font-bold text-xs shadow-sm hover:shadow transition-all duration-200">
+                  <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  <span data-i18n="contact_maps_link">Get Directions in Google Maps &rarr;</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -911,16 +914,17 @@ html_template = f'''<!DOCTYPE html>
 
       <!-- Map Embed -->
       <div class="lg:col-span-7">
-        <div class="img-editorial-frame aspect-[16/10] border border-[#BAE0FD] shadow-lg overflow-hidden">
+        <div class="img-editorial-frame aspect-[16/10] border border-[#BAE0FD] shadow-lg overflow-hidden rounded-2xl relative">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.3828987349144!2d115.1582239!3d-8.6548777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239274213197b%3A0xb3e5d3c8c7efc0c0!2sMassaji%20Spa!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+            title="Massaji Spa Bali Location Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.5126868516086!2d115.1593768!3d-8.6451761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23899b3c269db%3A0x6cdb2c83c3f02d7c!2sMassaji%20Spa%20Bali!5e0!3m2!1sen!2sid!4v1730270000000!5m2!1sen!2sid" 
             width="100%" 
             height="100%" 
             style="border:0;" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade"
-            class="w-full h-full grayscale-[20%] contrast-[1.05]">
+            class="w-full h-full">
           </iframe>
         </div>
       </div>
