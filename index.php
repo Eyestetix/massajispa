@@ -3444,5 +3444,7 @@
 
   <!-- Main JavaScript File -->
   <script src="assets/js/main.js?v=20261030e"></script>
+  <!-- Visitor Analytics Tracker (Async & Non-blocking) -->
+  <script src="assets/js/tracker.js?v=20261030e" defer></script>
 </body>
 </html>

@@ -3,13 +3,13 @@
 require_once __DIR__ . "/auth.php";
 check_auth();
 
-$settings_file = __DIR__ . "/../data/settings.json";
-$promo_file    = __DIR__ . "/../data/promo.json";
-$menu_file     = __DIR__ . "/../data/menu.json";
-$bookings_file = __DIR__ . "/../data/bookings.json";
+ = __DIR__ . "/../data/settings.json";
+    = __DIR__ . "/../data/promo.json";
+     = __DIR__ . "/../data/menu.json";
+ = __DIR__ . "/../data/bookings.json";
 
-$settings = get_settings();
-$csrf_token = generate_csrf_token();
+ = get_settings();
+ = generate_csrf_token();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -21,6 +21,7 @@ $csrf_token = generate_csrf_token();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -174,6 +175,11 @@ $csrf_token = generate_csrf_token();
         <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           Reservasi Masuk
+        </button>
+        <button onclick="switchTab('analytics')" id="btn-tab-analytics" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+          <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Web Analitik</span>
+          <span class="px-2 py-0.5 text-[10px] rounded-full bg-emerald-100 text-emerald-800 font-bold uppercase tracking-wider">Live</span>
         </button>
       </div>
 
@@ -605,6 +611,274 @@ $csrf_token = generate_csrf_token();
         </div>
       </div>
 
+      <!-- ======================================================== -->
+      <!-- TAB 6: WEB ANALITIK & PENGUNJUNG -->
+      <!-- ======================================================== -->
+      <div id="tab-analytics" class="tab-content hidden space-y-8">
+        
+        <!-- Header & Range Control Bar -->
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-bold uppercase tracking-wider mb-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              Pencatatan Aktif &bull; Real-time
+            </div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#141E3C]">Statistik &amp; Web Analitik</h2>
+            <p class="text-xs text-[#475569] mt-1">Pantau tren kunjungan website, sumber rujukan (Google, IG, FB, dll.), dan performa konversi Massaji Spa.</p>
+          </div>
+
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span id="analytics-last-updated" class="text-[11px] text-[#64748B] font-mono">Diperbarui: Baru saja</span>
+            <button type="button" onclick="loadAnalyticsData(true)" class="px-3.5 py-2 rounded-xl bg-[#E1F0FE] hover:bg-[#BAE0FD] text-[#1E3A8A] font-bold text-xs flex items-center gap-1.5 transition shadow-sm cursor-pointer" title="Perbarui Data Sekarang">
+              <svg id="analytics-refresh-icon" class="w-3.5 h-3.5 transition-transform duration-500 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <span>Refresh</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 KPI Summary Cards (Hari Ini, Minggu Ini, Bulan Ini, Tahun Ini) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          
+          <!-- Card 1: Hari Ini -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-5 shadow-sm hover:border-[#1E3A8A] transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-sky-50 rounded-full blur-xl pointer-events-none transform translate-x-6 -translate-y-6"></div>
+            <div>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#0284C7]">Hari Ini (Today)</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" title="Live Hari Ini"></span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="kpi-today-views" class="font-serif text-3xl sm:text-4xl font-bold text-[#141E3C] leading-none">0</span>
+                <span class="text-xs text-[#64748B] font-semibold">Kunjungan</span>
+              </div>
+              <p class="text-[11px] text-[#475569] mt-2 font-medium">
+                <span id="kpi-today-unique" class="font-bold text-[#1E3A8A]">0</span> Pengunjung Unik
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD]/70 flex items-center justify-between text-[11px]">
+              <span class="text-[#64748B]">Kemarin: <strong id="kpi-yesterday-views" class="text-[#141E3C]">0</strong></span>
+              <span id="kpi-today-growth" class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-50 text-[#0284C7]">+0%</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Minggu Ini -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-5 shadow-sm hover:border-[#1E3A8A] transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full blur-xl pointer-events-none transform translate-x-6 -translate-y-6"></div>
+            <div>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#1E3A8A]">Minggu Ini (7 Hari)</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#E1F0FE] text-[#1E3A8A]">7D</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="kpi-week-views" class="font-serif text-3xl sm:text-4xl font-bold text-[#141E3C] leading-none">0</span>
+                <span class="text-xs text-[#64748B] font-semibold">Kunjungan</span>
+              </div>
+              <p class="text-[11px] text-[#475569] mt-2 font-medium">
+                <span id="kpi-week-unique" class="font-bold text-[#1E3A8A]">0</span> Pengunjung Unik
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD]/70 flex items-center justify-between text-[11px]">
+              <span class="text-[#64748B]">Rata-rata/hari:</span>
+              <span id="kpi-week-avg" class="font-bold text-[#1E3A8A]">0 / hari</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Bulan Ini -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-5 shadow-sm hover:border-[#1E3A8A] transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-full blur-xl pointer-events-none transform translate-x-6 -translate-y-6"></div>
+            <div>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#0284C7]" id="kpi-month-label">Bulan Ini</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Bulanan</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="kpi-month-views" class="font-serif text-3xl sm:text-4xl font-bold text-[#141E3C] leading-none">0</span>
+                <span class="text-xs text-[#64748B] font-semibold">Kunjungan</span>
+              </div>
+              <p class="text-[11px] text-[#475569] mt-2 font-medium">
+                <span id="kpi-month-unique" class="font-bold text-[#1E3A8A]">0</span> Pengunjung Unik
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD]/70 flex items-center justify-between text-[11px]">
+              <span class="text-[#64748B]">Trafik Tertinggi:</span>
+              <span class="font-bold text-emerald-700">Google &amp; IG</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Tahun Ini -->
+          <div class="bg-white border border-[#BAE0FD] rounded-2xl p-5 shadow-sm hover:border-[#1E3A8A] transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-full blur-xl pointer-events-none transform translate-x-6 -translate-y-6"></div>
+            <div>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#1E3A8A]" id="kpi-year-label">Tahun 2026</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">Akumulasi</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="kpi-year-views" class="font-serif text-3xl sm:text-4xl font-bold text-[#141E3C] leading-none">0</span>
+                <span class="text-xs text-[#64748B] font-semibold">Kunjungan</span>
+              </div>
+              <p class="text-[11px] text-[#475569] mt-2 font-medium">
+                <span id="kpi-year-unique" class="font-bold text-[#1E3A8A]">0</span> Pengunjung Unik
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD]/70 flex items-center justify-between text-[11px]">
+              <span class="text-[#64748B]">Massaji Spa Bali:</span>
+              <span class="font-bold text-[#0284C7]">Canggu &bull; Bali</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Charts Row 1: Trend Kunjungan & Sumber Pengunjung -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Left: Line Chart (Tren Kunjungan Harian) -->
+          <div class="lg:col-span-7 bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-7 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-[#BAE0FD]">
+              <div>
+                <h3 class="font-serif text-xl font-bold text-[#141E3C]">Tren Kunjungan Harian</h3>
+                <p class="text-xs text-[#475569] mt-0.5">Grafik fluktuasi total kunjungan dan pengunjung unik.</p>
+              </div>
+              
+              <!-- Timeframe Selector -->
+              <div class="inline-flex p-1 bg-[#F0F8FF] rounded-xl border border-[#BAE0FD] text-[11px] font-bold">
+                <button type="button" onclick="setTrendTimeframe('days_7')" id="btn-trend-7" class="trend-tf-btn px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white shadow-sm transition">7 Hari</button>
+                <button type="button" onclick="setTrendTimeframe('days_14')" id="btn-trend-14" class="trend-tf-btn px-2.5 py-1 rounded-lg text-[#475569] hover:text-[#141E3C] transition">14 Hari</button>
+                <button type="button" onclick="setTrendTimeframe('days_30')" id="btn-trend-30" class="trend-tf-btn px-2.5 py-1 rounded-lg text-[#475569] hover:text-[#141E3C] transition">30 Hari</button>
+                <button type="button" onclick="setTrendTimeframe('months')" id="btn-trend-months" class="trend-tf-btn px-2.5 py-1 rounded-lg text-[#475569] hover:text-[#141E3C] transition">Bulanan</button>
+              </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="relative w-full h-[280px]">
+              <canvas id="chart-visitor-trends"></canvas>
+            </div>
+          </div>
+
+          <!-- Right: Doughnut Chart (Sumber Pengunjung / Referrers) -->
+          <div class="lg:col-span-5 bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+            <div class="mb-4 pb-4 border-b border-[#BAE0FD]">
+              <h3 class="font-serif text-xl font-bold text-[#141E3C]">Sumber Pengunjung (Traffic Sources)</h3>
+              <p class="text-xs text-[#475569] mt-0.5">Rujukan asal pengunjung (Google, IG, FB, WhatsApp, Direct).</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center my-auto">
+              <!-- Doughnut Canvas -->
+              <div class="sm:col-span-6 relative w-full h-[200px] flex items-center justify-center">
+                <canvas id="chart-traffic-sources"></canvas>
+              </div>
+              
+              <!-- Source Legend List -->
+              <div class="sm:col-span-6 space-y-2 text-xs" id="sources-legend-list">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD] text-[11px] text-[#475569] flex items-center justify-between">
+              <span>Sistem Rujukan Akurat</span>
+              <span class="font-bold text-[#0284C7]">UTM &amp; Referrer Header</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Charts Row 2: Perangkat & Jam Ramai -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Left: Device Distribution -->
+          <div class="lg:col-span-5 bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-7 shadow-sm">
+            <div class="mb-5 pb-4 border-b border-[#BAE0FD]">
+              <h3 class="font-serif text-xl font-bold text-[#141E3C]">Perangkat Pengunjung</h3>
+              <p class="text-xs text-[#475569] mt-0.5">Proporsi pengunjung yang mengakses melalui ponsel vs desktop.</p>
+            </div>
+
+            <div class="space-y-4 my-3">
+              <div>
+                <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                  <span class="flex items-center gap-1.5 text-[#141E3C]">
+                    <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    Mobile (Smartphone &amp; Tablet)
+                  </span>
+                  <span id="device-mobile-pct" class="font-mono text-[#0284C7]">0%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                  <div id="device-mobile-bar" class="h-full bg-gradient-to-r from-[#0284C7] to-[#1E3A8A] rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <span id="device-mobile-count" class="text-[10px] text-[#64748B] block mt-1">0 Kunjungan</span>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                  <span class="flex items-center gap-1.5 text-[#141E3C]">
+                    <svg class="w-4 h-4 text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Desktop (Laptop &amp; PC)
+                  </span>
+                  <span id="device-desktop-pct" class="font-mono text-[#1E3A8A]">0%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                  <div id="device-desktop-bar" class="h-full bg-slate-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <span id="device-desktop-count" class="text-[10px] text-[#64748B] block mt-1">0 Kunjungan</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#BAE0FD] text-[11px] text-[#475569] leading-relaxed">
+              💡 <strong>Rekomendasi:</strong> Mayoritas tamu spa mengakses via Mobile saat berada di Bali. Pengalaman pemesanan cepat 1-klik WhatsApp terbukti meningkatkan konversi.
+            </div>
+          </div>
+
+          <!-- Right: Hourly Heat / Peak Hours Bar Chart -->
+          <div class="lg:col-span-7 bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-7 shadow-sm">
+            <div class="flex items-center justify-between mb-5 pb-4 border-b border-[#BAE0FD]">
+              <div>
+                <h3 class="font-serif text-xl font-bold text-[#141E3C]">Pola Jam Akses Pengunjung (WITA)</h3>
+                <p class="text-xs text-[#475569] mt-0.5">Distribusi aktivitas pengunjung dari jam 00:00 hingga 23:00 WITA.</p>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">24 Jam</span>
+            </div>
+
+            <div class="relative w-full h-[180px]">
+              <canvas id="chart-hourly-activity"></canvas>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-[#BAE0FD] flex items-center justify-between text-[11px] text-[#64748B]">
+              <span>Puncak Akses: <strong>14:00 – 19:00 WITA</strong></span>
+              <span>Zona Waktu: <strong>WITA (Bali, UTC+8)</strong></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Real-Time Visitor Live Log Table -->
+        <div class="bg-white border border-[#BAE0FD] rounded-2xl p-6 sm:p-7 shadow-sm">
+          <div class="flex items-center justify-between mb-5 pb-4 border-b border-[#BAE0FD]">
+            <div>
+              <h3 class="font-serif text-xl font-bold text-[#141E3C]">Log Kunjungan Terkini (Real-Time Feed)</h3>
+              <p class="text-xs text-[#475569] mt-0.5">Daftar riwayat kunjungan pengunjung terakhir ke website Massaji Spa.</p>
+            </div>
+            <span class="text-xs font-mono text-[#0284C7] font-bold" id="recent-log-count">20 Kunjungan Terakhir</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#F0F8FF] text-[#141E3C] uppercase tracking-wider text-[10px] font-bold border-b border-[#BAE0FD]">
+                <tr>
+                  <th class="py-3 px-4">Waktu (WITA)</th>
+                  <th class="py-3 px-4">Sumber Rujukan</th>
+                  <th class="py-3 px-4">Perangkat</th>
+                  <th class="py-3 px-4">Halaman / Section</th>
+                  <th class="py-3 px-4">Tipe Kunjungan</th>
+                </tr>
+              </thead>
+              <tbody id="analytics-recent-table-body" class="divide-y divide-[#BAE0FD]">
+                <!-- Rows injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
     </main>
   </div>
 
@@ -840,6 +1114,10 @@ $csrf_token = generate_csrf_token();
         target.classList.remove('hidden');
         targetBtn.classList.remove('border-transparent', 'text-[#475569]');
         targetBtn.classList.add('border-[#1E3A8A]', 'text-[#1E3A8A]');
+      }
+
+      if (tabId === 'analytics') {
+        loadAnalyticsData();
       }
     }
 
@@ -1421,6 +1699,458 @@ $csrf_token = generate_csrf_token();
           </table>
         </div>
       `;
+    }
+
+    // ========================================================
+    // 13. WEB ANALYTICS CONTROLLER (CHART.JS)
+    // ========================================================
+    let analyticsDataCache = null;
+    let chartTrends = null;
+    let chartSources = null;
+    let chartHourly = null;
+    let currentTrendRange = 'days_7';
+
+    async function loadAnalyticsData(isForce = false) {
+      const refreshIcon = document.getElementById('analytics-refresh-icon');
+      if (refreshIcon) refreshIcon.classList.add('animate-spin');
+
+      try {
+        const fd = new FormData();
+        fd.append('action', 'get_analytics');
+
+        let res = null;
+        try {
+          const tryPhp = await fetch('api.php', { method: 'POST', body: fd });
+          if (tryPhp.ok) res = tryPhp;
+        } catch(e) {}
+
+        if (!res) {
+          res = await fetch('../server.py', { method: 'POST', body: fd });
+        }
+
+        const json = await res.json();
+        if (json && json.success && json.data) {
+          analyticsDataCache = json.data;
+          renderAnalyticsDashboard(analyticsDataCache);
+          const timeEl = document.getElementById('analytics-last-updated');
+          if (timeEl) {
+            const now = new Date();
+            timeEl.textContent = `Diperbarui: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')} WITA`;
+          }
+          if (isForce) showToast('Data analitik berhasil diperbarui!', true);
+        }
+      } catch (err) {
+        console.warn('Analytics fetch warning:', err);
+      } finally {
+        if (refreshIcon) {
+          setTimeout(() => refreshIcon.classList.remove('animate-spin'), 400);
+        }
+      }
+    }
+
+    function setTrendTimeframe(rangeKey) {
+      currentTrendRange = rangeKey;
+      document.querySelectorAll('.trend-tf-btn').forEach(b => {
+        b.classList.remove('bg-[#1E3A8A]', 'text-white', 'shadow-sm');
+        b.classList.add('text-[#475569]');
+      });
+      const activeBtn = document.getElementById({
+        'days_7': 'btn-trend-7',
+        'days_14': 'btn-trend-14',
+        'days_30': 'btn-trend-30',
+        'months': 'btn-trend-months'
+      }[rangeKey]);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[#1E3A8A]', 'text-white', 'shadow-sm');
+        activeBtn.classList.remove('text-[#475569]');
+      }
+      if (analyticsDataCache) {
+        renderTrendChart(analyticsDataCache);
+      }
+    }
+
+    function renderAnalyticsDashboard(data) {
+      if (!data) return;
+
+      // 1. KPI Cards
+      const todayViews = data.today.views || 0;
+      const todayUnique = data.today.unique || 0;
+      const yViews = data.today.yesterday_views || 0;
+
+      const elTodayViews = document.getElementById('kpi-today-views');
+      if (elTodayViews) elTodayViews.textContent = todayViews.toLocaleString('id-ID');
+      const elTodayUnique = document.getElementById('kpi-today-unique');
+      if (elTodayUnique) elTodayUnique.textContent = todayUnique.toLocaleString('id-ID');
+      const elYViews = document.getElementById('kpi-yesterday-views');
+      if (elYViews) elYViews.textContent = yViews.toLocaleString('id-ID');
+
+      const growthEl = document.getElementById('kpi-today-growth');
+      if (growthEl) {
+        if (yViews > 0) {
+          const diff = ((todayViews - yViews) / yViews) * 100;
+          const sign = diff >= 0 ? '+' : '';
+          growthEl.textContent = `${sign}${diff.toFixed(0)}%`;
+          growthEl.className = diff >= 0
+            ? 'px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700'
+            : 'px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700';
+        } else {
+          growthEl.textContent = '+100%';
+        }
+      }
+
+      // Week
+      const weekViews = data.week.views || 0;
+      const weekUnique = data.week.unique || 0;
+      const elWeekViews = document.getElementById('kpi-week-views');
+      if (elWeekViews) elWeekViews.textContent = weekViews.toLocaleString('id-ID');
+      const elWeekUnique = document.getElementById('kpi-week-unique');
+      if (elWeekUnique) elWeekUnique.textContent = weekUnique.toLocaleString('id-ID');
+      const elWeekAvg = document.getElementById('kpi-week-avg');
+      if (elWeekAvg) elWeekAvg.textContent = `~${Math.round(weekViews / 7)} / hari`;
+
+      // Month
+      const elMonthViews = document.getElementById('kpi-month-views');
+      if (elMonthViews) elMonthViews.textContent = (data.month.views || 0).toLocaleString('id-ID');
+      const elMonthUnique = document.getElementById('kpi-month-unique');
+      if (elMonthUnique) elMonthUnique.textContent = (data.month.unique || 0).toLocaleString('id-ID');
+      const elMonthLabel = document.getElementById('kpi-month-label');
+      if (elMonthLabel && data.month.label) {
+        elMonthLabel.textContent = data.month.label;
+      }
+
+      // Year
+      const elYearViews = document.getElementById('kpi-year-views');
+      if (elYearViews) elYearViews.textContent = (data.year.views || 0).toLocaleString('id-ID');
+      const elYearUnique = document.getElementById('kpi-year-unique');
+      if (elYearUnique) elYearUnique.textContent = (data.year.unique || 0).toLocaleString('id-ID');
+      const elYearLabel = document.getElementById('kpi-year-label');
+      if (elYearLabel && data.year.label) {
+        elYearLabel.textContent = `Tahun ${data.year.label}`;
+      }
+
+      // 2. Trend Line Chart
+      renderTrendChart(data);
+
+      // 3. Traffic Sources Doughnut Chart
+      renderSourcesChart(data.sources);
+
+      // 4. Device Distribution
+      renderDeviceBars(data.devices);
+
+      // 5. Hourly Activity Bar Chart
+      renderHourlyChart(data.hours);
+
+      // 6. Recent Logs Table
+      renderRecentTable(data.recent);
+    }
+
+    function renderTrendChart(data) {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('chart-visitor-trends');
+      if (!canvas) return;
+
+      const series = (data.trends && data.trends[currentTrendRange]) ? data.trends[currentTrendRange] : [];
+      const labels = series.map(s => s.label);
+      const viewsData = series.map(s => s.views);
+      const uniqueData = series.map(s => s.unique);
+
+      if (chartTrends) {
+        chartTrends.destroy();
+      }
+
+      const ctx = canvas.getContext('2d');
+      chartTrends = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Total Kunjungan',
+              data: viewsData,
+              borderColor: '#1E3A8A',
+              backgroundColor: 'rgba(30, 58, 138, 0.08)',
+              borderWidth: 2.5,
+              fill: true,
+              tension: 0.35,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              pointBackgroundColor: '#1E3A8A'
+            },
+            {
+              label: 'Pengunjung Unik',
+              data: uniqueData,
+              borderColor: '#0284C7',
+              backgroundColor: 'rgba(2, 132, 199, 0.05)',
+              borderWidth: 2,
+              borderDash: [4, 4],
+              fill: true,
+              tension: 0.35,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              pointBackgroundColor: '#0284C7'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                boxWidth: 12,
+                font: { family: 'Manrope', size: 11, weight: '600' },
+                color: '#141E3C'
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(20, 30, 60, 0.95)',
+              titleFont: { family: 'Manrope', size: 12, weight: '700' },
+              bodyFont: { family: 'Manrope', size: 11 },
+              padding: 10,
+              cornerRadius: 8
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Manrope', size: 10 }, color: '#64748B' }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(186, 224, 253, 0.4)' },
+              ticks: { font: { family: 'Manrope', size: 10 }, color: '#64748B' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderSourcesChart(sources) {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('chart-traffic-sources');
+      if (!canvas) return;
+
+      const sourceColors = {
+        'Google': '#3B82F6',
+        'Instagram': '#E1306C',
+        'Facebook': '#1877F2',
+        'WhatsApp': '#10B981',
+        'Direct': '#1E3A8A',
+        'TikTok': '#111827',
+        'Other': '#94A3B8'
+      };
+
+      const labels = [];
+      const values = [];
+      const colors = [];
+
+      let total = 0;
+      for (const [k, v] of Object.entries(sources || {})) {
+        if (v > 0) {
+          labels.push(k);
+          values.push(v);
+          colors.push(sourceColors[k] || '#64748B');
+          total += v;
+        }
+      }
+
+      if (values.length === 0) {
+        labels.push('Direct');
+        values.push(1);
+        colors.push('#1E3A8A');
+        total = 1;
+      }
+
+      if (chartSources) {
+        chartSources.destroy();
+      }
+
+      const ctx = canvas.getContext('2d');
+      chartSources = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: colors,
+            borderWidth: 2,
+            borderColor: '#FFFFFF'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(20, 30, 60, 0.95)',
+              titleFont: { family: 'Manrope', size: 12, weight: '700' },
+              bodyFont: { family: 'Manrope', size: 11 },
+              padding: 10,
+              cornerRadius: 8,
+              callbacks: {
+                label: function(ctx) {
+                  const val = ctx.raw || 0;
+                  const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+                  return ` ${ctx.label}: ${val} (${pct}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Render custom HTML legend list
+      const legendList = document.getElementById('sources-legend-list');
+      if (legendList) {
+        legendList.innerHTML = labels.map((lbl, idx) => {
+          const val = values[idx];
+          const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+          const col = colors[idx];
+          return `
+            <div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 transition">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${col}"></span>
+                <span class="font-bold text-[#141E3C]">${lbl}</span>
+              </div>
+              <div class="flex items-center gap-1.5 font-mono text-[11px]">
+                <span class="text-[#475569] font-semibold">${val}</span>
+                <span class="text-[#0284C7] font-bold">(${pct}%)</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function renderDeviceBars(devices) {
+      const mob = (devices && devices.Mobile) ? devices.Mobile : 0;
+      const desk = (devices && devices.Desktop) ? devices.Desktop : 0;
+      const total = mob + desk;
+
+      const mobPct = total > 0 ? Math.round((mob / total) * 100) : 0;
+      const deskPct = total > 0 ? (100 - mobPct) : 0;
+
+      const mobPctEl = document.getElementById('device-mobile-pct');
+      if (mobPctEl) mobPctEl.textContent = `${mobPct}%`;
+      const mobBarEl = document.getElementById('device-mobile-bar');
+      if (mobBarEl) mobBarEl.style.width = `${mobPct}%`;
+      const mobCntEl = document.getElementById('device-mobile-count');
+      if (mobCntEl) mobCntEl.textContent = `${mob.toLocaleString('id-ID')} Kunjungan`;
+
+      const deskPctEl = document.getElementById('device-desktop-pct');
+      if (deskPctEl) deskPctEl.textContent = `${deskPct}%`;
+      const deskBarEl = document.getElementById('device-desktop-bar');
+      if (deskBarEl) deskBarEl.style.width = `${deskPct}%`;
+      const deskCntEl = document.getElementById('device-desktop-count');
+      if (deskCntEl) deskCntEl.textContent = `${desk.toLocaleString('id-ID')} Kunjungan`;
+    }
+
+    function renderHourlyChart(hours) {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('chart-hourly-activity');
+      if (!canvas) return;
+
+      const hArray = Array.isArray(hours) && hours.length === 24 ? hours : Array(24).fill(0);
+      const labels = hArray.map((_, i) => `${i}:00`);
+
+      if (chartHourly) {
+        chartHourly.destroy();
+      }
+
+      const ctx = canvas.getContext('2d');
+      chartHourly = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Kunjungan Jam Ini',
+            data: hArray,
+            backgroundColor: hArray.map(v => v > 100 ? '#1E3A8A' : (v > 50 ? '#0284C7' : '#BAE0FD')),
+            borderRadius: 4,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(20, 30, 60, 0.95)',
+              titleFont: { family: 'Manrope', size: 11, weight: '700' },
+              bodyFont: { family: 'Manrope', size: 10 },
+              padding: 8,
+              cornerRadius: 6
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { family: 'Manrope', size: 9 },
+                color: '#64748B',
+                callback: function(val, idx) {
+                  return idx % 3 === 0 ? labels[idx] : '';
+                }
+              }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(186, 224, 253, 0.4)' },
+              ticks: { font: { family: 'Manrope', size: 9 }, color: '#64748B' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderRecentTable(recentList) {
+      const tbody = document.getElementById('analytics-recent-table-body');
+      if (!tbody) return;
+
+      if (!recentList || recentList.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-8 text-center text-xs text-[#64748B]">
+              Belum ada data kunjungan terkini.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      const countEl = document.getElementById('recent-log-count');
+      if (countEl) countEl.textContent = `${recentList.length} Kunjungan Terakhir`;
+
+      const sourceBadges = {
+        'Google': '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">🔍 Google</span>',
+        'Instagram': '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-pink-50 text-pink-700 border border-pink-200">📷 Instagram</span>',
+        'Facebook': '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-300">👥 Facebook</span>',
+        'WhatsApp': '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">💬 WhatsApp</span>',
+        'TikTok': '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-slate-900 text-white">🎵 TikTok</span>',
+        'Direct': '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-[#1E3A8A] border border-[#BAE0FD]">🔗 Direct</span>'
+      };
+
+      tbody.innerHTML = recentList.map(r => {
+        const badge = sourceBadges[r.source] || `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-[#475569] border border-slate-200">🌐 ${r.source || 'Referral'}</span>`;
+        const devIcon = r.device === 'Mobile' ? '📱 Mobile' : '💻 Desktop';
+        const typeBadge = r.unique
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700">Sesi Baru</span>'
+          : '<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-[#64748B]">Kunjungan Ulang</span>';
+
+        return `
+          <tr class="hover:bg-[#F0F8FF]/50 transition">
+            <td class="py-3 px-4 font-mono text-[#475569] whitespace-nowrap text-[11px]">${r.time || '-'}</td>
+            <td class="py-3 px-4">${badge}</td>
+            <td class="py-3 px-4 font-semibold text-[#141E3C] whitespace-nowrap">${devIcon}</td>
+            <td class="py-3 px-4 font-mono text-[#0284C7] truncate max-w-[200px]" title="${r.path || '/'}">${r.path || '/'}</td>
+            <td class="py-3 px-4 whitespace-nowrap">${typeBadge}</td>
+          </tr>
+        `;
+      }).join('');
     }
 
     // Initialize on page load

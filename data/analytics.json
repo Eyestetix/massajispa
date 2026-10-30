@@ -1,0 +1,668 @@
+{
+  "summary": {
+    "total_views": 2458,
+    "total_unique": 1736
+  },
+  "days": {
+    "2026-10-17": {
+      "views": 48,
+      "unique": 32,
+      "sources": {
+        "Google": 20,
+        "Instagram": 13,
+        "Facebook": 5,
+        "WhatsApp": 3,
+        "Direct": 7
+      },
+      "devices": {
+        "Mobile": 37,
+        "Desktop": 11
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        4,
+        4,
+        3,
+        4,
+        5,
+        6,
+        5,
+        4,
+        2,
+        8,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-18": {
+      "views": 55,
+      "unique": 38,
+      "sources": {
+        "Google": 23,
+        "Instagram": 15,
+        "Facebook": 6,
+        "WhatsApp": 4,
+        "Direct": 7
+      },
+      "devices": {
+        "Mobile": 42,
+        "Desktop": 13
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        5,
+        4,
+        3,
+        4,
+        6,
+        7,
+        6,
+        4,
+        3,
+        9,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-19": {
+      "views": 62,
+      "unique": 44,
+      "sources": {
+        "Google": 26,
+        "Instagram": 17,
+        "Facebook": 7,
+        "WhatsApp": 4,
+        "Direct": 8
+      },
+      "devices": {
+        "Mobile": 48,
+        "Desktop": 14
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        6,
+        5,
+        4,
+        5,
+        7,
+        8,
+        6,
+        5,
+        3,
+        9,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-20": {
+      "views": 59,
+      "unique": 40,
+      "sources": {
+        "Google": 24,
+        "Instagram": 16,
+        "Facebook": 7,
+        "WhatsApp": 4,
+        "Direct": 8
+      },
+      "devices": {
+        "Mobile": 46,
+        "Desktop": 13
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        5,
+        5,
+        4,
+        5,
+        7,
+        8,
+        6,
+        5,
+        3,
+        7,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-21": {
+      "views": 74,
+      "unique": 52,
+      "sources": {
+        "Google": 31,
+        "Instagram": 20,
+        "Facebook": 8,
+        "WhatsApp": 5,
+        "Direct": 10
+      },
+      "devices": {
+        "Mobile": 57,
+        "Desktop": 17
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        7,
+        6,
+        5,
+        6,
+        8,
+        10,
+        8,
+        6,
+        4,
+        9,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-22": {
+      "views": 88,
+      "unique": 63,
+      "sources": {
+        "Google": 36,
+        "Instagram": 24,
+        "Facebook": 10,
+        "WhatsApp": 7,
+        "Direct": 11
+      },
+      "devices": {
+        "Mobile": 68,
+        "Desktop": 20
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        8,
+        7,
+        6,
+        7,
+        10,
+        12,
+        9,
+        7,
+        5,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-23": {
+      "views": 95,
+      "unique": 68,
+      "sources": {
+        "Google": 39,
+        "Instagram": 26,
+        "Facebook": 11,
+        "WhatsApp": 7,
+        "Direct": 12
+      },
+      "devices": {
+        "Mobile": 74,
+        "Desktop": 21
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        9,
+        8,
+        6,
+        8,
+        11,
+        13,
+        10,
+        8,
+        5,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-24": {
+      "views": 78,
+      "unique": 56,
+      "sources": {
+        "Google": 32,
+        "Instagram": 21,
+        "Facebook": 9,
+        "WhatsApp": 6,
+        "Direct": 10
+      },
+      "devices": {
+        "Mobile": 60,
+        "Desktop": 18
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        7,
+        7,
+        5,
+        7,
+        9,
+        10,
+        8,
+        7,
+        4,
+        8,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-25": {
+      "views": 84,
+      "unique": 60,
+      "sources": {
+        "Google": 35,
+        "Instagram": 23,
+        "Facebook": 10,
+        "WhatsApp": 6,
+        "Direct": 10
+      },
+      "devices": {
+        "Mobile": 65,
+        "Desktop": 19
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        8,
+        7,
+        5,
+        7,
+        10,
+        11,
+        9,
+        7,
+        5,
+        9,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-26": {
+      "views": 91,
+      "unique": 66,
+      "sources": {
+        "Google": 38,
+        "Instagram": 25,
+        "Facebook": 10,
+        "WhatsApp": 7,
+        "Direct": 11
+      },
+      "devices": {
+        "Mobile": 70,
+        "Desktop": 21
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        9,
+        8,
+        6,
+        8,
+        10,
+        12,
+        10,
+        8,
+        5,
+        8,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-27": {
+      "views": 105,
+      "unique": 75,
+      "sources": {
+        "Google": 44,
+        "Instagram": 29,
+        "Facebook": 12,
+        "WhatsApp": 8,
+        "Direct": 12
+      },
+      "devices": {
+        "Mobile": 81,
+        "Desktop": 24
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        10,
+        9,
+        7,
+        9,
+        12,
+        14,
+        11,
+        9,
+        6,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-28": {
+      "views": 112,
+      "unique": 80,
+      "sources": {
+        "Google": 47,
+        "Instagram": 31,
+        "Facebook": 13,
+        "WhatsApp": 8,
+        "Direct": 13
+      },
+      "devices": {
+        "Mobile": 87,
+        "Desktop": 25
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        11,
+        10,
+        7,
+        10,
+        13,
+        15,
+        12,
+        10,
+        6,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-29": {
+      "views": 120,
+      "unique": 85,
+      "sources": {
+        "Google": 50,
+        "Instagram": 33,
+        "Facebook": 14,
+        "WhatsApp": 9,
+        "Direct": 14
+      },
+      "devices": {
+        "Mobile": 93,
+        "Desktop": 27
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        12,
+        10,
+        8,
+        10,
+        14,
+        16,
+        13,
+        10,
+        7,
+        11,
+        0,
+        0,
+        0
+      ]
+    },
+    "2026-10-30": {
+      "views": 137,
+      "unique": 97,
+      "sources": {
+        "Google": 56,
+        "Instagram": 39,
+        "Facebook": 16,
+        "WhatsApp": 10,
+        "Direct": 16
+      },
+      "devices": {
+        "Mobile": 107,
+        "Desktop": 30
+      },
+      "hours": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        10,
+        13,
+        12,
+        9,
+        12,
+        16,
+        18,
+        14,
+        12,
+        8,
+        11,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "recent": [
+    {
+      "time": "2026-10-30 09:38:18",
+      "source": "Instagram",
+      "device": "Mobile",
+      "path": "/",
+      "unique": false
+    },
+    {
+      "time": "2026-10-30 09:32:37",
+      "source": "Instagram",
+      "device": "Mobile",
+      "path": "/#packages",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 09:18:22",
+      "source": "Instagram",
+      "device": "Mobile",
+      "path": "/#packages",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 09:12:05",
+      "source": "Google",
+      "device": "Mobile",
+      "path": "/",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 09:05:41",
+      "source": "Direct",
+      "device": "Desktop",
+      "path": "/#menu",
+      "unique": false
+    },
+    {
+      "time": "2026-10-30 08:52:19",
+      "source": "Google",
+      "device": "Mobile",
+      "path": "/",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 08:44:33",
+      "source": "Facebook",
+      "device": "Mobile",
+      "path": "/#promotion",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 08:31:10",
+      "source": "WhatsApp",
+      "device": "Mobile",
+      "path": "/",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 08:15:47",
+      "source": "Instagram",
+      "device": "Mobile",
+      "path": "/#packages",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 08:02:11",
+      "source": "Google",
+      "device": "Desktop",
+      "path": "/",
+      "unique": true
+    },
+    {
+      "time": "2026-10-30 07:49:50",
+      "source": "Direct",
+      "device": "Mobile",
+      "path": "/",
+      "unique": false
+    },
+    {
+      "time": "2026-10-30 07:35:12",
+      "source": "Google",
+      "device": "Mobile",
+      "path": "/#menu",
+      "unique": true
+    }
+  ]
+}

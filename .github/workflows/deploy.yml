@@ -43,6 +43,7 @@ jobs:
             scratch/**
             .system_generated/**
             data/bookings.json
+            data/analytics.json
             data/settings.json
             data/menu.json
             data/promo.json

@@ -422,6 +422,196 @@ switch ($action) {
         }
         break;
 
+    // ----------------------------------------------------
+    // Web Analytics Data
+    // ----------------------------------------------------
+    case 'get_analytics':
+        $analytics_file = __DIR__ . '/../data/analytics.json';
+        $db = read_json_file($analytics_file, [
+            'summary' => ['total_views' => 0, 'total_unique' => 0],
+            'days' => [],
+            'recent' => []
+        ]);
+
+        date_default_timezone_set('Asia/Makassar');
+        $today = date('Y-m-d');
+        $this_month = date('Y-m');
+        $this_year = date('Y');
+
+        // 1. Hari Ini (Today)
+        $today_views = isset($db['days'][$today]) ? ($db['days'][$today]['views'] ?? 0) : 0;
+        $today_unique = isset($db['days'][$today]) ? ($db['days'][$today]['unique'] ?? 0) : 0;
+
+        // Yesterday for comparison
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        $yesterday_views = isset($db['days'][$yesterday]) ? ($db['days'][$yesterday]['views'] ?? 0) : 0;
+        $yesterday_unique = isset($db['days'][$yesterday]) ? ($db['days'][$yesterday]['unique'] ?? 0) : 0;
+
+        // 2. Minggu Ini (Last 7 Days)
+        $week_views = 0;
+        $week_unique = 0;
+        $last_7_days = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $d = date('Y-m-d', strtotime("-$i days"));
+            $v = isset($db['days'][$d]) ? ($db['days'][$d]['views'] ?? 0) : 0;
+            $u = isset($db['days'][$d]) ? ($db['days'][$d]['unique'] ?? 0) : 0;
+            $week_views += $v;
+            $week_unique += $u;
+            $last_7_days[] = [
+                'date' => $d,
+                'label' => date('d M', strtotime($d)),
+                'views' => $v,
+                'unique' => $u
+            ];
+        }
+
+        // Last 14 Days
+        $last_14_days = [];
+        for ($i = 13; $i >= 0; $i--) {
+            $d = date('Y-m-d', strtotime("-$i days"));
+            $v = isset($db['days'][$d]) ? ($db['days'][$d]['views'] ?? 0) : 0;
+            $u = isset($db['days'][$d]) ? ($db['days'][$d]['unique'] ?? 0) : 0;
+            $last_14_days[] = [
+                'date' => $d,
+                'label' => date('d M', strtotime($d)),
+                'views' => $v,
+                'unique' => $u
+            ];
+        }
+
+        // Last 30 Days
+        $last_30_days = [];
+        for ($i = 29; $i >= 0; $i--) {
+            $d = date('Y-m-d', strtotime("-$i days"));
+            $v = isset($db['days'][$d]) ? ($db['days'][$d]['views'] ?? 0) : 0;
+            $u = isset($db['days'][$d]) ? ($db['days'][$d]['unique'] ?? 0) : 0;
+            $last_30_days[] = [
+                'date' => $d,
+                'label' => date('d/m', strtotime($d)),
+                'views' => $v,
+                'unique' => $u
+            ];
+        }
+
+        // 3. Bulan Ini & 4. Tahun Ini
+        $month_views = 0;
+        $month_unique = 0;
+        $source_totals = [
+            'Google' => 0,
+            'Instagram' => 0,
+            'Facebook' => 0,
+            'TikTok' => 0,
+            'WhatsApp' => 0,
+            'Direct' => 0,
+            'Other' => 0
+        ];
+        $device_totals = [
+            'Mobile' => 0,
+            'Desktop' => 0
+        ];
+        $hourly_totals = array_fill(0, 24, 0);
+
+        $year_views = 0;
+        $year_unique = 0;
+        $monthly_trends = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $m_str = sprintf('%s-%02d', $this_year, $m);
+            $monthly_trends[$m_str] = [
+                'views' => 0,
+                'unique' => 0,
+                'label' => date('M', strtotime("$m_str-01"))
+            ];
+        }
+
+        if (isset($db['days']) && is_array($db['days'])) {
+            foreach ($db['days'] as $day => $ddata) {
+                $v = $ddata['views'] ?? 0;
+                $u = $ddata['unique'] ?? 0;
+
+                if (strpos($day, $this_month) === 0) {
+                    $month_views += $v;
+                    $month_unique += $u;
+                }
+
+                if (strpos($day, $this_year) === 0) {
+                    $year_views += $v;
+                    $year_unique += $u;
+                    $ym = substr($day, 0, 7);
+                    if (isset($monthly_trends[$ym])) {
+                        $monthly_trends[$ym]['views'] += $v;
+                        $monthly_trends[$ym]['unique'] += $u;
+                    }
+                }
+
+                // Aggregate sources
+                if (isset($ddata['sources']) && is_array($ddata['sources'])) {
+                    foreach ($ddata['sources'] as $src => $cnt) {
+                        if (isset($source_totals[$src])) {
+                            $source_totals[$src] += $cnt;
+                        } else {
+                            $source_totals['Other'] += $cnt;
+                        }
+                    }
+                }
+
+                // Aggregate devices
+                if (isset($ddata['devices']) && is_array($ddata['devices'])) {
+                    foreach ($ddata['devices'] as $dev => $cnt) {
+                        if (isset($device_totals[$dev])) {
+                            $device_totals[$dev] += $cnt;
+                        }
+                    }
+                }
+
+                // Aggregate hours
+                if (isset($ddata['hours']) && is_array($ddata['hours'])) {
+                    foreach ($ddata['hours'] as $h => $cnt) {
+                        if (isset($hourly_totals[(int)$h])) {
+                            $hourly_totals[(int)$h] += $cnt;
+                        }
+                    }
+                }
+            }
+        }
+
+        echo json_encode([
+            'success' => true,
+            'data' => [
+                'summary' => $db['summary'] ?? ['total_views' => 0, 'total_unique' => 0],
+                'today' => [
+                    'views' => $today_views,
+                    'unique' => $today_unique,
+                    'yesterday_views' => $yesterday_views,
+                    'yesterday_unique' => $yesterday_unique
+                ],
+                'week' => [
+                    'views' => $week_views,
+                    'unique' => $week_unique
+                ],
+                'month' => [
+                    'views' => $month_views,
+                    'unique' => $month_unique,
+                    'label' => date('F Y')
+                ],
+                'year' => [
+                    'views' => $year_views,
+                    'unique' => $year_unique,
+                    'label' => $this_year
+                ],
+                'trends' => [
+                    'days_7' => $last_7_days,
+                    'days_14' => $last_14_days,
+                    'days_30' => $last_30_days,
+                    'months' => array_values($monthly_trends)
+                ],
+                'sources' => $source_totals,
+                'devices' => $device_totals,
+                'hours' => $hourly_totals,
+                'recent' => array_slice($db['recent'] ?? [], 0, 20)
+            ]
+        ]);
+        break;
+
     default:
         echo json_encode(['success' => false, 'message' => 'Aksi tidak dikenali.']);
         break;

@@ -5,7 +5,7 @@ import os
 import json
 import urllib.parse
 import subprocess
-from datetime import datetime
+from datetime import datetime, timedelta
 
 PORT = 8080
 DIRECTORY = '/Volumes/PROJECTS/EYESTETIX_BACKUP_2026-09-30/WEBSITE'
@@ -68,6 +68,114 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                             fields[m_name] = {'filename': m_filename, 'bytes': body}
                         else:
                             fields[m_name] = body.decode('utf-8', errors='ignore')
+
+        # -----------------------------------------------------------
+        # Handle Visitor Analytics Tracking (matches track.php)
+        # -----------------------------------------------------------
+        if path.endswith('/track.php') or path == '/track.php':
+            analytics_path = os.path.join(DIRECTORY, 'data', 'analytics.json')
+            db = {
+                'summary': {'total_views': 0, 'total_unique': 0},
+                'days': {},
+                'recent': []
+            }
+            if os.path.exists(analytics_path):
+                try:
+                    with open(analytics_path, 'r', encoding='utf-8') as f:
+                        db = json.load(f)
+                except Exception:
+                    pass
+
+            now_dt = datetime.now()
+            today_str = now_dt.strftime('%Y-%m-%d')
+            now_str = now_dt.strftime('%Y-%m-%d %H:%M:%S')
+            hour_int = now_dt.hour
+
+            referrer = fields.get('referrer', '')
+            utm_source = fields.get('utm_source', '')
+            is_new = bool(fields.get('is_new_session', False))
+            page_path = fields.get('path', '/')
+            screen_w = int(fields.get('screen_width', 0)) if str(fields.get('screen_width', 0)).isdigit() else 0
+
+            # Classify source
+            source = 'Direct'
+            if utm_source:
+                u = utm_source.lower()
+                if 'google' in u: source = 'Google'
+                elif 'instagram' in u or u == 'ig': source = 'Instagram'
+                elif 'facebook' in u or u == 'fb': source = 'Facebook'
+                elif 'tiktok' in u: source = 'TikTok'
+                elif 'whatsapp' in u or u == 'wa': source = 'WhatsApp'
+                else: source = utm_source[:20].capitalize()
+            elif referrer:
+                r = referrer.lower()
+                if 'google.' in r: source = 'Google'
+                elif 'instagram.com' in r: source = 'Instagram'
+                elif 'facebook.com' in r or 'fb.com' in r: source = 'Facebook'
+                elif 'tiktok.com' in r: source = 'TikTok'
+                elif 'whatsapp.com' in r or 'wa.me' in r: source = 'WhatsApp'
+                elif 'bing.com' in r: source = 'Bing'
+                elif 'yahoo.com' in r: source = 'Yahoo'
+                elif 'massaji.net' in r or 'localhost' in r or '127.0.0.1' in r: source = 'Direct'
+                else:
+                    parsed = urllib.parse.urlparse(referrer).netloc
+                    source = parsed.replace('www.', '')[:25] if parsed else 'Other'
+
+            device = 'Mobile' if (screen_w > 0 and screen_w <= 768) else 'Desktop'
+
+            # Update DB
+            db.setdefault('summary', {'total_views': 0, 'total_unique': 0})
+            db['summary']['total_views'] = db['summary'].get('total_views', 0) + 1
+            if is_new:
+                db['summary']['total_unique'] = db['summary'].get('total_unique', 0) + 1
+
+            db.setdefault('days', {})
+            if today_str not in db['days']:
+                db['days'][today_str] = {
+                    'views': 0,
+                    'unique': 0,
+                    'sources': {},
+                    'devices': {'Mobile': 0, 'Desktop': 0},
+                    'hours': [0] * 24
+                }
+
+            day_entry = db['days'][today_str]
+            day_entry['views'] = day_entry.get('views', 0) + 1
+            if is_new:
+                day_entry['unique'] = day_entry.get('unique', 0) + 1
+
+            day_entry.setdefault('sources', {})
+            day_entry['sources'][source] = day_entry['sources'].get(source, 0) + 1
+
+            day_entry.setdefault('devices', {'Mobile': 0, 'Desktop': 0})
+            day_entry['devices'][device] = day_entry['devices'].get(device, 0) + 1
+
+            day_entry.setdefault('hours', [0] * 24)
+            if len(day_entry['hours']) < 24:
+                day_entry['hours'] = [0] * 24
+            day_entry['hours'][hour_int] = day_entry['hours'][hour_int] + 1
+
+            db.setdefault('recent', [])
+            db['recent'].insert(0, {
+                'time': now_str,
+                'source': source,
+                'device': device,
+                'path': page_path[:50],
+                'unique': is_new
+            })
+            db['recent'] = db['recent'][:50]
+
+            try:
+                with open(analytics_path, 'w', encoding='utf-8') as f:
+                    json.dump(db, f, indent=2, ensure_ascii=False)
+            except Exception:
+                pass
+
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(json.dumps({'ok': True, 'source': source, 'device': device}).encode('utf-8'))
+            return
 
         # -----------------------------------------------------------
         # Handle Booking Process Mock (matches booking-process.php)
@@ -315,6 +423,137 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                         }
                 else:
                     resp = {'success': False, 'message': 'Tidak ada data file yang diterima.'}
+
+            elif action == 'get_analytics':
+                analytics_path = os.path.join(DIRECTORY, 'data', 'analytics.json')
+                db = {'summary': {'total_views': 0, 'total_unique': 0}, 'days': {}, 'recent': []}
+                if os.path.exists(analytics_path):
+                    try:
+                        with open(analytics_path, 'r', encoding='utf-8') as f:
+                            db = json.load(f)
+                    except Exception:
+                        pass
+
+                now_dt = datetime.now()
+                today_str = now_dt.strftime('%Y-%m-%d')
+                this_month_str = now_dt.strftime('%Y-%m')
+                this_year_str = now_dt.strftime('%Y')
+
+                today_data = db.get('days', {}).get(today_str, {})
+                today_views = today_data.get('views', 0)
+                today_unique = today_data.get('unique', 0)
+
+                yesterday_str = (now_dt - timedelta(days=1)).strftime('%Y-%m-%d')
+                yesterday_data = db.get('days', {}).get(yesterday_str, {})
+                yesterday_views = yesterday_data.get('views', 0)
+                yesterday_unique = yesterday_data.get('unique', 0)
+
+                def get_days_range(n):
+                    res = []
+                    for i in range(n - 1, -1, -1):
+                        d = (now_dt - timedelta(days=i)).strftime('%Y-%m-%d')
+                        d_entry = db.get('days', {}).get(d, {})
+                        v = d_entry.get('views', 0)
+                        u = d_entry.get('unique', 0)
+                        label = (now_dt - timedelta(days=i)).strftime('%d %b')
+                        res.append({'date': d, 'label': label, 'views': v, 'unique': u})
+                    return res
+
+                last_7 = get_days_range(7)
+                last_14 = get_days_range(14)
+                last_30 = get_days_range(30)
+
+                week_views = sum(x['views'] for x in last_7)
+                week_unique = sum(x['unique'] for x in last_7)
+
+                month_views = 0
+                month_unique = 0
+                year_views = 0
+                year_unique = 0
+
+                source_totals = {
+                    'Google': 0,
+                    'Instagram': 0,
+                    'Facebook': 0,
+                    'TikTok': 0,
+                    'WhatsApp': 0,
+                    'Direct': 0,
+                    'Other': 0
+                }
+                device_totals = {'Mobile': 0, 'Desktop': 0}
+                hourly_totals = [0] * 24
+
+                months_map = {}
+                for m in range(1, 13):
+                    k = f"{this_year_str}-{m:02d}"
+                    months_map[k] = {'views': 0, 'unique': 0, 'label': datetime(int(this_year_str), m, 1).strftime('%b')}
+
+                for day, ddata in db.get('days', {}).items():
+                    v = ddata.get('views', 0)
+                    u = ddata.get('unique', 0)
+
+                    if day.startswith(this_month_str):
+                        month_views += v
+                        month_unique += u
+
+                    if day.startswith(this_year_str):
+                        year_views += v
+                        year_unique += u
+                        ym = day[:7]
+                        if ym in months_map:
+                            months_map[ym]['views'] += v
+                            months_map[ym]['unique'] += u
+
+                    for s_name, s_cnt in ddata.get('sources', {}).items():
+                        if s_name in source_totals:
+                            source_totals[s_name] += s_cnt
+                        else:
+                            source_totals['Other'] += s_cnt
+
+                    for dev_name, dev_cnt in ddata.get('devices', {}).items():
+                        if dev_name in device_totals:
+                            device_totals[dev_name] += dev_cnt
+
+                    for h_idx, h_cnt in enumerate(ddata.get('hours', [])):
+                        if h_idx < 24:
+                            hourly_totals[h_idx] += h_cnt
+
+                resp = {
+                    'success': True,
+                    'data': {
+                        'summary': db.get('summary', {'total_views': 0, 'total_unique': 0}),
+                        'today': {
+                            'views': today_views,
+                            'unique': today_unique,
+                            'yesterday_views': yesterday_views,
+                            'yesterday_unique': yesterday_unique
+                        },
+                        'week': {
+                            'views': week_views,
+                            'unique': week_unique
+                        },
+                        'month': {
+                            'views': month_views,
+                            'unique': month_unique,
+                            'label': now_dt.strftime('%B %Y')
+                        },
+                        'year': {
+                            'views': year_views,
+                            'unique': year_unique,
+                            'label': this_year_str
+                        },
+                        'trends': {
+                            'days_7': last_7,
+                            'days_14': last_14,
+                            'days_30': last_30,
+                            'months': list(months_map.values())
+                        },
+                        'sources': source_totals,
+                        'devices': device_totals,
+                        'hours': hourly_totals,
+                        'recent': db.get('recent', [])[:20]
+                    }
+                }
 
             self.send_response(200)
             self.send_header('Content-Type', 'application/json; charset=utf-8')
