@@ -1,11 +1,201 @@
 // assets/js/main.js - Interactive UI, Bilingual System & Live Search for Massaji Spa Bali
 
-document.addEventListener('DOMContentLoaded', () => {
+// ========================================================
+// 0. SAFE STORAGE HELPERS & GLOBAL INITIALIZATION
+// ========================================================
+function safeGetStorage(key, fallback) {
+  try {
+    return (typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem(key)) || fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
 
-  // ========================================================
-  // 1. REFINED BILINGUAL COPYWRITING SYSTEM (EN / ID)
-  // ========================================================
-  const i18n = {
+function safeSetStorage(key, val) {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(key, String(val));
+    }
+  } catch (e) {}
+}
+
+window.__isPackagesExpanded = false;
+window.__isMenuExpanded = false;
+window.__currentLang = safeGetStorage('massaji_spa_lang', 'en');
+
+// ========================================================
+// 1. TOP-LEVEL GLOBAL WINDOW FUNCTIONS (ALWAYS ACCESSIBLE)
+// ========================================================
+window.openBookingModal = function(serviceName) {
+  try {
+    const bookingModal = document.getElementById('booking-modal');
+    if (!bookingModal) return;
+
+    const formEl = document.getElementById('booking-form');
+    const confirmEl = document.getElementById('booking-confirmation');
+    if (formEl) formEl.classList.remove('hidden');
+    if (confirmEl) confirmEl.classList.add('hidden');
+
+    const serviceSelect = document.getElementById('booking-service');
+    if (serviceSelect && serviceName) {
+      let matchFound = false;
+      const cleanTarget = String(serviceName).toLowerCase().replace(/[^a-z0-9]/g, '');
+      for (let i = 0; i < serviceSelect.options.length; i++) {
+        const optText = (serviceSelect.options[i].text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (optText.includes(cleanTarget) || cleanTarget.includes(optText)) {
+          serviceSelect.selectedIndex = i;
+          matchFound = true;
+          break;
+        }
+      }
+      if (!matchFound) {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+          const val = (serviceSelect.options[i].value || '').toLowerCase();
+          if (val.includes(String(serviceName).toLowerCase()) || String(serviceName).toLowerCase().includes(val)) {
+            serviceSelect.selectedIndex = i;
+            matchFound = true;
+            break;
+          }
+        }
+      }
+    }
+
+    const dateInput = document.getElementById('booking-date');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+      if (!dateInput.value) {
+        dateInput.value = today;
+      }
+    }
+
+    bookingModal.classList.remove('hidden');
+    bookingModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
+    // Safely close mobile menu if it was open
+    if (typeof window.toggleMobileMenu === 'function') {
+      window.toggleMobileMenu(false);
+    }
+  } catch (err) {
+    console.error('Error opening booking modal:', err);
+  }
+};
+
+window.closeBookingModal = function() {
+  try {
+    const bookingModal = document.getElementById('booking-modal');
+    if (bookingModal) {
+      bookingModal.classList.add('hidden');
+      bookingModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  } catch (err) {
+    console.error('Error closing booking modal:', err);
+  }
+};
+
+window.openPromoPopup = function() {
+  try {
+    const promoPopup = document.getElementById('promo-flyer-popup');
+    if (promoPopup) {
+      promoPopup.classList.remove('hidden');
+      promoPopup.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  } catch (err) {
+    console.error('Error opening promo popup:', err);
+  }
+};
+
+window.closePromoPopup = function() {
+  try {
+    const promoPopup = document.getElementById('promo-flyer-popup');
+    if (promoPopup) {
+      promoPopup.classList.add('hidden');
+      promoPopup.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  } catch (err) {
+    console.error('Error closing promo popup:', err);
+  }
+};
+
+window.toggleMobileMenu = function(forceState) {
+  try {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerOpen = document.getElementById('hamburger-icon-open');
+    const hamburgerClose = document.getElementById('hamburger-icon-close');
+    if (!mobileMenu) return;
+
+    const willOpen = typeof forceState === 'boolean' ? forceState : mobileMenu.classList.contains('hidden');
+    if (willOpen) {
+      mobileMenu.classList.remove('hidden');
+      if (hamburgerOpen) hamburgerOpen.classList.add('hidden');
+      if (hamburgerClose) hamburgerClose.classList.remove('hidden');
+      if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileMenu.classList.add('hidden');
+      if (hamburgerOpen) hamburgerOpen.classList.remove('hidden');
+      if (hamburgerClose) hamburgerClose.classList.add('hidden');
+      if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+  } catch (err) {
+    console.error('Error toggling mobile menu:', err);
+  }
+};
+
+window.resetPackageSearch = function() {
+  try {
+    const packageSearchInput = document.getElementById('package-search-input');
+    if (packageSearchInput) packageSearchInput.value = '';
+    window.__isPackagesExpanded = false;
+    const packageTabs = document.querySelectorAll('.package-tab-btn');
+    packageTabs.forEach((btn, idx) => {
+      if (idx === 0) {
+        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      } else {
+        btn.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      }
+    });
+    if (typeof window.__filterPackages === 'function') {
+      window.__filterPackages('all');
+    }
+  } catch (err) {
+    console.error('Error resetting package search:', err);
+  }
+};
+
+window.resetMenuSearch = function() {
+  try {
+    const menuSearchInput = document.getElementById('menu-search-input');
+    if (menuSearchInput) menuSearchInput.value = '';
+    window.__isMenuExpanded = false;
+    const menuFilterButtons = document.querySelectorAll('.menu-filter-btn');
+    menuFilterButtons.forEach((btn, idx) => {
+      if (idx === 0) {
+        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      } else {
+        btn.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      }
+    });
+    if (typeof window.__filterMenu === 'function') {
+      window.__filterMenu('all');
+    }
+  } catch (err) {
+    console.error('Error resetting menu search:', err);
+  }
+};
+
+// ========================================================
+// 2. BILINGUAL DICTIONARY (EN / ID)
+// ========================================================
+const i18n = {
     en: {
       nav_promo: "End Year Promo",
       nav_packages: "Spa Packages",
@@ -262,12 +452,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Language management (Default English for international guests)
-  let currentLang = localStorage.getItem('massaji_spa_lang') || 'en';
-  let isPackagesExpanded = false;
-  let isMenuExpanded = false;
-
-  function updateBilingualCards(lang) {
+function updateBilingualCards(lang) {
+  try {
     const isId = lang === 'id';
     document.querySelectorAll('.promo-card, .package-card, .treatment-card').forEach(card => {
       const titleEl = card.querySelector('.card-title');
@@ -339,11 +525,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (label) grp.label = label;
       });
     }
+  } catch (err) {
+    console.error('Error in updateBilingualCards:', err);
   }
+}
 
-  function applyLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('massaji_spa_lang', lang);
+window.applyLanguage = function(lang) {
+  try {
+    window.__currentLang = lang;
+    safeSetStorage('massaji_spa_lang', lang);
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       if (btn.dataset.lang === lang) {
@@ -355,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Translate text contents (support innerHTML when tags like span exist)
+    // Translate text contents
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       if (i18n[lang] && i18n[lang][key]) {
@@ -375,14 +565,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update cards & booking options dynamically in real-time
     updateBilingualCards(lang);
 
-    // Sync collapsible toggle buttons text to active language
-    updatePackagesToggleBtn();
-    updateMenuToggleBtn();
+    if (typeof window.__updatePackagesToggleBtn === 'function') window.__updatePackagesToggleBtn();
+    if (typeof window.__updateMenuToggleBtn === 'function') window.__updateMenuToggleBtn();
 
-    // Update Popup WhatsApp prefilled message
     const popupWaBtn = document.getElementById('popup-wa-btn');
     if (popupWaBtn) {
       const waMsg = lang === 'en'
@@ -390,613 +577,509 @@ document.addEventListener('DOMContentLoaded', () => {
         : "Halo Massaji Spa, saya ingin mengklaim Promo Akhir Tahun 2026.";
       popupWaBtn.href = `https://wa.me/6281236695755?text=${encodeURIComponent(waMsg)}`;
     }
-  }
-
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      applyLanguage(btn.dataset.lang);
-    });
-  });
-
-  try {
-    applyLanguage(currentLang);
   } catch (err) {
-    console.warn('Initial language setup warning:', err);
+    console.error('Error in applyLanguage:', err);
   }
+};
 
-  // ========================================================
-  // 1.1 PROMO FLYER POPUP (AUTO POPUP ON VISIT)
-  // ========================================================
-  const promoPopup = document.getElementById('promo-flyer-popup');
+// ========================================================
+// 3. MAIN INITIALIZATION & DOM CONTROLLER
+// ========================================================
+function initMassajiApp() {
+  try {
+    // Initial language application
+    window.applyLanguage(window.__currentLang);
 
-  window.openPromoPopup = function() {
+    // Language switcher buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.applyLanguage(btn.dataset.lang);
+      });
+    });
+
+    // Popup background click to dismiss
+    const promoPopup = document.getElementById('promo-flyer-popup');
     if (promoPopup) {
-      promoPopup.classList.remove('hidden');
-      promoPopup.classList.add('flex');
-      document.body.style.overflow = 'hidden';
+      promoPopup.addEventListener('click', (e) => {
+        if (e.target === promoPopup) {
+          window.closePromoPopup();
+        }
+      });
     }
-  };
 
-  window.closePromoPopup = function() {
-    if (promoPopup) {
-      promoPopup.classList.add('hidden');
-      promoPopup.classList.remove('flex');
-      document.body.style.overflow = '';
+    // Auto-trigger promo popup smoothly after brief delay
+    setTimeout(() => {
+      window.openPromoPopup();
+    }, 600);
+
+    // Mobile Navigation Button
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', (e) => {
+        if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+        window.toggleMobileMenu();
+      });
     }
-  };
 
-  if (promoPopup) {
-    promoPopup.addEventListener('click', (e) => {
-      if (e.target === promoPopup) {
-        closePromoPopup();
-      }
-    });
-  }
-
-  // Auto-trigger promo popup smoothly on page visit
-  setTimeout(() => {
-    openPromoPopup();
-  }, 600);
-
-  // ========================================================
-  // 2. MOBILE NAVIGATION (ANIMATED HAMBURGER MENU)
-  // ========================================================
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamburgerOpen = document.getElementById('hamburger-icon-open');
-  const hamburgerClose = document.getElementById('hamburger-icon-close');
-
-  function toggleMobileMenu(forceState) {
-    if (!mobileMenuBtn || !mobileMenu) return;
-    const willOpen = typeof forceState === 'boolean' ? forceState : mobileMenu.classList.contains('hidden');
-    if (willOpen) {
-      mobileMenu.classList.remove('hidden');
-      if (hamburgerOpen) hamburgerOpen.classList.add('hidden');
-      if (hamburgerClose) hamburgerClose.classList.remove('hidden');
-      mobileMenuBtn.setAttribute('aria-expanded', 'true');
-    } else {
-      mobileMenu.classList.add('hidden');
-      if (hamburgerOpen) hamburgerOpen.classList.remove('hidden');
-      if (hamburgerClose) hamburgerClose.classList.add('hidden');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          window.toggleMobileMenu(false);
+        });
+      });
     }
-  }
 
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => toggleMobileMenu());
-    mobileMenu.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('click', () => toggleMobileMenu(false));
-    });
-  }
+    // ----------------------------------------------------
+    // Packages: Filter, Tabs & Expansion
+    // ----------------------------------------------------
+    let currentPackageCat = 'all';
+    const packageTabs = document.querySelectorAll('.package-tab-btn');
+    const packageSearchInput = document.getElementById('package-search-input');
+    const packageSearchClear = document.getElementById('package-search-clear');
+    const noPackagesMsg = document.getElementById('no-packages-found');
 
-  // ========================================================
-  // 2.5 PREVIEW & EXPANDABLE CONTROLLER (PACKAGES & CATALOG)
-  // ========================================================
-  // Note: isPackagesExpanded & isMenuExpanded are initialized at the top of DOMContentLoaded
-
-  function updatePackagesToggleBtn() {
-    const btn = document.getElementById('packages-toggle-btn');
-    if (!btn) return;
-    const label = btn.querySelector('.packages-toggle-label');
-    const chevron = btn.querySelector('.packages-toggle-chevron');
-    const expanded = Boolean(typeof isPackagesExpanded !== 'undefined' && isPackagesExpanded);
-    if (expanded) {
-      btn.setAttribute('aria-expanded', 'true');
-      if (label) {
-        label.setAttribute('data-i18n', 'pkg_show_less');
-        label.textContent = (i18n[currentLang] && i18n[currentLang].pkg_show_less) ? i18n[currentLang].pkg_show_less : 'Show Less';
-      }
-      if (chevron) chevron.classList.add('rotate-180');
-      btn.title = currentLang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less Packages';
-    } else {
-      btn.setAttribute('aria-expanded', 'false');
-      if (label) {
-        label.setAttribute('data-i18n', 'pkg_view_all');
-        label.textContent = (i18n[currentLang] && i18n[currentLang].pkg_view_all) ? i18n[currentLang].pkg_view_all : 'View All Spa Packages';
-      }
-      if (chevron) chevron.classList.remove('rotate-180');
-      btn.title = currentLang === 'id' ? 'Lihat Semua Paket' : 'View All Spa Packages';
-    }
-  }
-
-  function updateMenuToggleBtn() {
-    const btn = document.getElementById('menu-toggle-btn');
-    if (!btn) return;
-    const label = btn.querySelector('.menu-toggle-label');
-    const chevron = btn.querySelector('.menu-toggle-chevron');
-    const expanded = Boolean(typeof isMenuExpanded !== 'undefined' && isMenuExpanded);
-    if (expanded) {
-      btn.setAttribute('aria-expanded', 'true');
-      if (label) {
-        label.setAttribute('data-i18n', 'menu_show_less');
-        label.textContent = (i18n[currentLang] && i18n[currentLang].menu_show_less) ? i18n[currentLang].menu_show_less : 'Show Less';
-      }
-      if (chevron) chevron.classList.add('rotate-180');
-      btn.title = currentLang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less Treatments';
-    } else {
-      btn.setAttribute('aria-expanded', 'false');
-      if (label) {
-        label.setAttribute('data-i18n', 'menu_view_all');
-        label.textContent = (i18n[currentLang] && i18n[currentLang].menu_view_all) ? i18n[currentLang].menu_view_all : 'View All Treatments';
-      }
-      if (chevron) chevron.classList.remove('rotate-180');
-      btn.title = currentLang === 'id' ? 'Lihat Semua Perawatan' : 'View All Treatments';
-    }
-  }
-
-  // ========================================================
-  // 3. PACKAGES: TABS + LIVE SEARCH + PREVIEW / EXPAND
-  // ========================================================
-  const packageTabs = document.querySelectorAll('.package-tab-btn');
-  const packageSearchInput = document.getElementById('package-search-input');
-  const packageSearchClear = document.getElementById('package-search-clear');
-  const noPackagesMsg = document.getElementById('no-packages-found');
-  let currentPackageCat = 'all';
-
-  function filterPackages() {
-    const query = (packageSearchInput && packageSearchInput.value) ? packageSearchInput.value.toLowerCase().trim() : '';
-    const container = document.getElementById('packages-cards-container');
-    if (!container) return;
-    const cards = Array.from(container.querySelectorAll('.package-card'));
-    const matchingCards = [];
-
-    cards.forEach(card => {
-      const catMatch = currentPackageCat === 'all' || card.dataset.category === currentPackageCat;
-      const searchData = (card.dataset.search || card.textContent).toLowerCase();
-      const queryMatch = !query || searchData.includes(query);
-
-      if (catMatch && queryMatch) {
-        matchingCards.push(card);
+    window.__updatePackagesToggleBtn = function() {
+      const btn = document.getElementById('packages-toggle-btn');
+      if (!btn) return;
+      const label = btn.querySelector('.packages-toggle-label');
+      const chevron = btn.querySelector('.packages-toggle-chevron');
+      const expanded = Boolean(window.__isPackagesExpanded);
+      if (expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        if (label) {
+          label.setAttribute('data-i18n', 'pkg_show_less');
+          label.textContent = (i18n[window.__currentLang] && i18n[window.__currentLang].pkg_show_less) ? i18n[window.__currentLang].pkg_show_less : 'Show Less';
+        }
+        if (chevron) chevron.classList.add('rotate-180');
+        btn.title = window.__currentLang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less Packages';
       } else {
-        card.style.display = 'none';
+        btn.setAttribute('aria-expanded', 'false');
+        if (label) {
+          label.setAttribute('data-i18n', 'pkg_view_all');
+          label.textContent = (i18n[window.__currentLang] && i18n[window.__currentLang].pkg_view_all) ? i18n[window.__currentLang].pkg_view_all : 'View All Spa Packages';
+        }
+        if (chevron) chevron.classList.remove('rotate-180');
+        btn.title = window.__currentLang === 'id' ? 'Lihat Semua Paket' : 'View All Spa Packages';
       }
-    });
+    };
 
-    const totalMatching = matchingCards.length;
-    const limit = isPackagesExpanded ? totalMatching : 3;
+    window.__filterPackages = function(forceCat) {
+      if (forceCat) currentPackageCat = forceCat;
+      const query = (packageSearchInput && packageSearchInput.value) ? packageSearchInput.value.toLowerCase().trim() : '';
+      const container = document.getElementById('packages-cards-container');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.package-card'));
+      const matchingCards = [];
 
-    matchingCards.forEach((card, idx) => {
-      if (idx < limit) {
-        card.style.display = 'flex';
-        card.style.opacity = '1';
-      } else {
-        card.style.display = 'none';
+      cards.forEach(card => {
+        const catMatch = currentPackageCat === 'all' || card.dataset.category === currentPackageCat;
+        const searchData = (card.dataset.search || card.textContent).toLowerCase();
+        const queryMatch = !query || searchData.includes(query);
+
+        if (catMatch && queryMatch) {
+          matchingCards.push(card);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const totalMatching = matchingCards.length;
+      const limit = window.__isPackagesExpanded ? totalMatching : 3;
+
+      matchingCards.forEach((card, idx) => {
+        if (idx < limit) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noPackagesMsg) {
+        if (totalMatching === 0) {
+          noPackagesMsg.classList.remove('hidden');
+        } else {
+          noPackagesMsg.classList.add('hidden');
+        }
       }
+
+      const pkgToggleWrapper = document.getElementById('packages-toggle-wrapper');
+      if (pkgToggleWrapper) {
+        if (totalMatching <= 3) {
+          pkgToggleWrapper.classList.add('hidden');
+        } else {
+          pkgToggleWrapper.classList.remove('hidden');
+          window.__updatePackagesToggleBtn();
+        }
+      }
+
+      if (packageSearchClear) {
+        if (query.length > 0) {
+          packageSearchClear.classList.remove('hidden');
+        } else {
+          packageSearchClear.classList.add('hidden');
+        }
+      }
+    };
+
+    packageTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentPackageCat = btn.dataset.category;
+        window.__isPackagesExpanded = false;
+
+        packageTabs.forEach(b => {
+          b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+          b.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+        });
+
+        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+
+        window.__filterPackages();
+      });
     });
 
-    if (noPackagesMsg) {
-      if (totalMatching === 0) {
-        noPackagesMsg.classList.remove('hidden');
-      } else {
-        noPackagesMsg.classList.add('hidden');
-      }
-    }
-
-    const pkgToggleWrapper = document.getElementById('packages-toggle-wrapper');
-    if (pkgToggleWrapper) {
-      if (totalMatching <= 3) {
-        pkgToggleWrapper.classList.add('hidden');
-      } else {
-        pkgToggleWrapper.classList.remove('hidden');
-        updatePackagesToggleBtn();
-      }
+    if (packageSearchInput) {
+      packageSearchInput.addEventListener('input', () => {
+        window.__isPackagesExpanded = false;
+        window.__filterPackages();
+      });
     }
 
     if (packageSearchClear) {
-      if (query.length > 0) {
-        packageSearchClear.classList.remove('hidden');
-      } else {
-        packageSearchClear.classList.add('hidden');
-      }
+      packageSearchClear.addEventListener('click', () => {
+        packageSearchInput.value = '';
+        window.__isPackagesExpanded = false;
+        window.__filterPackages();
+        packageSearchInput.focus();
+      });
     }
-  }
 
-  packageTabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentPackageCat = btn.dataset.category;
-      isPackagesExpanded = false;
+    const pkgToggleBtn = document.getElementById('packages-toggle-btn');
+    if (pkgToggleBtn) {
+      pkgToggleBtn.addEventListener('click', () => {
+        window.__isPackagesExpanded = !window.__isPackagesExpanded;
+        if (!window.__isPackagesExpanded) {
+          const pkgSection = document.getElementById('packages');
+          if (pkgSection) {
+            pkgSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        window.__filterPackages();
+      });
+    }
 
-      packageTabs.forEach(b => {
-        b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-        b.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+    // ----------------------------------------------------
+    // Treatment Menu: Filter, Tabs & Expansion
+    // ----------------------------------------------------
+    let currentMenuCat = 'all';
+    const menuFilterButtons = document.querySelectorAll('.menu-filter-btn');
+    const menuSearchInput = document.getElementById('menu-search-input');
+    const menuSearchClear = document.getElementById('menu-search-clear');
+    const noMenuMsg = document.getElementById('no-menu-found');
+
+    window.__updateMenuToggleBtn = function() {
+      const btn = document.getElementById('menu-toggle-btn');
+      if (!btn) return;
+      const label = btn.querySelector('.menu-toggle-label');
+      const chevron = btn.querySelector('.menu-toggle-chevron');
+      const expanded = Boolean(window.__isMenuExpanded);
+      if (expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        if (label) {
+          label.setAttribute('data-i18n', 'menu_show_less');
+          label.textContent = (i18n[window.__currentLang] && i18n[window.__currentLang].menu_show_less) ? i18n[window.__currentLang].menu_show_less : 'Show Less';
+        }
+        if (chevron) chevron.classList.add('rotate-180');
+        btn.title = window.__currentLang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less Treatments';
+      } else {
+        btn.setAttribute('aria-expanded', 'false');
+        if (label) {
+          label.setAttribute('data-i18n', 'menu_view_all');
+          label.textContent = (i18n[window.__currentLang] && i18n[window.__currentLang].menu_view_all) ? i18n[window.__currentLang].menu_view_all : 'View All Treatments';
+        }
+        if (chevron) chevron.classList.remove('rotate-180');
+        btn.title = window.__currentLang === 'id' ? 'Lihat Semua Perawatan' : 'View All Treatments';
+      }
+    };
+
+    window.__filterMenu = function(forceCat) {
+      if (forceCat) currentMenuCat = forceCat;
+      const query = (menuSearchInput && menuSearchInput.value) ? menuSearchInput.value.toLowerCase().trim() : '';
+      const container = document.getElementById('menu-cards-container');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.treatment-card'));
+      const matchingCards = [];
+
+      cards.forEach(card => {
+        const catMatch = currentMenuCat === 'all' || card.dataset.category === currentMenuCat;
+        const searchData = (card.dataset.search || card.textContent).toLowerCase();
+        const queryMatch = !query || searchData.includes(query);
+
+        if (catMatch && queryMatch) {
+          matchingCards.push(card);
+        } else {
+          card.style.display = 'none';
+        }
       });
 
-      btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-      btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      const totalMatching = matchingCards.length;
+      const limit = window.__isMenuExpanded ? totalMatching : 3;
 
-      filterPackages();
-    });
-  });
+      matchingCards.forEach((card, idx) => {
+        if (idx < limit) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
 
-  if (packageSearchInput) {
-    packageSearchInput.addEventListener('input', () => {
-      isPackagesExpanded = false;
-      filterPackages();
-    });
-  }
-
-  if (packageSearchClear) {
-    packageSearchClear.addEventListener('click', () => {
-      packageSearchInput.value = '';
-      isPackagesExpanded = false;
-      filterPackages();
-      packageSearchInput.focus();
-    });
-  }
-
-  window.resetPackageSearch = function() {
-    if (packageSearchInput) packageSearchInput.value = '';
-    currentPackageCat = 'all';
-    isPackagesExpanded = false;
-    packageTabs.forEach((btn, idx) => {
-      if (idx === 0) {
-        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
-      } else {
-        btn.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
-      }
-    });
-    filterPackages();
-  };
-
-  const pkgToggleBtn = document.getElementById('packages-toggle-btn');
-  if (pkgToggleBtn) {
-    pkgToggleBtn.addEventListener('click', () => {
-      isPackagesExpanded = !isPackagesExpanded;
-      if (!isPackagesExpanded) {
-        const pkgSection = document.getElementById('packages');
-        if (pkgSection) {
-          pkgSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (noMenuMsg) {
+        if (totalMatching === 0) {
+          noMenuMsg.classList.remove('hidden');
+        } else {
+          noMenuMsg.classList.add('hidden');
         }
       }
-      filterPackages();
-    });
-  }
 
-  // ========================================================
-  // 4. MENU: TABS + LIVE SEARCH + PREVIEW / EXPAND
-  // ========================================================
-  const menuFilterButtons = document.querySelectorAll('.menu-filter-btn');
-  const menuSearchInput = document.getElementById('menu-search-input');
-  const menuSearchClear = document.getElementById('menu-search-clear');
-  const noMenuMsg = document.getElementById('no-menu-found');
-  let currentMenuCat = 'all';
-
-  function filterMenu() {
-    const query = (menuSearchInput && menuSearchInput.value) ? menuSearchInput.value.toLowerCase().trim() : '';
-    const container = document.getElementById('menu-cards-container');
-    if (!container) return;
-    const cards = Array.from(container.querySelectorAll('.treatment-card'));
-    const matchingCards = [];
-
-    cards.forEach(card => {
-      const catMatch = currentMenuCat === 'all' || card.dataset.category === currentMenuCat;
-      const searchData = (card.dataset.search || card.textContent).toLowerCase();
-      const queryMatch = !query || searchData.includes(query);
-
-      if (catMatch && queryMatch) {
-        matchingCards.push(card);
-      } else {
-        card.style.display = 'none';
+      const menuToggleWrapper = document.getElementById('menu-toggle-wrapper');
+      if (menuToggleWrapper) {
+        if (totalMatching <= 3) {
+          menuToggleWrapper.classList.add('hidden');
+        } else {
+          menuToggleWrapper.classList.remove('hidden');
+          window.__updateMenuToggleBtn();
+        }
       }
-    });
 
-    const totalMatching = matchingCards.length;
-    const limit = isMenuExpanded ? totalMatching : 3;
-
-    matchingCards.forEach((card, idx) => {
-      if (idx < limit) {
-        card.style.display = 'flex';
-        card.style.opacity = '1';
-      } else {
-        card.style.display = 'none';
+      if (menuSearchClear) {
+        if (query.length > 0) {
+          menuSearchClear.classList.remove('hidden');
+        } else {
+          menuSearchClear.classList.add('hidden');
+        }
       }
+    };
+
+    menuFilterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentMenuCat = btn.dataset.category;
+        window.__isMenuExpanded = false;
+
+        menuFilterButtons.forEach(b => {
+          b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+          b.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+        });
+
+        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
+        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+
+        window.__filterMenu();
+      });
     });
 
-    if (noMenuMsg) {
-      if (totalMatching === 0) {
-        noMenuMsg.classList.remove('hidden');
-      } else {
-        noMenuMsg.classList.add('hidden');
-      }
-    }
-
-    const menuToggleWrapper = document.getElementById('menu-toggle-wrapper');
-    if (menuToggleWrapper) {
-      if (totalMatching <= 3) {
-        menuToggleWrapper.classList.add('hidden');
-      } else {
-        menuToggleWrapper.classList.remove('hidden');
-        updateMenuToggleBtn();
-      }
+    if (menuSearchInput) {
+      menuSearchInput.addEventListener('input', () => {
+        window.__isMenuExpanded = false;
+        window.__filterMenu();
+      });
     }
 
     if (menuSearchClear) {
-      if (query.length > 0) {
-        menuSearchClear.classList.remove('hidden');
-      } else {
-        menuSearchClear.classList.add('hidden');
-      }
-    }
-  }
-
-  menuFilterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentMenuCat = btn.dataset.category;
-      isMenuExpanded = false;
-
-      menuFilterButtons.forEach(b => {
-        b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-        b.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
+      menuSearchClear.addEventListener('click', () => {
+        menuSearchInput.value = '';
+        window.__isMenuExpanded = false;
+        window.__filterMenu();
+        menuSearchInput.focus();
       });
+    }
 
-      btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-      btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
-
-      filterMenu();
-    });
-  });
-
-  if (menuSearchInput) {
-    menuSearchInput.addEventListener('input', () => {
-      isMenuExpanded = false;
-      filterMenu();
-    });
-  }
-
-  if (menuSearchClear) {
-    menuSearchClear.addEventListener('click', () => {
-      menuSearchInput.value = '';
-      isMenuExpanded = false;
-      filterMenu();
-      menuSearchInput.focus();
-    });
-  }
-
-  window.resetMenuSearch = function() {
-    if (menuSearchInput) menuSearchInput.value = '';
-    currentMenuCat = 'all';
-    isMenuExpanded = false;
-    menuFilterButtons.forEach((btn, idx) => {
-      if (idx === 0) {
-        btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-        btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
-      } else {
-        btn.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
-        btn.classList.add('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
-      }
-    });
-    filterMenu();
-  };
-
-  const menuToggleBtn = document.getElementById('menu-toggle-btn');
-  if (menuToggleBtn) {
-    menuToggleBtn.addEventListener('click', () => {
-      isMenuExpanded = !isMenuExpanded;
-      if (!isMenuExpanded) {
-        const menuSection = document.getElementById('menu');
-        if (menuSection) {
-          menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-      filterMenu();
-    });
-  }
-
-  // Initial filter run to display exactly the 3 preview cards on page load
-  filterPackages();
-  filterMenu();
-
-  // ========================================================
-  // 5. BOOKING MODAL
-  // ========================================================
-  const bookingModal = document.getElementById('booking-modal');
-  const modalCloseBtn = document.getElementById('modal-close-btn');
-  const serviceSelect = document.getElementById('booking-service');
-
-  window.openBookingModal = function(serviceName = '') {
-    if (bookingModal) {
-      const formEl = document.getElementById('booking-form');
-      const confirmEl = document.getElementById('booking-confirmation');
-      if (formEl) formEl.classList.remove('hidden');
-      if (confirmEl) confirmEl.classList.add('hidden');
-
-      if (serviceSelect && serviceName) {
-        let matchFound = false;
-        const cleanTarget = serviceName.toLowerCase().replace(/[^a-z0-9]/g, '');
-        for (let i = 0; i < serviceSelect.options.length; i++) {
-          const optText = serviceSelect.options[i].text.toLowerCase().replace(/[^a-z0-9]/g, '');
-          if (optText.includes(cleanTarget) || cleanTarget.includes(optText)) {
-            serviceSelect.selectedIndex = i;
-            matchFound = true;
-            break;
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    if (menuToggleBtn) {
+      menuToggleBtn.addEventListener('click', () => {
+        window.__isMenuExpanded = !window.__isMenuExpanded;
+        if (!window.__isMenuExpanded) {
+          const menuSection = document.getElementById('menu');
+          if (menuSection) {
+            menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
-        if (!matchFound) {
-          for (let i = 0; i < serviceSelect.options.length; i++) {
-            if (serviceSelect.options[i].value.toLowerCase().includes(serviceName.toLowerCase()) ||
-                serviceName.toLowerCase().includes(serviceSelect.options[i].value.toLowerCase())) {
-              serviceSelect.selectedIndex = i;
-              matchFound = true;
-              break;
+        window.__filterMenu();
+      });
+    }
+
+    // Initial filter execution
+    window.__filterPackages();
+    window.__filterMenu();
+
+    // ----------------------------------------------------
+    // Booking Modal Close Triggers
+    // ----------------------------------------------------
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', window.closeBookingModal);
+
+    const bookingModal = document.getElementById('booking-modal');
+    if (bookingModal) {
+      bookingModal.addEventListener('click', (e) => {
+        if (e.target === bookingModal) window.closeBookingModal();
+      });
+    }
+
+    // ----------------------------------------------------
+    // Booking Form Submission & WhatsApp Generation
+    // ----------------------------------------------------
+    const bookingForm = document.getElementById('booking-form');
+    const bookingSubmitBtn = document.getElementById('booking-submit-btn');
+    const bookingConfirmation = document.getElementById('booking-confirmation');
+    const waConfirmLink = document.getElementById('wa-confirm-link');
+    const bookingSummaryText = document.getElementById('booking-summary-text');
+    const bookingErrorMsg = document.getElementById('booking-error-msg');
+
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (bookingErrorMsg) bookingErrorMsg.classList.add('hidden');
+
+        const originalBtnHtml = bookingSubmitBtn.innerHTML;
+        bookingSubmitBtn.disabled = true;
+        bookingSubmitBtn.innerHTML = `
+          <svg class="animate-spin h-4 w-4 text-white inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          ${window.__currentLang === 'en' ? 'Processing Booking...' : 'Memproses Reservasi...'}
+        `;
+
+        const formData = new FormData(bookingForm);
+        const name = formData.get('name') || 'Guest';
+        const service = formData.get('service') || 'Massaji Spa Treatment';
+        const date = formData.get('date') || '';
+        const time = formData.get('time') || '';
+        const guests = formData.get('guests') || '1';
+        const phone = formData.get('phone') || '';
+        const notes = formData.get('notes') || '';
+
+        // Capture Traffic Source & Device for Admin Analytics
+        const params = new URLSearchParams(window.location.search);
+        let detectedSource = params.get('utm_source') || '';
+        const ref = (document.referrer || '').toLowerCase();
+        if (!detectedSource) {
+          if (ref.includes('instagram.com') || ref.includes('l.instagram.com')) detectedSource = 'Instagram';
+          else if (ref.includes('google.')) detectedSource = 'Google Search';
+          else if (ref.includes('facebook.com') || ref.includes('fb.com')) detectedSource = 'Facebook';
+          else if (ref.includes('tiktok.com')) detectedSource = 'TikTok';
+          else if (ref.includes('whatsapp.com') || ref.includes('wa.me')) detectedSource = 'WhatsApp';
+          else if (ref && !ref.includes('massaji.net') && !ref.includes('localhost') && !ref.includes('127.0.0.1')) {
+            try { detectedSource = new URL(ref).hostname.replace(/^www\./, ''); } catch(e) { detectedSource = 'Web Referral'; }
+          } else {
+            detectedSource = 'Direct Website';
+          }
+        }
+        const isMobile = window.innerWidth <= 768 || /iphone|ipad|android|mobile/i.test(navigator.userAgent);
+        const detectedDevice = isMobile ? 'Mobile' : 'Desktop';
+
+        formData.append('source', detectedSource);
+        formData.append('device', detectedDevice);
+        formData.append('referrer', document.referrer || '');
+
+        const waNumber = '6281236695755';
+        let waText = '';
+        if (window.__currentLang === 'en') {
+          waText = `Hello *Massaji Spa Bali*,\n\nI would like to book an appointment:\n• *Guest:* ${name}\n• *Treatment / Package:* ${service}\n• *Date:* ${date}\n• *Time:* ${time} WITA\n• *Party Size:* ${guests} guest(s)\n`;
+          if (phone) waText += `• *Phone / WhatsApp:* ${phone}\n`;
+          waText += `• *Booking Source:* Website (${detectedSource} • ${detectedDevice})\n`;
+          if (notes) waText += `• *Notes:* ${notes}\n`;
+          waText += `\nPlease confirm availability for this session. Thank you!`;
+        } else {
+          waText = `Halo *Massaji Spa Bali*,\n\nSaya ingin memesan jadwal reservasi via website:\n• *Nama:* ${name}\n• *Perawatan / Paket:* ${service}\n• *Tanggal:* ${date}\n• *Jam:* ${time} WITA\n• *Jumlah Tamu:* ${guests} orang\n`;
+          if (phone) waText += `• *Nomor Kontak:* ${phone}\n`;
+          waText += `• *Sumber Reservasi:* Website (${detectedSource} • ${detectedDevice})\n`;
+          if (notes) waText += `• *Catatan:* ${notes}\n`;
+          waText += `\nMohon konfirmasi ketersediaan slot waktu ini. Terima kasih!`;
+        }
+        const fallbackWaUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+
+        try {
+          const response = await fetch('booking-process.php', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            showBookingSuccess(result.details || { name, service, date, time, guests }, result.whatsapp_url || fallbackWaUrl);
+          } else {
+            showBookingSuccess({ name, service, date, time, guests }, fallbackWaUrl);
+          }
+        } catch (err) {
+          showBookingSuccess({ name, service, date, time, guests }, fallbackWaUrl);
+        } finally {
+          bookingSubmitBtn.disabled = false;
+          bookingSubmitBtn.innerHTML = originalBtnHtml;
+        }
+      });
+    }
+
+    function showBookingSuccess(details, waUrl) {
+      if (bookingForm) bookingForm.classList.add('hidden');
+      if (bookingConfirmation) bookingConfirmation.classList.remove('hidden');
+
+      if (bookingSummaryText) {
+        if (window.__currentLang === 'en') {
+          bookingSummaryText.innerHTML = `
+            Thank you, <strong>${details.name}</strong>. Your inquiry for <strong>${details.service}</strong> on <strong>${details.date}</strong> at <strong>${details.time} WITA</strong> (${details.guests} guest) has been received.
+          `;
+        } else {
+          bookingSummaryText.innerHTML = `
+            Terima kasih, <strong>${details.name}</strong>. Permintaan reservasi Anda untuk <strong>${details.service}</strong> pada <strong>${details.date}</strong> jam <strong>${details.time} WITA</strong> (${details.guests} orang) telah kami terima.
+          `;
+        }
+      }
+
+      if (waConfirmLink) waConfirmLink.href = waUrl;
+      if (bookingForm) bookingForm.reset();
+    }
+
+    // Dynamic Live Settings Sync (Updates About Image, Hero Image, Promo Flyer)
+    try {
+      fetch('data/settings.json?v=' + Date.now())
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(s) {
+          if (!s) return;
+          if (s.about_image) {
+            var aboutEl = document.getElementById('about-main-image');
+            if (aboutEl && aboutEl.getAttribute('src') !== s.about_image) {
+              aboutEl.src = s.about_image;
             }
           }
-        }
-      }
-
-      const dateInput = document.getElementById('booking-date');
-      if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.min = today;
-        if (!dateInput.value) {
-          dateInput.value = today;
-        }
-      }
-
-      bookingModal.classList.remove('hidden');
-      bookingModal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
-  window.closeBookingModal = function() {
-    if (bookingModal) {
-      bookingModal.classList.add('hidden');
-      bookingModal.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-  };
-
-  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeBookingModal);
-
-  if (bookingModal) {
-    bookingModal.addEventListener('click', (e) => {
-      if (e.target === bookingModal) closeBookingModal();
-    });
-  }
-
-  // ========================================================
-  // 6. BOOKING SUBMISSION & DIRECT WHATSAPP GENERATION
-  // ========================================================
-  const bookingForm = document.getElementById('booking-form');
-  const bookingSubmitBtn = document.getElementById('booking-submit-btn');
-  const bookingConfirmation = document.getElementById('booking-confirmation');
-  const waConfirmLink = document.getElementById('wa-confirm-link');
-  const bookingSummaryText = document.getElementById('booking-summary-text');
-  const bookingErrorMsg = document.getElementById('booking-error-msg');
-
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if (bookingErrorMsg) bookingErrorMsg.classList.add('hidden');
-
-      const originalBtnHtml = bookingSubmitBtn.innerHTML;
-      bookingSubmitBtn.disabled = true;
-      bookingSubmitBtn.innerHTML = `
-        <svg class="animate-spin h-4 w-4 text-white inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-        </svg>
-        ${currentLang === 'en' ? 'Processing Booking...' : 'Memproses Reservasi...'}
-      `;
-
-      const formData = new FormData(bookingForm);
-      const name = formData.get('name') || 'Guest';
-      const service = formData.get('service') || 'Massaji Spa Treatment';
-      const date = formData.get('date') || '';
-      const time = formData.get('time') || '';
-      const guests = formData.get('guests') || '1';
-      const phone = formData.get('phone') || '';
-      const notes = formData.get('notes') || '';
-
-      // Capture Traffic Source & Device for Admin Analytics
-      const params = new URLSearchParams(window.location.search);
-      let detectedSource = params.get('utm_source') || '';
-      const ref = (document.referrer || '').toLowerCase();
-      if (!detectedSource) {
-        if (ref.includes('instagram.com') || ref.includes('l.instagram.com')) detectedSource = 'Instagram';
-        else if (ref.includes('google.')) detectedSource = 'Google Search';
-        else if (ref.includes('facebook.com') || ref.includes('fb.com')) detectedSource = 'Facebook';
-        else if (ref.includes('tiktok.com')) detectedSource = 'TikTok';
-        else if (ref.includes('whatsapp.com') || ref.includes('wa.me')) detectedSource = 'WhatsApp';
-        else if (ref && !ref.includes('massaji.net') && !ref.includes('localhost') && !ref.includes('127.0.0.1')) {
-          try { detectedSource = new URL(ref).hostname.replace(/^www\./, ''); } catch(e) { detectedSource = 'Web Referral'; }
-        } else {
-          detectedSource = 'Direct Website';
-        }
-      }
-      const isMobile = window.innerWidth <= 768 || /iphone|ipad|android|mobile/i.test(navigator.userAgent);
-      const detectedDevice = isMobile ? 'Mobile' : 'Desktop';
-
-      formData.append('source', detectedSource);
-      formData.append('device', detectedDevice);
-      formData.append('referrer', document.referrer || '');
-
-      const waNumber = '6281236695755';
-      let waText = '';
-      if (currentLang === 'en') {
-        waText = `Hello *Massaji Spa Bali*,\n\nI would like to book an appointment:\n• *Guest:* ${name}\n• *Treatment / Package:* ${service}\n• *Date:* ${date}\n• *Time:* ${time} WITA\n• *Party Size:* ${guests} guest(s)\n`;
-        if (phone) waText += `• *Phone / WhatsApp:* ${phone}\n`;
-        waText += `• *Booking Source:* Website (${detectedSource} • ${detectedDevice})\n`;
-        if (notes) waText += `• *Notes:* ${notes}\n`;
-        waText += `\nPlease confirm availability for this session. Thank you!`;
-      } else {
-        waText = `Halo *Massaji Spa Bali*,\n\nSaya ingin memesan jadwal reservasi via website:\n• *Nama:* ${name}\n• *Perawatan / Paket:* ${service}\n• *Tanggal:* ${date}\n• *Jam:* ${time} WITA\n• *Jumlah Tamu:* ${guests} orang\n`;
-        if (phone) waText += `• *Nomor Kontak:* ${phone}\n`;
-        waText += `• *Sumber Reservasi:* Website (${detectedSource} • ${detectedDevice})\n`;
-        if (notes) waText += `• *Catatan:* ${notes}\n`;
-        waText += `\nMohon konfirmasi ketersediaan slot waktu ini. Terima kasih!`;
-      }
-      const fallbackWaUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
-
-      try {
-        const response = await fetch('booking-process.php', {
-          method: 'POST',
-          body: formData
-        });
-
-        if (response.ok) {
-          const result = await response.json();
-          showBookingSuccess(result.details || { name, service, date, time, guests }, result.whatsapp_url || fallbackWaUrl);
-        } else {
-          showBookingSuccess({ name, service, date, time, guests }, fallbackWaUrl);
-        }
-      } catch (err) {
-        showBookingSuccess({ name, service, date, time, guests }, fallbackWaUrl);
-      } finally {
-        bookingSubmitBtn.disabled = false;
-        bookingSubmitBtn.innerHTML = originalBtnHtml;
-      }
-    });
-  }
-
-  function showBookingSuccess(details, waUrl) {
-    bookingForm.classList.add('hidden');
-    bookingConfirmation.classList.remove('hidden');
-
-    if (bookingSummaryText) {
-      if (currentLang === 'en') {
-        bookingSummaryText.innerHTML = `
-          Thank you, <strong>${details.name}</strong>. Your inquiry for <strong>${details.service}</strong> on <strong>${details.date}</strong> at <strong>${details.time} WITA</strong> (${details.guests} guest) has been received.
-        `;
-      } else {
-        bookingSummaryText.innerHTML = `
-          Terima kasih, <strong>${details.name}</strong>. Permintaan reservasi Anda untuk <strong>${details.service}</strong> pada <strong>${details.date}</strong> jam <strong>${details.time} WITA</strong> (${details.guests} orang) telah kami terima.
-        `;
-      }
-    }
-
-    if (waConfirmLink) waConfirmLink.href = waUrl;
-    bookingForm.reset();
-  }
-
-  // Dynamic Live Settings Sync (Updates About Image, Hero Image, Promo Flyer)
-  try {
-    fetch('data/settings.json?v=' + Date.now())
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(s) {
-        if (!s) return;
-        if (s.about_image) {
-          var aboutEl = document.getElementById('about-main-image');
-          if (aboutEl && aboutEl.getAttribute('src') !== s.about_image) {
-            aboutEl.src = s.about_image;
+          if (s.hero_image) {
+            var heroEl = document.getElementById('hero-main-image');
+            if (heroEl && heroEl.getAttribute('src') !== s.hero_image) {
+              heroEl.src = s.hero_image;
+            }
           }
-        }
-        if (s.hero_image) {
-          var heroEl = document.getElementById('hero-main-image');
-          if (heroEl && heroEl.getAttribute('src') !== s.hero_image) {
-            heroEl.src = s.hero_image;
+          if (s.promo_flyer_image) {
+            var promoEl = document.getElementById('promo-flyer-image');
+            if (promoEl && promoEl.getAttribute('src') !== s.promo_flyer_image) {
+              promoEl.src = s.promo_flyer_image;
+            }
           }
-        }
-        if (s.promo_flyer_image) {
-          var promoEl = document.getElementById('promo-flyer-image');
-          if (promoEl && promoEl.getAttribute('src') !== s.promo_flyer_image) {
-            promoEl.src = s.promo_flyer_image;
-          }
-        }
-      }).catch(function() {});
-  } catch(e) {}
+        }).catch(function() {});
+    } catch(e) {}
 
-});
+  } catch (err) {
+    console.error('Fatal initialization error in initMassajiApp:', err);
+  }
+}
+
+// Run initialization immediately or when DOM is ready
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMassajiApp);
+  } else {
+    initMassajiApp();
+  }
+}

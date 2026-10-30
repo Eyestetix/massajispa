@@ -442,7 +442,7 @@ html_template = f'''<!DOCTYPE html>
       }}
     }}
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261030f">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261030h">
 </head>
 <body class="text-[#141E3C] antialiased font-sans selection:bg-[#1E3A8A] selection:text-white">
 
@@ -1277,9 +1277,9 @@ html_template = f'''<!DOCTYPE html>
   </div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261030e"></script>
+  <script src="assets/js/main.js?v=20261030h"></script>
   <!-- Visitor Analytics Tracker (Async & Non-blocking) -->
-  <script src="assets/js/tracker.js?v=20261030e" defer></script>
+  <script src="assets/js/tracker.js?v=20261030h" defer></script>
 </body>
 </html>'''
 
