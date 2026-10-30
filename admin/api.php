@@ -3,6 +3,32 @@
 require_once __DIR__ . '/auth.php';
 header('Content-Type: application/json; charset=utf-8');
 
+// -----------------------------------------------------------
+// 1. Cross-Origin Resource Sharing (CORS) Configuration
+// -----------------------------------------------------------
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+$allowed_origins = [
+    'https://massaji.net',
+    'http://massaji.net',
+    'https://www.massaji.net',
+    'http://www.massaji.net',
+    'https://eyestetix.github.io',
+    'http://localhost:8080',
+    'http://127.0.0.1:8080'
+];
+
+if (!empty($origin) && in_array($origin, $allowed_origins, true)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, X-Requested-With, Accept, X-Admin-Token, X-CSRF-Token");
+    header("Access-Control-Max-Age: 86400");
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Metode permintaan tidak didukung.']);
@@ -13,6 +39,7 @@ $action = isset($_POST['action']) ? trim($_POST['action']) : '';
 $settings_file = __DIR__ . '/../data/settings.json';
 $promo_file    = __DIR__ . '/../data/promo.json';
 $menu_file     = __DIR__ . '/../data/menu.json';
+$bookings_file = __DIR__ . '/../data/bookings.json';
 
 // Helper to read JSON
 function read_json_file($file, $default = []) {
@@ -42,9 +69,12 @@ if ($action === 'login') {
     if ($user === 'admin' && verify_admin_password($pass, $settings['admin_password_hash'])) {
         $_SESSION['massaji_admin_logged_in'] = true;
         $_SESSION['admin_user'] = 'admin';
+        $secret = !empty($settings['admin_password_hash']) ? $settings['admin_password_hash'] : 'massaji_spa_secret_2026';
+        $auth_token = hash_hmac('sha256', 'massaji_admin_session_' . date('Y-m-d'), $secret);
         echo json_encode([
-            'success' => true,
-            'message' => 'Login berhasil',
+            'success'    => true,
+            'message'    => 'Login berhasil',
+            'auth_token' => $auth_token,
             'csrf_token' => generate_csrf_token()
         ]);
         exit;
@@ -55,8 +85,19 @@ if ($action === 'login') {
     }
 }
 
-// Check session auth cleanly returning JSON 401
-if (!isset($_SESSION['massaji_admin_logged_in']) || $_SESSION['massaji_admin_logged_in'] !== true) {
+// Dual Session / Token Authentication Gatekeeper
+$settings = get_settings();
+$secret = !empty($settings['admin_password_hash']) ? $settings['admin_password_hash'] : 'massaji_spa_secret_2026';
+
+$is_session_auth = (isset($_SESSION['massaji_admin_logged_in']) && $_SESSION['massaji_admin_logged_in'] === true);
+$req_token = isset($_SERVER['HTTP_X_ADMIN_TOKEN']) ? trim($_SERVER['HTTP_X_ADMIN_TOKEN']) : (isset($_POST['auth_token']) ? trim($_POST['auth_token']) : '');
+
+$expected_today = hash_hmac('sha256', 'massaji_admin_session_' . date('Y-m-d'), $secret);
+$expected_yest = hash_hmac('sha256', 'massaji_admin_session_' . date('Y-m-d', strtotime('-1 day')), $secret);
+
+$is_token_auth = (!empty($req_token) && (hash_equals($expected_today, $req_token) || hash_equals($expected_yest, $req_token)));
+
+if (!$is_session_auth && !$is_token_auth) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'Sesi login telah berakhir atau belum login.']);
     exit;
@@ -75,10 +116,20 @@ switch ($action) {
     // ----------------------------------------------------
     case 'get_all_data':
         echo json_encode([
-            'success' => true,
+            'success'  => true,
             'settings' => read_json_file($settings_file, get_settings()),
-            'menu' => read_json_file($menu_file, []),
-            'promo' => read_json_file($promo_file, []),
+            'menu'     => read_json_file($menu_file, []),
+            'promo'    => read_json_file($promo_file, []),
+            'bookings' => read_json_file($bookings_file, [])
+        ]);
+        exit;
+
+    // ----------------------------------------------------
+    // Fast Bookings Retrieval
+    // ----------------------------------------------------
+    case 'get_bookings':
+        echo json_encode([
+            'success'  => true,
             'bookings' => read_json_file($bookings_file, [])
         ]);
         exit;

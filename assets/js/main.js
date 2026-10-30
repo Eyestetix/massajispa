@@ -1002,48 +1002,43 @@ function initMassajiApp() {
         }
         const fallbackWaUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
 
-        // Save booking locally for instant preview & static GitHub Pages support
-        try {
-          const now = new Date();
-          const pad = (n) => String(n).padStart(2, '0');
-          const dateStr = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-          const localBooking = {
-            id: 'BK-' + now.getTime().toString().slice(-8),
-            created_at: dateStr,
-            name: name,
-            email: formData.get('email') || '',
-            phone: phone,
-            service: service,
-            date: date,
-            time: time,
-            guests: guests,
-            notes: notes,
-            source: detectedSource,
-            device: detectedDevice,
-            channel: 'Website Form -> WhatsApp',
-            status: 'pending'
-          };
-          const existing = JSON.parse(safeGetStorage('massaji_client_bookings', '[]')) || [];
-          existing.unshift(localBooking);
-          safeSetStorage('massaji_client_bookings', JSON.stringify(existing.slice(0, 100)));
-        } catch (e) {
-          console.warn('Local booking storage error:', e);
+        // Route to authoritative Biznet PHP backend when visiting from GitHub Pages
+        function getBookingEndpoint() {
+          if (typeof window !== 'undefined' && window.location && window.location.hostname === 'eyestetix.github.io') {
+            return 'https://massaji.net/booking-process.php';
+          }
+          return 'booking-process.php';
         }
 
         try {
-          const response = await fetch('booking-process.php', {
+          const endpoint = getBookingEndpoint();
+          const response = await fetch(endpoint, {
             method: 'POST',
             body: formData
           });
 
-          if (response.ok) {
-            const result = await response.json();
+          const result = await response.json().catch(() => null);
+
+          if (response.ok && result && result.success) {
             showBookingSuccess(result.details || { name, service, date, time, guests }, result.whatsapp_url || fallbackWaUrl);
           } else {
-            showBookingSuccess({ name, service, date, time, guests }, fallbackWaUrl);
+            const errorMsg = (result && result.message) ? result.message : (window.__currentLang === 'en' 
+              ? 'Unable to complete reservation on the server. Please try again or confirm directly via WhatsApp.' 
+              : 'Gagal menyimpan reservasi ke server. Silakan coba kembali atau konfirmasi langsung via WhatsApp.');
+            if (bookingErrorMsg) {
+              bookingErrorMsg.textContent = errorMsg;
+              bookingErrorMsg.classList.remove('hidden');
+            }
           }
         } catch (err) {
-          showBookingSuccess({ name, service, date, time, guests }, fallbackWaUrl);
+          console.error('Reservation submission error:', err);
+          const errorMsg = window.__currentLang === 'en' 
+            ? 'Connection error while submitting reservation. Please check your connection or book directly via WhatsApp.' 
+            : 'Gangguan koneksi saat mengirim reservasi. Silakan periksa koneksi internet Anda atau hubungi langsung via WhatsApp.';
+          if (bookingErrorMsg) {
+            bookingErrorMsg.textContent = errorMsg;
+            bookingErrorMsg.classList.remove('hidden');
+          }
         } finally {
           bookingSubmitBtn.disabled = false;
           bookingSubmitBtn.innerHTML = originalBtnHtml;

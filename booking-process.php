@@ -1,15 +1,96 @@
 <?php
-// booking-process.php - Handles spa reservation submissions dynamically
+// booking-process.php - Handles spa reservation submissions dynamically with atomic persistence & CORS support
 header('Content-Type: application/json; charset=utf-8');
+
+// -----------------------------------------------------------
+// 1. Cross-Origin Resource Sharing (CORS) Configuration
+// -----------------------------------------------------------
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+$allowed_origins = [
+    'https://massaji.net',
+    'http://massaji.net',
+    'https://www.massaji.net',
+    'http://www.massaji.net',
+    'https://eyestetix.github.io',
+    'http://localhost:8080',
+    'http://127.0.0.1:8080'
+];
+
+if (!empty($origin) && in_array($origin, $allowed_origins, true)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, X-Requested-With, Accept");
+    header("Access-Control-Max-Age: 86400");
+}
+
+// Handle preflight OPTIONS request immediately
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 // Allow POST only
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Metode permintaan tidak valid.']);
+    echo json_encode(['success' => false, 'message' => 'Metode permintaan tidak valid. Gunakan metode POST.']);
     exit;
 }
 
-// Load dynamic settings
+// -----------------------------------------------------------
+// 2. Concurrency-Safe JSON Storage Helper (flock)
+// -----------------------------------------------------------
+function save_booking_record($filepath, $new_booking) {
+    $dir = dirname($filepath);
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0755, true);
+    }
+
+    $fp = @fopen($filepath, 'c+');
+    if (!$fp) {
+        return false;
+    }
+
+    if (!flock($fp, LOCK_EX)) {
+        fclose($fp);
+        return false;
+    }
+
+    clearstatcache(true, $filepath);
+    $filesize = @filesize($filepath);
+    $bookings = [];
+
+    if ($filesize && $filesize > 0) {
+        $content = fread($fp, $filesize);
+        if (!empty($content)) {
+            $decoded = json_decode($content, true);
+            if (is_array($decoded)) {
+                $bookings = $decoded;
+            }
+        }
+    }
+
+    // Add new booking to the beginning of the list
+    array_unshift($bookings, $new_booking);
+
+    // Keep last 100 bookings
+    if (count($bookings) > 100) {
+        $bookings = array_slice($bookings, 0, 100);
+    }
+
+    ftruncate($fp, 0);
+    rewind($fp);
+    $json = json_encode($bookings, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    $written = fwrite($fp, $json);
+    fflush($fp);
+    flock($fp, LOCK_UN);
+    fclose($fp);
+
+    return ($written !== false);
+}
+
+// -----------------------------------------------------------
+// 3. Load Dynamic Settings
+// -----------------------------------------------------------
 $settings_file = __DIR__ . '/data/settings.json';
 $settings = [
     'site_name' => 'Massaji Spa Bali',
@@ -23,7 +104,9 @@ if (file_exists($settings_file)) {
     }
 }
 
-// Sanitize & Validate inputs
+// -----------------------------------------------------------
+// 4. Sanitize & Validate Inputs
+// -----------------------------------------------------------
 $name    = isset($_POST['name']) ? trim(strip_tags($_POST['name'])) : '';
 $email   = isset($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL) : '';
 $phone   = isset($_POST['phone']) ? trim(strip_tags($_POST['phone'])) : '';
@@ -80,15 +163,14 @@ $wa_text .= "Apakah slot waktu tersebut masih tersedia? Terima kasih.";
 
 $wa_url = "https://wa.me/" . $wa_number . "?text=" . rawurlencode($wa_text);
 
-// Save booking record into data/bookings.json (for admin panel history)
+// -----------------------------------------------------------
+// 5. Atomic Persistence to data/bookings.json
+// -----------------------------------------------------------
 $bookings_file = __DIR__ . '/data/bookings.json';
-$bookings = [];
-if (file_exists($bookings_file)) {
-    $bookings = json_decode(file_get_contents($bookings_file), true) ?: [];
-}
+$booking_id = 'BK-' . date('Ymd-His') . '-' . mt_rand(100, 999);
 
 $new_booking = [
-    'id'         => 'BK-' . date('Ymd-His') . '-' . rand(100, 999),
+    'id'         => $booking_id,
     'created_at' => date('Y-m-d H:i:s'),
     'name'       => $name,
     'email'      => $email,
@@ -103,12 +185,16 @@ $new_booking = [
     'channel'    => 'Website Form -> WhatsApp',
     'status'     => 'pending'
 ];
-array_unshift($bookings, $new_booking);
-// Keep last 100 bookings
-if (count($bookings) > 100) {
-    $bookings = array_slice($bookings, 0, 100);
+
+$persisted = save_booking_record($bookings_file, $new_booking);
+if (!$persisted) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Gagal menyimpan reservasi ke sistem server. Silakan hubungi langsung resepsionis via WhatsApp.'
+    ]);
+    exit;
 }
-@file_put_contents($bookings_file, json_encode($bookings, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
 // Format guest WhatsApp reply URL
 $clean_guest_phone = preg_replace('/[^0-9]/', '', $phone);

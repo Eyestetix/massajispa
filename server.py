@@ -17,6 +17,18 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
+    def send_cors_headers(self):
+        origin = self.headers.get('Origin', '*')
+        self.send_header('Access-Control-Allow-Origin', origin)
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Accept, X-Admin-Token, X-CSRF-Token')
+        self.send_header('Access-Control-Max-Age', '86400')
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_cors_headers()
+        self.end_headers()
+
     def do_GET(self):
         # Route clean paths
         parsed = urllib.parse.urlparse(self.path)
@@ -172,6 +184,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 pass
 
             self.send_response(200)
+            self.send_cors_headers()
             self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()
             self.wfile.write(json.dumps({'ok': True, 'source': source, 'device': device}).encode('utf-8'))
@@ -258,6 +271,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
             subprocess.run(['python3', os.path.join(DIRECTORY, 'build_preview.py')], capture_output=True)
 
             self.send_response(200)
+            self.send_cors_headers()
             self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()
             resp = {
@@ -283,7 +297,35 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
             action = fields.get('action', '')
             resp = {'success': False, 'message': 'Aksi tidak dikenali.'}
 
-            if action == 'get_all_data':
+            if action == 'login':
+                u = fields.get('username', '').lower()
+                p = fields.get('password', '')
+                if u == 'admin' and (p in ('massaji2026', 'admin123', 'admin')):
+                    resp = {
+                        'success': True,
+                        'message': 'Login berhasil',
+                        'auth_token': 'local_dev_token_' + datetime.now().strftime('%Y%m%d'),
+                        'csrf_token': 'local_dev_csrf'
+                    }
+                else:
+                    resp = {'success': False, 'message': 'Username atau password salah.'}
+
+            elif action == 'get_bookings':
+                def read_j(fn, default):
+                    fp = os.path.join(DIRECTORY, 'data', fn)
+                    if os.path.exists(fp):
+                        try:
+                            with open(fp, 'r', encoding='utf-8') as f:
+                                return json.load(f)
+                        except Exception:
+                            pass
+                    return default
+                resp = {
+                    'success': True,
+                    'bookings': read_j('bookings.json', [])
+                }
+
+            elif action == 'get_all_data':
                 def read_j(fn, default):
                     fp = os.path.join(DIRECTORY, 'data', fn)
                     if os.path.exists(fp):
@@ -583,6 +625,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 }
 
             self.send_response(200)
+            self.send_cors_headers()
             self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()
             self.wfile.write(json.dumps(resp).encode('utf-8'))
