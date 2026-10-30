@@ -320,6 +320,10 @@ for item in treatment_items:
 
     safe_js_name = esc_name_en.replace("'", "\\'")
     
+    disc_badge = ''
+    if item.get('normal_price') and item['normal_price'] > item['price']:
+        disc_badge = f'<span class="text-xs text-[#94A3B8] line-through mr-2 font-mono">Rp {fmt_price(item["normal_price"])}</span>'
+
     pressure_html = ''
     if item.get('pressure'):
         pressure_html = f'<span class="text-[10px] text-[#64748B] italic ml-1 font-sans">({html.escape(item["pressure"])})</span>'
@@ -366,7 +370,10 @@ for item in treatment_items:
           <div class="mt-auto pt-3 border-t border-[#BAE0FD]/70 flex items-center justify-between">
             <div>
               <span class="text-[10px] text-[#64748B] uppercase tracking-wider block font-bold" data-i18n="card_rate">From Price</span>
-              <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp {fmt_price(item['price'])}</span>
+              <div class="flex items-baseline">
+                {disc_badge}
+                <span class="font-serif text-xl sm:text-2xl font-bold text-[#0284C7] font-mono">Rp {fmt_price(item['price'])}</span>
+              </div>
             </div>
             <button onclick="openBookingModal('{safe_js_name}')" class="btn-primary py-2 px-3.5 text-xs" data-i18n="card_btn_book">
               Book Treatment
@@ -662,76 +669,75 @@ html_template = f'''<!DOCTYPE html>
   <section id="packages" class="py-16 sm:py-24 bg-[#F0F8FF]/80 border-b border-[#BAE0FD]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-6">
+      <div class="text-center max-w-3xl mx-auto mb-10">
         <span class="eyebrow-tag" data-i18n="packages_eyebrow">Curated Spa Rituals</span>
-        <div class="flex items-center justify-center gap-3.5 mt-2 mb-3 flex-wrap">
-          <h2 class="font-serif section-headline text-[#141E3C] cursor-pointer sm:cursor-default" id="packages-heading-trigger">
-            Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
-          </h2>
-          <button 
-            type="button" 
-            id="packages-toggle-btn"
-            aria-expanded="true"
-            aria-controls="packages-collapse-body"
-            class="section-toggle-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#BAE0FD] bg-white text-[#1E3A8A] hover:bg-[#E1F0FE] hover:border-[#1E3A8A] text-xs font-semibold tracking-wider transition-all duration-200 shadow-sm cursor-pointer select-none"
-            title="Toggle Spa Packages">
-            <span class="toggle-sign font-mono text-sm font-bold leading-none" aria-hidden="true">&minus;</span>
-            <span class="toggle-label font-mono text-[11px] uppercase" data-i18n="toggle_collapse">Collapse</span>
+        <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
+          Spa <span class="text-[#0284C7] italic font-normal">Packages</span>
+        </h2>
+        <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
+          Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
+        </p>
+
+        <!-- Live Search Bar for Packages -->
+        <div class="mt-6 max-w-md mx-auto relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            id="package-search-input" 
+            placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
+            data-i18n-placeholder="pkg_search_placeholder"
+            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+          <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Package Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
+            <span data-i18n="pkg_tab_all">All Packages</span> ({len(package_items)})
+          </button>
+          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-single" data-i18n="pkg_tab_single">
+            Single Package (1 Person)
+          </button>
+          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-couple" data-i18n="pkg_tab_couple">
+            Couple Package (2 Persons)
+          </button>
+          <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-group" data-i18n="pkg_tab_group">
+            Group Package (4 Persons)
           </button>
         </div>
       </div>
 
-      <div id="packages-collapse-body" class="collapsible-section-body overflow-hidden transition-all duration-300 ease-in-out">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-          <p class="text-[#475569] text-base font-light" data-i18n="packages_desc">
-            Carefully orchestrated multi-hour wellness journeys crafted for solo relaxation, intimate couples retreats, and group pampering sessions in Bali.
-          </p>
-
-          <!-- Live Search Bar for Packages -->
-          <div class="mt-6 max-w-md mx-auto relative">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </div>
-            <input 
-              type="text" 
-              id="package-search-input" 
-              placeholder="Search spa packages (e.g., couple, 120 mins, relax, single, boreh)..." 
-              data-i18n-placeholder="pkg_search_placeholder"
-              class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-white text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
-            <button id="package-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-          </div>
-
-          <!-- Package Filter Tabs -->
-          <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
-              <span data-i18n="pkg_tab_all">All Packages</span> ({len(package_items)})
-            </button>
-            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-single" data-i18n="pkg_tab_single">
-              Single Package (1 Person)
-            </button>
-            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-couple" data-i18n="pkg_tab_couple">
-              Couple Package (2 Persons)
-            </button>
-            <button class="package-tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="packages-group" data-i18n="pkg_tab_group">
-              Group Package (4 Persons)
-            </button>
-          </div>
-        </div>
-
-        <!-- Packages Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
+      <!-- Packages Cards Grid (Shows 3 preview cards in collapsed state) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
 {package_cards_html}
-        </div>
+      </div>
 
-        <!-- No Packages Found Message -->
-        <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
-          <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
-          <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
-            <span data-i18n="pkg_tab_all">All Packages</span>
-          </button>
-        </div>
+      <!-- No Packages Found Message -->
+      <div id="no-packages-found" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+        <p class="text-sm font-bold text-[#141E3C]" data-i18n="pkg_not_found">No packages found matching your search.</p>
+        <button onclick="resetPackageSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+          <span data-i18n="pkg_tab_all">All Packages</span>
+        </button>
+      </div>
+
+      <!-- Subtle View All Spa Packages / Show Less Expand Control -->
+      <div class="mt-8 text-center" id="packages-toggle-wrapper">
+        <button 
+          type="button" 
+          id="packages-toggle-btn"
+          aria-expanded="false"
+          aria-controls="packages-cards-container"
+          class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
+          title="Toggle Spa Packages">
+          <span class="packages-toggle-label tracking-wide" data-i18n="pkg_view_all">View All Spa Packages</span>
+          <svg class="packages-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
       </div>
 
     </div>
@@ -791,38 +797,35 @@ html_template = f'''<!DOCTYPE html>
           Additional Services
         </button>
       </div>
-
-      <!-- Subtle View All Treatments / Show Less Expand Control -->
-      <div class="mt-5 sm:mt-6 text-center">
-        <button 
-          type="button" 
-          id="menu-toggle-btn"
-          aria-expanded="false"
-          aria-controls="menu-collapse-body"
-          class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
-          title="Toggle Complete Spa Catalog">
-          <span class="menu-toggle-label tracking-wide" data-i18n="menu_view_all">View all treatments</span>
-          <svg class="menu-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
     </div>
 
-    <!-- Collapsible Treatment Cards Grid & No-Found Box -->
-    <div id="menu-collapse-body" class="collapsible-section-body is-collapsed overflow-hidden transition-all duration-300 ease-in-out">
-      <!-- Treatment Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
+    <!-- Treatment Cards Grid (Shows 3 preview cards in collapsed state) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
 {treatment_cards_html}
-      </div>
+    </div>
 
-      <!-- No Treatments Found Message -->
-      <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
-        <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
-        <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
-          <span data-i18n="cat_all">All Treatments</span>
-        </button>
-      </div>
+    <!-- No Treatments Found Message -->
+    <div id="no-menu-found" class="hidden text-center py-12 bg-[#F0F8FF]/50 rounded-2xl border border-dashed border-[#BAE0FD] mt-6">
+      <p class="text-sm font-bold text-[#141E3C]" data-i18n="menu_not_found">No treatments found matching your keywords.</p>
+      <button onclick="resetMenuSearch()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold uppercase tracking-wider">
+        <span data-i18n="cat_all">All Treatments</span>
+      </button>
+    </div>
+
+    <!-- Subtle View All Treatments / Show Less Expand Control -->
+    <div class="mt-8 text-center" id="menu-toggle-wrapper">
+      <button 
+        type="button" 
+        id="menu-toggle-btn"
+        aria-expanded="false"
+        aria-controls="menu-cards-container"
+        class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
+        title="Toggle Complete Spa Catalog">
+        <span class="menu-toggle-label tracking-wide" data-i18n="menu_view_all">View All Treatments</span>
+        <svg class="menu-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
     </div>
 
   </section>

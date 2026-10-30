@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
       pkg_btn_book: "Reserve Package",
       pkg_search_placeholder: "Search spa packages (e.g., couple, 120 mins, relax, single, boreh)...",
       pkg_not_found: "No packages found matching your search.",
-      toggle_collapse: "Collapse",
-      toggle_expand: "Expand",
+      pkg_view_all: "View All Spa Packages",
+      pkg_show_less: "Show Less",
 
       menu_eyebrow: "Complete Spa Catalog",
       menu_title: "Treatment Menu & Pricing",
@@ -175,8 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
       pkg_btn_book: "Pesan Paket Ini",
       pkg_search_placeholder: "Cari paket spa (misal: couple, 120 menit, relax, single, boreh)...",
       pkg_not_found: "Tidak ada paket yang sesuai dengan pencarian Anda.",
-      toggle_collapse: "Sembunyikan",
-      toggle_expand: "Tampilkan",
+      pkg_view_all: "Lihat Semua Paket",
+      pkg_show_less: "Tampilkan Lebih Sedikit",
 
       menu_eyebrow: "Katalog Layanan Lengkap",
       menu_title: "Menu Perawatan & Tarif",
@@ -371,22 +371,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBilingualCards(lang);
 
     // Sync collapsible toggle buttons text to active language
-    const pkgBtn = document.getElementById('packages-toggle-btn');
-    if (pkgBtn) {
-      const isExpanded = pkgBtn.getAttribute('aria-expanded') === 'true';
-      const label = pkgBtn.querySelector('.toggle-label');
-      if (label) {
-        label.textContent = isExpanded ? i18n[lang].toggle_collapse : i18n[lang].toggle_expand;
-      }
-    }
-    const menuBtn = document.getElementById('menu-toggle-btn');
-    if (menuBtn) {
-      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-      const label = menuBtn.querySelector('.menu-toggle-label');
-      if (label) {
-        label.textContent = isExpanded ? i18n[lang].menu_show_less : i18n[lang].menu_view_all;
-      }
-    }
+    updatePackagesToggleBtn();
+    updateMenuToggleBtn();
 
     // Update Popup WhatsApp prefilled message
     const popupWaBtn = document.getElementById('popup-wa-btn');
@@ -459,147 +445,136 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // 2.5 COLLAPSIBLE SECTIONS CONTROLLER (PACKAGES & CATALOG)
+  // 2.5 PREVIEW & EXPANDABLE CONTROLLER (PACKAGES & CATALOG)
   // ========================================================
-  let userToggledPackages = false;
-  let userToggledMenu = false;
-  let wasMobile = window.innerWidth < 768;
+  let isPackagesExpanded = false;
+  let isMenuExpanded = false;
 
-  function setSectionCollapseState(section, expand, isUserAction = false) {
-    const btn = document.getElementById(`${section}-toggle-btn`);
-    const body = document.getElementById(`${section}-collapse-body`);
-    if (!btn || !body) return;
-
-    if (section === 'menu') {
-      const label = btn.querySelector('.menu-toggle-label');
-      const chevron = btn.querySelector('.menu-toggle-chevron');
-      if (expand) {
-        body.classList.remove('is-collapsed');
-        btn.setAttribute('aria-expanded', 'true');
-        if (label) {
-          label.setAttribute('data-i18n', 'menu_show_less');
-          label.textContent = (i18n[currentLang] && i18n[currentLang].menu_show_less) ? i18n[currentLang].menu_show_less : 'Show less';
-        }
-        if (chevron) {
-          chevron.classList.add('rotate-180');
-        }
-        btn.title = currentLang === 'id' ? 'Tampilkan lebih sedikit' : 'Show less treatments';
-      } else {
-        body.classList.add('is-collapsed');
-        btn.setAttribute('aria-expanded', 'false');
-        if (label) {
-          label.setAttribute('data-i18n', 'menu_view_all');
-          label.textContent = (i18n[currentLang] && i18n[currentLang].menu_view_all) ? i18n[currentLang].menu_view_all : 'View all treatments';
-        }
-        if (chevron) {
-          chevron.classList.remove('rotate-180');
-        }
-        btn.title = currentLang === 'id' ? 'Lihat semua perawatan' : 'View all treatments';
-      }
-      if (isUserAction) {
-        userToggledMenu = true;
-      }
-      return;
-    }
-
-    if (expand) {
-      body.classList.remove('is-collapsed');
+  function updatePackagesToggleBtn() {
+    const btn = document.getElementById('packages-toggle-btn');
+    if (!btn) return;
+    const label = btn.querySelector('.packages-toggle-label');
+    const chevron = btn.querySelector('.packages-toggle-chevron');
+    if (isPackagesExpanded) {
       btn.setAttribute('aria-expanded', 'true');
-      const sign = btn.querySelector('.toggle-sign');
-      const label = btn.querySelector('.toggle-label');
-      if (sign) sign.innerHTML = '&minus;';
       if (label) {
-        label.setAttribute('data-i18n', 'toggle_collapse');
-        label.textContent = (i18n[currentLang] && i18n[currentLang].toggle_collapse) ? i18n[currentLang].toggle_collapse : 'Collapse';
+        label.setAttribute('data-i18n', 'pkg_show_less');
+        label.textContent = (i18n[currentLang] && i18n[currentLang].pkg_show_less) ? i18n[currentLang].pkg_show_less : 'Show Less';
       }
-      btn.title = 'Collapse Spa Packages';
+      if (chevron) chevron.classList.add('rotate-180');
+      btn.title = currentLang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less Packages';
     } else {
-      body.classList.add('is-collapsed');
       btn.setAttribute('aria-expanded', 'false');
-      const sign = btn.querySelector('.toggle-sign');
-      const label = btn.querySelector('.toggle-label');
-      if (sign) sign.textContent = '+';
       if (label) {
-        label.setAttribute('data-i18n', 'toggle_expand');
-        label.textContent = (i18n[currentLang] && i18n[currentLang].toggle_expand) ? i18n[currentLang].toggle_expand : 'Expand';
+        label.setAttribute('data-i18n', 'pkg_view_all');
+        label.textContent = (i18n[currentLang] && i18n[currentLang].pkg_view_all) ? i18n[currentLang].pkg_view_all : 'View All Spa Packages';
       }
-      btn.title = 'Expand Spa Packages';
-    }
-
-    if (isUserAction) {
-      userToggledPackages = true;
+      if (chevron) chevron.classList.remove('rotate-180');
+      btn.title = currentLang === 'id' ? 'Lihat Semua Paket' : 'View All Spa Packages';
     }
   }
 
-  // Initialize responsive state on page load:
-  // Mobile (<768px): Both collapsed by default
-  // Desktop (>=768px): Packages expanded, Catalog collapsed by default
-  const isMobileInitial = window.innerWidth < 768;
-  setSectionCollapseState('packages', !isMobileInitial, false);
-  setSectionCollapseState('menu', false, false);
-
-  // Toggle button event listeners
-  const pkgToggleBtn = document.getElementById('packages-toggle-btn');
-  const pkgHeadingTrigger = document.getElementById('packages-heading-trigger');
-  function handlePackagesToggle() {
-    const isExpanded = pkgToggleBtn && pkgToggleBtn.getAttribute('aria-expanded') === 'true';
-    setSectionCollapseState('packages', !isExpanded, true);
-  }
-  if (pkgToggleBtn) pkgToggleBtn.addEventListener('click', handlePackagesToggle);
-  if (pkgHeadingTrigger) {
-    pkgHeadingTrigger.addEventListener('click', () => {
-      if (window.innerWidth < 768) {
-        handlePackagesToggle();
+  function updateMenuToggleBtn() {
+    const btn = document.getElementById('menu-toggle-btn');
+    if (!btn) return;
+    const label = btn.querySelector('.menu-toggle-label');
+    const chevron = btn.querySelector('.menu-toggle-chevron');
+    if (isMenuExpanded) {
+      btn.setAttribute('aria-expanded', 'true');
+      if (label) {
+        label.setAttribute('data-i18n', 'menu_show_less');
+        label.textContent = (i18n[currentLang] && i18n[currentLang].menu_show_less) ? i18n[currentLang].menu_show_less : 'Show Less';
       }
-    });
-  }
-
-  const menuToggleBtn = document.getElementById('menu-toggle-btn');
-  function handleMenuToggle() {
-    const isExpanded = menuToggleBtn && menuToggleBtn.getAttribute('aria-expanded') === 'true';
-    setSectionCollapseState('menu', !isExpanded, true);
-  }
-  if (menuToggleBtn) menuToggleBtn.addEventListener('click', handleMenuToggle);
-
-  // Window resize handler: update state only if user hasn't explicitly interacted with toggle
-  window.addEventListener('resize', () => {
-    const isMobileNow = window.innerWidth < 768;
-    if (isMobileNow !== wasMobile) {
-      wasMobile = isMobileNow;
-      if (!userToggledPackages) {
-        setSectionCollapseState('packages', !isMobileNow, false);
+      if (chevron) chevron.classList.add('rotate-180');
+      btn.title = currentLang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less Treatments';
+    } else {
+      btn.setAttribute('aria-expanded', 'false');
+      if (label) {
+        label.setAttribute('data-i18n', 'menu_view_all');
+        label.textContent = (i18n[currentLang] && i18n[currentLang].menu_view_all) ? i18n[currentLang].menu_view_all : 'View All Treatments';
       }
-      if (!userToggledMenu) {
-        setSectionCollapseState('menu', false, false);
-      }
-    }
-  });
-
-  // Anchor link navigation: clicking #packages or #menu expands target section so content is visible
-  function expandTargetSectionFromHash(hash) {
-    if (hash === '#packages') {
-      setSectionCollapseState('packages', true, true);
-    } else if (hash === '#menu') {
-      setSectionCollapseState('menu', true, true);
+      if (chevron) chevron.classList.remove('rotate-180');
+      btn.title = currentLang === 'id' ? 'Lihat Semua Perawatan' : 'View All Treatments';
     }
   }
 
-  document.querySelectorAll('a[href="#packages"], a[href="#menu"]').forEach(link => {
-    link.addEventListener('click', () => {
-      const targetHash = link.getAttribute('href');
-      expandTargetSectionFromHash(targetHash);
-    });
-  });
+  // Session-stable preview initialization:
+  // Prepend 3 chosen cards to the top of each cards container so that in collapsed state ("all"),
+  // exactly those 3 preview cards are rendered first.
+  function initSessionPreviews() {
+    // 1. Spa Packages Preview (3 featured/promotional packages)
+    const pkgContainer = document.getElementById('packages-cards-container');
+    if (pkgContainer) {
+      const pkgCards = Array.from(pkgContainer.querySelectorAll('.package-card'));
+      if (pkgCards.length > 0) {
+        let pkgNames = [];
+        try {
+          const stored = sessionStorage.getItem('massaji_preview_packages_v1');
+          if (stored) pkgNames = JSON.parse(stored);
+        } catch (e) {}
 
-  if (window.location.hash) {
-    expandTargetSectionFromHash(window.location.hash);
+        if (!pkgNames || pkgNames.length < 3) {
+          const couple = pkgCards.find(c => c.dataset.category === 'packages-couple');
+          const single = pkgCards.find(c => c.dataset.category === 'packages-single');
+          const group = pkgCards.find(c => c.dataset.category === 'packages-group');
+          const chosen = [couple, single, group].filter(Boolean);
+          for (const c of pkgCards) {
+            if (chosen.length >= 3) break;
+            if (!chosen.includes(c)) chosen.push(c);
+          }
+          pkgNames = chosen.map(c => c.dataset.nameEn);
+          try {
+            sessionStorage.setItem('massaji_preview_packages_v1', JSON.stringify(pkgNames));
+          } catch (e) {}
+        }
+
+        pkgNames.slice().reverse().forEach(name => {
+          const card = pkgCards.find(c => c.dataset.nameEn === name);
+          if (card) pkgContainer.prepend(card);
+        });
+      }
+    }
+
+    // 2. Complete Treatment Catalog Preview (3 diverse representative treatments)
+    const menuContainer = document.getElementById('menu-cards-container');
+    if (menuContainer) {
+      const menuCardsList = Array.from(menuContainer.querySelectorAll('.treatment-card'));
+      if (menuCardsList.length > 0) {
+        let menuNames = [];
+        try {
+          const stored = sessionStorage.getItem('massaji_preview_treatments_v1');
+          if (stored) menuNames = JSON.parse(stored);
+        } catch (e) {}
+
+        if (!menuNames || menuNames.length < 3) {
+          const massage = menuCardsList.find(c => c.dataset.category === 'massage');
+          const spa = menuCardsList.find(c => c.dataset.category === 'spa');
+          const facialOrSlim = menuCardsList.find(c => c.dataset.category === 'facial' || c.dataset.category === 'slimming');
+          const chosen = [massage, spa, facialOrSlim].filter(Boolean);
+          for (const c of menuCardsList) {
+            if (chosen.length >= 3) break;
+            if (!chosen.includes(c)) chosen.push(c);
+          }
+          menuNames = chosen.map(c => c.dataset.nameEn);
+          try {
+            sessionStorage.setItem('massaji_preview_treatments_v1', JSON.stringify(menuNames));
+          } catch (e) {}
+        }
+
+        menuNames.slice().reverse().forEach(name => {
+          const card = menuCardsList.find(c => c.dataset.nameEn === name);
+          if (card) menuContainer.prepend(card);
+        });
+      }
+    }
   }
+
+  initSessionPreviews();
 
   // ========================================================
-  // 3. PACKAGES: TABS + LIVE SEARCH FILTERING
+  // 3. PACKAGES: TABS + LIVE SEARCH + PREVIEW / EXPAND
   // ========================================================
   const packageTabs = document.querySelectorAll('.package-tab-btn');
-  const packageCards = document.querySelectorAll('.package-card');
   const packageSearchInput = document.getElementById('package-search-input');
   const packageSearchClear = document.getElementById('package-search-clear');
   const noPackagesMsg = document.getElementById('no-packages-found');
@@ -607,35 +582,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterPackages() {
     const query = packageSearchInput ? packageSearchInput.value.toLowerCase().trim() : '';
-    let visibleCount = 0;
+    const container = document.getElementById('packages-cards-container');
+    if (!container) return;
+    const cards = Array.from(container.querySelectorAll('.package-card'));
+    const matchingCards = [];
 
-    if (packageSearchClear) {
-      if (query.length > 0) {
-        packageSearchClear.classList.remove('hidden');
-      } else {
-        packageSearchClear.classList.add('hidden');
-      }
-    }
-
-    packageCards.forEach(card => {
+    cards.forEach(card => {
       const catMatch = currentPackageCat === 'all' || card.dataset.category === currentPackageCat;
       const searchData = (card.dataset.search || card.textContent).toLowerCase();
       const queryMatch = !query || searchData.includes(query);
 
       if (catMatch && queryMatch) {
+        matchingCards.push(card);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const totalMatching = matchingCards.length;
+    const limit = isPackagesExpanded ? totalMatching : 3;
+
+    matchingCards.forEach((card, idx) => {
+      if (idx < limit) {
         card.style.display = 'flex';
         card.style.opacity = '1';
-        visibleCount++;
       } else {
         card.style.display = 'none';
       }
     });
 
     if (noPackagesMsg) {
-      if (visibleCount === 0) {
+      if (totalMatching === 0) {
         noPackagesMsg.classList.remove('hidden');
       } else {
         noPackagesMsg.classList.add('hidden');
+      }
+    }
+
+    const pkgToggleWrapper = document.getElementById('packages-toggle-wrapper');
+    if (pkgToggleWrapper) {
+      if (totalMatching <= 3) {
+        pkgToggleWrapper.classList.add('hidden');
+      } else {
+        pkgToggleWrapper.classList.remove('hidden');
+        updatePackagesToggleBtn();
+      }
+    }
+
+    if (packageSearchClear) {
+      if (query.length > 0) {
+        packageSearchClear.classList.remove('hidden');
+      } else {
+        packageSearchClear.classList.add('hidden');
       }
     }
   }
@@ -671,6 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.resetPackageSearch = function() {
     if (packageSearchInput) packageSearchInput.value = '';
     currentPackageCat = 'all';
+    isPackagesExpanded = false;
     packageTabs.forEach((btn, idx) => {
       if (idx === 0) {
         btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
@@ -683,11 +682,18 @@ document.addEventListener('DOMContentLoaded', () => {
     filterPackages();
   };
 
+  const pkgToggleBtn = document.getElementById('packages-toggle-btn');
+  if (pkgToggleBtn) {
+    pkgToggleBtn.addEventListener('click', () => {
+      isPackagesExpanded = !isPackagesExpanded;
+      filterPackages();
+    });
+  }
+
   // ========================================================
-  // 4. MENU: TABS + LIVE SEARCH FILTERING
+  // 4. MENU: TABS + LIVE SEARCH + PREVIEW / EXPAND
   // ========================================================
   const menuFilterButtons = document.querySelectorAll('.menu-filter-btn');
-  const menuCards = document.querySelectorAll('#menu-cards-container .treatment-card');
   const menuSearchInput = document.getElementById('menu-search-input');
   const menuSearchClear = document.getElementById('menu-search-clear');
   const noMenuMsg = document.getElementById('no-menu-found');
@@ -695,35 +701,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterMenu() {
     const query = menuSearchInput ? menuSearchInput.value.toLowerCase().trim() : '';
-    let visibleCount = 0;
+    const container = document.getElementById('menu-cards-container');
+    if (!container) return;
+    const cards = Array.from(container.querySelectorAll('.treatment-card'));
+    const matchingCards = [];
 
-    if (menuSearchClear) {
-      if (query.length > 0) {
-        menuSearchClear.classList.remove('hidden');
-      } else {
-        menuSearchClear.classList.add('hidden');
-      }
-    }
-
-    menuCards.forEach(card => {
+    cards.forEach(card => {
       const catMatch = currentMenuCat === 'all' || card.dataset.category === currentMenuCat;
       const searchData = (card.dataset.search || card.textContent).toLowerCase();
       const queryMatch = !query || searchData.includes(query);
 
       if (catMatch && queryMatch) {
+        matchingCards.push(card);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const totalMatching = matchingCards.length;
+    const limit = isMenuExpanded ? totalMatching : 3;
+
+    matchingCards.forEach((card, idx) => {
+      if (idx < limit) {
         card.style.display = 'flex';
         card.style.opacity = '1';
-        visibleCount++;
       } else {
         card.style.display = 'none';
       }
     });
 
     if (noMenuMsg) {
-      if (visibleCount === 0) {
+      if (totalMatching === 0) {
         noMenuMsg.classList.remove('hidden');
       } else {
         noMenuMsg.classList.add('hidden');
+      }
+    }
+
+    const menuToggleWrapper = document.getElementById('menu-toggle-wrapper');
+    if (menuToggleWrapper) {
+      if (totalMatching <= 3) {
+        menuToggleWrapper.classList.add('hidden');
+      } else {
+        menuToggleWrapper.classList.remove('hidden');
+        updateMenuToggleBtn();
+      }
+    }
+
+    if (menuSearchClear) {
+      if (query.length > 0) {
+        menuSearchClear.classList.remove('hidden');
+      } else {
+        menuSearchClear.classList.add('hidden');
       }
     }
   }
@@ -740,24 +769,12 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
       btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
 
-      // Expand catalog if collapsed so visitor sees filtered items
-      const menuBody = document.getElementById('menu-collapse-body');
-      if (menuBody && menuBody.classList.contains('is-collapsed')) {
-        setSectionCollapseState('menu', true, true);
-      }
-
       filterMenu();
     });
   });
 
   if (menuSearchInput) {
-    menuSearchInput.addEventListener('input', () => {
-      const menuBody = document.getElementById('menu-collapse-body');
-      if (menuBody && menuBody.classList.contains('is-collapsed') && menuSearchInput.value.trim().length > 0) {
-        setSectionCollapseState('menu', true, true);
-      }
-      filterMenu();
-    });
+    menuSearchInput.addEventListener('input', filterMenu);
   }
 
   if (menuSearchClear) {
@@ -771,6 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.resetMenuSearch = function() {
     if (menuSearchInput) menuSearchInput.value = '';
     currentMenuCat = 'all';
+    isMenuExpanded = false;
     menuFilterButtons.forEach((btn, idx) => {
       if (idx === 0) {
         btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
@@ -782,6 +800,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     filterMenu();
   };
+
+  const menuToggleBtn = document.getElementById('menu-toggle-btn');
+  if (menuToggleBtn) {
+    menuToggleBtn.addEventListener('click', () => {
+      isMenuExpanded = !isMenuExpanded;
+      filterMenu();
+    });
+  }
+
+  // Anchor link navigation: clicking #packages or #menu in header/footer expands target section
+  function expandTargetSectionFromHash(hash) {
+    if (hash === '#packages') {
+      isPackagesExpanded = true;
+      filterPackages();
+    } else if (hash === '#menu') {
+      isMenuExpanded = true;
+      filterMenu();
+    }
+  }
+
+  document.querySelectorAll('a[href="#packages"], a[href="#menu"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const targetHash = link.getAttribute('href');
+      expandTargetSectionFromHash(targetHash);
+    });
+  });
+
+  if (window.location.hash) {
+    expandTargetSectionFromHash(window.location.hash);
+  }
+
+  // Initial filter run to display exactly the 3 preview cards on page load
+  filterPackages();
+  filterMenu();
 
   // ========================================================
   // 5. BOOKING MODAL
