@@ -268,13 +268,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Bali Traditional Massage (120 mins)" data-name-id="Pijat Tradisional Bali (120 menit)"
              data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology." data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam."
              data-dur-en="120 MINUTES" data-dur-id="120 MENIT"
+             data-sub-en="Medium Pressure Massage" data-sub-id="Pijat Tekanan Sedang"
              data-tag-en="Now 300K" data-tag-id="Kini 300K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTES</span>
-              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-start justify-between mb-4 gap-2">
+              <div class="min-w-0">
+                <span class="card-subtitle block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-sky-300 leading-tight mb-1">Medium Pressure Massage</span>
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTES</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm flex-shrink-0">
                 Now 300K
               </span>
             </div>
@@ -303,13 +307,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Deep Tissue Massage (90 mins)" data-name-id="Pijat Deep Tissue (90 menit)"
              data-desc-en="A massage designed to deliver deep pressure into the inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and muscle tension." data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika."
              data-dur-en="90 MINUTES" data-dur-id="90 MENIT"
+             data-sub-en="Strong Pressure Massage" data-sub-id="Pijat Tekanan Kuat"
              data-tag-en="Now 285K" data-tag-id="Kini 285K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">90 MINUTES</span>
-              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-start justify-between mb-4 gap-2">
+              <div class="min-w-0">
+                <span class="card-subtitle block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-sky-300 leading-tight mb-1">Strong Pressure Massage</span>
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">90 MINUTES</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm flex-shrink-0">
                 Now 285K
               </span>
             </div>
@@ -338,6 +346,7 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Body Slimming Treatment (Tummy / Thigh)" data-name-id="Perawatan Body Slimming (Perut / Paha)"
              data-desc-en="Targeted cavitation RF slimming treatment to break down stubborn fat cells, tone skin, and improve body contour. Includes free coffee body scrub." data-desc-id="Terapi pembentukan kontur tubuh modern dengan Cavitation RF untuk memecah sel lemak membandel dan mengencangkan kulit. Termasuk lulur kopi gratis."
              data-dur-en="CAVITATION RF" data-dur-id="CAVITATION RF"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Save Up To 250K" data-tag-id="Hemat Hingga 250K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="&lt;div class=&quot;card-multi-prices space-y-2.5 mb-4&quot;&gt;
@@ -384,9 +393,12 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
   &lt;/div&gt;
 &lt;/div&gt;">
           <div>
-            <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">CAVITATION RF</span>
-              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-start justify-between mb-4 gap-2">
+              <div class="min-w-0">
+                
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">CAVITATION RF</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm flex-shrink-0">
                 Save Up To 250K
               </span>
             </div>
@@ -432,13 +444,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Rose Bali Spa (120 mins)" data-name-id="Rose Bali Spa (120 menit)"
              data-desc-en="Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles." data-desc-id="Kemewahan ekstrak mawar kaya antioksidan serta vitamin A dan C yang meremajakan sel kulit, menyamarkan kerutan, dan memberikan keharuman elegan sepanjang hari."
              data-dur-en="120 MINUTES" data-dur-id="120 MENIT"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Now 600K" data-tag-id="Kini 600K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTES</span>
-              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-start justify-between mb-4 gap-2">
+              <div class="min-w-0">
+                
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTES</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm flex-shrink-0">
                 Now 600K
               </span>
             </div>
@@ -1070,13 +1086,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Balinese Traditional Massage" data-name-id="Pijat Tradisional Bali"
              data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation." data-desc-id="Pijatan khas Bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat."
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
+             data-sub-en="Medium Pressure Massage" data-sub-id="Pijat Tekanan Sedang"
              data-tag-en="Signature Bali" data-tag-id="Signature"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="60m: 215K | 90m: 285K | 120m: 345K" data-multi-id="60m: 215K | 90m: 285K | 120m: 345K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 / 90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                <span class="card-subtitle block text-[10px] font-bold uppercase tracking-wider text-[#0284C7] leading-tight mb-0.5">Medium Pressure Massage</span>
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">60 / 90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1116,13 +1136,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Swedish Relaxing Massage" data-name-id="Pijat Relaksasi Swedish"
              data-desc-en="Scientific massage techniques based on western concepts of anatomy and physiology to aid with detoxing and breaking up muscle knots with long smooth gliding strokes." data-desc-id="Teknik pijatan gaya Eropa dengan gerakan mengusap panjang dan ritmis yang dirancang khusus untuk meredakan stres dan menenangkan pikiran."
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Gentle Care" data-tag-id="Lembut &amp; Menenangkan"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="60m: 200K | 90m: 270K | 120m: 335K" data-multi-id="60m: 200K | 90m: 270K | 120m: 335K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 / 90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">60 / 90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1162,13 +1186,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Deep Tissue / Sports Massage" data-name-id="Pijat Deep Tissue / Sports"
              data-desc-en="Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension." data-desc-id="Pijatan bertekanan kuat menjangkau lapisan otot terdalam. Sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di Canggu."
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
+             data-sub-en="Strong Pressure Massage" data-sub-id="Pijat Tekanan Kuat"
              data-tag-en="Surfer Favorite" data-tag-id="Tekanan Kuat"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="60m: 235K | 90m: 310K | 120m: 385K" data-multi-id="60m: 235K | 90m: 310K | 120m: 385K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 / 90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                <span class="card-subtitle block text-[10px] font-bold uppercase tracking-wider text-[#0284C7] leading-tight mb-0.5">Strong Pressure Massage</span>
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">60 / 90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1208,13 +1236,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Hot Stone Healing Massage" data-name-id="Pijat Terapi Batu Hangat (Hot Stone)"
              data-desc-en="Feel the warmth of smooth stones and professional hands working deeply into your muscles to ease muscle tightness and chronic joint pains. Volcano stones sun-bathed to stabilize energy." data-desc-id="Batu basal vulkanik hangat dialirkan di sepanjang meridian tubuh untuk melonggarkan otot tegang, membuang racun, dan memberikan kehangatan mendalam."
              data-dur-en="90 / 120 Mins" data-dur-id="90 / 120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Healing Warmth" data-tag-id="Terapi Hangat"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="90m: 315K | 120m: 390K" data-multi-id="90m: 315K | 120m: 390K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1254,13 +1286,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Massaji Signature Massage (Advance)" data-name-id="Massaji Signature Massage (Advance)"
              data-desc-en="Developed over years combining the finest massage essence around the world (deep pressure, acupressure, folding massage). Performed exclusively by senior therapists." data-desc-id="Kombinasi eksklusif teknik Tradisional Bali, Lomi-Lomi Hawaii, dan peregangan Thailand yang disesuaikan secara khusus dengan kondisi tubuh Anda."
              data-dur-en="90 / 120 Mins" data-dur-id="90 / 120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Master Technique" data-tag-id="Kombinasi Terbaik"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="90m: 400K | 120m: 500K" data-multi-id="90m: 400K | 120m: 500K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1300,13 +1336,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Pre Natal (Pregnancy Massage)" data-name-id="Pijat Pre Natal (Khusus Ibu Hamil)"
              data-desc-en="Specially designed and customized for pregnant women and changing hormones. Helps relax tense muscles, ease sore spots, and improve circulation safely by senior therapists." data-desc-id="Pijatan lembut dan aman oleh terapis bersertifikat, dirancang untuk meredakan nyeri punggung bawah, bengkak pada kaki, dan kelelahan selama kehamilan."
              data-dur-en="90 / 120 Mins" data-dur-id="90 / 120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Certified Care" data-tag-id="Terapis Tersertifikasi"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="90m: 375K | 120m: 450K" data-multi-id="90m: 375K | 120m: 450K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1346,13 +1386,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Foot Reflexology" data-name-id="Refleksi Kaki Tradisional"
              data-desc-en="Ancient art of stimulating pressure points on feet corresponding to internal organs and glands to restore natural energy flow and equalized well-being throughout the body." data-desc-id="Stimulasi titik-titik saraf pada telapak kaki yang terhubung dengan organ tubuh, membantu melancarkan sirkulasi darah dan menyegarkan langkah Anda."
              data-dur-en="30 / 60 / 90 / 120 Mins" data-dur-id="30 / 60 / 90 / 120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Vital Points" data-tag-id="Penyegaran Kaki"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="30m: 135K | 60m: 185K | 90m: 235K | 120m: 285K" data-multi-id="30m: 135K | 60m: 185K | 90m: 235K | 120m: 285K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 / 60 / 90 / 120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 / 60 / 90 / 120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1392,13 +1436,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Head &amp; Shoulder Tension Relief" data-name-id="Pijat Kepala, Leher &amp; Bahu"
              data-desc-en="Focuses on built-up stress and muscle tension in neck and shoulders. Helps relieve headaches, improve concentration, and encourage deep, restorative sleep." data-desc-id="Fokus pada area punggung atas, pundak, dan kulit kepala untuk melepaskan ketegangan akibat terlalu lama duduk di depan komputer atau perjalanan jauh."
              data-dur-en="30 / 60 Mins" data-dur-id="30 / 60 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Fast Relief" data-tag-id="Redakan Kaku"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="30m: 160K | 60m: 200K" data-multi-id="30m: 160K | 60m: 200K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 / 60 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 / 60 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1438,13 +1486,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Focused Back Massage" data-name-id="Pijat Khusus Punggung"
              data-desc-en="Developed from years of experience focusing on the back area only. Tailored specifically for busy travelers on the go and in a rush." data-desc-id="Perawatan terarah pada area pinggang dan tulang punggung untuk meredakan rasa pegal dan kaku otot secara instan."
              data-dur-en="45 Mins" data-dur-id="45 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Targeted" data-tag-id="Fokus Punggung"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">45 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">45 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1481,13 +1533,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Acupressure Facial Massage" data-name-id="Totok Wajah Akupresur"
              data-desc-en="Stimulates facial blood circulation, relaxes delicate facial muscles, and enhances skin elasticity for tension relief and a brighter complexion." data-desc-id="Pijatan titik akupresur pada wajah untuk melancarkan aliran darah, mengurangi ketegangan otot wajah, dan membantu mengencangkan kulit secara alami."
              data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Glow" data-tag-id="Kulit Segar"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1524,13 +1580,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Cellulite Massage with Machine" data-name-id="Pijat Selulit dengan Mesin Khusus"
              data-desc-en="Focus on Thigh, Buttock, or Arm. Deep tissue manipulation, kneading &amp; skin rolling (60m) combined with percussion Gryatory machine (30m) to break down fat deposits and improve lymphatic drainage." data-desc-id="Kombinasi pijat manual dan bantuan mesin khusus untuk merangsang drainase limfatik, memecah timbunan selulit, dan menghaluskan permukaan kulit."
              data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Contouring" data-tag-id="Pengencangan"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Massage</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1567,13 +1627,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Anti Cellulite Full Treatment" data-name-id="Perawatan Anti-Selulit Lengkap"
              data-desc-en="Focus: Thigh or Buttock. Includes Foot Bath, coffee body scrub (15m), infrared body wrap (15m), cellulite massage (45m), skin roller (15m), and Grayatory percussion machine (30m). Free coffee scrub on affected area." data-desc-id="Perawatan menyeluruh: lulur pengelupasan selulit, pijatan limfatik dengan krim pembakar lemak, dan masker pembungkus tubuh untuk hasil optimal."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Full Protocol" data-tag-id="Paket Kontur"
              data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1610,13 +1674,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Body Slimming Cavitation RF (Arm)" data-name-id="Body Slimming Cavitation RF (Lengan)"
              data-desc-en="Radio frequency cavitation generates heat in deep skin layers to stimulate collagen, elastin, and break down fat cells for arm contouring. FREE coffee body scrub included." data-desc-id="Terapi gelombang ultrasonik Cavitation dan Radio Frequency terarah untuk mengurangi lingkar lengan atas dan mengencangkan kulit kendur."
              data-dur-en="135 Mins" data-dur-id="135 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Cavitation RF" data-tag-id="Target Lengan"
              data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">135 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1653,13 +1721,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Body Slimming Cavitation RF (Thigh)" data-name-id="Body Slimming Cavitation RF (Paha)"
              data-desc-en="Targeted RF slimming for thighs to break down stubborn fat cells, tone skin, and improve contour. Includes complimentary coffee body scrub for enhanced absorption." data-desc-id="Pengencangan dan pembentukan area paha serta bokong dengan teknologi RF modern untuk mengurangi selulit dan meratakan kontur kaki."
              data-dur-en="135 Mins" data-dur-id="135 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Cavitation RF" data-tag-id="Target Paha"
              data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">135 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1696,13 +1768,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Body Slimming Cavitation RF (Tummy)" data-name-id="Body Slimming Cavitation RF (Perut)"
              data-desc-en="Intensive abdominal cavitation RF treatment to reduce stubborn tummy fat and tighten skin tissue. Includes complimentary coffee body scrub." data-desc-id="Fokus pada area perut dan pinggang untuk memecah lemak subkutan membandel, merampingkan lingkar pinggang, dan mengencangkan otot perut."
              data-dur-en="135 Mins" data-dur-id="135 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Best Slimming" data-tag-id="Target Perut"
              data-cat-en="Slimming & Cellulite" data-cat-id="Slimming & Selulit"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Slimming & Cellulite</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">135 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">135 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1739,13 +1815,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Aloe Vera Body Treatment Spa" data-name-id="Aloe Vera Sunburn Relief Body Spa"
              data-desc-en="Pure aloe vera and honey remedy. Includes Foot Bath + Balinese Massage (75m), Aloe vera body mask (15m), and Aloe vera facial treatment (30m) to soothe and deeply hydrate sun-exposed skin." data-desc-id="Pilihan utama sehabis berjemur di pantai: gel lidah buaya murni dingin yang menyejukkan kulit terbakar matahari, dilanjutkan pijat relaksasi lembut."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Sun Soothing" data-tag-id="Penenang Kulit"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1782,13 +1862,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Balinese Boreh Warming Herbal Spa" data-name-id="Balinese Boreh Warming Herbal Spa"
              data-desc-en="Fresh herbs daily blended. Foot bath, Traditional Balinese Massage (75m), warming Balinese Boreh scrub (30m), and Flower Bath with Bali Jasmine salt (15m) to relieve joint and muscle soreness." data-desc-id="Tradisi ramuan rempah khas Bali (cengkeh, jahe, pala, dan beras) yang menghangatkan tubuh dari dalam, melemaskan persendian, dan membuang angin."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Authentic Ritual" data-tag-id="Tradisi Leluhur"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1825,13 +1909,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Green Tea &amp; Matcha Detox Spa" data-name-id="Green Tea &amp; Matcha Detox Spa"
              data-desc-en="Pure matcha &amp; green tea antioxidants. Foot Bath + Balinese Massage (75m), Green Tea scrub (20m), Hot Himalayan Salt &amp; Flower back compress (10m), Flower Bath with aromatherapy (15m)." data-desc-id="Kaya antioksidan polifenol untuk mendetoksifikasi racun kulit, mengangkat sel kulit mati, dan mengembalikan kesegaran alami tubuh."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Antioxidant" data-tag-id="Detoks Alami"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1868,13 +1956,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Rose Bali Anti-Aging Spa" data-name-id="Rose Bali Anti-Aging Body Spa"
              data-desc-en="Rich in vitamins A &amp; C. Foot bath, Full body Massage (60m), Rose scrub (25m), Rose Body Mask (20m), Flower bath with aromatherapy (15m) to smooth skin and boost natural collagen." data-desc-id="Perawatan lulur dan masker bunga mawar aromatik yang melembutkan tekstur kulit, menjaga elastisitas, dan memberikan aroma mewah tahan lama."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Botanical Rose" data-tag-id="Peremajaan Kulit"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1911,13 +2003,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Refreshing Pear Vanilla Spa" data-name-id="Refreshing Pear Vanilla Body Spa"
              data-desc-en="Natural antioxidant with pure vanilla extract &amp; Vitamin B. Foot bath, Balinese Massage (75m), Pear &amp; Vanilla Body Scrub (15m), Body Mask (15m), Flower bath with aromatherapy (15m)." data-desc-id="Perpaduan manis dan segar buah pir serta vanila lembut yang menghidrasi kulit kering, mencerahkan warna kulit, dan menenangkan indra."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Special Ingredient" data-tag-id="Aroma Manis"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1954,13 +2050,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Magnolia &amp; Mint Body Spa" data-name-id="Magnolia &amp; Mint Refreshing Spa"
              data-desc-en="Magnolia bark &amp; flower reduces anxiety and tension. Footbath, Infrared detox wrap (15m), Facial Massage (15m), Balinese Massage (75m), Magnolia &amp; mint scrub (20m), mask (15m), Flower Bath (25m)." data-desc-id="Sensasi dingin menyegarkan dari daun mint berpadu keharuman bunga cempaka magnolia yang membangkitkan energi dan meredakan kelelahan tubuh."
              data-dur-en="150 Mins" data-dur-id="150 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Special Ingredient" data-tag-id="Sensasi Dingin"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">150 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -1997,13 +2097,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Sandalwood &amp; Turmeric Spa" data-name-id="Sandalwood &amp; Turmeric Royal Spa"
              data-desc-en="Iconic woody sandalwood calming aroma and pure active curcumin turmeric. Foot Bath, Infrared wrap (15m), Facial Massage (15m), Balinese Massage (75m), Scrub (20m), Mask (15m), Flower Bath (25m)." data-desc-id="Rahasia kecantikan putri keraton dengan lulur kunyit murni dan kayu cendana aromatik untuk mencerahkan kulit serta menjadikannya halus berseri."
              data-dur-en="150 Mins" data-dur-id="150 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Special Ingredient" data-tag-id="Lulur Keraton"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">150 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2040,13 +2144,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Lavender Rosemary Mint Body Spa" data-name-id="Lavender Rosemary Mint Body Spa"
              data-desc-en="Pure lavender and natural rosemary analgesic. Foot Bath, Infrared wrap (15m), Facial Massage (15m), Balinese Massage (75m), Rosemary Scrub (20m), Lavender Mask (15m), Flower Bath (25m)." data-desc-id="Aromaterapi lavender menenangkan dipadu rosemary dan mint untuk mengatasi insomnia, meredakan ketegangan saraf, dan memberikan relaksasi total."
              data-dur-en="150 Mins" data-dur-id="150 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Special Ingredient" data-tag-id="Tidur Nyenyak"
              data-cat-en="Body Spa Treatment" data-cat-id="Ritual Body Spa & Lulur"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Body Spa Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">150 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">150 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2083,13 +2191,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Biokos Botanical Facial (60 Mins)" data-name-id="Biokos Botanical Facial (60 Menit)"
              data-desc-en="Facial Cleansing, Facial Acupressure Massage, Facial Scrub, and nourishing Botanical Facial Mask." data-desc-id="Perawatan wajah alami dengan produk Biokos berbahan botani aktif untuk membersihkan pori-pori secara mendalam dan menjaga kelembapan kulit."
              data-dur-en="60 Mins" data-dur-id="60 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Pure Botanical" data-tag-id="Bahan Botani"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">60 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2126,13 +2238,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Biokos Deluxe Facial (90 Mins)" data-name-id="Biokos Deluxe Facial (90 Menit)"
              data-desc-en="Face Cleansing, Facial Massage, Scrub, Mask, combined with relaxing Head &amp; Shoulder Massage (30 mins)." data-desc-id="Pembersihan menyeluruh, penguapan, ekstraksi komedo lembut, pijat totok wajah akupresur, dan masker nutrisi untuk wajah tampak cerah berseri."
              data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Deluxe Glow" data-tag-id="Perawatan Lengkap"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2169,13 +2285,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Biokos Ultimate Deep Facial (120 Mins)" data-name-id="Biokos Ultimate Deep Facial (120 Menit)"
              data-desc-en="Face Cleansing, Face Massage, Scrub, Mask, Face Steam, Facial Extraction, and relaxing Head &amp; Shoulder Massage (30 mins)." data-desc-id="Facial lengkap dengan perawatan intensif serum anti-penuaan, masker kolagen premium, dan pijat leher serta pundak yang menenangkan."
              data-dur-en="120 Mins" data-dur-id="120 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Deep Cleanse" data-tag-id="Perawatan Paripurna"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">120 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">120 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2212,13 +2332,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Hi-Frequency Machine with Violet Rays" data-name-id="Terapi Wajah High-Frequency Violet Rays"
              data-desc-en="Safe electrical currents to oxygenate skin, eliminate acne-causing bacteria, reduce inflammation, tighten pores, and boost collagen." data-desc-id="Teknologi sinar frekuensi tinggi untuk membunuh bakteri penyebab jerawat, mengecilkan pori-pori, dan mempercepat regenerasi sel kulit."
              data-dur-en="10 Mins" data-dur-id="10 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Clinical Add-on" data-tag-id="Anti-Bakteri"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">10 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">10 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2255,13 +2379,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Cold Light LED Facial Therapy" data-name-id="Terapi Wajah LED Cold Light Therapy"
              data-desc-en="Specific LED wavelengths combined with cold compress technology to soothe, tighten pores, boost collagen, and accelerate deep serum absorption." data-desc-id="Penyinaran LED cahaya dingin untuk menenangkan kemerahan kulit, merangsang pembentukan kolagen baru, dan mencerahkan warna kulit kusam."
              data-dur-en="10 Mins" data-dur-id="10 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Clinical Add-on" data-tag-id="Terapi Cahaya"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">10 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">10 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2298,13 +2426,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="RF Facial Machine for Wrinkle (Face Iron)" data-name-id="Mesin RF Wajah Anti-Kerutan (Face Iron)"
              data-desc-en="Non-surgical radio frequency skin treatment heating deep layers to stimulate collagen and elastin for firmer, smoother skin and contoured facial lines." data-desc-id="Gelombang radio frekuensi yang menghantarkan panas lembut ke lapisan kolagen dermis untuk mengencangkan garis halus dan membentuk V-shape wajah."
              data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Anti-Aging RF" data-tag-id="Pengencangan Wajah"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">15 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2341,13 +2473,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Instant Firming Kaolin Mask" data-name-id="Masker Pengencang Instan Kaolin Clay"
              data-desc-en="Kaolin clay mask absorbs excess oil, detoxifies pores, reduces acne, soothes redness, and tightens facial contours." data-desc-id="Masker lumpur kaolin mineral murni yang menyerap minyak berlebih, membersihkan kotoran pori, dan memberikan efek kulit kencang instan."
              data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Detox Mask" data-tag-id="Masker Lumpur"
              data-cat-en="Facial Treatment" data-cat-id="Perawatan Wajah"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Facial Treatment</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">15 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2384,13 +2520,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Deluxe Hands Spa with Nail Gel" data-name-id="Deluxe Hands Spa dengan Kutek Gel"
              data-desc-en="Nail Cutting, Nail Shaping, Cuticle Grooming, Hand Soak, Hand Scrub, Hand Mask, Hand Massage, and long-lasting Nail Gel polish." data-desc-id="Perawatan tangan mewah: perendaman aromaterapi, pembersihan kutikula, scrubbing halus, pijatan tangan, dan aplikasi cat kuku gel tahan lama."
              data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Complete Care" data-tag-id="Perawatan Tangan"
              data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2427,13 +2567,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Deluxe Foot Spa with Nail Gel" data-name-id="Deluxe Foot Spa dengan Kutek Gel"
              data-desc-en="Nail Cutting, Shaping, Cuticle Grooming, Foot Soak, Callus Removal, Foot Scrub, Hand Mask, Calf Massage, and Nail Gel polish." data-desc-id="Perawatan kaki komprehensif: perendaman garam mineral, pengikisan kulit kapalan, pijat kaki menenangkan, dan polesan cat kuku gel berkualitas."
              data-dur-en="90 Mins" data-dur-id="90 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Complete Care" data-tag-id="Perawatan Kaki"
              data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">90 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">90 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2470,13 +2614,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Basic Nail Hand or Foot with Gel" data-name-id="Manikur / Pedikur Dasar dengan Gel"
              data-desc-en="Nail Cutting, Nail Shaping, Cuticle Grooming, and Basic Nail Gel application." data-desc-id="Pembentukan kuku rapi, perapian kutikula, dan pulasan kutek gel warna pilihan Anda dengan hasil kilau sempurna dan tahan lama."
              data-dur-en="60 Mins" data-dur-id="60 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Essentials" data-tag-id="Kuku Cantik"
              data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
              data-multi-en="Nail Hand: 150K | Foot: 150K" data-multi-id="Nail Hand: 150K | Foot: 150K">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">60 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2516,13 +2664,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Dr. Feeto Callus Removal Treatment" data-name-id="Perawatan Penghilang Kapalan Dr. Feeto"
              data-desc-en="Fast and efficient treatment removing calluses and cracked heels for velvety smooth, soft, and beautiful feet." data-desc-id="Formula khusus Dr. Feeto untuk mengikis lapisan kulit mati dan tumit pecah-pecah secara lembut, mengembalikan kelembutan alami telapak kaki."
              data-dur-en="60 Mins" data-dur-id="60 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Smooth Heels" data-tag-id="Kaki Lembut"
              data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">60 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">60 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2559,13 +2711,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Nail Gel Remover &amp; Custom Art" data-name-id="Pembersihan Kutek Gel &amp; Nail Art Kustom"
              data-desc-en="Professional nail gel removal, French Nail Gel, Cat Eye Gel, Marble Design, and Aurora chrome nail art." data-desc-id="Pembersihan kutek gel lama secara aman tanpa merusak lapisan kuku asli, serta layanan kreasi nail art motif kustom sesuai selera Anda."
              data-dur-en="Service Add-on" data-dur-id="Layanan Tambahan"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Art &amp; Removal" data-tag-id="Nail Art"
              data-cat-en="Nail Service" data-cat-id="Layanan & Seni Kuku"
              data-multi-en="Gel Remover: 100K | French/Cat Eye/Aurora: 10K/nail | Marble: 15K/nail" data-multi-id="Gel Remover: 100K | French/Cat Eye/Aurora: 10K/nail | Marble: 15K/nail">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Nail Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">Service Add-on</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">Service Add-on</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2605,13 +2761,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Flower Bath with Aromatherapy" data-name-id="Mandi Berendam Bunga Aromaterapi"
              data-desc-en="Indulge yourself with fresh exotic flower petals, soothing aromatherapy, and mineral salt soak after any spa session." data-desc-id="Berendam santai di bathtub yang dipenuhi kelopak bunga mawar segar dan tetesan minyak aromaterapi murni untuk ketenangan jiwa seutuhnya."
              data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Self Care" data-tag-id="Sensasi Mewah"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2648,13 +2808,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Homemade Oatmeal &amp; Rice Body Scrub" data-name-id="Lulur Alami Oatmeal &amp; Beras Tradisional"
              data-desc-en="Oatmeal &amp; rice powder exfoliates dead skin cells, prevents ingrown hair, and improves hydration. Choose your favourite scent." data-desc-id="Racikan lulur alami oatmeal dan butiran beras halus untuk mengangkat kotoran serta sel kulit mati, menjadikan kulit selembut sutra."
              data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Exfoliation" data-tag-id="Eksfoliasi Lembut"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2691,13 +2855,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Calming Oatmeal Body Mask" data-name-id="Masker Tubuh Menenangkan Oatmeal"
              data-desc-en="Calms skin irritation, reduces redness, ideal for sensitive and sun-damaged skin, leaving it soft and supple." data-desc-id="Masker tubuh kaya nutrisi yang menyejukkan kulit sensitif, meredakan iritasi, serta mengembalikan kelembapan alami kulit tubuh."
              data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Soothe" data-tag-id="Nutrisi Kulit"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2734,13 +2902,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Hot Himalayan Salt &amp; Flower Compress" data-name-id="Kompres Hangat Garam Himalaya &amp; Bunga"
              data-desc-en="Rich in mineral traces (iron, potassium, magnesium) to soothe deep muscle tension and muscle cramps on legs, shoulders &amp; back." data-desc-id="Kompres hangat butiran garam merah muda Himalaya dan rempah bunga kering pada titik pegal untuk meredakan ketegangan otot mendalam."
              data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Mineral Heat" data-tag-id="Terapi Alami"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">15 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2777,13 +2949,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Detoxifying Infra Red Body Wrap" data-name-id="Bungkus Tubuh Detoksifikasi Infra Red"
              data-desc-en="Deep penetrating infrared heat promotes sweating, detoxification, calorie burning, and temporary joint/muscle pain relief." data-desc-id="Selimut sauna sinar inframerah gelombang jauh yang merangsang keringat detoks, membakar kalori, dan melancarkan metabolisme tubuh."
              data-dur-en="30 Mins" data-dur-id="30 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Infrared" data-tag-id="Detoks Panas"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">30 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">30 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2820,13 +2996,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Hydrating Facial Mask Add-on" data-name-id="Tambahan Masker Wajah Menghidrasi"
              data-desc-en="Hyaluronic acid, glycerin &amp; ceramides to soothe dryness, lock in moisture, and restore skin suppleness." data-desc-id="Tambahan masker wajah kaya serum pelembap intensif yang dapat dipadukan dengan perawatan spa tubuh pilihan Anda."
              data-dur-en="15 Mins" data-dur-id="15 Menit"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Hydration" data-tag-id="Ekstra Hidrasi"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">15 Mins</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">15 Mins</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2863,13 +3043,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Exclusive Spa Gift Voucher Card" data-name-id="Voucher Hadiah Spa Eksklusif"
              data-desc-en="The ideal gift for your special one. We provide a luxury gift voucher card with any treatment chosen from our menu." data-desc-id="Hadiah istimewa paling berkesan untuk orang tercinta. Kartu voucher mewah yang dapat ditukarkan dengan pilihan perawatan apa pun di menu kami."
              data-dur-en="Custom Treatment" data-dur-id="Perawatan Kustom"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Gift Card" data-tag-id="Gift Card"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">Custom Treatment</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">Custom Treatment</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
@@ -2906,13 +3090,17 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
              data-name-en="Birthday / Anniversary Surprise Package" data-name-id="Paket Kejutan Ulang Tahun / Anniversary"
              data-desc-en="Sweet memorable surprise setup: Simple flower bouquet, romantic candles around bathtub, aromatherapy flower bath, and mini birthday cake." data-desc-id="Dekorasi romantis suite spa dengan lilin aromatik, taburan kelopak bunga khusus ucapan selamat, dan ucapan personal untuk merayakan momen bahagia Anda."
              data-dur-en="Romantic Add-on" data-dur-id="Sentuhan Romantis"
+             data-sub-en="" data-sub-id=""
              data-tag-en="Celebration" data-tag-id="Momen Spesial"
              data-cat-en="Additional Service" data-cat-id="Layanan Tambahan"
              data-multi-en="" data-multi-id="">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">Additional Service</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">Romantic Add-on</span>
+              <div class="text-right flex-shrink-0">
+                
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">Romantic Add-on</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">

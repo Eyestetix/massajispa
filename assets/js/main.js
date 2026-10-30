@@ -293,6 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (val) descEl.textContent = val;
       }
 
+      const subEl = card.querySelector('.card-subtitle');
+      if (subEl) {
+        const val = isId ? (card.dataset.subId || card.dataset.subEn) : card.dataset.subEn;
+        if (val) subEl.textContent = val;
+      }
+
       const durEl = card.querySelector('.card-duration');
       if (durEl) {
         const val = isId ? (card.dataset.durId || card.dataset.durEn) : card.dataset.durEn;

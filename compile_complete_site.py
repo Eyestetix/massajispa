@@ -116,6 +116,9 @@ for item in promo_items:
     esc_dur_id = html.escape(item.get('duration_id', item.get('duration', '')))
     esc_tag_en = html.escape(item.get('tag', 'Big Promo'))
     esc_tag_id = html.escape(item.get('tag_id', item.get('tag', 'Promo Besar')))
+    esc_sub_en = html.escape(item.get('subtitle', ''))
+    esc_sub_id = html.escape(item.get('subtitle_id', ''))
+    subtitle_promo_html = f'<span class="card-subtitle block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-sky-300 leading-tight mb-1">{esc_sub_en}</span>' if esc_sub_en else ''
 
     safe_js_name = esc_name_en.replace("'", "\\'")
     norm = fmt_price(item['normal_price']) if item.get('normal_price') else ''
@@ -212,13 +215,17 @@ for item in promo_items:
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
              data-desc-en="{esc_desc_en}" data-desc-id="{esc_desc_id}"
              data-dur-en="{dur_clean_en}" data-dur-id="{dur_clean_id}"
+             data-sub-en="{esc_sub_en}" data-sub-id="{esc_sub_id}"
              data-tag-en="{esc_tag_en}" data-tag-id="{esc_tag_id}"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="{esc_pills_en}" data-multi-id="{esc_pills_id}">
           <div>
-            <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">{dur_clean_en}</span>
-              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
+            <div class="flex items-start justify-between mb-4 gap-2">
+              <div class="min-w-0">
+                {subtitle_promo_html}
+                <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">{dur_clean_en}</span>
+              </div>
+              <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm flex-shrink-0">
                 {esc_tag_en}
               </span>
             </div>
@@ -316,6 +323,9 @@ for idx, item in enumerate(treatment_items):
     esc_dur_id = html.escape(item.get('duration_id', item.get('duration', '')))
     esc_tag_en = html.escape(item.get('tag', 'Featured'))
     esc_tag_id = html.escape(item.get('tag_id', item.get('tag', 'Pilihan')))
+    esc_sub_en = html.escape(item.get('subtitle', ''))
+    esc_sub_id = html.escape(item.get('subtitle_id', ''))
+    subtitle_treatment_html = f'<span class="card-subtitle block text-[10px] font-bold uppercase tracking-wider text-[#0284C7] leading-tight mb-0.5">{esc_sub_en}</span>' if esc_sub_en else ''
     cat_label_en = cat_labels_en.get(item['category'], item['category'].title())
     cat_label_id = cat_labels_id.get(item['category'], item['category'].title())
     esc_multi_en = html.escape(item.get('multi_prices', ''))
@@ -351,13 +361,17 @@ for idx, item in enumerate(treatment_items):
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
              data-desc-en="{esc_desc_en}" data-desc-id="{esc_desc_id}"
              data-dur-en="{esc_dur_en}" data-dur-id="{esc_dur_id}"
+             data-sub-en="{esc_sub_en}" data-sub-id="{esc_sub_id}"
              data-tag-en="{esc_tag_en}" data-tag-id="{esc_tag_id}"
              data-cat-en="{cat_label_en}" data-cat-id="{cat_label_id}"
              data-multi-en="{esc_multi_en}" data-multi-id="{esc_multi_id}">
           <div>
-            <div class="flex items-center justify-between text-xs mb-1.5">
+            <div class="flex items-start justify-between text-xs mb-1.5 gap-2">
               <span class="card-category text-[#0284C7] font-bold uppercase tracking-wider text-[11px]">{cat_label_en}</span>
-              <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold">{esc_dur_en}</span>
+              <div class="text-right flex-shrink-0">
+                {subtitle_treatment_html}
+                <span class="card-duration text-[#64748B] font-mono text-[11px] font-semibold block">{esc_dur_en}</span>
+              </div>
             </div>
             <div class="flex items-center gap-1.5 mb-2">
               <span class="card-tag inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E1F0FE] text-[#1E3A8A] border border-[#BAE0FD]">
