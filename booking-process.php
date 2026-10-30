@@ -3,6 +3,8 @@
 date_default_timezone_set('Asia/Makassar');
 header('Content-Type: application/json; charset=utf-8');
 
+require_once __DIR__ . '/includes/mailer.php';
+
 // -----------------------------------------------------------
 // 1. Cross-Origin Resource Sharing (CORS) Configuration
 // -----------------------------------------------------------
@@ -558,27 +560,19 @@ $email_body = '<!DOCTYPE html>
 </body>
 </html>';
 
-// Assemble multipart/alternative message body
-$email_message  = "--" . $boundary . "\r\n";
-$email_message .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$email_message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-$email_message .= $plain_body . "\r\n\r\n";
-$email_message .= "--" . $boundary . "\r\n";
-$email_message .= "Content-Type: text/html; charset=UTF-8\r\n";
-$email_message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-$email_message .= $email_body . "\r\n\r\n";
-$email_message .= "--" . $boundary . "--";
-
+// -----------------------------------------------------------
+// 7. Dispatch via Authenticated SMTP (PHPMailer mail.massaji.net:465)
+// -----------------------------------------------------------
 $mail_sent = false;
+$mail_error = null;
+
 try {
-    // Attempt sending with envelope sender (-f)
-    $mail_sent = @mail($to, $subject, $email_message, implode("\r\n", $headers), "-f" . $domain_from);
-    if (!$mail_sent) {
-        // Fallback without 5th parameter if host MTA restricts envelope flag
-        $mail_sent = @mail($to, $subject, $email_message, implode("\r\n", $headers));
+    if (function_exists('send_smtp_notification')) {
+        $mail_sent = send_smtp_notification($new_booking, $email_body, $plain_body, $mail_error);
     }
 } catch (\Throwable $e) {
     $mail_sent = false;
+    $mail_error = 'SMTP dispatch exception';
 }
 
 // Return clean response - failed email never invalidates persisted booking

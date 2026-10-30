@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "host": "mail.massaji.net",
+  "port": 465,
+  "secure": "ssl",
+  "auth": true,
+  "username": "reservation@massaji.net",
+  "password": "YOUR_CPANEL_PASSWORD_HERE",
+  "from_email": "reservation@massaji.net",
+  "from_name": "Massaji Spa Bali",
+  "to_email": "eyestetix@gmail.com"
+}

@@ -136,6 +136,42 @@ switch ($action) {
         exit;
 
     // ----------------------------------------------------
+    // Test SMTP & Diagnostics
+    // ----------------------------------------------------
+    case 'test_smtp':
+        require_once __DIR__ . '/../includes/mailer.php';
+        $test_booking = [
+            'id' => 'TEST-' . date('His'),
+            'name' => 'Admin Diagnostic Test',
+            'email' => 'eyestetix@gmail.com',
+            'phone' => '+6281236695755',
+            'service' => 'Diagnostic SMTP Verification',
+            'date' => date('Y-m-d'),
+            'time' => date('H:i'),
+            'guests' => 1,
+            'notes' => 'Testing authenticated SMTP connection to mail.massaji.net:465'
+        ];
+        $test_html = '<div style="font-family: sans-serif; padding: 20px; color: #141E3C;"><h2>Test Notification Massaji Spa</h2><p>This is a test notification verifying that authenticated SMTP on <b>mail.massaji.net:465</b> is connected and functional.</p><p>Timestamp: <b>' . date('Y-m-d H:i:s') . ' WITA</b></p></div>';
+        $test_plain = "Test Notification Massaji Spa\r\nAuthenticated SMTP on mail.massaji.net:465 is connected.\r\nTimestamp: " . date('Y-m-d H:i:s') . " WITA\r\n";
+        $err = null;
+        $ok = send_smtp_notification($test_booking, $test_html, $test_plain, $err);
+        echo json_encode([
+            'success' => $ok,
+            'message' => $ok ? 'Email uji coba berhasil dikirim ke eyestetix@gmail.com!' : ('Gagal mengirim email: ' . $err),
+            'logs'    => file_exists(__DIR__ . '/../data/mail_log.json') ? array_slice(json_decode(file_get_contents(__DIR__ . '/../data/mail_log.json'), true), 0, 5) : []
+        ]);
+        exit;
+
+    case 'get_mail_logs':
+        $mail_log_file = __DIR__ . '/../data/mail_log.json';
+        $logs = file_exists($mail_log_file) ? json_decode(file_get_contents($mail_log_file), true) : [];
+        echo json_encode([
+            'success' => true,
+            'logs'    => is_array($logs) ? $logs : []
+        ]);
+        exit;
+
+    // ----------------------------------------------------
     // Save General & Contact Settings
     // ----------------------------------------------------
     case 'save_settings':

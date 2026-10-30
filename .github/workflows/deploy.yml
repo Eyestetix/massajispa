@@ -47,4 +47,7 @@ jobs:
             data/settings.json
             data/menu.json
             data/promo.json
+            data/smtp_config.json
+            data/mail_log.json
+            data/logs/**
             assets/uploads/**

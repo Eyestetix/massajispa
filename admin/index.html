@@ -521,10 +521,15 @@
                   <label class="block text-xs font-bold tracking-wider uppercase text-[#1E3A8A]">
                     Email Tujuan Notifikasi Reservasi
                   </label>
-                  <a href="../email-preview.html" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-[#0284C7] hover:text-[#1E3A8A] transition-colors">
-                    <span>Lihat Desain Template</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                  </a>
+                  <div class="flex items-center gap-3">
+                    <button type="button" onclick="testSmtpConnection()" class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 hover:text-emerald-900 transition-colors cursor-pointer" title="Uji Coba Pengiriman Email SMTP">
+                      <span>⚡ Test SMTP</span>
+                    </button>
+                    <a href="../email-preview.html" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-[#0284C7] hover:text-[#1E3A8A] transition-colors">
+                      <span>Lihat Desain Template</span>
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                  </div>
                 </div>
                 <input type="email" id="field-email" name="booking_email" value="eyestetix@gmail.com" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
                 <p class="text-[11px] text-[#64748B] mt-1.5 flex items-center gap-1">
@@ -1794,6 +1799,28 @@
         showToast('Pengaturan kontak berhasil diperbarui!', true);
       }
     });
+
+    // 11.1 Test SMTP Notification Dispatch
+    async function testSmtpConnection() {
+      showToast('Menguji koneksi SMTP ke mail.massaji.net:465...', true);
+      try {
+        const fd = new FormData();
+        fd.append('action', 'test_smtp');
+        const res = await postAdminApi(fd);
+        if (res && res.ok) {
+          const json = await res.json().catch(() => null);
+          if (json && json.success) {
+            showToast('✅ ' + json.message, true);
+          } else {
+            showToast('❌ ' + ((json && json.message) || 'Koneksi SMTP gagal. Periksa konfigurasi di data/smtp_config.json'), false);
+          }
+        } else {
+          showToast('❌ Gagal menghubungi server untuk uji coba SMTP.', false);
+        }
+      } catch (e) {
+        showToast('❌ Terjadi kesalahan saat menguji SMTP.', false);
+      }
+    }
 
     // Helper to format reservation timestamp cleanly in WITA (UTC+8)
     function formatBookingCreatedAt(b) {

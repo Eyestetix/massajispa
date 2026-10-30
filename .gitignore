@@ -12,3 +12,8 @@ assets/uploads/*
 
 # Runtime booking logs (tracked with initial seed data)
 # data/bookings.json
+
+# SMTP Configuration & Mail Logs (Never commit credentials)
+data/smtp_config.json
+data/mail_log.json
+data/logs/

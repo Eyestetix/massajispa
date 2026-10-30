@@ -328,6 +328,24 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                     'bookings': read_j('bookings.json', [])
                 }
 
+            elif action == 'test_smtp':
+                resp = {
+                    'success': True,
+                    'message': 'Simulasi SMTP: Siap mengirim via mail.massaji.net:465 ke eyestetix@gmail.com.',
+                    'logs': []
+                }
+
+            elif action == 'get_mail_logs':
+                mail_log_file = os.path.join(DIRECTORY, 'data', 'mail_log.json')
+                logs = []
+                if os.path.exists(mail_log_file):
+                    try:
+                        with open(mail_log_file) as f:
+                            logs = json.load(f)
+                    except Exception:
+                        pass
+                resp = {'success': True, 'logs': logs}
+
             elif action == 'get_all_data':
                 def read_j(fn, default):
                     fp = os.path.join(DIRECTORY, 'data', fn)
