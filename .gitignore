@@ -10,5 +10,5 @@ assets/uploads/*
 !assets/uploads/.gitkeep
 !assets/uploads/.htaccess
 
-# Runtime booking logs
-data/bookings.json
+# Runtime booking logs (tracked with initial seed data)
+# data/bookings.json

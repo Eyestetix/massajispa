@@ -1002,6 +1002,34 @@ function initMassajiApp() {
         }
         const fallbackWaUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
 
+        // Save booking locally for instant preview & static GitHub Pages support
+        try {
+          const now = new Date();
+          const pad = (n) => String(n).padStart(2, '0');
+          const dateStr = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+          const localBooking = {
+            id: 'BK-' + now.getTime().toString().slice(-8),
+            created_at: dateStr,
+            name: name,
+            email: formData.get('email') || '',
+            phone: phone,
+            service: service,
+            date: date,
+            time: time,
+            guests: guests,
+            notes: notes,
+            source: detectedSource,
+            device: detectedDevice,
+            channel: 'Website Form -> WhatsApp',
+            status: 'pending'
+          };
+          const existing = JSON.parse(safeGetStorage('massaji_client_bookings', '[]')) || [];
+          existing.unshift(localBooking);
+          safeSetStorage('massaji_client_bookings', JSON.stringify(existing.slice(0, 100)));
+        } catch (e) {
+          console.warn('Local booking storage error:', e);
+        }
+
         try {
           const response = await fetch('booking-process.php', {
             method: 'POST',

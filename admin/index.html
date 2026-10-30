@@ -1701,7 +1701,25 @@
     // 12. Bookings Table Render
     function renderBookingsList(bookings) {
       const container = document.getElementById('bookings-table-container');
-      if (!bookings || bookings.length === 0) {
+
+      // Merge server bookings with client localStorage bookings (for static / GitHub Pages preview)
+      let merged = Array.isArray(bookings) ? [...bookings] : [];
+      try {
+        const local = JSON.parse(localStorage.getItem('massaji_client_bookings') || '[]');
+        if (Array.isArray(local) && local.length > 0) {
+          local.forEach(lb => {
+            const exists = merged.some(b => 
+              (b.id && lb.id && b.id === lb.id) ||
+              (b.name === lb.name && b.date === lb.date && b.time === lb.time && b.service === lb.service)
+            );
+            if (!exists) {
+              merged.unshift(lb);
+            }
+          });
+        }
+      } catch (e) {}
+
+      if (!merged || merged.length === 0) {
         container.innerHTML = `
           <div class="text-center py-12 border border-dashed border-[#BAE0FD] rounded-xl bg-[#F0F8FF]/50">
             <svg class="w-10 h-10 mx-auto text-[#0284C7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -1728,7 +1746,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-[#BAE0FD]">
-              ${bookings.map(b => `
+              ${merged.map(b => `
                 <tr class="hover:bg-[#F0F8FF]/50 transition">
                   <td class="py-3 px-4 font-mono text-[#475569] whitespace-nowrap">${b.created_at || '-'}</td>
                   <td class="py-3 px-4 font-bold text-[#141E3C]">${b.name || '-'}</td>
