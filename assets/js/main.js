@@ -264,6 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Language management (Default English for international guests)
   let currentLang = localStorage.getItem('massaji_spa_lang') || 'en';
+  let isPackagesExpanded = false;
+  let isMenuExpanded = false;
 
   function updateBilingualCards(lang) {
     const isId = lang === 'id';
@@ -390,7 +392,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  applyLanguage(currentLang);
+  try {
+    applyLanguage(currentLang);
+  } catch (err) {
+    console.warn('Initial language setup warning:', err);
+  }
 
   // ========================================================
   // 1.1 PROMO FLYER POPUP (AUTO POPUP ON VISIT)
@@ -447,15 +453,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   // 2.5 PREVIEW & EXPANDABLE CONTROLLER (PACKAGES & CATALOG)
   // ========================================================
-  let isPackagesExpanded = false;
-  let isMenuExpanded = false;
+  // Note: isPackagesExpanded & isMenuExpanded are initialized at the top of DOMContentLoaded
 
   function updatePackagesToggleBtn() {
     const btn = document.getElementById('packages-toggle-btn');
     if (!btn) return;
     const label = btn.querySelector('.packages-toggle-label');
     const chevron = btn.querySelector('.packages-toggle-chevron');
-    if (isPackagesExpanded) {
+    const expanded = Boolean(typeof isPackagesExpanded !== 'undefined' && isPackagesExpanded);
+    if (expanded) {
       btn.setAttribute('aria-expanded', 'true');
       if (label) {
         label.setAttribute('data-i18n', 'pkg_show_less');
@@ -479,7 +485,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!btn) return;
     const label = btn.querySelector('.menu-toggle-label');
     const chevron = btn.querySelector('.menu-toggle-chevron');
-    if (isMenuExpanded) {
+    const expanded = Boolean(typeof isMenuExpanded !== 'undefined' && isMenuExpanded);
+    if (expanded) {
       btn.setAttribute('aria-expanded', 'true');
       if (label) {
         label.setAttribute('data-i18n', 'menu_show_less');
@@ -508,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentPackageCat = 'all';
 
   function filterPackages() {
-    const query = packageSearchInput ? packageSearchInput.value.toLowerCase().trim() : '';
+    const query = (packageSearchInput && packageSearchInput.value) ? packageSearchInput.value.toLowerCase().trim() : '';
     const container = document.getElementById('packages-cards-container');
     if (!container) return;
     const cards = Array.from(container.querySelectorAll('.package-card'));
@@ -638,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentMenuCat = 'all';
 
   function filterMenu() {
-    const query = menuSearchInput ? menuSearchInput.value.toLowerCase().trim() : '';
+    const query = (menuSearchInput && menuSearchInput.value) ? menuSearchInput.value.toLowerCase().trim() : '';
     const container = document.getElementById('menu-cards-container');
     if (!container) return;
     const cards = Array.from(container.querySelectorAll('.treatment-card'));
