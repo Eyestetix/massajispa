@@ -266,14 +266,14 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
 
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Bali Traditional Massage (120 mins)" data-name-id="Pijat Tradisional Bali (120 menit)"
-             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage" data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam. CATATAN : Pijat tekanan sedang (Medium pressure massage)"
-             data-dur-en="120 MINUTESUTES" data-dur-id="120 MENIT"
+             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology." data-desc-id="Seni pemijatan leluhur Bali yang memadukan peregangan lembut, akupresur, dan refleksi untuk membawa Anda ke titik ketenangan dan relaksasi mendalam."
+             data-dur-en="120 MINUTES" data-dur-id="120 MENIT"
              data-tag-en="Now 300K" data-tag-id="Kini 300K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTESUTES</span>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTES</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 300K
               </span>
@@ -282,7 +282,7 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
               Bali Traditional Massage <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">(120 mins)</span>
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
-              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflex. NOTE : medium pressure massage
+              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology.
             </p>
           </div>
           
@@ -301,14 +301,14 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
 
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Deep Tissue Massage (90 mins)" data-name-id="Pijat Deep Tissue (90 menit)"
-             data-desc-en="A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage" data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika. CATATAN: Pijat tekanan kuat (Strong Pressure Massage)"
-             data-dur-en="90 MINUTESUTES" data-dur-id="90 MENIT"
+             data-desc-en="A massage designed to deliver deep pressure into the inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and muscle tension." data-desc-id="Teknik pemijatan intensif bertekanan terarah ke lapisan otot terdalam dan jaringan ikat, meredakan ketegangan kronis, pegal persendian, dan rasa kaku seketika."
+             data-dur-en="90 MINUTES" data-dur-id="90 MENIT"
              data-tag-en="Now 285K" data-tag-id="Kini 285K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">90 MINUTESUTES</span>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">90 MINUTES</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 285K
               </span>
@@ -317,7 +317,7 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
               Deep Tissue Massage <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">(90 mins)</span>
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-sky-100/85 leading-relaxed mb-4 font-light">
-              A massage designed to delivers pressure into the inner layers of muscles and connective tissue, instantly relieve aching muscle, chronic joints pains and muscle tension. NOTE: Strong Pressure Massage
+              A massage designed to deliver deep pressure into the inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and muscle tension.
             </p>
           </div>
           
@@ -431,13 +431,13 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
         <div class="promo-card bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-sky-300/30 flex flex-col justify-between hover:bg-white/15 hover:border-sky-300/50 transition duration-300 shadow-xl w-full min-w-0"
              data-name-en="Rose Bali Spa (120 mins)" data-name-id="Rose Bali Spa (120 menit)"
              data-desc-en="Rose contains antioxidants, they also rich in vitamin A and C, which can help with aging skins. Apart from smoothing the appearance of wrinkles." data-desc-id="Kemewahan ekstrak mawar kaya antioksidan serta vitamin A dan C yang meremajakan sel kulit, menyamarkan kerutan, dan memberikan keharuman elegan sepanjang hari."
-             data-dur-en="120 MINUTESUTES" data-dur-id="120 MENIT"
+             data-dur-en="120 MINUTES" data-dur-id="120 MENIT"
              data-tag-en="Now 600K" data-tag-id="Kini 600K"
              data-cat-en="Special Promo" data-cat-id="Promo Spesial"
              data-multi-en="" data-multi-id="">
           <div>
             <div class="flex items-center justify-between text-xs mb-4 gap-2">
-              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTESUTES</span>
+              <span class="card-duration font-mono text-xs font-semibold uppercase tracking-wider text-[#BAE0FD]">120 MINUTES</span>
               <span class="card-tag text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0284C7] text-white whitespace-nowrap shadow-sm">
                 Now 600K
               </span>
@@ -1066,9 +1066,9 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
              style="display: flex;"
              data-category="massage" 
-             data-search="balinese traditional massage pijat tradisional bali ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. note : medium pressure massage pijatan khas bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. catatan : pijat tekanan sedang (medium pressure massage) body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-search="balinese traditional massage pijat tradisional bali ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. pijatan khas bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Balinese Traditional Massage" data-name-id="Pijat Tradisional Bali"
-             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. NOTE : medium pressure massage" data-desc-id="Pijatan khas Bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. CATATAN : Pijat tekanan sedang (Medium pressure massage)"
+             data-desc-en="Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation." data-desc-id="Pijatan khas Bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat."
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
              data-tag-en="Signature Bali" data-tag-id="Signature"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
@@ -1088,7 +1088,7 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
               Balinese Traditional Massage
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
-              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. NOTE : medium pressure massage
+              Ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation.
             </p>
             
             <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">
@@ -1158,9 +1158,9 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
              style="display: flex;"
              data-category="massage" 
-             data-search="deep tissue / sports massage pijat deep tissue / sports designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. note: strong pressure massage pijatan bertekanan kuat menjangkau lapisan otot terdalam. sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di canggu. catatan: pijat tekanan kuat (strong pressure massage) body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
+             data-search="deep tissue / sports massage pijat deep tissue / sports designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. pijatan bertekanan kuat menjangkau lapisan otot terdalam. sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di canggu. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Deep Tissue / Sports Massage" data-name-id="Pijat Deep Tissue / Sports"
-             data-desc-en="Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. NOTE: Strong Pressure Massage" data-desc-id="Pijatan bertekanan kuat menjangkau lapisan otot terdalam. Sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di Canggu. CATATAN: Pijat tekanan kuat (Strong Pressure Massage)"
+             data-desc-en="Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension." data-desc-id="Pijatan bertekanan kuat menjangkau lapisan otot terdalam. Sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di Canggu."
              data-dur-en="60 / 90 / 120 Mins" data-dur-id="60 / 90 / 120 Menit"
              data-tag-en="Surfer Favorite" data-tag-id="Tekanan Kuat"
              data-cat-en="Body Massage" data-cat-id="Pijat Tradisional Tubuh"
@@ -1180,7 +1180,7 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
               Deep Tissue / Sports Massage
             </h3>
             <p class="card-desc text-xs sm:text-[13px] text-[#475569] leading-relaxed line-clamp-3 mb-3 font-light">
-              Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. NOTE: Strong Pressure Massage
+              Designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension.
             </p>
             
             <div class="card-multi-prices mb-3 px-2.5 py-1.5 rounded bg-[#F0F8FF] border border-[#BAE0FD] text-[11px] font-mono text-[#1E3A8A] font-semibold">

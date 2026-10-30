@@ -129,7 +129,7 @@ for item in promo_items:
             title_display_html = f'{m.group(1)} <span class="block text-sm sm:text-base font-serif font-normal text-sky-200/80 mt-1">{m.group(2)}</span>'
 
     # Simple clean uppercase text label for duration without decorative icons (e.g., "120 MINUTES", "90 MINUTES", "CAVITATION RF")
-    dur_clean_en = esc_dur_en.upper().replace('MINS', 'MINUTES').replace('MIN', 'MINUTES')
+    dur_clean_en = re.sub(r'\bMINS?\b', 'MINUTES', esc_dur_en.upper())
     dur_clean_id = esc_dur_id.upper().replace('MENIT', 'MENIT')
 
     if item.get('multi_prices'):
