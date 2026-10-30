@@ -988,73 +988,75 @@
   <!-- ========================================== -->
   <section id="menu" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
-    <div class="text-center max-w-3xl mx-auto mb-6">
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
       <span class="eyebrow-tag" data-i18n="menu_eyebrow">Complete Spa Catalog</span>
-      <div class="flex items-center justify-center gap-3.5 mt-2 mb-3 flex-wrap">
-        <h2 class="font-serif section-headline text-[#141E3C] cursor-pointer sm:cursor-default" id="menu-heading-trigger">
-          Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
-        </h2>
+      <h2 class="font-serif section-headline text-[#141E3C] mt-2 mb-3">
+        Treatment Menu &amp; <span class="text-[#0284C7] italic font-normal">Pricing</span>
+      </h2>
+      <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
+        Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
+      </p>
+
+      <!-- Live Search Bar for Treatments -->
+      <div class="mt-6 max-w-md mx-auto relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <input 
+          type="text" 
+          id="menu-search-input" 
+          placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
+          data-i18n-placeholder="menu_search_placeholder"
+          class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
+        <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Category Filter Tabs (Unchanged 7 filters) -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
+          <span data-i18n="cat_all">All Treatments</span> (43)
+        </button>
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="massage" data-i18n="cat_massage">
+          Body Massage
+        </button>
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="spa" data-i18n="cat_spa">
+          Body Spa Treatments
+        </button>
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="slimming" data-i18n="cat_slimming">
+          Slimming &amp; Cellulite
+        </button>
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="facial" data-i18n="cat_facial">
+          Facial Treatments
+        </button>
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="nail" data-i18n="cat_nail">
+          Nail Services
+        </button>
+        <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="additional" data-i18n="cat_additional">
+          Additional Services
+        </button>
+      </div>
+
+      <!-- Subtle View All Treatments / Show Less Expand Control -->
+      <div class="mt-5 sm:mt-6 text-center">
         <button 
           type="button" 
           id="menu-toggle-btn"
           aria-expanded="false"
           aria-controls="menu-collapse-body"
-          class="section-toggle-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#BAE0FD] bg-white text-[#1E3A8A] hover:bg-[#E1F0FE] hover:border-[#1E3A8A] text-xs font-semibold tracking-wider transition-all duration-200 shadow-sm cursor-pointer select-none"
+          class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
           title="Toggle Complete Spa Catalog">
-          <span class="toggle-sign font-mono text-sm font-bold leading-none" aria-hidden="true">+</span>
-          <span class="toggle-label font-mono text-[11px] uppercase" data-i18n="toggle_expand">Expand</span>
+          <span class="menu-toggle-label tracking-wide" data-i18n="menu_view_all">View all treatments</span>
+          <svg class="menu-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
+          </svg>
         </button>
       </div>
     </div>
 
+    <!-- Collapsible Treatment Cards Grid & No-Found Box -->
     <div id="menu-collapse-body" class="collapsible-section-body is-collapsed overflow-hidden transition-all duration-300 ease-in-out">
-      <div class="text-center max-w-3xl mx-auto mb-10">
-        <p class="text-[#475569] text-base font-light" data-i18n="menu_desc">
-          Explore our full suite of individual therapies with honest, transparent pricing in Canggu &amp; Kerobokan.
-        </p>
-
-        <!-- Live Search Bar for Treatments -->
-        <div class="mt-6 max-w-md mx-auto relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#0284C7]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          </div>
-          <input 
-            type="text" 
-            id="menu-search-input" 
-            placeholder="Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)..." 
-            data-i18n-placeholder="menu_search_placeholder"
-            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-[#BAE0FD] bg-[#F0F8FF]/50 text-xs text-[#141E3C] placeholder-[#94A3B8] focus:outline-none focus:border-[#1E3A8A] focus:bg-white focus:ring-1 focus:ring-[#1E3A8A] shadow-sm">
-          <button id="menu-search-clear" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#94A3B8] hover:text-[#141E3C] hidden">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>
-
-        <!-- Category Filter Tabs -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-[#1E3A8A] text-white border-[#1E3A8A] active shadow-sm" data-category="all">
-            <span data-i18n="cat_all">All Treatments</span> (43)
-          </button>
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="massage" data-i18n="cat_massage">
-            Body Massage
-          </button>
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="spa" data-i18n="cat_spa">
-            Body Spa Treatments
-          </button>
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="slimming" data-i18n="cat_slimming">
-            Slimming &amp; Cellulite
-          </button>
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="facial" data-i18n="cat_facial">
-            Facial Treatments
-          </button>
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="nail" data-i18n="cat_nail">
-            Nail Services
-          </button>
-          <button class="menu-filter-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition border bg-white text-[#475569] border-[#BAE0FD] hover:border-[#1E3A8A]" data-category="additional" data-i18n="cat_additional">
-            Additional Services
-          </button>
-        </div>
-      </div>
-
       <!-- Treatment Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
 

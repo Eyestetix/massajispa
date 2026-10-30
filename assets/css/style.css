@@ -91,6 +91,24 @@ body {
   outline-offset: 2px;
 }
 
+/* Subtle Expand/Collapse Text Control for Catalog */
+.menu-toggle-chevron {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.menu-toggle-chevron.rotate-180 {
+  transform: rotate(180deg);
+}
+
+#menu-toggle-btn:hover .menu-toggle-chevron {
+  transform: translateY(1px);
+}
+
+#menu-toggle-btn:hover .menu-toggle-chevron.rotate-180 {
+  transform: rotate(180deg) translateY(1px);
+}
+
 .promo-card {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }

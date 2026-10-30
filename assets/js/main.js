@@ -65,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
       card_btn_book: "Book Treatment",
       menu_search_placeholder: "Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)...",
       menu_not_found: "No treatments found matching your keywords.",
+      menu_view_all: "View all treatments",
+      menu_show_less: "Show less",
 
       about_eyebrow: "Our Sanctuary Story",
       about_title_1: "Rooted in Bali.",
@@ -190,6 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
       card_btn_book: "Pesan Perawatan",
       menu_search_placeholder: "Cari menu treatment (misal: stone, traditional, facial, nail, slimming)...",
       menu_not_found: "Tidak ada perawatan yang sesuai dengan kata kunci Anda.",
+      menu_view_all: "Lihat semua perawatan",
+      menu_show_less: "Tampilkan lebih sedikit",
 
       about_eyebrow: "Mengenal Massaji Spa",
       about_title_1: "Berakar di Tradisi Bali.",
@@ -378,9 +382,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('menu-toggle-btn');
     if (menuBtn) {
       const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-      const label = menuBtn.querySelector('.toggle-label');
+      const label = menuBtn.querySelector('.menu-toggle-label');
       if (label) {
-        label.textContent = isExpanded ? i18n[lang].toggle_collapse : i18n[lang].toggle_expand;
+        label.textContent = isExpanded ? i18n[lang].menu_show_less : i18n[lang].menu_view_all;
       }
     }
 
@@ -466,6 +470,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.getElementById(`${section}-collapse-body`);
     if (!btn || !body) return;
 
+    if (section === 'menu') {
+      const label = btn.querySelector('.menu-toggle-label');
+      const chevron = btn.querySelector('.menu-toggle-chevron');
+      if (expand) {
+        body.classList.remove('is-collapsed');
+        btn.setAttribute('aria-expanded', 'true');
+        if (label) {
+          label.setAttribute('data-i18n', 'menu_show_less');
+          label.textContent = (i18n[currentLang] && i18n[currentLang].menu_show_less) ? i18n[currentLang].menu_show_less : 'Show less';
+        }
+        if (chevron) {
+          chevron.classList.add('rotate-180');
+        }
+        btn.title = currentLang === 'id' ? 'Tampilkan lebih sedikit' : 'Show less treatments';
+      } else {
+        body.classList.add('is-collapsed');
+        btn.setAttribute('aria-expanded', 'false');
+        if (label) {
+          label.setAttribute('data-i18n', 'menu_view_all');
+          label.textContent = (i18n[currentLang] && i18n[currentLang].menu_view_all) ? i18n[currentLang].menu_view_all : 'View all treatments';
+        }
+        if (chevron) {
+          chevron.classList.remove('rotate-180');
+        }
+        btn.title = currentLang === 'id' ? 'Lihat semua perawatan' : 'View all treatments';
+      }
+      if (isUserAction) {
+        userToggledMenu = true;
+      }
+      return;
+    }
+
     if (expand) {
       body.classList.remove('is-collapsed');
       btn.setAttribute('aria-expanded', 'true');
@@ -476,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
         label.setAttribute('data-i18n', 'toggle_collapse');
         label.textContent = (i18n[currentLang] && i18n[currentLang].toggle_collapse) ? i18n[currentLang].toggle_collapse : 'Collapse';
       }
-      btn.title = section === 'packages' ? 'Collapse Spa Packages' : 'Collapse Complete Spa Catalog';
+      btn.title = 'Collapse Spa Packages';
     } else {
       body.classList.add('is-collapsed');
       btn.setAttribute('aria-expanded', 'false');
@@ -487,12 +523,11 @@ document.addEventListener('DOMContentLoaded', () => {
         label.setAttribute('data-i18n', 'toggle_expand');
         label.textContent = (i18n[currentLang] && i18n[currentLang].toggle_expand) ? i18n[currentLang].toggle_expand : 'Expand';
       }
-      btn.title = section === 'packages' ? 'Expand Spa Packages' : 'Expand Complete Spa Catalog';
+      btn.title = 'Expand Spa Packages';
     }
 
     if (isUserAction) {
-      if (section === 'packages') userToggledPackages = true;
-      if (section === 'menu') userToggledMenu = true;
+      userToggledPackages = true;
     }
   }
 
@@ -520,19 +555,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const menuToggleBtn = document.getElementById('menu-toggle-btn');
-  const menuHeadingTrigger = document.getElementById('menu-heading-trigger');
   function handleMenuToggle() {
     const isExpanded = menuToggleBtn && menuToggleBtn.getAttribute('aria-expanded') === 'true';
     setSectionCollapseState('menu', !isExpanded, true);
   }
   if (menuToggleBtn) menuToggleBtn.addEventListener('click', handleMenuToggle);
-  if (menuHeadingTrigger) {
-    menuHeadingTrigger.addEventListener('click', () => {
-      if (window.innerWidth < 768) {
-        handleMenuToggle();
-      }
-    });
-  }
 
   // Window resize handler: update state only if user hasn't explicitly interacted with toggle
   window.addEventListener('resize', () => {
@@ -713,12 +740,24 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
       btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#BAE0FD]');
 
+      // Expand catalog if collapsed so visitor sees filtered items
+      const menuBody = document.getElementById('menu-collapse-body');
+      if (menuBody && menuBody.classList.contains('is-collapsed')) {
+        setSectionCollapseState('menu', true, true);
+      }
+
       filterMenu();
     });
   });
 
   if (menuSearchInput) {
-    menuSearchInput.addEventListener('input', filterMenu);
+    menuSearchInput.addEventListener('input', () => {
+      const menuBody = document.getElementById('menu-collapse-body');
+      if (menuBody && menuBody.classList.contains('is-collapsed') && menuSearchInput.value.trim().length > 0) {
+        setSectionCollapseState('menu', true, true);
+      }
+      filterMenu();
+    });
   }
 
   if (menuSearchClear) {
