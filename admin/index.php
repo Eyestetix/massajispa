@@ -3,13 +3,13 @@
 require_once __DIR__ . "/auth.php";
 check_auth();
 
- = __DIR__ . "/../data/settings.json";
-    = __DIR__ . "/../data/promo.json";
-     = __DIR__ . "/../data/menu.json";
- = __DIR__ . "/../data/bookings.json";
+$settings_file = __DIR__ . "/../data/settings.json";
+$promo_file    = __DIR__ . "/../data/promo.json";
+$menu_file     = __DIR__ . "/../data/menu.json";
+$bookings_file = __DIR__ . "/../data/bookings.json";
 
- = get_settings();
- = generate_csrf_token();
+$settings = get_settings();
+$csrf_token = generate_csrf_token();
 ?>
 <!DOCTYPE html>
 <html lang="id">
