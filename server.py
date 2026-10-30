@@ -5,7 +5,8 @@ import os
 import json
 import urllib.parse
 import subprocess
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+WITA = timezone(timedelta(hours=8))
 
 PORT = 8080
 DIRECTORY = '/Volumes/PROJECTS/EYESTETIX_BACKUP_2026-09-30/WEBSITE'
@@ -247,9 +248,11 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     bookings = []
 
+            now_wita = datetime.now(WITA)
             new_booking = {
-                'id': f"BK-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
-                'created_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'id': f"BK-{now_wita.strftime('%Y%m%d-%H%M%S')}",
+                'created_at': now_wita.strftime('%Y-%m-%d %H:%M:%S'),
+                'timezone': 'WITA',
                 'name': name,
                 'email': email,
                 'phone': phone,

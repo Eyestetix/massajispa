@@ -1,5 +1,6 @@
 <?php
 // admin/api.php - Handles admin backend mutation requests
+date_default_timezone_set('Asia/Makassar');
 require_once __DIR__ . '/auth.php';
 header('Content-Type: application/json; charset=utf-8');
 

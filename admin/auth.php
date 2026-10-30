@@ -1,5 +1,6 @@
 <?php
 // admin/auth.php - Session and authentication management
+date_default_timezone_set('Asia/Makassar');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

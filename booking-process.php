@@ -1,5 +1,6 @@
 <?php
 // booking-process.php - Handles spa reservation submissions dynamically with atomic persistence & CORS support
+date_default_timezone_set('Asia/Makassar');
 header('Content-Type: application/json; charset=utf-8');
 
 // -----------------------------------------------------------
@@ -173,6 +174,7 @@ $booking_id = 'BK-' . date('Ymd-His') . '-' . mt_rand(100, 999);
 $new_booking = [
     'id'         => $booking_id,
     'created_at' => date('Y-m-d H:i:s'),
+    'timezone'   => 'WITA',
     'name'       => $name,
     'email'      => $email,
     'phone'      => $phone,

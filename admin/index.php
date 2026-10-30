@@ -1,5 +1,6 @@
 <?php
 // admin/index.php - Main Admin Dashboard
+date_default_timezone_set('Asia/Makassar');
 require_once __DIR__ . "/auth.php";
 check_auth();
 
@@ -1812,6 +1813,47 @@ $csrf_token = generate_csrf_token();
       }
     });
 
+    // Helper to format reservation timestamp cleanly in WITA (UTC+8)
+    function formatBookingCreatedAt(b) {
+      if (!b || !b.created_at) return '-';
+      const raw = String(b.created_at).trim();
+      
+      // If already marked with timezone
+      if (b.timezone === 'WITA' || raw.includes('WITA')) {
+        return raw.endsWith('WITA') ? raw : raw + ' WITA';
+      }
+
+      // Check for legacy UTC records on 2026-10-30 created prior to timezone fix
+      const isLegacyUtc = (b.id && /^BK-20261030-0[345]/.test(b.id)) ||
+                          (!b.timezone && /^2026-10-30 0[345]:/.test(raw));
+
+      if (isLegacyUtc) {
+        try {
+          const parts = raw.split(/[- :]/);
+          if (parts.length >= 6) {
+            const utcDate = new Date(Date.UTC(
+              parseInt(parts[0], 10),
+              parseInt(parts[1], 10) - 1,
+              parseInt(parts[2], 10),
+              parseInt(parts[3], 10),
+              parseInt(parts[4], 10),
+              parseInt(parts[5], 10)
+            ));
+            const witaDate = new Date(utcDate.getTime() + (8 * 3600 * 1000));
+            const y = witaDate.getUTCFullYear();
+            const m = String(witaDate.getUTCMonth() + 1).padStart(2, '0');
+            const d = String(witaDate.getUTCDate()).padStart(2, '0');
+            const hh = String(witaDate.getUTCHours()).padStart(2, '0');
+            const mm = String(witaDate.getUTCMinutes()).padStart(2, '0');
+            const ss = String(witaDate.getUTCSeconds()).padStart(2, '0');
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss} WITA`;
+          }
+        } catch (e) {}
+      }
+
+      return raw + ' WITA';
+    }
+
     // 12. Bookings Table Render (Authoritative Server Data)
     function renderBookingsList(bookings) {
       const container = document.getElementById('bookings-table-container');
@@ -1851,7 +1893,7 @@ $csrf_token = generate_csrf_token();
             <tbody class="divide-y divide-[#BAE0FD]">
               ${bookingList.map(b => `
                 <tr class="hover:bg-[#F0F8FF]/50 transition">
-                  <td class="py-3 px-4 font-mono text-[#475569] whitespace-nowrap">${b.created_at || '-'}</td>
+                  <td class="py-3 px-4 font-mono text-[#475569] whitespace-nowrap">${formatBookingCreatedAt(b)}</td>
                   <td class="py-3 px-4 font-bold text-[#141E3C]">${b.name || '-'}</td>
                   <td class="py-3 px-4 text-[#1E3A8A] font-semibold">${b.service || '-'}</td>
                   <td class="py-3 px-4 whitespace-nowrap">${b.date || ''} @ ${b.time || ''} WITA</td>
