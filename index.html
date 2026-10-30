@@ -35,7 +35,7 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261030e">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261030f">
 </head>
 <body class="text-[#141E3C] antialiased font-sans selection:bg-[#1E3A8A] selection:text-white">
 
@@ -3378,38 +3378,40 @@
             </select>
           </div>
 
-          <div class="grid grid-cols-3 gap-3">
-            <div class="col-span-1">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="w-full">
               <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_date">Appointment Date *</label>
-              <input type="date" name="date" id="booking-date" required class="w-full px-3 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-[#F0F8FF]/30">
+              <input type="date" name="date" id="booking-date" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30 min-w-0">
             </div>
-            <div class="col-span-1">
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_time">Time Slot *</label>
-              <select name="time" required class="w-full px-3 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-white">
-                <option value="10:00">10:00 AM</option>
-                <option value="11:30">11:30 AM</option>
-                <option value="13:00">01:00 PM</option>
-                <option value="14:30">02:30 PM</option>
-                <option value="16:00">04:00 PM</option>
-                <option value="17:30">05:30 PM</option>
-                <option value="19:00">07:00 PM</option>
-              </select>
-            </div>
-            <div class="col-span-1">
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_guests">Number of Guests</label>
-              <select name="guests" class="w-full px-3 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-white">
-                <option value="1" data-i18n="modal_guest_1">1 Person</option>
-                <option value="2" data-i18n="modal_guest_2" selected>2 Persons</option>
-                <option value="3" data-i18n="modal_guest_3">3 Persons</option>
-                <option value="4" data-i18n="modal_guest_4">4 Persons</option>
-                <option value="5+" data-i18n="modal_guest_5">5+ Persons</option>
-              </select>
+            <div class="grid grid-cols-2 gap-3 sm:col-span-2 sm:grid-cols-2">
+              <div class="w-full min-w-0">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1 truncate" data-i18n="modal_label_time">Time Slot *</label>
+                <select name="time" required class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-white min-w-0">
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:30">11:30 AM</option>
+                  <option value="13:00">01:00 PM</option>
+                  <option value="14:30">02:30 PM</option>
+                  <option value="16:00">04:00 PM</option>
+                  <option value="17:30">05:30 PM</option>
+                  <option value="19:00">07:00 PM</option>
+                </select>
+              </div>
+              <div class="w-full min-w-0">
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1 truncate" data-i18n="modal_label_guests">Number of Guests</label>
+                <select name="guests" class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-white min-w-0">
+                  <option value="1" data-i18n="modal_guest_1">1 Person</option>
+                  <option value="2" data-i18n="modal_guest_2" selected>2 Persons</option>
+                  <option value="3" data-i18n="modal_guest_3">3 Persons</option>
+                  <option value="4" data-i18n="modal_guest_4">4 Persons</option>
+                  <option value="5+" data-i18n="modal_guest_5">5+ Persons</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-[#141E3C] mb-1" data-i18n="modal_label_notes">Special Requests (Optional)</label>
-            <textarea name="notes" rows="2" class="w-full px-3.5 py-2 rounded-xl border border-[#BAE0FD] text-xs focus:outline-none focus:border-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="Therapist preferences, tension focus areas, or anniversary celebration..." data-i18n-placeholder="modal_notes_placeholder"></textarea>
+            <textarea name="notes" rows="2" class="w-full px-3.5 py-2.5 rounded-xl border border-[#BAE0FD] text-sm focus:outline-none focus:border-[#1E3A8A] focus:ring-1 focus:ring-[#1E3A8A] bg-[#F0F8FF]/30" placeholder="Therapist preferences, tension focus areas, or anniversary celebration..." data-i18n-placeholder="modal_notes_placeholder"></textarea>
           </div>
         </div>
 

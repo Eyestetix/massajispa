@@ -266,3 +266,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   outline: 2px solid var(--brand-royal);
   outline-offset: 2px;
 }
+
+/* Mobile Form & Date Input Normalization (Prevents iOS Safari auto-zoom and overlap) */
+input[type="date"] {
+  min-height: 44px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  line-height: 1.4;
+}
+
+#booking-modal select {
+  min-height: 44px;
+}
+
+@media screen and (max-width: 640px) {
+  #booking-modal input,
+  #booking-modal select,
+  #booking-modal textarea {
+    font-size: 15px;
+  }
+}
