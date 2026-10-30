@@ -144,12 +144,17 @@ $csrf_token = generate_csrf_token();
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
-          <a href="../index.php" target="_blank" class="px-4 py-2 rounded-xl border border-[#BAE0FD] hover:border-[#1E3A8A] bg-[#F0F8FF] hover:bg-white text-[#1E3A8A] text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
+        <div class="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
+          <button type="button" onclick="switchTab('analytics')" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#0284C7] to-[#1E3A8A] hover:from-sky-500 hover:to-blue-800 text-white text-xs font-bold flex items-center gap-2 transition shadow-md shadow-sky-500/20 cursor-pointer" title="Lihat Statistik & Web Analitik">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span>Web Analitik</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </button>
+          <a href="../index.php" target="_blank" class="px-3.5 py-2 rounded-xl border border-[#BAE0FD] hover:border-[#1E3A8A] bg-[#F0F8FF] hover:bg-white text-[#1E3A8A] text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             Buka Website
           </a>
-          <button onclick="handleLogout()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-700 text-xs font-bold flex items-center gap-1.5 transition">
+          <button onclick="handleLogout()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-700 text-xs font-bold flex items-center gap-1.5 transition">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
             Keluar
           </button>
@@ -160,32 +165,32 @@ $csrf_token = generate_csrf_token();
     <!-- Main Content Layout -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       
-      <!-- Navigation Tabs -->
-      <div class="flex border-b border-[#BAE0FD] gap-2 sm:gap-6 overflow-x-auto pb-px mb-8 scrollbar-none">
-        <button onclick="switchTab('home')" id="btn-tab-home" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-[#1E3A8A] text-[#1E3A8A] flex items-center gap-2 whitespace-nowrap transition">
+      <!-- Navigation Tabs (Wrapping to ensure all tabs are visible on all screens) -->
+      <div class="flex flex-wrap border-b border-[#BAE0FD] gap-1.5 sm:gap-3 pb-px mb-8">
+        <button onclick="switchTab('home')" id="btn-tab-home" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-[#1E3A8A] text-[#1E3A8A] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           Setting Home (Hero &amp; About)
         </button>
-        <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+        <button onclick="switchTab('promo')" id="btn-tab-promo" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
           Promo Akhir Tahun &amp; Flyer
         </button>
-        <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+        <button onclick="switchTab('menu')" id="btn-tab-menu" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
           Menu &amp; Paket Treatment
           <span id="tab-menu-count" class="px-2 py-0.5 text-[10px] rounded-full bg-[#E1F0FE] text-[#1E3A8A] font-mono font-bold">0</span>
         </button>
-        <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+        <button onclick="switchTab('settings')" id="btn-tab-settings" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           Kontak &amp; Reservasi
         </button>
-        <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+        <button onclick="switchTab('bookings')" id="btn-tab-bookings" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           Reservasi Masuk
         </button>
-        <button onclick="switchTab('analytics')" id="btn-tab-analytics" class="tab-btn px-4 py-3 text-sm font-bold border-b-2 border-transparent text-[#475569] hover:text-[#141E3C] flex items-center gap-2 whitespace-nowrap transition">
+        <button onclick="switchTab('analytics')" id="btn-tab-analytics" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-bold border-b-2 border-transparent text-[#1E3A8A] hover:text-[#0284C7] flex items-center gap-2 whitespace-nowrap transition bg-[#E1F0FE]/80 rounded-t-xl border border-b-0 border-[#BAE0FD]">
           <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          <span>Web Analitik</span>
+          <span class="font-extrabold">Web Analitik</span>
           <span class="px-2 py-0.5 text-[10px] rounded-full bg-emerald-100 text-emerald-800 font-bold uppercase tracking-wider">Live</span>
         </button>
       </div>
@@ -1056,6 +1061,13 @@ $csrf_token = generate_csrf_token();
         overlay.classList.add('hidden');
         dashboard.classList.remove('hidden');
         loadAllData();
+
+        // Check if URL specifies direct tab (e.g. #analytics or ?tab=analytics)
+        const params = new URLSearchParams(window.location.search);
+        const reqTab = params.get('tab') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+        if (reqTab) {
+          setTimeout(() => switchTab(reqTab), 100);
+        }
       } else {
         overlay.classList.remove('hidden');
         dashboard.classList.add('hidden');
@@ -1121,6 +1133,9 @@ $csrf_token = generate_csrf_token();
         target.classList.remove('hidden');
         targetBtn.classList.remove('border-transparent', 'text-[#475569]');
         targetBtn.classList.add('border-[#1E3A8A]', 'text-[#1E3A8A]');
+        if (history.replaceState) {
+          history.replaceState(null, '', '#' + tabId);
+        }
       }
 
       if (tabId === 'analytics') {
