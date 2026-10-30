@@ -94,7 +94,8 @@ function save_booking_record($filepath, $new_booking) {
 $settings_file = __DIR__ . '/data/settings.json';
 $settings = [
     'site_name' => 'Massaji Spa Bali',
-    'booking_email' => 'reservation@massaji.net',
+    'booking_email' => 'eyestetix@gmail.com',
+    'admin_notification_email' => 'eyestetix@gmail.com',
     'whatsapp_number' => '6281236695755'
 ];
 if (file_exists($settings_file)) {
@@ -218,19 +219,62 @@ $guest_wa_url = !empty($clean_guest_phone)
 $booking_id = $new_booking['id'];
 $created_time = date('d M Y, H:i') . ' WITA';
 
-// Send notification email to admin matching web design
-$to = $settings['booking_email'];
-$subject = "[Booking Baru] " . $service . " - " . $name . " (" . $date . " " . $time . " WITA)";
+// -----------------------------------------------------------
+// 6. Administrator Email Notification (Post-Persistence)
+// -----------------------------------------------------------
+$admin_recipient = !empty($settings['admin_notification_email']) 
+    ? $settings['admin_notification_email'] 
+    : (!empty($settings['booking_email']) ? $settings['booking_email'] : 'eyestetix@gmail.com');
+
+$to = filter_var($admin_recipient, FILTER_VALIDATE_EMAIL) ? $admin_recipient : 'eyestetix@gmail.com';
+$subject = "[Massaji Spa] New Reservation — " . $name;
+
+$domain_from = 'reservation@massaji.net';
+$from_name   = !empty($settings['site_name']) ? $settings['site_name'] : 'Massaji Spa Bali';
+
+$boundary = "----=_MassajiBoundary_" . md5(uniqid((string)time(), true));
 
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-type: text/html; charset=utf-8';
+$headers[] = 'From: ' . $from_name . ' <' . $domain_from . '>';
 if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $headers[] = 'From: ' . $settings['site_name'] . ' <' . $settings['booking_email'] . '>';
     $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
 } else {
-    $headers[] = 'From: ' . $settings['site_name'] . ' <' . $settings['booking_email'] . '>';
+    $headers[] = 'Reply-To: ' . $from_name . ' <' . $domain_from . '>';
 }
+$headers[] = 'X-Mailer: Massaji-Reservation-System/2.0';
+$headers[] = 'X-Booking-ID: ' . $booking_id;
+$headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+
+// Plain-text alternative
+$plain_body  = "==================================================\r\n";
+$plain_body .= "MASSAJI SPA BALI — NOTIFIKASI RESERVASI MASUK\r\n";
+$plain_body .= "==================================================\r\n\r\n";
+$plain_body .= "Halo Admin Massaji Spa,\r\n\r\n";
+$plain_body .= "Terdapat reservasi baru yang masuk melalui website:\r\n\r\n";
+$plain_body .= "• ID Reservasi      : " . $booking_id . "\r\n";
+$plain_body .= "• Status            : Pending (Menunggu Konfirmasi)\r\n";
+$plain_body .= "• Waktu Masuk       : " . $created_time . "\r\n";
+$plain_body .= "--------------------------------------------------\r\n";
+$plain_body .= "RINCIAN TAMU:\r\n";
+$plain_body .= "• Nama Lengkap      : " . $name . "\r\n";
+$plain_body .= "• WhatsApp / Telp   : " . $phone . "\r\n";
+$plain_body .= "• Email Tamu        : " . (!empty($email) ? $email : 'Tidak dicantumkan') . "\r\n";
+$plain_body .= "• Sumber & Device   : " . $source . " (" . $device . ")\r\n";
+$plain_body .= "--------------------------------------------------\r\n";
+$plain_body .= "RINCIAN RESERVASI:\r\n";
+$plain_body .= "• Layanan / Paket   : " . $service . "\r\n";
+$plain_body .= "• Tanggal           : " . $date . "\r\n";
+$plain_body .= "• Jam Reservasi     : " . $time . " WITA\r\n";
+$plain_body .= "• Jumlah Tamu       : " . $guests . " Orang\r\n";
+$plain_body .= "• Catatan Khusus    : " . $notes . "\r\n";
+$plain_body .= "--------------------------------------------------\r\n";
+$plain_body .= "TINDAKAN CEPAT:\r\n";
+$plain_body .= "• Balas via WhatsApp: " . $guest_wa_url . "\r\n";
+$plain_body .= "• Panel Admin       : https://massaji.net/admin/\r\n\r\n";
+$plain_body .= "==================================================\r\n";
+$plain_body .= "Massaji Spa Bali\r\n";
+$plain_body .= "Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Bali 80361\r\n";
 
 $email_body = '<!DOCTYPE html>
 <html lang="id">
@@ -308,7 +352,7 @@ $email_body = '<!DOCTYPE html>
           <tr>
             <td class="resp-header-pad" style="background: #141E3C; background: linear-gradient(135deg, #141E3C 0%, #1E3A8A 55%, #141E3C 100%); padding: 36px 20px 28px; text-align: center; border-bottom: 2px solid #0284C7;">
               
-              <!-- Brand Logo Emblem (+30% LARGER: 80px x 80px wrapper, 70px x 70px image) -->
+              <!-- Brand Logo Emblem -->
               <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 14px;">
                 <tr>
                   <td style="width: 80px; height: 80px; border-radius: 50%; background-color: #FFFFFF; padding: 5px; border: 3px solid #BAE0FD; text-align: center; vertical-align: middle; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
@@ -417,6 +461,18 @@ $email_body = '<!DOCTYPE html>
                   <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-style: italic; line-height: 1.45; word-break: break-word;">' . nl2br(htmlspecialchars($notes)) . '</td>
                 </tr>
                 <tr>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">🌐 Sumber &amp; Device</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 600;">' . htmlspecialchars($source) . ' <span style="font-size: 11px; color: #64748B;">(' . htmlspecialchars($device) . ')</span></td>
+                </tr>
+                <tr>
+                  <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">⏳ Status Reservasi</td>
+                  <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9;">
+                    <span style="display: inline-block; background-color: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 11px;">
+                      Pending (Menunggu Konfirmasi)
+                    </span>
+                  </td>
+                </tr>
+                <tr>
                   <td class="resp-table-cell resp-table-label" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">🔖 ID Booking</td>
                   <td class="resp-table-cell" style="padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #475569; font-family: monospace; font-weight: 600; font-size: 12px;">' . htmlspecialchars($booking_id) . '</td>
                 </tr>
@@ -453,7 +509,7 @@ $email_body = '<!DOCTYPE html>
                   </td>
                   <td class="resp-action-spacer" width="4%"></td>
                   <td class="resp-action-col" width="48%" align="center">
-                    <a href="https://eyestetix.github.io/massajispa/admin/" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center; white-space: nowrap;">
+                    <a href="https://massaji.net/admin/" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-decoration: none; text-align: center; white-space: nowrap;">
                       🔐 Buka Panel Admin
                     </a>
                   </td>
@@ -500,19 +556,41 @@ $email_body = '<!DOCTYPE html>
 </body>
 </html>';
 
-$mail_sent = @mail($to, $subject, $email_body, implode("\r\n", $headers));
+// Assemble multipart/alternative message body
+$email_message  = "--" . $boundary . "\r\n";
+$email_message .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$email_message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+$email_message .= $plain_body . "\r\n\r\n";
+$email_message .= "--" . $boundary . "\r\n";
+$email_message .= "Content-Type: text/html; charset=UTF-8\r\n";
+$email_message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+$email_message .= $email_body . "\r\n\r\n";
+$email_message .= "--" . $boundary . "--";
 
-// Return response
+$mail_sent = false;
+try {
+    // Attempt sending with envelope sender (-f)
+    $mail_sent = @mail($to, $subject, $email_message, implode("\r\n", $headers), "-f" . $domain_from);
+    if (!$mail_sent) {
+        // Fallback without 5th parameter if host MTA restricts envelope flag
+        $mail_sent = @mail($to, $subject, $email_message, implode("\r\n", $headers));
+    }
+} catch (\Throwable $e) {
+    $mail_sent = false;
+}
+
+// Return clean response - failed email never invalidates persisted booking
 echo json_encode([
     'success'      => true,
     'message'      => 'Permintaan reservasi Anda telah berhasil dikirim ke email resepsionis kami. Tim kami akan segera mengonfirmasi jadwal Anda.',
-    'mail_sent'    => $mail_sent,
+    'mail_sent'    => (bool)$mail_sent,
     'whatsapp_url' => $wa_url,
     'details'      => [
-        'name'     => $name,
-        'service'  => $service,
-        'date'     => $date,
-        'time'     => $time,
-        'guests'   => $guests
+        'booking_id' => $booking_id,
+        'name'       => $name,
+        'service'    => $service,
+        'date'       => $date,
+        'time'       => $time,
+        'guests'     => $guests
     ]
 ]);

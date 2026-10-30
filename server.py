@@ -349,7 +349,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 with open(settings_path) as f:
                     curr = json.load(f)
                 all_keys = [
-                    'site_name', 'tagline', 'subtagline', 'booking_email', 
+                    'site_name', 'tagline', 'subtagline', 'booking_email', 'admin_notification_email', 
                     'whatsapp_number', 'phone', 'whatsapp_number_2', 'phone_2',
                     'address', 'google_maps_link', 'opening_hours', 'instagram',
                     'hero_title_1', 'hero_title_2', 'hero_desc', 'hero_image',

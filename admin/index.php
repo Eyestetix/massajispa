@@ -543,7 +543,7 @@ $csrf_token = generate_csrf_token();
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                   </a>
                 </div>
-                <input type="email" id="field-email" name="booking_email" value="reservation@massaji.net" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <input type="email" id="field-email" name="booking_email" value="eyestetix@gmail.com" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
                 <p class="text-[11px] text-[#64748B] mt-1.5 flex items-center gap-1">
                   <span>ℹ️ Setiap ada reservasi website masuk, template email resmi akan dikirim otomatis ke alamat ini.</span>
                 </p>

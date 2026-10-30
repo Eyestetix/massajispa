@@ -9,7 +9,8 @@ function get_settings() {
     $default = [
         'site_name' => 'Massaji Spa Bali',
         'tagline' => 'Authentic Balinese Massage & Holistic Wellness Sanctuary',
-        'booking_email' => 'reservation@massaji.net',
+        'booking_email' => 'eyestetix@gmail.com',
+        'admin_notification_email' => 'eyestetix@gmail.com',
         'whatsapp_number' => '6281236695755',
         'phone' => '+62 812-3669-5755',
         'address' => 'Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361',
