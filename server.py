@@ -211,8 +211,13 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
             wa_text += f"• *Tanggal:* {date}\n"
             wa_text += f"• *Jam:* {time} WITA\n"
             wa_text += f"• *Jumlah Tamu:* {guests} orang\n"
+            source = fields.get('source', 'Direct Website')
+            device = fields.get('device', 'Mobile')
+
             if phone:
                 wa_text += f"• *Kontak:* {phone}\n"
+            if source:
+                wa_text += f"• *Sumber Reservasi:* Website ({source} • {device})\n"
             if notes and notes != '-':
                 wa_text += f"• *Catatan:* {notes}\n"
             wa_text += "\nApakah slot waktu tersebut masih tersedia? Terima kasih."
@@ -240,6 +245,9 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 'time': time,
                 'guests': guests,
                 'notes': notes,
+                'source': source,
+                'device': device,
+                'channel': 'Website Form -> WhatsApp',
                 'status': 'pending'
             }
             bookings.insert(0, new_booking)

@@ -32,6 +32,24 @@ $date    = isset($_POST['date']) ? trim(strip_tags($_POST['date'])) : '';
 $time    = isset($_POST['time']) ? trim(strip_tags($_POST['time'])) : '';
 $guests  = isset($_POST['guests']) ? intval($_POST['guests']) : 1;
 $notes   = isset($_POST['notes']) ? trim(strip_tags($_POST['notes'])) : '-';
+$source   = isset($_POST['source']) && !empty($_POST['source']) ? trim(strip_tags($_POST['source'])) : '';
+$device   = isset($_POST['device']) && !empty($_POST['device']) ? trim(strip_tags($_POST['device'])) : '';
+$referrer = isset($_POST['referrer']) ? trim(strip_tags($_POST['referrer'])) : (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
+
+if (empty($source)) {
+    $ref_lower = strtolower($referrer);
+    if (strpos($ref_lower, 'google.') !== false) $source = 'Google Search';
+    elseif (strpos($ref_lower, 'instagram.com') !== false || strpos($ref_lower, 'l.instagram.com') !== false) $source = 'Instagram';
+    elseif (strpos($ref_lower, 'facebook.com') !== false || strpos($ref_lower, 'fb.com') !== false) $source = 'Facebook';
+    elseif (strpos($ref_lower, 'tiktok.com') !== false) $source = 'TikTok';
+    elseif (strpos($ref_lower, 'whatsapp.com') !== false || strpos($ref_lower, 'wa.me') !== false) $source = 'WhatsApp';
+    else $source = 'Direct Website';
+}
+
+if (empty($device)) {
+    $ua = isset($_SERVER['HTTP_USER_AGENT']) ? strtolower($_SERVER['HTTP_USER_AGENT']) : '';
+    $device = preg_match('/(android|iphone|ipad|ipod|mobile|touch)/i', $ua) ? 'Mobile' : 'Desktop';
+}
 
 if (empty($name) || empty($phone) || empty($date) || empty($time)) {
     http_response_code(400);
@@ -56,6 +74,7 @@ $wa_text .= "• *Tanggal:* " . $date . "\n";
 $wa_text .= "• *Jam:* " . $time . " WITA\n";
 $wa_text .= "• *Jumlah Tamu:* " . $guests . " orang\n";
 if (!empty($phone)) $wa_text .= "• *Kontak:* " . $phone . "\n";
+if (!empty($source)) $wa_text .= "• *Sumber Reservasi:* Website (" . $source . " • " . $device . ")\n";
 if (!empty($notes) && $notes !== '-') $wa_text .= "• *Catatan:* " . $notes . "\n\n";
 $wa_text .= "Apakah slot waktu tersebut masih tersedia? Terima kasih.";
 
@@ -79,6 +98,9 @@ $new_booking = [
     'time'       => $time,
     'guests'     => $guests,
     'notes'      => $notes,
+    'source'     => $source,
+    'device'     => $device,
+    'channel'    => 'Website Form -> WhatsApp',
     'status'     => 'pending'
 ];
 array_unshift($bookings, $new_booking);

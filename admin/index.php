@@ -1740,6 +1740,7 @@ $csrf_token = generate_csrf_token();
                 <th class="py-3 px-4">Jadwal Reservasi</th>
                 <th class="py-3 px-4">Tamu</th>
                 <th class="py-3 px-4">Kontak</th>
+                <th class="py-3 px-4">Sumber / Channel</th>
                 <th class="py-3 px-4">Catatan</th>
               </tr>
             </thead>
@@ -1752,6 +1753,18 @@ $csrf_token = generate_csrf_token();
                   <td class="py-3 px-4 whitespace-nowrap">${b.date || ''} @ ${b.time || ''} WITA</td>
                   <td class="py-3 px-4 font-mono">${b.guests || 1} orang</td>
                   <td class="py-3 px-4 font-mono text-[#0284C7]">${b.phone || b.email || '-'}</td>
+                  <td class="py-3 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold ${
+                      (b.source || '').toLowerCase().includes('instagram') ? 'bg-fuchsia-50 text-fuchsia-700 border border-fuchsia-200' :
+                      (b.source || '').toLowerCase().includes('google') ? 'bg-blue-50 text-blue-700 border border-blue-200' :
+                      (b.source || '').toLowerCase().includes('facebook') ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' :
+                      (b.source || '').toLowerCase().includes('whatsapp') ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
+                      'bg-slate-100 text-slate-700 border border-slate-200'
+                    }">
+                      ${b.source || 'Direct Website'}
+                    </span>
+                    <span class="block text-[9px] text-[#64748B] mt-0.5 font-sans">${b.device ? (b.device === 'Mobile' ? '📱 Mobile' : '💻 Desktop') : '📱 Mobile'}</span>
+                  </td>
                   <td class="py-3 px-4 text-[#475569] italic">${b.notes || '-'}</td>
                 </tr>
               `).join('')}

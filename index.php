@@ -81,8 +81,8 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
         <a href="#contact" class="hover:text-[#1E3A8A] transition" data-i18n="nav_contact">Location &amp; Hours</a>
       </nav>
 
-      <!-- Header Actions (Bilingual Toggle + WhatsApp + Booking CTA) -->
-      <div class="hidden sm:flex items-center gap-3.5">
+      <!-- Desktop Header Actions (Bilingual Toggle + WhatsApp + Booking CTA) -->
+      <div class="hidden lg:flex items-center gap-3.5">
         
         <!-- Language Switcher Toggle (EN Default Active) -->
         <div class="inline-flex items-center p-0.5 bg-[#F0F8FF] rounded-lg border border-[#BAE0FD] text-[11px] font-bold">
@@ -99,33 +99,50 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
         </button>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="lg:hidden p-2 text-[#141E3C] hover:text-[#1E3A8A] focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
+      <!-- Mobile Controls (Language Switcher + Luxury Animated Hamburger Button) -->
+      <div class="flex lg:hidden items-center gap-2">
+        <!-- Compact Language Pill on Mobile Header -->
+        <div class="inline-flex items-center p-0.5 bg-[#F0F8FF] rounded-lg border border-[#BAE0FD] text-[10px] font-bold">
+          <button class="lang-btn px-2 py-1 rounded-md transition bg-[#1E3A8A] text-white" data-lang="en">EN</button>
+          <button class="lang-btn px-2 py-1 rounded-md transition text-[#475569] hover:text-[#141E3C]" data-lang="id">ID</button>
+        </div>
+
+        <!-- Hamburger Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" class="w-11 h-11 rounded-xl bg-[#F0F8FF] border border-[#BAE0FD] hover:bg-[#E1F0FE] active:scale-95 text-[#141E3C] hover:text-[#1E3A8A] flex items-center justify-center transition shadow-sm cursor-pointer">
+          <svg id="hamburger-icon-open" class="w-6 h-6 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="hamburger-icon-close" class="w-6 h-6 hidden transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Dropdown Navigation -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-[#BAE0FD] px-6 py-6 space-y-4 shadow-xl">
-      <div class="flex items-center justify-between pb-3 border-b border-[#BAE0FD]">
-        <span class="text-xs font-bold text-[#475569] uppercase tracking-wider">Language / Bahasa:</span>
-        <div class="inline-flex items-center p-0.5 bg-[#F0F8FF] rounded-lg border border-[#BAE0FD] text-xs font-bold">
-          <button class="lang-btn px-3 py-1 rounded-md transition bg-[#1E3A8A] text-white" data-lang="en">EN</button>
-          <button class="lang-btn px-3 py-1 rounded-md transition text-[#475569]" data-lang="id">ID</button>
-        </div>
-      </div>
+    <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-b border-[#BAE0FD] px-5 sm:px-6 py-5 space-y-4 shadow-2xl transition-all duration-300">
+      <nav class="space-y-1">
+        <a href="#promotion" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#F0F8FF] text-[#1E3A8A] font-bold text-sm transition">
+          <span class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse"></span>
+            <span data-i18n="nav_promo">End Year Promo</span>
+          </span>
+          <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">Special</span>
+        </a>
+        <a href="#packages" class="block p-2.5 rounded-xl hover:bg-[#F0F8FF] text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A] transition" data-i18n="nav_packages">Spa Packages</a>
+        <a href="#menu" class="block p-2.5 rounded-xl hover:bg-[#F0F8FF] text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A] transition" data-i18n="nav_menu">Treatment Menu</a>
+        <a href="#about" class="block p-2.5 rounded-xl hover:bg-[#F0F8FF] text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A] transition" data-i18n="nav_about">About Us</a>
+        <a href="#reviews" class="block p-2.5 rounded-xl hover:bg-[#F0F8FF] text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A] transition" data-i18n="nav_reviews">Reviews (4.8★)</a>
+        <a href="#contact" class="block p-2.5 rounded-xl hover:bg-[#F0F8FF] text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A] transition" data-i18n="nav_contact">Location &amp; Hours</a>
+      </nav>
 
-      <a href="#promotion" class="block text-sm font-bold text-[#1E3A8A]" data-i18n="nav_promo">End Year Promo</a>
-      <a href="#packages" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_packages">Spa Packages</a>
-      <a href="#menu" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_menu">Treatment Menu</a>
-      <a href="#about" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_about">About Us</a>
-      <a href="#reviews" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_reviews">Reviews (4.8★)</a>
-      <a href="#contact" class="block text-sm font-semibold text-[#141E3C] hover:text-[#1E3A8A]" data-i18n="nav_contact">Location &amp; Hours</a>
-      <div class="pt-4 border-t border-[#BAE0FD] flex flex-col gap-3">
-        <button onclick="openBookingModal()" class="w-full py-3 rounded-lg bg-[#1E3A8A] text-white text-center font-bold text-xs tracking-wider uppercase shadow" data-i18n="nav_book">
+      <div class="pt-3 border-t border-[#BAE0FD] flex flex-col gap-2.5">
+        <button onclick="openBookingModal()" class="w-full py-3.5 rounded-xl bg-[#1E3A8A] hover:bg-[#141E3C] text-white text-center font-bold text-xs tracking-wider uppercase shadow-md transition cursor-pointer flex items-center justify-center gap-2" data-i18n="nav_book">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           Book Treatment
         </button>
-        <a href="https://wa.me/6281236695755?text=Hello%20Massaji Spa Bali%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20spa%20treatment." target="_blank" class="w-full py-2.5 rounded-lg border border-emerald-500 bg-emerald-50 text-emerald-800 text-center font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+        <a href="https://wa.me/6281236695755?text=Hello%20Massaji Spa Bali%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20spa%20treatment." target="_blank" class="w-full py-3 rounded-xl border border-emerald-500 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-center font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition shadow-sm">
+          <svg class="w-4 h-4 fill-current text-emerald-600" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           Chat on WhatsApp
         </a>
       </div>

@@ -439,20 +439,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 600);
 
   // ========================================================
-  // 2. MOBILE NAVIGATION
+  // 2. MOBILE NAVIGATION (ANIMATED HAMBURGER MENU)
   // ========================================================
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerOpen = document.getElementById('hamburger-icon-open');
+  const hamburgerClose = document.getElementById('hamburger-icon-close');
+
+  function toggleMobileMenu(forceState) {
+    if (!mobileMenuBtn || !mobileMenu) return;
+    const willOpen = typeof forceState === 'boolean' ? forceState : mobileMenu.classList.contains('hidden');
+    if (willOpen) {
+      mobileMenu.classList.remove('hidden');
+      if (hamburgerOpen) hamburgerOpen.classList.add('hidden');
+      if (hamburgerClose) hamburgerClose.classList.remove('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileMenu.classList.add('hidden');
+      if (hamburgerOpen) hamburgerOpen.classList.remove('hidden');
+      if (hamburgerClose) hamburgerClose.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
 
   if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
+    mobileMenuBtn.addEventListener('click', () => toggleMobileMenu());
+    mobileMenu.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', () => toggleMobileMenu(false));
     });
   }
 
@@ -878,11 +891,44 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = formData.get('phone') || '';
       const notes = formData.get('notes') || '';
 
+      // Capture Traffic Source & Device for Admin Analytics
+      const params = new URLSearchParams(window.location.search);
+      let detectedSource = params.get('utm_source') || '';
+      const ref = (document.referrer || '').toLowerCase();
+      if (!detectedSource) {
+        if (ref.includes('instagram.com') || ref.includes('l.instagram.com')) detectedSource = 'Instagram';
+        else if (ref.includes('google.')) detectedSource = 'Google Search';
+        else if (ref.includes('facebook.com') || ref.includes('fb.com')) detectedSource = 'Facebook';
+        else if (ref.includes('tiktok.com')) detectedSource = 'TikTok';
+        else if (ref.includes('whatsapp.com') || ref.includes('wa.me')) detectedSource = 'WhatsApp';
+        else if (ref && !ref.includes('massaji.net') && !ref.includes('localhost') && !ref.includes('127.0.0.1')) {
+          try { detectedSource = new URL(ref).hostname.replace(/^www\./, ''); } catch(e) { detectedSource = 'Web Referral'; }
+        } else {
+          detectedSource = 'Direct Website';
+        }
+      }
+      const isMobile = window.innerWidth <= 768 || /iphone|ipad|android|mobile/i.test(navigator.userAgent);
+      const detectedDevice = isMobile ? 'Mobile' : 'Desktop';
+
+      formData.append('source', detectedSource);
+      formData.append('device', detectedDevice);
+      formData.append('referrer', document.referrer || '');
+
       const waNumber = '6281236695755';
-      let waText = `Hello *Massaji Spa Bali*,\n\nI would like to book an appointment:\n• *Guest:* ${name}\n• *Treatment / Package:* ${service}\n• *Date:* ${date}\n• *Time:* ${time} WITA\n• *Party Size:* ${guests} guest(s)\n`;
-      if (phone) waText += `• *Phone / WhatsApp:* ${phone}\n`;
-      if (notes) waText += `• *Notes:* ${notes}\n`;
-      waText += `\nPlease confirm availability for this session. Thank you!`;
+      let waText = '';
+      if (currentLang === 'en') {
+        waText = `Hello *Massaji Spa Bali*,\n\nI would like to book an appointment:\n• *Guest:* ${name}\n• *Treatment / Package:* ${service}\n• *Date:* ${date}\n• *Time:* ${time} WITA\n• *Party Size:* ${guests} guest(s)\n`;
+        if (phone) waText += `• *Phone / WhatsApp:* ${phone}\n`;
+        waText += `• *Booking Source:* Website (${detectedSource} • ${detectedDevice})\n`;
+        if (notes) waText += `• *Notes:* ${notes}\n`;
+        waText += `\nPlease confirm availability for this session. Thank you!`;
+      } else {
+        waText = `Halo *Massaji Spa Bali*,\n\nSaya ingin memesan jadwal reservasi via website:\n• *Nama:* ${name}\n• *Perawatan / Paket:* ${service}\n• *Tanggal:* ${date}\n• *Jam:* ${time} WITA\n• *Jumlah Tamu:* ${guests} orang\n`;
+        if (phone) waText += `• *Nomor Kontak:* ${phone}\n`;
+        waText += `• *Sumber Reservasi:* Website (${detectedSource} • ${detectedDevice})\n`;
+        if (notes) waText += `• *Catatan:* ${notes}\n`;
+        waText += `\nMohon konfirmasi ketersediaan slot waktu ini. Terima kasih!`;
+      }
       const fallbackWaUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
 
       try {
