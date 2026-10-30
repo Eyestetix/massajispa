@@ -526,6 +526,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-cards-container">
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: flex;"
              data-category="packages-single" 
              data-search="oh! so relax (single package) oh! so relax (paket personal) foot bath, full balinese body massage, completed with body scrub to exfoliate dead skin cells. choose your favourite body scrub scent. kombinasi menenangkan 60 menit pijat tradisional bali dilanjutkan 30 menit refleksi kaki untuk menyegarkan kembali tubuh yang letih sehabis beraktivitas. single package (1 person) paket personal (1 orang) 90 mins (1 person) 90 menit (1 orang)"
              data-name-en="Oh! So Relax (Single Package)" data-name-id="Oh! So Relax (Paket Personal)"
@@ -565,6 +566,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: flex;"
              data-category="packages-single" 
              data-search="traditional healing massage (single package) traditional healing massage (paket personal) foot bath, full balinese body massage (75 mins) completed with balinese warm boreh body mask (15 mins) using 100% herbal mixtures (cloves, black cumin, neem, ashitaba). perpaduan 60 menit pijat relaksasi tubuh bali dengan 30 menit terapi totok wajah akupresur alami untuk melancarkan sirkulasi dan memancarkan kesegaran alami wajah. single package (1 person) paket personal (1 orang) 90 mins (1 person) 90 menit (1 orang)"
              data-name-en="Traditional Healing Massage (Single Package)" data-name-id="Traditional Healing Massage (Paket Personal)"
@@ -604,6 +606,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: flex;"
              data-category="packages-single" 
              data-search="me, myself &amp; massaji (single package) me, myself &amp; massaji (paket personal) foot bath, massaji signature massage (90 mins), hot himalayan salt body compress (15 mins), sandalwood body mask (15 mins), flower bath with aromatherapy (30 mins). waktu istimewa untuk diri anda: 60 menit pijat tradisional bali, lulur tubuh alami pilihan, masker tubuh melembapkan, dan relaksasi berendam di bathtub bunga aromatik. single package (1 person) paket personal (1 orang) 150 mins (1 person) 150 menit (1 orang)"
              data-name-en="Me, Myself &amp; Massaji (Single Package)" data-name-id="Me, Myself &amp; Massaji (Paket Personal)"
@@ -643,6 +646,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-single" 
              data-search="forever young luxury ritual (single package) forever young luxury ritual (paket personal) footbath, hot stone massage (90m), body scrub (20m), facial massage &amp; mask (45m), basic nail (60m), flower bath (25m). free instant tightening mask, snack &amp; hot drink in bathtub. perjalanan relaksasi paripurna 4 jam: pijat tradisional bali 60 menit, facial botani biokos 60 menit, lulur tubuh 30 menit, masker tubuh 30 menit, dan manicure pedicure lengkap. single package (1 person) paket personal (1 orang) 4 hours (1 person) 4 jam (1 orang)"
              data-name-en="Forever Young Luxury Ritual (Single Package)" data-name-id="Forever Young Luxury Ritual (Paket Personal)"
@@ -682,6 +686,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-couple" 
              data-search="simply us (couple package) simply us (paket pasangan) footbath, balinese body massage (90 mins), romantic flower bath with candle and aromatherapy (15 mins). price for 2 persons. momen romantis berdua di suite privat: 90 menit pijat tubuh bersama terapis berpengalaman dan 15 menit berendam di bathtub taburan kelopak bunga mawar segar. couple package (2 persons) paket pasangan (2 orang) 105 mins (2 persons) 105 menit (2 orang)"
              data-name-en="Simply Us (Couple Package)" data-name-id="Simply Us (Paket Pasangan)"
@@ -721,6 +726,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-couple" 
              data-search="jaen sajan (couple package) jaen sajan (paket pasangan) footbath, balinese body massage (90 mins), hot himalayan salt relaxing body compress (15 mins), romantic flower bath with aromatherapy (15 mins). price for 2 persons. istilah bali untuk kenikmatan sejati: 60 menit pijat tradisional bali berdua, dilanjutkan 45 menit lulur rempah aromatik, dan 15 menit mandi bunga menenangkan. couple package (2 persons) paket pasangan (2 orang) 120 mins (2 persons) 120 menit (2 orang)"
              data-name-en="Jaen Sajan (Couple Package)" data-name-id="Jaen Sajan (Paket Pasangan)"
@@ -760,6 +766,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-couple" 
              data-search="luh muani (couple package) luh muani (paket pasangan) footbath, swedish body massage (90 mins), magnolia mint body scrub (15 mins), hydrating facial mask (15 mins), romantic flower bath with aromatherapy (15 mins). price for 2 persons. harmonisasi tubuh dan pikiran berdua: 60 menit pijat tradisional bali, 45 menit totok wajah akupresur alami, serta 15 menit relaksasi mandi bunga mawar. couple package (2 persons) paket pasangan (2 orang) 120 mins (2 persons) 120 menit (2 orang)"
              data-name-en="Luh Muani (Couple Package)" data-name-id="Luh Muani (Paket Pasangan)"
@@ -799,6 +806,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-couple" 
              data-search="romantic rose bali couple spa romantic rose bali couple spa infra red body wrap (10 mins), full body massage (75 mins), rose body scrub (20 mins), rose body mask (20 mins), flower bath and aromatherapy (15 mins). fresh rose blended daily. kemewahan beraroma mawar untuk anda berdua: pijat tradisional bali 60 menit, lulur mawar murni 45 menit, masker tubuh mawar 15 menit, dan mandi kelopak mawar 15 menit. couple package (2 persons) paket pasangan (2 orang) 135 mins (2 persons) 135 menit (2 orang)"
              data-name-en="Romantic Rose Bali Couple Spa" data-name-id="Romantic Rose Bali Couple Spa"
@@ -838,6 +846,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-couple" 
              data-search="jegeg bali lavender couple spa jegeg bali lavender couple spa infra red body wrap (10 mins), full balinese massage (75 mins), lavender body scrub (20 mins), lavender body mask (20 mins), face mask (10 mins), flower bath with aromatherapy (15 mins). relaksasi lavender yang menenangkan saraf: pijat tradisional bali 60 menit, facial botani 45 menit, lulur lavender 30 menit, dan mandi bunga aromaterapi 15 menit. couple package (2 persons) paket pasangan (2 orang) 150 mins (2 persons) 150 menit (2 orang)"
              data-name-en="Jegeg Bali Lavender Couple Spa" data-name-id="Jegeg Bali Lavender Couple Spa"
@@ -877,6 +886,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-group" 
              data-search="bali bagus package (group 4 pax) bali bagus package (group 4 orang) 4 pax balinese traditional massage (120 mins). ancient art of massage with gentle stretches, acupressure, reflexology and aromatherapy to bring 4 guests into profound serenity. pilihan ideal untuk keluarga atau sahabat (4 orang): 60 menit pijat tradisional bali, 45 menit lulur tubuh alami pilihan, dan 15 menit mandi bunga bersama. group package (4 persons) paket rombongan (4 orang) 120 mins (4 persons) 120 menit (4 orang)"
              data-name-en="Bali Bagus Package (Group 4 Pax)" data-name-id="Bali Bagus Package (Group 4 Orang)"
@@ -916,6 +926,7 @@
         </div>
 
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             style="display: none;"
              data-category="packages-group" 
              data-search="bali kuat package (group 4 pax) bali kuat package (group 4 orang) 2 pax deep tissue massage (90 mins) + 2 pax massaji signature massage (90 mins). strong pressure and customized modalities for 4 guests. paket kebugaran 4 orang: 60 menit pijat tradisional bali dan 30 menit refleksi kaki untuk menyegarkan seluruh anggota rombongan. group package (4 persons) paket rombongan (4 orang) 90 mins (4 persons) 90 menit (4 orang)"
              data-name-en="Bali Kuat Package (Group 4 Pax)" data-name-id="Bali Kuat Package (Group 4 Orang)"
@@ -970,10 +981,10 @@
           id="packages-toggle-btn"
           aria-expanded="false"
           aria-controls="packages-cards-container"
-          class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
+          class="group inline-flex items-center gap-2 py-2 px-4 rounded-lg text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] hover:bg-[#E1F0FE]/60 transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
           title="Toggle Spa Packages">
           <span class="packages-toggle-label tracking-wide" data-i18n="pkg_view_all">View All Spa Packages</span>
-          <svg class="packages-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="packages-toggle-chevron w-4 h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
@@ -1042,6 +1053,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-cards-container">
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: flex;"
              data-category="massage" 
              data-search="balinese traditional massage pijat tradisional bali ancient art of massage techniques to bring you to a state of serenity &amp; deep relaxation through gentle stretches, acupressure, reflexology and aromatherapy to stimulate blood circulation. note : medium pressure massage pijatan khas bali dengan tekanan ibu jari, usapan berirama, dan peregangan lembut untuk melancarkan peredaran darah serta menghilangkan penat. catatan : pijat tekanan sedang (medium pressure massage) body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Balinese Traditional Massage" data-name-id="Pijat Tradisional Bali"
@@ -1087,6 +1099,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: flex;"
              data-category="massage" 
              data-search="swedish relaxing massage pijat relaksasi swedish scientific massage techniques based on western concepts of anatomy and physiology to aid with detoxing and breaking up muscle knots with long smooth gliding strokes. teknik pijatan gaya eropa dengan gerakan mengusap panjang dan ritmis yang dirancang khusus untuk meredakan stres dan menenangkan pikiran. body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Swedish Relaxing Massage" data-name-id="Pijat Relaksasi Swedish"
@@ -1132,6 +1145,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: flex;"
              data-category="massage" 
              data-search="deep tissue / sports massage pijat deep tissue / sports designed to deliver firm pressure into inner layers of muscles and connective tissue, instantly relieving aching muscles, chronic joint pain, and stubborn tension. note: strong pressure massage pijatan bertekanan kuat menjangkau lapisan otot terdalam. sangat efektif untuk mengatasi kaku otot, pegal setelah berolahraga, atau surfing di canggu. catatan: pijat tekanan kuat (strong pressure massage) body massage pijat tradisional tubuh 60 / 90 / 120 mins 60 / 90 / 120 menit"
              data-name-en="Deep Tissue / Sports Massage" data-name-id="Pijat Deep Tissue / Sports"
@@ -1177,6 +1191,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="hot stone healing massage pijat terapi batu hangat (hot stone) feel the warmth of smooth stones and professional hands working deeply into your muscles to ease muscle tightness and chronic joint pains. volcano stones sun-bathed to stabilize energy. batu basal vulkanik hangat dialirkan di sepanjang meridian tubuh untuk melonggarkan otot tegang, membuang racun, dan memberikan kehangatan mendalam. body massage pijat tradisional tubuh 90 / 120 mins 90 / 120 menit"
              data-name-en="Hot Stone Healing Massage" data-name-id="Pijat Terapi Batu Hangat (Hot Stone)"
@@ -1222,6 +1237,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="massaji signature massage (advance) massaji signature massage (advance) developed over years combining the finest massage essence around the world (deep pressure, acupressure, folding massage). performed exclusively by senior therapists. kombinasi eksklusif teknik tradisional bali, lomi-lomi hawaii, dan peregangan thailand yang disesuaikan secara khusus dengan kondisi tubuh anda. body massage pijat tradisional tubuh 90 / 120 mins 90 / 120 menit"
              data-name-en="Massaji Signature Massage (Advance)" data-name-id="Massaji Signature Massage (Advance)"
@@ -1267,6 +1283,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="pre natal (pregnancy massage) pijat pre natal (khusus ibu hamil) specially designed and customized for pregnant women and changing hormones. helps relax tense muscles, ease sore spots, and improve circulation safely by senior therapists. pijatan lembut dan aman oleh terapis bersertifikat, dirancang untuk meredakan nyeri punggung bawah, bengkak pada kaki, dan kelelahan selama kehamilan. body massage pijat tradisional tubuh 90 / 120 mins 90 / 120 menit"
              data-name-en="Pre Natal (Pregnancy Massage)" data-name-id="Pijat Pre Natal (Khusus Ibu Hamil)"
@@ -1312,6 +1329,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="foot reflexology refleksi kaki tradisional ancient art of stimulating pressure points on feet corresponding to internal organs and glands to restore natural energy flow and equalized well-being throughout the body. stimulasi titik-titik saraf pada telapak kaki yang terhubung dengan organ tubuh, membantu melancarkan sirkulasi darah dan menyegarkan langkah anda. body massage pijat tradisional tubuh 30 / 60 / 90 / 120 mins 30 / 60 / 90 / 120 menit"
              data-name-en="Foot Reflexology" data-name-id="Refleksi Kaki Tradisional"
@@ -1357,6 +1375,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="head &amp; shoulder tension relief pijat kepala, leher &amp; bahu focuses on built-up stress and muscle tension in neck and shoulders. helps relieve headaches, improve concentration, and encourage deep, restorative sleep. fokus pada area punggung atas, pundak, dan kulit kepala untuk melepaskan ketegangan akibat terlalu lama duduk di depan komputer atau perjalanan jauh. body massage pijat tradisional tubuh 30 / 60 mins 30 / 60 menit"
              data-name-en="Head &amp; Shoulder Tension Relief" data-name-id="Pijat Kepala, Leher &amp; Bahu"
@@ -1402,6 +1421,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="focused back massage pijat khusus punggung developed from years of experience focusing on the back area only. tailored specifically for busy travelers on the go and in a rush. perawatan terarah pada area pinggang dan tulang punggung untuk meredakan rasa pegal dan kaku otot secara instan. body massage pijat tradisional tubuh 45 mins 45 menit"
              data-name-en="Focused Back Massage" data-name-id="Pijat Khusus Punggung"
@@ -1444,6 +1464,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="acupressure facial massage totok wajah akupresur stimulates facial blood circulation, relaxes delicate facial muscles, and enhances skin elasticity for tension relief and a brighter complexion. pijatan titik akupresur pada wajah untuk melancarkan aliran darah, mengurangi ketegangan otot wajah, dan membantu mengencangkan kulit secara alami. body massage pijat tradisional tubuh 30 mins 30 menit"
              data-name-en="Acupressure Facial Massage" data-name-id="Totok Wajah Akupresur"
@@ -1486,6 +1507,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="massage" 
              data-search="cellulite massage with machine pijat selulit dengan mesin khusus focus on thigh, buttock, or arm. deep tissue manipulation, kneading &amp; skin rolling (60m) combined with percussion gryatory machine (30m) to break down fat deposits and improve lymphatic drainage. kombinasi pijat manual dan bantuan mesin khusus untuk merangsang drainase limfatik, memecah timbunan selulit, dan menghaluskan permukaan kulit. body massage pijat tradisional tubuh 90 mins 90 menit"
              data-name-en="Cellulite Massage with Machine" data-name-id="Pijat Selulit dengan Mesin Khusus"
@@ -1528,6 +1550,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="slimming" 
              data-search="anti cellulite full treatment perawatan anti-selulit lengkap focus: thigh or buttock. includes foot bath, coffee body scrub (15m), infrared body wrap (15m), cellulite massage (45m), skin roller (15m), and grayatory percussion machine (30m). free coffee scrub on affected area. perawatan menyeluruh: lulur pengelupasan selulit, pijatan limfatik dengan krim pembakar lemak, dan masker pembungkus tubuh untuk hasil optimal. slimming &amp; cellulite slimming &amp; selulit 120 mins 120 menit"
              data-name-en="Anti Cellulite Full Treatment" data-name-id="Perawatan Anti-Selulit Lengkap"
@@ -1570,6 +1593,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="slimming" 
              data-search="body slimming cavitation rf (arm) body slimming cavitation rf (lengan) radio frequency cavitation generates heat in deep skin layers to stimulate collagen, elastin, and break down fat cells for arm contouring. free coffee body scrub included. terapi gelombang ultrasonik cavitation dan radio frequency terarah untuk mengurangi lingkar lengan atas dan mengencangkan kulit kendur. slimming &amp; cellulite slimming &amp; selulit 135 mins 135 menit"
              data-name-en="Body Slimming Cavitation RF (Arm)" data-name-id="Body Slimming Cavitation RF (Lengan)"
@@ -1612,6 +1636,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="slimming" 
              data-search="body slimming cavitation rf (thigh) body slimming cavitation rf (paha) targeted rf slimming for thighs to break down stubborn fat cells, tone skin, and improve contour. includes complimentary coffee body scrub for enhanced absorption. pengencangan dan pembentukan area paha serta bokong dengan teknologi rf modern untuk mengurangi selulit dan meratakan kontur kaki. slimming &amp; cellulite slimming &amp; selulit 135 mins 135 menit"
              data-name-en="Body Slimming Cavitation RF (Thigh)" data-name-id="Body Slimming Cavitation RF (Paha)"
@@ -1654,6 +1679,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="slimming" 
              data-search="body slimming cavitation rf (tummy) body slimming cavitation rf (perut) intensive abdominal cavitation rf treatment to reduce stubborn tummy fat and tighten skin tissue. includes complimentary coffee body scrub. fokus pada area perut dan pinggang untuk memecah lemak subkutan membandel, merampingkan lingkar pinggang, dan mengencangkan otot perut. slimming &amp; cellulite slimming &amp; selulit 135 mins 135 menit"
              data-name-en="Body Slimming Cavitation RF (Tummy)" data-name-id="Body Slimming Cavitation RF (Perut)"
@@ -1696,6 +1722,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="aloe vera body treatment spa aloe vera sunburn relief body spa pure aloe vera and honey remedy. includes foot bath + balinese massage (75m), aloe vera body mask (15m), and aloe vera facial treatment (30m) to soothe and deeply hydrate sun-exposed skin. pilihan utama sehabis berjemur di pantai: gel lidah buaya murni dingin yang menyejukkan kulit terbakar matahari, dilanjutkan pijat relaksasi lembut. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
              data-name-en="Aloe Vera Body Treatment Spa" data-name-id="Aloe Vera Sunburn Relief Body Spa"
@@ -1738,6 +1765,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="balinese boreh warming herbal spa balinese boreh warming herbal spa fresh herbs daily blended. foot bath, traditional balinese massage (75m), warming balinese boreh scrub (30m), and flower bath with bali jasmine salt (15m) to relieve joint and muscle soreness. tradisi ramuan rempah khas bali (cengkeh, jahe, pala, dan beras) yang menghangatkan tubuh dari dalam, melemaskan persendian, dan membuang angin. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
              data-name-en="Balinese Boreh Warming Herbal Spa" data-name-id="Balinese Boreh Warming Herbal Spa"
@@ -1780,6 +1808,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="green tea &amp; matcha detox spa green tea &amp; matcha detox spa pure matcha &amp; green tea antioxidants. foot bath + balinese massage (75m), green tea scrub (20m), hot himalayan salt &amp; flower back compress (10m), flower bath with aromatherapy (15m). kaya antioksidan polifenol untuk mendetoksifikasi racun kulit, mengangkat sel kulit mati, dan mengembalikan kesegaran alami tubuh. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
              data-name-en="Green Tea &amp; Matcha Detox Spa" data-name-id="Green Tea &amp; Matcha Detox Spa"
@@ -1822,6 +1851,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="rose bali anti-aging spa rose bali anti-aging body spa rich in vitamins a &amp; c. foot bath, full body massage (60m), rose scrub (25m), rose body mask (20m), flower bath with aromatherapy (15m) to smooth skin and boost natural collagen. perawatan lulur dan masker bunga mawar aromatik yang melembutkan tekstur kulit, menjaga elastisitas, dan memberikan aroma mewah tahan lama. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
              data-name-en="Rose Bali Anti-Aging Spa" data-name-id="Rose Bali Anti-Aging Body Spa"
@@ -1864,6 +1894,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="refreshing pear vanilla spa refreshing pear vanilla body spa natural antioxidant with pure vanilla extract &amp; vitamin b. foot bath, balinese massage (75m), pear &amp; vanilla body scrub (15m), body mask (15m), flower bath with aromatherapy (15m). perpaduan manis dan segar buah pir serta vanila lembut yang menghidrasi kulit kering, mencerahkan warna kulit, dan menenangkan indra. body spa treatment ritual body spa &amp; lulur 120 mins 120 menit"
              data-name-en="Refreshing Pear Vanilla Spa" data-name-id="Refreshing Pear Vanilla Body Spa"
@@ -1906,6 +1937,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="magnolia &amp; mint body spa magnolia &amp; mint refreshing spa magnolia bark &amp; flower reduces anxiety and tension. footbath, infrared detox wrap (15m), facial massage (15m), balinese massage (75m), magnolia &amp; mint scrub (20m), mask (15m), flower bath (25m). sensasi dingin menyegarkan dari daun mint berpadu keharuman bunga cempaka magnolia yang membangkitkan energi dan meredakan kelelahan tubuh. body spa treatment ritual body spa &amp; lulur 150 mins 150 menit"
              data-name-en="Magnolia &amp; Mint Body Spa" data-name-id="Magnolia &amp; Mint Refreshing Spa"
@@ -1948,6 +1980,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="sandalwood &amp; turmeric spa sandalwood &amp; turmeric royal spa iconic woody sandalwood calming aroma and pure active curcumin turmeric. foot bath, infrared wrap (15m), facial massage (15m), balinese massage (75m), scrub (20m), mask (15m), flower bath (25m). rahasia kecantikan putri keraton dengan lulur kunyit murni dan kayu cendana aromatik untuk mencerahkan kulit serta menjadikannya halus berseri. body spa treatment ritual body spa &amp; lulur 150 mins 150 menit"
              data-name-en="Sandalwood &amp; Turmeric Spa" data-name-id="Sandalwood &amp; Turmeric Royal Spa"
@@ -1990,6 +2023,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="spa" 
              data-search="lavender rosemary mint body spa lavender rosemary mint body spa pure lavender and natural rosemary analgesic. foot bath, infrared wrap (15m), facial massage (15m), balinese massage (75m), rosemary scrub (20m), lavender mask (15m), flower bath (25m). aromaterapi lavender menenangkan dipadu rosemary dan mint untuk mengatasi insomnia, meredakan ketegangan saraf, dan memberikan relaksasi total. body spa treatment ritual body spa &amp; lulur 150 mins 150 menit"
              data-name-en="Lavender Rosemary Mint Body Spa" data-name-id="Lavender Rosemary Mint Body Spa"
@@ -2032,6 +2066,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="biokos botanical facial (60 mins) biokos botanical facial (60 menit) facial cleansing, facial acupressure massage, facial scrub, and nourishing botanical facial mask. perawatan wajah alami dengan produk biokos berbahan botani aktif untuk membersihkan pori-pori secara mendalam dan menjaga kelembapan kulit. facial treatment perawatan wajah 60 mins 60 menit"
              data-name-en="Biokos Botanical Facial (60 Mins)" data-name-id="Biokos Botanical Facial (60 Menit)"
@@ -2074,6 +2109,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="biokos deluxe facial (90 mins) biokos deluxe facial (90 menit) face cleansing, facial massage, scrub, mask, combined with relaxing head &amp; shoulder massage (30 mins). pembersihan menyeluruh, penguapan, ekstraksi komedo lembut, pijat totok wajah akupresur, dan masker nutrisi untuk wajah tampak cerah berseri. facial treatment perawatan wajah 90 mins 90 menit"
              data-name-en="Biokos Deluxe Facial (90 Mins)" data-name-id="Biokos Deluxe Facial (90 Menit)"
@@ -2116,6 +2152,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="biokos ultimate deep facial (120 mins) biokos ultimate deep facial (120 menit) face cleansing, face massage, scrub, mask, face steam, facial extraction, and relaxing head &amp; shoulder massage (30 mins). facial lengkap dengan perawatan intensif serum anti-penuaan, masker kolagen premium, dan pijat leher serta pundak yang menenangkan. facial treatment perawatan wajah 120 mins 120 menit"
              data-name-en="Biokos Ultimate Deep Facial (120 Mins)" data-name-id="Biokos Ultimate Deep Facial (120 Menit)"
@@ -2158,6 +2195,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="hi-frequency machine with violet rays terapi wajah high-frequency violet rays safe electrical currents to oxygenate skin, eliminate acne-causing bacteria, reduce inflammation, tighten pores, and boost collagen. teknologi sinar frekuensi tinggi untuk membunuh bakteri penyebab jerawat, mengecilkan pori-pori, dan mempercepat regenerasi sel kulit. facial treatment perawatan wajah 10 mins 10 menit"
              data-name-en="Hi-Frequency Machine with Violet Rays" data-name-id="Terapi Wajah High-Frequency Violet Rays"
@@ -2200,6 +2238,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="cold light led facial therapy terapi wajah led cold light therapy specific led wavelengths combined with cold compress technology to soothe, tighten pores, boost collagen, and accelerate deep serum absorption. penyinaran led cahaya dingin untuk menenangkan kemerahan kulit, merangsang pembentukan kolagen baru, dan mencerahkan warna kulit kusam. facial treatment perawatan wajah 10 mins 10 menit"
              data-name-en="Cold Light LED Facial Therapy" data-name-id="Terapi Wajah LED Cold Light Therapy"
@@ -2242,6 +2281,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="rf facial machine for wrinkle (face iron) mesin rf wajah anti-kerutan (face iron) non-surgical radio frequency skin treatment heating deep layers to stimulate collagen and elastin for firmer, smoother skin and contoured facial lines. gelombang radio frekuensi yang menghantarkan panas lembut ke lapisan kolagen dermis untuk mengencangkan garis halus dan membentuk v-shape wajah. facial treatment perawatan wajah 15 mins 15 menit"
              data-name-en="RF Facial Machine for Wrinkle (Face Iron)" data-name-id="Mesin RF Wajah Anti-Kerutan (Face Iron)"
@@ -2284,6 +2324,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="facial" 
              data-search="instant firming kaolin mask masker pengencang instan kaolin clay kaolin clay mask absorbs excess oil, detoxifies pores, reduces acne, soothes redness, and tightens facial contours. masker lumpur kaolin mineral murni yang menyerap minyak berlebih, membersihkan kotoran pori, dan memberikan efek kulit kencang instan. facial treatment perawatan wajah 15 mins 15 menit"
              data-name-en="Instant Firming Kaolin Mask" data-name-id="Masker Pengencang Instan Kaolin Clay"
@@ -2326,6 +2367,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="nail" 
              data-search="deluxe hands spa with nail gel deluxe hands spa dengan kutek gel nail cutting, nail shaping, cuticle grooming, hand soak, hand scrub, hand mask, hand massage, and long-lasting nail gel polish. perawatan tangan mewah: perendaman aromaterapi, pembersihan kutikula, scrubbing halus, pijatan tangan, dan aplikasi cat kuku gel tahan lama. nail service layanan &amp; seni kuku 90 mins 90 menit"
              data-name-en="Deluxe Hands Spa with Nail Gel" data-name-id="Deluxe Hands Spa dengan Kutek Gel"
@@ -2368,6 +2410,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="nail" 
              data-search="deluxe foot spa with nail gel deluxe foot spa dengan kutek gel nail cutting, shaping, cuticle grooming, foot soak, callus removal, foot scrub, hand mask, calf massage, and nail gel polish. perawatan kaki komprehensif: perendaman garam mineral, pengikisan kulit kapalan, pijat kaki menenangkan, dan polesan cat kuku gel berkualitas. nail service layanan &amp; seni kuku 90 mins 90 menit"
              data-name-en="Deluxe Foot Spa with Nail Gel" data-name-id="Deluxe Foot Spa dengan Kutek Gel"
@@ -2410,6 +2453,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="nail" 
              data-search="basic nail hand or foot with gel manikur / pedikur dasar dengan gel nail cutting, nail shaping, cuticle grooming, and basic nail gel application. pembentukan kuku rapi, perapian kutikula, dan pulasan kutek gel warna pilihan anda dengan hasil kilau sempurna dan tahan lama. nail service layanan &amp; seni kuku 60 mins 60 menit"
              data-name-en="Basic Nail Hand or Foot with Gel" data-name-id="Manikur / Pedikur Dasar dengan Gel"
@@ -2455,6 +2499,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="nail" 
              data-search="dr. feeto callus removal treatment perawatan penghilang kapalan dr. feeto fast and efficient treatment removing calluses and cracked heels for velvety smooth, soft, and beautiful feet. formula khusus dr. feeto untuk mengikis lapisan kulit mati dan tumit pecah-pecah secara lembut, mengembalikan kelembutan alami telapak kaki. nail service layanan &amp; seni kuku 60 mins 60 menit"
              data-name-en="Dr. Feeto Callus Removal Treatment" data-name-id="Perawatan Penghilang Kapalan Dr. Feeto"
@@ -2497,6 +2542,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="nail" 
              data-search="nail gel remover &amp; custom art pembersihan kutek gel &amp; nail art kustom professional nail gel removal, french nail gel, cat eye gel, marble design, and aurora chrome nail art. pembersihan kutek gel lama secara aman tanpa merusak lapisan kuku asli, serta layanan kreasi nail art motif kustom sesuai selera anda. nail service layanan &amp; seni kuku service add-on layanan tambahan"
              data-name-en="Nail Gel Remover &amp; Custom Art" data-name-id="Pembersihan Kutek Gel &amp; Nail Art Kustom"
@@ -2542,6 +2588,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="flower bath with aromatherapy mandi berendam bunga aromaterapi indulge yourself with fresh exotic flower petals, soothing aromatherapy, and mineral salt soak after any spa session. berendam santai di bathtub yang dipenuhi kelopak bunga mawar segar dan tetesan minyak aromaterapi murni untuk ketenangan jiwa seutuhnya. additional service layanan tambahan 30 mins 30 menit"
              data-name-en="Flower Bath with Aromatherapy" data-name-id="Mandi Berendam Bunga Aromaterapi"
@@ -2584,6 +2631,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="homemade oatmeal &amp; rice body scrub lulur alami oatmeal &amp; beras tradisional oatmeal &amp; rice powder exfoliates dead skin cells, prevents ingrown hair, and improves hydration. choose your favourite scent. racikan lulur alami oatmeal dan butiran beras halus untuk mengangkat kotoran serta sel kulit mati, menjadikan kulit selembut sutra. additional service layanan tambahan 30 mins 30 menit"
              data-name-en="Homemade Oatmeal &amp; Rice Body Scrub" data-name-id="Lulur Alami Oatmeal &amp; Beras Tradisional"
@@ -2626,6 +2674,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="calming oatmeal body mask masker tubuh menenangkan oatmeal calms skin irritation, reduces redness, ideal for sensitive and sun-damaged skin, leaving it soft and supple. masker tubuh kaya nutrisi yang menyejukkan kulit sensitif, meredakan iritasi, serta mengembalikan kelembapan alami kulit tubuh. additional service layanan tambahan 30 mins 30 menit"
              data-name-en="Calming Oatmeal Body Mask" data-name-id="Masker Tubuh Menenangkan Oatmeal"
@@ -2668,6 +2717,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="hot himalayan salt &amp; flower compress kompres hangat garam himalaya &amp; bunga rich in mineral traces (iron, potassium, magnesium) to soothe deep muscle tension and muscle cramps on legs, shoulders &amp; back. kompres hangat butiran garam merah muda himalaya dan rempah bunga kering pada titik pegal untuk meredakan ketegangan otot mendalam. additional service layanan tambahan 15 mins 15 menit"
              data-name-en="Hot Himalayan Salt &amp; Flower Compress" data-name-id="Kompres Hangat Garam Himalaya &amp; Bunga"
@@ -2710,6 +2760,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="detoxifying infra red body wrap bungkus tubuh detoksifikasi infra red deep penetrating infrared heat promotes sweating, detoxification, calorie burning, and temporary joint/muscle pain relief. selimut sauna sinar inframerah gelombang jauh yang merangsang keringat detoks, membakar kalori, dan melancarkan metabolisme tubuh. additional service layanan tambahan 30 mins 30 menit"
              data-name-en="Detoxifying Infra Red Body Wrap" data-name-id="Bungkus Tubuh Detoksifikasi Infra Red"
@@ -2752,6 +2803,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="hydrating facial mask add-on tambahan masker wajah menghidrasi hyaluronic acid, glycerin &amp; ceramides to soothe dryness, lock in moisture, and restore skin suppleness. tambahan masker wajah kaya serum pelembap intensif yang dapat dipadukan dengan perawatan spa tubuh pilihan anda. additional service layanan tambahan 15 mins 15 menit"
              data-name-en="Hydrating Facial Mask Add-on" data-name-id="Tambahan Masker Wajah Menghidrasi"
@@ -2794,6 +2846,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="exclusive spa gift voucher card voucher hadiah spa eksklusif the ideal gift for your special one. we provide a luxury gift voucher card with any treatment chosen from our menu. hadiah istimewa paling berkesan untuk orang tercinta. kartu voucher mewah yang dapat ditukarkan dengan pilihan perawatan apa pun di menu kami. additional service layanan tambahan custom treatment perawatan kustom"
              data-name-en="Exclusive Spa Gift Voucher Card" data-name-id="Voucher Hadiah Spa Eksklusif"
@@ -2836,6 +2889,7 @@
         </div>
 
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             style="display: none;"
              data-category="additional" 
              data-search="birthday / anniversary surprise package paket kejutan ulang tahun / anniversary sweet memorable surprise setup: simple flower bouquet, romantic candles around bathtub, aromatherapy flower bath, and mini birthday cake. dekorasi romantis suite spa dengan lilin aromatik, taburan kelopak bunga khusus ucapan selamat, dan ucapan personal untuk merayakan momen bahagia anda. additional service layanan tambahan romantic add-on sentuhan romantis"
              data-name-en="Birthday / Anniversary Surprise Package" data-name-id="Paket Kejutan Ulang Tahun / Anniversary"
@@ -2893,10 +2947,10 @@
         id="menu-toggle-btn"
         aria-expanded="false"
         aria-controls="menu-cards-container"
-        class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
+        class="group inline-flex items-center gap-2 py-2 px-4 rounded-lg text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] hover:bg-[#E1F0FE]/60 transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
         title="Toggle Complete Spa Catalog">
         <span class="menu-toggle-label tracking-wide" data-i18n="menu_view_all">View All Treatments</span>
-        <svg class="menu-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="menu-toggle-chevron w-4 h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>

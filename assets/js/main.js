@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
       card_btn_book: "Book Treatment",
       menu_search_placeholder: "Search treatments (e.g., balinese, hot stone, facial, manicure, slimming)...",
       menu_not_found: "No treatments found matching your keywords.",
-      menu_view_all: "View all treatments",
-      menu_show_less: "Show less",
+      menu_view_all: "View All Treatments",
+      menu_show_less: "Show Less",
 
       about_eyebrow: "Our Sanctuary Story",
       about_title_1: "Rooted in Bali.",
@@ -192,8 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
       card_btn_book: "Pesan Perawatan",
       menu_search_placeholder: "Cari menu treatment (misal: stone, traditional, facial, nail, slimming)...",
       menu_not_found: "Tidak ada perawatan yang sesuai dengan kata kunci Anda.",
-      menu_view_all: "Lihat semua perawatan",
-      menu_show_less: "Tampilkan lebih sedikit",
+      menu_view_all: "Lihat Semua Perawatan",
+      menu_show_less: "Tampilkan Lebih Sedikit",
 
       about_eyebrow: "Mengenal Massaji Spa",
       about_title_1: "Berakar di Tradisi Bali.",
@@ -498,79 +498,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Session-stable preview initialization:
-  // Prepend 3 chosen cards to the top of each cards container so that in collapsed state ("all"),
-  // exactly those 3 preview cards are rendered first.
-  function initSessionPreviews() {
-    // 1. Spa Packages Preview (3 featured/promotional packages)
-    const pkgContainer = document.getElementById('packages-cards-container');
-    if (pkgContainer) {
-      const pkgCards = Array.from(pkgContainer.querySelectorAll('.package-card'));
-      if (pkgCards.length > 0) {
-        let pkgNames = [];
-        try {
-          const stored = sessionStorage.getItem('massaji_preview_packages_v1');
-          if (stored) pkgNames = JSON.parse(stored);
-        } catch (e) {}
-
-        if (!pkgNames || pkgNames.length < 3) {
-          const couple = pkgCards.find(c => c.dataset.category === 'packages-couple');
-          const single = pkgCards.find(c => c.dataset.category === 'packages-single');
-          const group = pkgCards.find(c => c.dataset.category === 'packages-group');
-          const chosen = [couple, single, group].filter(Boolean);
-          for (const c of pkgCards) {
-            if (chosen.length >= 3) break;
-            if (!chosen.includes(c)) chosen.push(c);
-          }
-          pkgNames = chosen.map(c => c.dataset.nameEn);
-          try {
-            sessionStorage.setItem('massaji_preview_packages_v1', JSON.stringify(pkgNames));
-          } catch (e) {}
-        }
-
-        pkgNames.slice().reverse().forEach(name => {
-          const card = pkgCards.find(c => c.dataset.nameEn === name);
-          if (card) pkgContainer.prepend(card);
-        });
-      }
-    }
-
-    // 2. Complete Treatment Catalog Preview (3 diverse representative treatments)
-    const menuContainer = document.getElementById('menu-cards-container');
-    if (menuContainer) {
-      const menuCardsList = Array.from(menuContainer.querySelectorAll('.treatment-card'));
-      if (menuCardsList.length > 0) {
-        let menuNames = [];
-        try {
-          const stored = sessionStorage.getItem('massaji_preview_treatments_v1');
-          if (stored) menuNames = JSON.parse(stored);
-        } catch (e) {}
-
-        if (!menuNames || menuNames.length < 3) {
-          const massage = menuCardsList.find(c => c.dataset.category === 'massage');
-          const spa = menuCardsList.find(c => c.dataset.category === 'spa');
-          const facialOrSlim = menuCardsList.find(c => c.dataset.category === 'facial' || c.dataset.category === 'slimming');
-          const chosen = [massage, spa, facialOrSlim].filter(Boolean);
-          for (const c of menuCardsList) {
-            if (chosen.length >= 3) break;
-            if (!chosen.includes(c)) chosen.push(c);
-          }
-          menuNames = chosen.map(c => c.dataset.nameEn);
-          try {
-            sessionStorage.setItem('massaji_preview_treatments_v1', JSON.stringify(menuNames));
-          } catch (e) {}
-        }
-
-        menuNames.slice().reverse().forEach(name => {
-          const card = menuCardsList.find(c => c.dataset.nameEn === name);
-          if (card) menuContainer.prepend(card);
-        });
-      }
-    }
-  }
-
-  initSessionPreviews();
-
   // ========================================================
   // 3. PACKAGES: TABS + LIVE SEARCH + PREVIEW / EXPAND
   // ========================================================
@@ -641,6 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
   packageTabs.forEach(btn => {
     btn.addEventListener('click', () => {
       currentPackageCat = btn.dataset.category;
+      isPackagesExpanded = false;
 
       packageTabs.forEach(b => {
         b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
@@ -655,12 +583,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (packageSearchInput) {
-    packageSearchInput.addEventListener('input', filterPackages);
+    packageSearchInput.addEventListener('input', () => {
+      isPackagesExpanded = false;
+      filterPackages();
+    });
   }
 
   if (packageSearchClear) {
     packageSearchClear.addEventListener('click', () => {
       packageSearchInput.value = '';
+      isPackagesExpanded = false;
       filterPackages();
       packageSearchInput.focus();
     });
@@ -686,6 +618,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pkgToggleBtn) {
     pkgToggleBtn.addEventListener('click', () => {
       isPackagesExpanded = !isPackagesExpanded;
+      if (!isPackagesExpanded) {
+        const pkgSection = document.getElementById('packages');
+        if (pkgSection) {
+          pkgSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
       filterPackages();
     });
   }
@@ -760,6 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
   menuFilterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       currentMenuCat = btn.dataset.category;
+      isMenuExpanded = false;
 
       menuFilterButtons.forEach(b => {
         b.classList.remove('active', 'bg-[#1E3A8A]', 'text-white', 'border-[#1E3A8A]');
@@ -774,12 +713,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (menuSearchInput) {
-    menuSearchInput.addEventListener('input', filterMenu);
+    menuSearchInput.addEventListener('input', () => {
+      isMenuExpanded = false;
+      filterMenu();
+    });
   }
 
   if (menuSearchClear) {
     menuSearchClear.addEventListener('click', () => {
       menuSearchInput.value = '';
+      isMenuExpanded = false;
       filterMenu();
       menuSearchInput.focus();
     });
@@ -805,30 +748,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (menuToggleBtn) {
     menuToggleBtn.addEventListener('click', () => {
       isMenuExpanded = !isMenuExpanded;
+      if (!isMenuExpanded) {
+        const menuSection = document.getElementById('menu');
+        if (menuSection) {
+          menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
       filterMenu();
     });
-  }
-
-  // Anchor link navigation: clicking #packages or #menu in header/footer expands target section
-  function expandTargetSectionFromHash(hash) {
-    if (hash === '#packages') {
-      isPackagesExpanded = true;
-      filterPackages();
-    } else if (hash === '#menu') {
-      isMenuExpanded = true;
-      filterMenu();
-    }
-  }
-
-  document.querySelectorAll('a[href="#packages"], a[href="#menu"]').forEach(link => {
-    link.addEventListener('click', () => {
-      const targetHash = link.getAttribute('href');
-      expandTargetSectionFromHash(targetHash);
-    });
-  });
-
-  if (window.location.hash) {
-    expandTargetSectionFromHash(window.location.hash);
   }
 
   // Initial filter run to display exactly the 3 preview cards on page load

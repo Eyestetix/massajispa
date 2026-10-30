@@ -237,7 +237,7 @@ promo_cards_html = '\n'.join(promo_cards_list)
 # 3. BUILD PACKAGES CARDS HTML (BILINGUAL)
 # ========================================================
 package_cards_list = []
-for item in package_items:
+for idx, item in enumerate(package_items):
     esc_name_en = html.escape(item['name'])
     esc_name_id = html.escape(item.get('name_id', item['name']))
     esc_desc_en = html.escape(item.get('description', ''))
@@ -259,8 +259,11 @@ for item in package_items:
     search_data = f"{item['name'].lower()} {item.get('name_id', '').lower()} {item.get('description', '').lower()} {item.get('description_id', '').lower()} {cat_badge_en.lower()} {cat_badge_id.lower()} {esc_dur_en.lower()} {esc_dur_id.lower()}"
     esc_search = html.escape(search_data)
 
+    style_attr = 'style="display: flex;"' if idx < 3 else 'style="display: none;"'
+
     package_cards_list.append(f'''
         <div class="package-card treatment-card p-5 sm:p-6 flex flex-col justify-between" 
+             {style_attr}
              data-category="{html.escape(item['category'])}" 
              data-search="{esc_search}"
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
@@ -304,7 +307,7 @@ package_cards_html = '\n'.join(package_cards_list)
 # 4. BUILD TREATMENT MENU CARDS HTML (BILINGUAL)
 # ========================================================
 treatment_cards_list = []
-for item in treatment_items:
+for idx, item in enumerate(treatment_items):
     esc_name_en = html.escape(item['name'])
     esc_name_id = html.escape(item.get('name_id', item['name']))
     esc_desc_en = html.escape(item.get('description', ''))
@@ -338,8 +341,11 @@ for item in treatment_items:
     search_data = f"{item['name'].lower()} {item.get('name_id', '').lower()} {item.get('description', '').lower()} {item.get('description_id', '').lower()} {cat_label_en.lower()} {cat_label_id.lower()} {esc_dur_en.lower()} {esc_dur_id.lower()}"
     esc_search = html.escape(search_data)
 
+    style_attr = 'style="display: flex;"' if idx < 3 else 'style="display: none;"'
+
     treatment_cards_list.append(f'''
         <div class="treatment-card p-4 sm:p-5 flex flex-col justify-between" 
+             {style_attr}
              data-category="{html.escape(item['category'])}" 
              data-search="{esc_search}"
              data-name-en="{esc_name_en}" data-name-id="{esc_name_id}"
@@ -731,10 +737,10 @@ html_template = f'''<!DOCTYPE html>
           id="packages-toggle-btn"
           aria-expanded="false"
           aria-controls="packages-cards-container"
-          class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
+          class="group inline-flex items-center gap-2 py-2 px-4 rounded-lg text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] hover:bg-[#E1F0FE]/60 transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
           title="Toggle Spa Packages">
           <span class="packages-toggle-label tracking-wide" data-i18n="pkg_view_all">View All Spa Packages</span>
-          <svg class="packages-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="packages-toggle-chevron w-4 h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
@@ -819,10 +825,10 @@ html_template = f'''<!DOCTYPE html>
         id="menu-toggle-btn"
         aria-expanded="false"
         aria-controls="menu-cards-container"
-        class="group inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs sm:text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
+        class="group inline-flex items-center gap-2 py-2 px-4 rounded-lg text-sm font-semibold text-[#0284C7] hover:text-[#1E3A8A] hover:bg-[#E1F0FE]/60 transition-colors duration-200 cursor-pointer select-none bg-transparent border-0 shadow-none focus:outline-none"
         title="Toggle Complete Spa Catalog">
         <span class="menu-toggle-label tracking-wide" data-i18n="menu_view_all">View All Treatments</span>
-        <svg class="menu-toggle-chevron w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="menu-toggle-chevron w-4 h-4 transition-transform duration-200 text-[#0284C7] group-hover:text-[#1E3A8A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
