@@ -1,3 +1,14 @@
+<?php
+// Dynamic settings loader for Biznet hosting
+$settings_file = __DIR__ . '/data/settings.json';
+$live_settings = [];
+if (file_exists($settings_file)) {
+    $live_settings = json_decode(file_get_contents($settings_file), true) ?: [];
+}
+$live_about_img = !empty($live_settings['about_image']) ? $live_settings['about_image'] : 'assets/images/massaji-about.jpg';
+$live_hero_img  = !empty($live_settings['hero_image']) ? $live_settings['hero_image'] : 'assets/images/massaji-hero.jpg';
+$live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['promo_flyer_image'] : 'assets/images/promo-flyer-2026.jpeg';
+?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -161,7 +172,7 @@
 
       <div class="lg:col-span-6">
         <div class="img-editorial-frame aspect-[4/3] sm:aspect-[16/11] border-2 border-[#BAE0FD] shadow-xl">
-          <img src="assets/images/massaji-hero.jpg" alt="Authentic Balinese Massage at Massaji Spa" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/MASAGE.JPG';">
+          <img id="hero-main-image" src="<?php echo htmlspecialchars($live_hero_img); ?>" alt="Authentic Balinese Massage at Massaji Spa" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/MASAGE.JPG';">
           <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none"></div>
           <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-3.5 border border-[#BAE0FD] flex items-center justify-between text-xs text-[#141E3C]">
             <div>
@@ -2968,7 +2979,7 @@
         <!-- Left: Authentic Spa Photography with Reception Image Slot -->
         <div class="lg:col-span-5">
           <div class="img-editorial-frame aspect-[4/5] border border-[#BAE0FD] shadow-lg">
-            <img src="assets/images/massaji-about.jpg" alt="Massaji Spa Bali Sanctuary &amp; Reception" class="w-full h-full object-cover" onerror="if (!this.triedPng) { this.triedPng = true; this.src = 'assets/images/massaji-reception.jpg'; } else if (!this.triedRaw) { this.triedRaw = true; this.src = 'assets/images/18BB6F9B-4ACE-49DF-9AE1-610D3B65BA60.png'; } else { this.onerror = null; this.src = 'assets/images/gambar2.jpg'; }">
+            <img id="about-main-image" src="<?php echo htmlspecialchars($live_about_img); ?>" alt="Massaji Spa Bali Sanctuary &amp; Reception" class="w-full h-full object-cover" onerror="if (!this.triedPng) { this.triedPng = true; this.src = 'assets/images/massaji-reception.jpg'; } else if (!this.triedRaw) { this.triedRaw = true; this.src = 'assets/images/18BB6F9B-4ACE-49DF-9AE1-610D3B65BA60.png'; } else { this.onerror = null; this.src = 'assets/images/gambar2.jpg'; }">
           </div>
         </div>
 
@@ -3235,7 +3246,7 @@
 
       <!-- Flyer Image with Zoom Effect -->
       <div class="w-full rounded-2xl overflow-hidden border border-sky-300/30 shadow-xl bg-black/30 mb-4 flex items-center justify-center">
-        <img src="assets/images/promo-flyer-2026.jpeg" alt="Massaji Spa End Year Promotion Flyer" class="w-full h-auto max-h-[48vh] object-contain cursor-pointer hover:scale-[1.02] transition duration-300" onclick="closePromoPopup(); window.location.href='#promotion';">
+        <img id="promo-flyer-image" src="<?php echo htmlspecialchars($live_promo_img); ?>" alt="Massaji Spa End Year Promotion Flyer" class="w-full h-auto max-h-[48vh] object-contain cursor-pointer hover:scale-[1.02] transition duration-300" onclick="closePromoPopup(); window.location.href='#promotion';">
       </div>
 
       <!-- Action Buttons Bar -->

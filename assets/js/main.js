@@ -913,4 +913,31 @@ document.addEventListener('DOMContentLoaded', () => {
     bookingForm.reset();
   }
 
+  // Dynamic Live Settings Sync (Updates About Image, Hero Image, Promo Flyer)
+  try {
+    fetch('data/settings.json?v=' + Date.now())
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(s) {
+        if (!s) return;
+        if (s.about_image) {
+          var aboutEl = document.getElementById('about-main-image');
+          if (aboutEl && aboutEl.getAttribute('src') !== s.about_image) {
+            aboutEl.src = s.about_image;
+          }
+        }
+        if (s.hero_image) {
+          var heroEl = document.getElementById('hero-main-image');
+          if (heroEl && heroEl.getAttribute('src') !== s.hero_image) {
+            heroEl.src = s.hero_image;
+          }
+        }
+        if (s.promo_flyer_image) {
+          var promoEl = document.getElementById('promo-flyer-image');
+          if (promoEl && promoEl.getAttribute('src') !== s.promo_flyer_image) {
+            promoEl.src = s.promo_flyer_image;
+          }
+        }
+      }).catch(function() {});
+  } catch(e) {}
+
 });

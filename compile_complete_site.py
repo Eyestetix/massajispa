@@ -554,7 +554,7 @@ html_template = f'''<!DOCTYPE html>
 
       <div class="lg:col-span-6">
         <div class="img-editorial-frame aspect-[4/3] sm:aspect-[16/11] border-2 border-[#BAE0FD] shadow-xl">
-          <img src="{hero_image}" alt="Authentic Balinese Massage at Massaji Spa" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/MASAGE.JPG';">
+          <img id="hero-main-image" src="{hero_image}" alt="Authentic Balinese Massage at Massaji Spa" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/MASAGE.JPG';">
           <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none"></div>
           <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-3.5 border border-[#BAE0FD] flex items-center justify-between text-xs text-[#141E3C]">
             <div>
@@ -846,7 +846,7 @@ html_template = f'''<!DOCTYPE html>
         <!-- Left: Authentic Spa Photography with Reception Image Slot -->
         <div class="lg:col-span-5">
           <div class="img-editorial-frame aspect-[4/5] border border-[#BAE0FD] shadow-lg">
-            <img src="{about_image}" alt="Massaji Spa Bali Sanctuary &amp; Reception" class="w-full h-full object-cover" onerror="if (!this.triedPng) {{ this.triedPng = true; this.src = 'assets/images/massaji-reception.jpg'; }} else if (!this.triedRaw) {{ this.triedRaw = true; this.src = 'assets/images/18BB6F9B-4ACE-49DF-9AE1-610D3B65BA60.png'; }} else {{ this.onerror = null; this.src = 'assets/images/gambar2.jpg'; }}">
+            <img id="about-main-image" src="{about_image}" alt="Massaji Spa Bali Sanctuary &amp; Reception" class="w-full h-full object-cover" onerror="if (!this.triedPng) {{ this.triedPng = true; this.src = 'assets/images/massaji-reception.jpg'; }} else if (!this.triedRaw) {{ this.triedRaw = true; this.src = 'assets/images/18BB6F9B-4ACE-49DF-9AE1-610D3B65BA60.png'; }} else {{ this.onerror = null; this.src = 'assets/images/gambar2.jpg'; }}">
           </div>
         </div>
 
@@ -1113,7 +1113,7 @@ html_template = f'''<!DOCTYPE html>
 
       <!-- Flyer Image with Zoom Effect -->
       <div class="w-full rounded-2xl overflow-hidden border border-sky-300/30 shadow-xl bg-black/30 mb-4 flex items-center justify-center">
-        <img src="{promo_flyer_image}" alt="Massaji Spa End Year Promotion Flyer" class="w-full h-auto max-h-[48vh] object-contain cursor-pointer hover:scale-[1.02] transition duration-300" onclick="closePromoPopup(); window.location.href='#promotion';">
+        <img id="promo-flyer-image" src="{promo_flyer_image}" alt="Massaji Spa End Year Promotion Flyer" class="w-full h-auto max-h-[48vh] object-contain cursor-pointer hover:scale-[1.02] transition duration-300" onclick="closePromoPopup(); window.location.href='#promotion';">
       </div>
 
       <!-- Action Buttons Bar -->
@@ -1250,9 +1250,30 @@ html_template = f'''<!DOCTYPE html>
 </body>
 </html>'''
 
-# Write to index.php (for live PHP hosting & local server)
+# Write to index.php with dynamic PHP header (for live PHP hosting)
+php_dynamic_header = f"""<?php
+// Dynamic settings loader for Biznet hosting
+$settings_file = __DIR__ . '/data/settings.json';
+$live_settings = [];
+if (file_exists($settings_file)) {{
+    $live_settings = json_decode(file_get_contents($settings_file), true) ?: [];
+}}
+$live_about_img = !empty($live_settings['about_image']) ? $live_settings['about_image'] : '{about_image}';
+$live_hero_img  = !empty($live_settings['hero_image']) ? $live_settings['hero_image'] : '{hero_image}';
+$live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['promo_flyer_image'] : '{promo_flyer_image}';
+?>
+"""
+
+php_content = php_dynamic_header + html_template.replace(
+    f'src="{about_image}"', 'src="<?php echo htmlspecialchars($live_about_img); ?>"'
+).replace(
+    f'src="{hero_image}"', 'src="<?php echo htmlspecialchars($live_hero_img); ?>"'
+).replace(
+    f'src="{promo_flyer_image}"', 'src="<?php echo htmlspecialchars($live_promo_img); ?>"'
+)
+
 with open(f'{WEBSITE_DIR}/index.php', 'w') as f:
-    f.write(html_template)
+    f.write(php_content)
 
 # Also write to index.html (for GitHub Pages live preview at https://eyestetix.github.io/massajispa/)
 with open(f'{WEBSITE_DIR}/index.html', 'w') as f:

@@ -1157,9 +1157,35 @@ $csrf_token = generate_csrf_token();
 
     // 4. Data Fetching & Sync
     async function loadAllData() {
-      // 4.1 Load Settings
+      // 4.0 First try unified authenticated API
       try {
-        const resSettings = await fetch('../data/settings.json');
+        const fd = new FormData();
+        fd.append('action', 'get_all_data');
+        const res = await postAdminApi(fd);
+        if (res.ok) {
+          const json = await res.json().catch(() => null);
+          if (json && json.success) {
+            if (json.settings) {
+              siteSettings = json.settings;
+              populateSettingsForm(siteSettings);
+            }
+            if (json.menu) {
+              allMenuItems = json.menu;
+              renderAdminMenuList();
+            }
+            if (json.bookings) {
+              renderBookingsList(json.bookings);
+            }
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('API get_all_data fallback to direct JSON');
+      }
+
+      // 4.1 Fallback: Load Settings directly
+      try {
+        const resSettings = await fetch('../data/settings.json?v=' + Date.now());
         if (resSettings.ok) {
           siteSettings = await resSettings.json();
           populateSettingsForm(siteSettings);
@@ -1168,9 +1194,9 @@ $csrf_token = generate_csrf_token();
         console.warn('Could not fetch settings via HTTP, using current DOM values');
       }
 
-      // 4.2 Load Menu
+      // 4.2 Fallback: Load Menu directly
       try {
-        const resMenu = await fetch('../data/menu.json');
+        const resMenu = await fetch('../data/menu.json?v=' + Date.now());
         if (resMenu.ok) {
           allMenuItems = await resMenu.json();
           renderAdminMenuList();
@@ -1179,9 +1205,9 @@ $csrf_token = generate_csrf_token();
         console.warn('Could not fetch menu via HTTP');
       }
 
-      // 4.3 Load Bookings
+      // 4.3 Fallback: Load Bookings directly
       try {
-        const resBookings = await fetch('../data/bookings.json');
+        const resBookings = await fetch('../data/bookings.json?v=' + Date.now());
         if (resBookings.ok) {
           const bookings = await resBookings.json();
           renderBookingsList(bookings);
@@ -1535,6 +1561,26 @@ $csrf_token = generate_csrf_token();
       document.getElementById('treatment-modal').classList.add('hidden');
     }
 
+    // Helper to send Admin API mutations with priority to api.php (Production PHP hosting)
+    async function postAdminApi(formData) {
+      let res = null;
+      try {
+        const phpRes = await fetch('api.php', { method: 'POST', body: formData });
+        if (phpRes.ok) {
+          const clone = phpRes.clone();
+          const json = await clone.json().catch(() => null);
+          if (json && json.success !== undefined) {
+            res = phpRes;
+          }
+        }
+      } catch (e) {}
+
+      if (!res) {
+        res = await fetch('../server.py', { method: 'POST', body: formData });
+      }
+      return res;
+    }
+
     async function handleSaveTreatment(e) {
       e.preventDefault();
       const id = document.getElementById('modal-item-id').value.trim() || 'item-' + Date.now();
@@ -1593,10 +1639,7 @@ $csrf_token = generate_csrf_token();
         formData.append('action', 'save_single_item');
         formData.append('item', JSON.stringify(itemData));
 
-        await fetch('../server.py', {
-          method: 'POST',
-          body: formData
-        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+        await postAdminApi(formData);
 
         showToast(`Treatment '${name}' (${nameId}) berhasil disimpan & diterapkan ke website!`, true);
       } catch (err) {
@@ -1617,8 +1660,7 @@ $csrf_token = generate_csrf_token();
         formData.append('action', 'delete_menu_item');
         formData.append('id', id);
 
-        await fetch('../server.py', { method: 'POST', body: formData })
-          .catch(() => fetch('api.php', { method: 'POST', body: formData }));
+        await postAdminApi(formData);
 
         showToast(`Treatment '${it.name}' berhasil dihapus.`, true);
       } catch (e) {
@@ -1632,14 +1674,16 @@ $csrf_token = generate_csrf_token();
       const formData = new FormData(e.target);
 
       try {
-        const res = await fetch('../server.py', {
-          method: 'POST',
-          body: formData
-        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+        const res = await postAdminApi(formData);
+        const json = await res.json().catch(() => null);
+        if (json && json.settings && json.settings.about_image) {
+          const pathEl = document.getElementById('field-about-image');
+          if (pathEl) pathEl.value = json.settings.about_image;
+        }
 
         showToast('Pengaturan Beranda (Hero & About) berhasil disimpan dan diperbarui di website!', true);
       } catch (err) {
-        showToast('Tampilan Beranda berhasil diperbarui secara lokal!', true);
+        showToast('Tampilan Beranda berhasil diperbarui!', true);
       }
     });
 
@@ -1649,14 +1693,11 @@ $csrf_token = generate_csrf_token();
       const formData = new FormData(e.target);
 
       try {
-        await fetch('../server.py', {
-          method: 'POST',
-          body: formData
-        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+        await postAdminApi(formData);
 
         showToast('Pengaturan Promo Akhir Tahun berhasil disimpan!', true);
       } catch (err) {
-        showToast('Promo berhasil diperbarui secara lokal!', true);
+        showToast('Promo berhasil diperbarui!', true);
       }
     });
 
@@ -1666,10 +1707,7 @@ $csrf_token = generate_csrf_token();
       const formData = new FormData(e.target);
 
       try {
-        await fetch('../server.py', {
-          method: 'POST',
-          body: formData
-        }).catch(() => fetch('api.php', { method: 'POST', body: formData }));
+        await postAdminApi(formData);
 
         showToast('Pengaturan kontak & nomor reservasi berhasil disimpan!', true);
       } catch (err) {

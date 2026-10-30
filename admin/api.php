@@ -71,6 +71,19 @@ if (!empty($token) && !verify_csrf_token($token)) {
 
 switch ($action) {
     // ----------------------------------------------------
+    // Get Complete Admin Data (Settings, Menu, Promo, Bookings)
+    // ----------------------------------------------------
+    case 'get_all_data':
+        echo json_encode([
+            'success' => true,
+            'settings' => read_json_file($settings_file, get_settings()),
+            'menu' => read_json_file($menu_file, []),
+            'promo' => read_json_file($promo_file, []),
+            'bookings' => read_json_file($bookings_file, [])
+        ]);
+        exit;
+
+    // ----------------------------------------------------
     // Save General & Contact Settings
     // ----------------------------------------------------
     case 'save_settings':

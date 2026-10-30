@@ -275,7 +275,26 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
             action = fields.get('action', '')
             resp = {'success': False, 'message': 'Aksi tidak dikenali.'}
 
-            if action in ('save_settings', 'save_home'):
+            if action == 'get_all_data':
+                def read_j(fn, default):
+                    fp = os.path.join(DIRECTORY, 'data', fn)
+                    if os.path.exists(fp):
+                        try:
+                            with open(fp, 'r', encoding='utf-8') as f:
+                                return json.load(f)
+                        except Exception:
+                            pass
+                    return default
+
+                resp = {
+                    'success': True,
+                    'settings': read_j('settings.json', {}),
+                    'menu': read_j('menu.json', []),
+                    'promo': read_j('promo.json', {}),
+                    'bookings': read_j('bookings.json', [])
+                }
+
+            elif action in ('save_settings', 'save_home'):
                 settings_path = os.path.join(DIRECTORY, 'data', 'settings.json')
                 with open(settings_path) as f:
                     curr = json.load(f)
