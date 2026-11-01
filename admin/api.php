@@ -58,7 +58,10 @@ function write_json_file($file, $data) {
         @mkdir($dir, 0755, true);
     }
     $encoded = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    return @file_put_contents($file, $encoded) !== false;
+    if ($encoded === false) {
+        return false;
+    }
+    return @file_put_contents($file, $encoded, LOCK_EX) !== false;
 }
 
 // Handle Login API request without requiring prior session
@@ -68,8 +71,10 @@ if ($action === 'login') {
     $pass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
     if ($user === 'admin' && verify_admin_password($pass, $settings['admin_password_hash'])) {
+        session_regenerate_id(true);
         $_SESSION['massaji_admin_logged_in'] = true;
         $_SESSION['admin_user'] = 'admin';
+        $_SESSION['last_activity'] = time();
         $secret = !empty($settings['admin_password_hash']) ? $settings['admin_password_hash'] : 'massaji_spa_secret_2026';
         $auth_token = hash_hmac('sha256', 'massaji_admin_session_' . date('Y-m-d'), $secret);
         echo json_encode([
@@ -104,11 +109,24 @@ if (!$is_session_auth && !$is_token_auth) {
     exit;
 }
 
-$token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : (isset($_SERVER['HTTP_X_CSRF_TOKEN']) ? $_SERVER['HTTP_X_CSRF_TOKEN'] : '');
-if (!empty($token) && !verify_csrf_token($token)) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Token keamanan CSRF tidak valid.']);
-    exit;
+// Read-only actions that do not modify server state
+$read_only_actions = [
+    'get_all_data',
+    'get_bookings',
+    'get_mail_logs',
+    'get_available_images',
+    'get_analytics'
+];
+
+$csrf_token_input = isset($_POST['csrf_token']) ? trim($_POST['csrf_token']) : (isset($_SERVER['HTTP_X_CSRF_TOKEN']) ? trim($_SERVER['HTTP_X_CSRF_TOKEN']) : '');
+
+// Enforce CSRF validation for all state-changing mutations
+if (!in_array($action, $read_only_actions, true)) {
+    if (empty($csrf_token_input) || !verify_csrf_token($csrf_token_input)) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'message' => 'Token keamanan CSRF tidak valid atau tidak disertakan.']);
+        exit;
+    }
 }
 
 switch ($action) {
@@ -140,10 +158,13 @@ switch ($action) {
     // ----------------------------------------------------
     case 'test_smtp':
         require_once __DIR__ . '/../includes/mailer.php';
+        $settings = read_json_file($settings_file, get_settings());
+        $target_email = !empty($settings['booking_email']) ? trim($settings['booking_email']) : (!empty($settings['admin_notification_email']) ? trim($settings['admin_notification_email']) : 'massajibali.reservation@gmail.com');
+
         $test_booking = [
             'id' => 'TEST-' . date('His'),
             'name' => 'Admin Diagnostic Test',
-            'email' => 'eyestetix@gmail.com',
+            'email' => $target_email,
             'phone' => '+6281236695755',
             'service' => 'Diagnostic SMTP Verification',
             'date' => date('Y-m-d'),
@@ -151,13 +172,13 @@ switch ($action) {
             'guests' => 1,
             'notes' => 'Testing authenticated SMTP connection to mail.massaji.net:465'
         ];
-        $test_html = '<div style="font-family: sans-serif; padding: 20px; color: #141E3C;"><h2>Test Notification Massaji Spa</h2><p>This is a test notification verifying that authenticated SMTP on <b>mail.massaji.net:465</b> is connected and functional.</p><p>Timestamp: <b>' . date('Y-m-d H:i:s') . ' WITA</b></p></div>';
-        $test_plain = "Test Notification Massaji Spa\r\nAuthenticated SMTP on mail.massaji.net:465 is connected.\r\nTimestamp: " . date('Y-m-d H:i:s') . " WITA\r\n";
+        $test_html = '<div style="font-family: sans-serif; padding: 20px; color: #141E3C;"><h2>Test Notification Massaji Spa</h2><p>This is a test notification verifying that authenticated SMTP on <b>mail.massaji.net:465</b> is connected and functional.</p><p>Recipient: <b>' . htmlspecialchars($target_email) . '</b></p><p>Timestamp: <b>' . date('Y-m-d H:i:s') . ' WITA</b></p></div>';
+        $test_plain = "Test Notification Massaji Spa\r\nAuthenticated SMTP on mail.massaji.net:465 is connected.\r\nRecipient: " . $target_email . "\r\nTimestamp: " . date('Y-m-d H:i:s') . " WITA\r\n";
         $err = null;
-        $ok = send_smtp_notification($test_booking, $test_html, $test_plain, $err);
+        $ok = send_smtp_notification($test_booking, $test_html, $test_plain, $err, $target_email);
         echo json_encode([
             'success' => $ok,
-            'message' => $ok ? 'Email uji coba berhasil dikirim ke eyestetix@gmail.com!' : ('Gagal mengirim email: ' . $err),
+            'message' => $ok ? ("Email uji coba berhasil dikirim ke " . $target_email . "!") : ('Gagal mengirim email: ' . $err),
             'logs'    => file_exists(__DIR__ . '/../data/mail_log.json') ? array_slice(json_decode(file_get_contents(__DIR__ . '/../data/mail_log.json'), true), 0, 5) : []
         ]);
         exit;
@@ -504,8 +525,8 @@ switch ($action) {
             exit;
         }
 
-        if (strlen($new_password) < 6) {
-            echo json_encode(['success' => false, 'message' => 'Password baru minimal 6 karakter.']);
+        if (strlen($new_password) < 8) {
+            echo json_encode(['success' => false, 'message' => 'Password baru minimal 8 karakter.']);
             exit;
         }
 
@@ -517,6 +538,7 @@ switch ($action) {
         $settings['admin_password_hash'] = password_hash($new_password, PASSWORD_DEFAULT);
 
         if (write_json_file($settings_file, $settings)) {
+            $_SESSION['last_activity'] = time();
             echo json_encode(['success' => true, 'message' => 'Password admin berhasil diganti!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Gagal memperbarui password di settings.json.']);

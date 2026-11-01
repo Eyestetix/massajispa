@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 WITA = timezone(timedelta(hours=8))
 
 PORT = 8080
-DIRECTORY = '/Volumes/PROJECTS/EYESTETIX_BACKUP_2026-09-30/WEBSITE'
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 # Map .php files to render directly as HTML in browser (PHP-Only preview mode)
 http.server.SimpleHTTPRequestHandler.extensions_map['.php'] = 'text/html; charset=utf-8'
@@ -329,9 +329,10 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 }
 
             elif action == 'test_smtp':
+                target_email = settings.get('booking_email', 'massajibali.reservation@gmail.com')
                 resp = {
                     'success': True,
-                    'message': 'Simulasi SMTP: Siap mengirim via mail.massaji.net:465 ke eyestetix@gmail.com.',
+                    'message': f'Simulasi SMTP Localhost: Siap mengirim via mail.massaji.net:465 ke {target_email}.',
                     'logs': []
                 }
 

@@ -2,6 +2,12 @@
 // admin/login.php - Admin Portal Authentication
 require_once __DIR__ . '/auth.php';
 
+// Redirect if already authenticated
+if (isset($_SESSION['massaji_admin_logged_in']) && $_SESSION['massaji_admin_logged_in'] === true) {
+    header('Location: index.php');
+    exit;
+}
+
 $error = '';
 $settings = get_settings();
 
@@ -12,8 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verify_csrf_token($token)) {
         $error = 'Sesi tidak valid, silakan muat ulang halaman.';
     } elseif (verify_admin_password($password, $settings['admin_password_hash'])) {
+        session_regenerate_id(true);
         $_SESSION['massaji_admin_logged_in'] = true;
         $_SESSION['admin_user'] = 'admin';
+        $_SESSION['last_activity'] = time();
         header('Location: index.php');
         exit;
     } else {

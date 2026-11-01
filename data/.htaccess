@@ -1,18 +1,9 @@
-# Deny direct browser access to sensitive data files
-<Files "bookings.json">
+# Block direct HTTP access to all JSON files.
+<FilesMatch "\.json$">
     Require all denied
-    Order allow,deny
-    Deny from all
-</Files>
+</FilesMatch>
 
-<Files "analytics.json">
+# Block direct HTTP access to sensitive auxiliary files.
+<FilesMatch "\.(lock|bak|log)$">
     Require all denied
-    Order allow,deny
-    Deny from all
-</Files>
-
-<Files ~ "\.(lock|bak|log)$">
-    Require all denied
-    Order allow,deny
-    Deny from all
-</Files>
+</FilesMatch>

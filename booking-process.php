@@ -568,7 +568,7 @@ $mail_error = null;
 
 try {
     if (function_exists('send_smtp_notification')) {
-        $mail_sent = send_smtp_notification($new_booking, $email_body, $plain_body, $mail_error);
+        $mail_sent = send_smtp_notification($new_booking, $email_body, $plain_body, $mail_error, $to);
     }
 } catch (\Throwable $e) {
     $mail_sent = false;

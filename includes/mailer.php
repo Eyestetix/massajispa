@@ -16,6 +16,7 @@ use PHPMailer\PHPMailer\Exception;
  */
 function get_smtp_config() {
     $config_file = __DIR__ . '/../data/smtp_config.json';
+    $settings_file = __DIR__ . '/../data/settings.json';
     $config = [
         'enabled'    => true,
         'host'       => 'mail.massaji.net',
@@ -26,10 +27,26 @@ function get_smtp_config() {
         'password'   => '',
         'from_email' => 'reservation@massaji.net',
         'from_name'  => 'Massaji Spa Bali',
-        'to_email'   => 'eyestetix@gmail.com',
+        'to_email'   => 'massajibali.reservation@gmail.com',
         'timeout'    => 15
     ];
 
+    // Priority 1: Check live settings.json for dynamic booking_email or admin_notification_email
+    if (file_exists($settings_file)) {
+        $settings_raw = @file_get_contents($settings_file);
+        if ($settings_raw) {
+            $settings_data = json_decode($settings_raw, true);
+            if (is_array($settings_data)) {
+                if (!empty($settings_data['booking_email'])) {
+                    $config['to_email'] = trim($settings_data['booking_email']);
+                } elseif (!empty($settings_data['admin_notification_email'])) {
+                    $config['to_email'] = trim($settings_data['admin_notification_email']);
+                }
+            }
+        }
+    }
+
+    // Priority 2: Overlay server-side smtp_config.json if exists
     if (file_exists($config_file)) {
         $content = @file_get_contents($config_file);
         if ($content) {
@@ -116,7 +133,7 @@ function log_mail_diagnostic($booking_id, $success, $error_category = null, $tec
  * @param string|null &$error_message Output variable for sanitized error description
  * @return bool True if SMTP accepted the message, False otherwise
  */
-function send_smtp_notification($booking, $html_body, $plain_body, &$error_message = null) {
+function send_smtp_notification($booking, $html_body, $plain_body, &$error_message = null, $recipient_override = null) {
     $error_message = null;
     $booking_id = isset($booking['id']) ? $booking['id'] : 'UNKNOWN';
     $name = isset($booking['name']) ? $booking['name'] : 'Tamu';
@@ -160,7 +177,7 @@ function send_smtp_notification($booking, $html_body, $plain_body, &$error_messa
         // Sender & Recipient Configuration
         $from_email = !empty($cfg['from_email']) ? $cfg['from_email'] : 'reservation@massaji.net';
         $from_name  = !empty($cfg['from_name']) ? $cfg['from_name'] : 'Massaji Spa Bali';
-        $to_email    = !empty($cfg['to_email']) ? $cfg['to_email'] : 'eyestetix@gmail.com';
+        $to_email   = !empty($recipient_override) ? $recipient_override : (!empty($cfg['to_email']) ? $cfg['to_email'] : 'massajibali.reservation@gmail.com');
 
         $mail->setFrom($from_email, $from_name);
         $mail->addAddress($to_email);

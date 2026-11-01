@@ -8,6 +8,8 @@ if (file_exists($settings_file)) {
 $live_about_img = !empty($live_settings['about_image']) ? $live_settings['about_image'] : 'assets/images/massaji-about.jpg';
 $live_hero_img  = !empty($live_settings['hero_image']) ? $live_settings['hero_image'] : 'assets/images/massaji-hero.jpg';
 $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['promo_flyer_image'] : 'assets/images/promo-flyer-2026.jpeg';
+$live_promo_title = !empty($live_settings['promo_title']) ? $live_settings['promo_title'] : 'END YEAR 2026 Big Promotion';
+$live_promo_validity = !empty($live_settings['promo_validity']) ? $live_settings['promo_validity'] : 'Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)';
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -270,7 +272,7 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
 
         <!-- High Impact Hero Headline -->
         <h2 class="festive-headline font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 leading-[1.18]" data-i18n="promo_title">
-          End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>
+          END YEAR 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>
         </h2>
         
         <p class="text-sky-100/90 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed" data-i18n="promo_desc">
@@ -3442,10 +3444,10 @@ $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['
           🎉 SPECIAL LIMITED OFFER
         </span>
         <h3 class="font-sans text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white mt-2 mb-1 leading-tight drop-shadow-md" data-i18n="popup_title">
-          END YEAR 2026 <span class="text-amber-300">BIG PROMOTION</span>
+          <?php echo htmlspecialchars($live_promo_title); ?>
         </h3>
         <p class="text-sky-200 text-xs font-medium tracking-wide mt-1" data-i18n="popup_validity">
-          Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)
+          <?php echo htmlspecialchars($live_promo_validity); ?>
         </p>
       </div>
 

@@ -2,7 +2,7 @@ import json
 import html
 import os
 
-WEBSITE_DIR = '/Volumes/PROJECTS/EYESTETIX_BACKUP_2026-09-30/WEBSITE'
+WEBSITE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 with open(f'{WEBSITE_DIR}/data/settings.json') as f:
     settings = json.load(f)
@@ -29,9 +29,18 @@ hero_title_2 = html.escape(str(settings.get('hero_title_2', 'Rediscover Serenity
 hero_desc = html.escape(str(settings.get('hero_desc', 'Experience the restorative touch of authentic Balinese healing traditions, pure botanical aromatherapy, and tranquil private suites in the heart of Canggu.')))
 hero_image = str(settings.get('hero_image', 'assets/images/massaji-hero.jpg'))
 
-promo_title = 'End Year 2026 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>'
-promo_subtitle = html.escape(str(settings.get('promo_subtitle', 'Promo Akhir Tahun 2026')))
-promo_validity = html.escape(str(settings.get('promo_validity', 'Valid : 1 Nov – 31 Dec 2026 (Reservation is required prior visit)')))
+raw_promo_title = str(settings.get('promo_title', 'Special Spa Promotion'))
+if 'Big Promotion' in raw_promo_title and '<span' not in raw_promo_title:
+    parts = raw_promo_title.split('Big Promotion')
+    prefix = html.escape(parts[0].strip())
+    promo_title = f'{prefix} <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#BAE0FD] to-amber-100">Big Promotion</span>'
+elif '<span' not in raw_promo_title:
+    promo_title = html.escape(raw_promo_title)
+else:
+    promo_title = raw_promo_title
+
+promo_subtitle = html.escape(str(settings.get('promo_subtitle', 'Exclusive Spa Promotion')))
+promo_validity = html.escape(str(settings.get('promo_validity', 'Available for bookings today via Website & WhatsApp.')))
 promo_flyer_image = str(settings.get('promo_flyer_image', 'assets/images/promo-flyer-2026.jpeg'))
 phone_1 = html.escape(str(settings.get('phone', '+62 812-3669-5755')))
 phone_2 = html.escape(str(settings.get('phone_2', '+62 811-3857-188')))
@@ -1135,7 +1144,7 @@ html_template = f'''<!DOCTYPE html>
           🎉 SPECIAL LIMITED OFFER
         </span>
         <h3 class="font-sans text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white mt-2 mb-1 leading-tight drop-shadow-md" data-i18n="popup_title">
-          END YEAR 2026 <span class="text-amber-300">BIG PROMOTION</span>
+          {promo_title}
         </h3>
         <p class="text-sky-200 text-xs font-medium tracking-wide mt-1" data-i18n="popup_validity">
           {promo_validity}
@@ -1294,6 +1303,8 @@ if (file_exists($settings_file)) {{
 $live_about_img = !empty($live_settings['about_image']) ? $live_settings['about_image'] : '{about_image}';
 $live_hero_img  = !empty($live_settings['hero_image']) ? $live_settings['hero_image'] : '{hero_image}';
 $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['promo_flyer_image'] : '{promo_flyer_image}';
+$live_promo_title = !empty($live_settings['promo_title']) ? $live_settings['promo_title'] : '{raw_promo_title}';
+$live_promo_validity = !empty($live_settings['promo_validity']) ? $live_settings['promo_validity'] : '{promo_validity}';
 ?>
 """
 
@@ -1303,6 +1314,10 @@ php_content = php_dynamic_header + html_template.replace(
     f'src="{hero_image}"', 'src="<?php echo htmlspecialchars($live_hero_img); ?>"'
 ).replace(
     f'src="{promo_flyer_image}"', 'src="<?php echo htmlspecialchars($live_promo_img); ?>"'
+).replace(
+    f'data-i18n="popup_title">\n          {promo_title}', 'data-i18n="popup_title">\n          <?php echo htmlspecialchars($live_promo_title); ?>'
+).replace(
+    f'data-i18n="popup_validity">\n          {promo_validity}', 'data-i18n="popup_validity">\n          <?php echo htmlspecialchars($live_promo_validity); ?>'
 )
 
 with open(f'{WEBSITE_DIR}/index.php', 'w') as f:

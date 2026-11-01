@@ -1,8 +1,41 @@
 <?php
 // admin/auth.php - Session and authentication management
 date_default_timezone_set('Asia/Makassar');
+
 if (session_status() === PHP_SESSION_NONE) {
+    $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+                (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443) ||
+                (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+
+    session_set_cookie_params([
+        'lifetime' => 0,              // Cleared when browser closes
+        'path'     => '/',
+        'domain'   => '',
+        'secure'   => $is_https,      // HTTPS transmission only when active
+        'httponly' => true,           // Inaccessible via JavaScript document.cookie
+        'samesite' => 'Lax'           // Protect against cross-site CSRF while preserving smooth admin navigation
+    ]);
+
     session_start();
+}
+
+// Idle timeout management (30 minutes = 1800 seconds of inactivity)
+$idle_timeout = 1800;
+if (isset($_SESSION['massaji_admin_logged_in']) && $_SESSION['massaji_admin_logged_in'] === true) {
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $idle_timeout)) {
+        // Clear expired session
+        $_SESSION = [];
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+        session_destroy();
+    } else {
+        $_SESSION['last_activity'] = time();
+    }
 }
 
 function get_settings() {
@@ -31,15 +64,10 @@ function get_settings() {
 }
 
 function verify_admin_password($input, $stored_hash) {
-    // Check standard bcrypt / argon
-    if (!empty($stored_hash) && password_verify($input, $stored_hash)) {
-        return true;
+    if (empty($input) || empty($stored_hash)) {
+        return false;
     }
-    // Default initial password fallback
-    if ($input === 'massaji2026' || $input === 'admin123' || $input === 'admin') {
-        return true;
-    }
-    return false;
+    return password_verify($input, $stored_hash);
 }
 
 function check_auth() {
