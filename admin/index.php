@@ -641,7 +641,7 @@ $csrf_token = generate_csrf_token();
                     </a>
                   </div>
                 </div>
-                <input type="email" id="field-email" name="booking_email" value="eyestetix@gmail.com" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
+                <input type="email" id="field-email" name="booking_email" value="massajibali.reservation@gmail.com" required class="w-full px-4 py-2.5 bg-white border border-[#BAE0FD] rounded-lg text-sm text-[#141E3C] focus:border-[#1E3A8A] focus:outline-none">
                 <p class="text-[11px] text-[#64748B] mt-1.5 flex items-center gap-1">
                   <span>ℹ️ Setiap ada reservasi website masuk, template email resmi akan dikirim otomatis ke alamat ini.</span>
                 </p>

@@ -97,8 +97,8 @@ function save_booking_record($filepath, $new_booking) {
 $settings_file = __DIR__ . '/data/settings.json';
 $settings = [
     'site_name' => 'Massaji Spa Bali',
-    'booking_email' => 'eyestetix@gmail.com',
-    'admin_notification_email' => 'eyestetix@gmail.com',
+    'booking_email' => 'massajibali.reservation@gmail.com',
+    'admin_notification_email' => 'massajibali.reservation@gmail.com',
     'whatsapp_number' => '6281236695755'
 ];
 if (file_exists($settings_file)) {
@@ -226,11 +226,11 @@ $created_time = date('d M Y, H:i') . ' WITA';
 // -----------------------------------------------------------
 // 6. Administrator Email Notification (Post-Persistence)
 // -----------------------------------------------------------
-$admin_recipient = !empty($settings['admin_notification_email']) 
-    ? $settings['admin_notification_email'] 
-    : (!empty($settings['booking_email']) ? $settings['booking_email'] : 'eyestetix@gmail.com');
+$admin_recipient = !empty($settings['booking_email']) 
+    ? $settings['booking_email'] 
+    : (!empty($settings['admin_notification_email']) ? $settings['admin_notification_email'] : 'massajibali.reservation@gmail.com');
 
-$to = filter_var($admin_recipient, FILTER_VALIDATE_EMAIL) ? $admin_recipient : 'eyestetix@gmail.com';
+$to = filter_var($admin_recipient, FILTER_VALIDATE_EMAIL) ? $admin_recipient : 'massajibali.reservation@gmail.com';
 $subject = "[Massaji Spa] New Reservation — " . $name;
 
 $domain_from = 'reservation@massaji.net';
