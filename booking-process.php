@@ -108,6 +108,20 @@ if (file_exists($settings_file)) {
     }
 }
 
+// Clean legacy recipient if persisted in settings.json on live server
+$clean_needed = false;
+if (isset($settings['booking_email']) && strtolower(trim($settings['booking_email'])) === 'eyestetix@gmail.com') {
+    $settings['booking_email'] = 'massajibali.reservation@gmail.com';
+    $clean_needed = true;
+}
+if (isset($settings['admin_notification_email']) && strtolower(trim($settings['admin_notification_email'])) === 'eyestetix@gmail.com') {
+    $settings['admin_notification_email'] = 'massajibali.reservation@gmail.com';
+    $clean_needed = true;
+}
+if ($clean_needed && is_writable($settings_file)) {
+    @file_put_contents($settings_file, json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+}
+
 // -----------------------------------------------------------
 // 4. Sanitize & Validate Inputs
 // -----------------------------------------------------------
@@ -229,6 +243,11 @@ $created_time = date('d M Y, H:i') . ' WITA';
 $admin_recipient = !empty($settings['booking_email']) 
     ? $settings['booking_email'] 
     : (!empty($settings['admin_notification_email']) ? $settings['admin_notification_email'] : 'massajibali.reservation@gmail.com');
+
+// Strictly block legacy fallback
+if (strtolower(trim($admin_recipient)) === 'eyestetix@gmail.com') {
+    $admin_recipient = 'massajibali.reservation@gmail.com';
+}
 
 $to = filter_var($admin_recipient, FILTER_VALIDATE_EMAIL) ? $admin_recipient : 'massajibali.reservation@gmail.com';
 $subject = "[Massaji Spa] New Reservation — " . $name;
@@ -575,13 +594,274 @@ try {
     $mail_error = 'SMTP dispatch exception';
 }
 
+// -----------------------------------------------------------
+// 8. Customer Confirmation Dispatch (Auto-responder to Guest)
+// -----------------------------------------------------------
+$customer_mail_sent = false;
+$customer_mail_error = null;
+
+if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    // Human-friendly date formatting in Indonesian
+    $timestamp = strtotime($date);
+    if ($timestamp !== false) {
+        $hari_arr  = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        $bulan_arr = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $formatted_date = $hari_arr[(int)date('w', $timestamp)] . ', ' . date('j', $timestamp) . ' ' . $bulan_arr[(int)date('n', $timestamp)] . ' ' . date('Y', $timestamp);
+    } else {
+        $formatted_date = $date;
+    }
+
+    $google_maps_url = !empty($settings['google_maps_link']) ? $settings['google_maps_link'] : 'https://maps.google.com/?q=Massaji+Spa+Bali';
+
+    // Plain text customer body
+    $customer_plain_body  = "==================================================\r\n";
+    $customer_plain_body .= "MASSAJI SPA BALI — KONFIRMASI PENERIMAAN RESERVASI\r\n";
+    $customer_plain_body .= "==================================================\r\n\r\n";
+    $customer_plain_body .= "Halo Kak " . $name . ",\r\n\r\n";
+    $customer_plain_body .= "Terima kasih telah melakukan reservasi di " . $settings['site_name'] . ".\r\n";
+    $customer_plain_body .= "Permintaan reservasi Anda telah berhasil kami terima dalam sistem kami.\r\n\r\n";
+    $customer_plain_body .= "STATUS RESERVASI: Menunggu Konfirmasi Resepsionis (Pending)\r\n";
+    $customer_plain_body .= "Tim resepsionis kami akan segera menghubungi Anda melalui WhatsApp di nomor " . $phone . " untuk mengonfirmasi ketersediaan slot.\r\n\r\n";
+    $customer_plain_body .= "--------------------------------------------------\r\n";
+    $customer_plain_body .= "RINCIAN RESERVASI ANDA:\r\n";
+    $customer_plain_body .= "• ID Booking        : " . $booking_id . "\r\n";
+    $customer_plain_body .= "• Layanan Dipilih   : " . $service . "\r\n";
+    $customer_plain_body .= "• Tanggal           : " . $formatted_date . "\r\n";
+    $customer_plain_body .= "• Waktu             : " . $time . " WITA\r\n";
+    $customer_plain_body .= "• Jumlah Tamu       : " . $guests . " Orang\r\n";
+    $customer_plain_body .= "• Catatan Khusus    : " . $notes . "\r\n";
+    $customer_plain_body .= "--------------------------------------------------\r\n";
+    $customer_plain_body .= "INFORMASI KUNJUNGAN:\r\n";
+    $customer_plain_body .= "• Waktu Kedatangan : Mohon tiba 10-15 menit sebelum waktu reservasi.\r\n";
+    $customer_plain_body .= "• Alamat           : " . $settings['address'] . "\r\n";
+    $customer_plain_body .= "• Pembayaran       : Dapat dilakukan di tempat (Tunai / QRIS / Debit / Kartu Kredit).\r\n\r\n";
+    $customer_plain_body .= "BUTUH BANTUAN CEPAT ATAU PERUBAHAN JADWAL?\r\n";
+    $customer_plain_body .= "• WhatsApp Resepsionis : " . $wa_url . "\r\n";
+    $customer_plain_body .= "• Petunjuk Google Maps : " . $google_maps_url . "\r\n\r\n";
+    $customer_plain_body .= "Kami menantikan kedatangan Anda untuk menikmati pengalaman relaksasi otentik Bali.\r\n\r\n";
+    $customer_plain_body .= "Salam hangat,\r\n";
+    $customer_plain_body .= "Tim Massaji Spa Bali\r\n";
+    $customer_plain_body .= "Website: https://massaji.net\r\n";
+
+    // Build Customer Confirmation HTML
+    $customer_email_body = '<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfirmasi Reservasi - Massaji Spa Bali</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #EBF5FE; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #141E3C; }
+    table { border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    a { color: #1E3A8A; text-decoration: none; }
+    @media only screen and (max-width: 620px) {
+      .resp-card { width: 100% !important; border-radius: 12px !important; }
+      .resp-header-pad { padding: 26px 16px 20px !important; }
+      .resp-content-pad { padding: 20px 14px !important; }
+      .resp-card-inner { padding: 14px !important; }
+      .resp-table-cell { padding: 9px 8px !important; font-size: 12.5px !important; }
+      .resp-table-label { width: 38% !important; font-size: 11.5px !important; }
+      .resp-action-col { display: block !important; width: 100% !important; }
+      .resp-action-spacer { display: block !important; height: 10px !important; width: 100% !important; }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #EBF5FE; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #141E3C;">
+  
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 24px 8px; background-color: #EBF5FE;">
+    <tr>
+      <td align="center">
+        
+        <!-- Main Card Container -->
+        <table class="resp-card" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; border: 1px solid #BAE0FD; box-shadow: 0 12px 36px rgba(20, 30, 60, 0.08);">
+          
+          <!-- Header -->
+          <tr>
+            <td class="resp-header-pad" style="background: #141E3C; background: linear-gradient(135deg, #141E3C 0%, #1E3A8A 55%, #141E3C 100%); padding: 36px 20px 28px; text-align: center; border-bottom: 2px solid #C5A880;">
+              
+              <!-- Brand Logo Emblem -->
+              <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 14px;">
+                <tr>
+                  <td style="width: 80px; height: 80px; border-radius: 50%; background-color: #FFFFFF; padding: 5px; border: 3px solid #BAE0FD; text-align: center; vertical-align: middle; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+                    <img src="https://massaji.net/assets/images/member-1.png" alt="Massaji Spa Logo" width="70" height="70" style="width: 70px; height: 70px; border-radius: 50%; display: block; margin: 0 auto; object-fit: contain;">
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Katakana Brand Mark -->
+              <div style="font-size: 11px; font-weight: 800; letter-spacing: 3.5px; color: #C5A880; text-transform: uppercase; margin-bottom: 4px;">マッサージ</div>
+
+              <h1 style="margin: 0 0 6px; font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                ' . htmlspecialchars($settings['site_name']) . '
+              </h1>
+
+              <p style="margin: 0; font-size: 12px; color: #BAE0FD; font-weight: 500; letter-spacing: 0.3px;">
+                ' . htmlspecialchars($settings['tagline']) . '
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- Content Body -->
+          <tr>
+            <td class="resp-content-pad" style="padding: 28px 24px;">
+
+              <!-- Greeting Banner -->
+              <div style="margin-bottom: 22px;">
+                <h2 style="margin: 0 0 8px; font-size: 19px; font-weight: 800; color: #141E3C;">
+                  Halo Kak ' . htmlspecialchars($name) . ', 🙏
+                </h2>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #475569;">
+                  Terima kasih telah mempercayakan waktu istirahat dan relaksasi Anda di <strong>' . htmlspecialchars($settings['site_name']) . '</strong>. Permintaan reservasi Anda telah berhasil kami terima.
+                </p>
+              </div>
+
+              <!-- Status Card -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 22px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 14px 16px;">
+                    <div style="display: inline-block; background-color: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 12px; margin-bottom: 6px;">
+                      ⏳ Status: Menunggu Konfirmasi Resepsionis
+                    </div>
+                    <div style="font-size: 12.5px; line-height: 1.5; color: #78350F;">
+                      Tim resepsionis kami sedang memeriksa ketersediaan slot terapis terbaik dan akan segera menghubungi Anda melalui WhatsApp di nomor <strong>' . htmlspecialchars($phone) . '</strong> untuk konfirmasi final.
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Booking Summary Box -->
+              <table class="resp-card-inner" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 22px; background-color: #FFFFFF; border: 1px solid #BAE0FD; border-radius: 14px; overflow: hidden;">
+                
+                <tr>
+                  <td style="background: linear-gradient(135deg, #F0F8FF 0%, #E0F2FE 100%); padding: 14px 16px; border-bottom: 1px solid #BAE0FD;">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0284C7;">Rincian Reservasi</div>
+                    <div class="resp-service-title" style="font-size: 18px; font-weight: 800; color: #141E3C; margin-top: 2px;">' . htmlspecialchars($service) . '</div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding: 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 13px;">
+                      <tr>
+                        <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; width: 34%; white-space: nowrap;">🔖 ID Booking</td>
+                        <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #1E3A8A; font-family: monospace; font-weight: 700; font-size: 12.5px;">' . htmlspecialchars($booking_id) . '</td>
+                      </tr>
+                      <tr>
+                        <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📅 Tanggal</td>
+                        <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700;">' . htmlspecialchars($formatted_date) . '</td>
+                      </tr>
+                      <tr>
+                        <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">⏰ Waktu Reservasi</td>
+                        <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700;">' . htmlspecialchars($time) . ' WITA</td>
+                      </tr>
+                      <tr>
+                        <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">👥 Jumlah Tamu</td>
+                        <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700;">' . htmlspecialchars((string)$guests) . ' Orang</td>
+                      </tr>
+                      <tr>
+                        <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📝 Catatan Khusus</td>
+                        <td class="resp-table-cell" style="padding: 10px 14px; color: #475569; font-style: ' . ($notes !== '-' ? 'normal' : 'italic') . ';">' . nl2br(htmlspecialchars($notes)) . '</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+              </table>
+
+              <!-- Important Info Box -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 24px; background: #F8FCFF; border: 1px solid #BAE0FD; border-radius: 12px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 16px;">
+                    <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #1E3A8A; margin-bottom: 10px;">
+                      ✨ Panduan &amp; Informasi Kunjungan
+                    </div>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; line-height: 1.5; color: #334155;">
+                      <tr>
+                        <td style="padding-bottom: 8px; vertical-align: top; width: 22px;">⏰</td>
+                        <td style="padding-bottom: 8px;"><strong>Waktu Kedatangan:</strong> Mohon tiba 10–15 menit lebih awal untuk menikmati welcoming refreshment dan konsultasi preferensi tekanan pijat.</td>
+                      </tr>
+                      <tr>
+                        <td style="padding-bottom: 8px; vertical-align: top; width: 22px;">📍</td>
+                        <td style="padding-bottom: 8px;"><strong>Lokasi Sanctuary:</strong> ' . htmlspecialchars($settings['address']) . '</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: top; width: 22px;">💳</td>
+                        <td><strong>Pembayaran di Tempat:</strong> Dapat diselesaikan setelah perawatan via Tunai, QRIS, Kartu Debit atau Kredit.</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Action CTA Buttons -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 8px;">
+                <tr>
+                  <td class="resp-action-col" width="48%" align="center">
+                    <a href="' . htmlspecialchars($wa_url) . '" target="_blank" style="display: block; background: #059669; background: linear-gradient(135deg, #059669 0%, #10B981 100%); color: #FFFFFF; padding: 12px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
+                      🟢 Chat Resepsionis WhatsApp
+                    </a>
+                  </td>
+                  <td class="resp-action-spacer" width="4%"></td>
+                  <td class="resp-action-col" width="48%" align="center">
+                    <a href="' . htmlspecialchars($google_maps_url) . '" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 12px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center;">
+                      📍 Petunjuk Arah Google Maps
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="resp-footer-pad" style="background-color: #141E3C; padding: 26px 20px; text-align: center; border-top: 1px solid #1E3A8A;">
+              
+              <div style="font-size: 13px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">
+                ' . htmlspecialchars($settings['site_name']) . '
+              </div>
+
+              <div style="font-size: 11.5px; color: #94A3B8; margin-bottom: 12px; line-height: 1.4;">
+                ' . htmlspecialchars($settings['address']) . '<br>
+                Jam Buka: ' . htmlspecialchars($settings['opening_hours']) . '
+              </div>
+
+              <div style="font-size: 11px; color: #64748B;">
+                Email ini dikirim otomatis sebagai tanda terima reservasi melalui website resmi <a href="https://massaji.net" style="color: #BAE0FD; text-decoration: underline;">massaji.net</a>.<br>
+                Jika Anda memiliki pertanyaan mendesak, silakan hubungi WhatsApp kami di <strong>+' . htmlspecialchars($wa_number) . '</strong>.
+              </div>
+
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>';
+
+    try {
+        if (function_exists('send_customer_confirmation')) {
+            $customer_mail_sent = send_customer_confirmation($new_booking, $customer_email_body, $customer_plain_body, $customer_mail_error, $to);
+        }
+    } catch (\Throwable $e) {
+        $customer_mail_sent = false;
+        $customer_mail_error = 'Customer confirmation dispatch exception: ' . $e->getMessage();
+    }
+}
+
 // Return clean response - failed email never invalidates persisted booking
 echo json_encode([
-    'success'      => true,
-    'message'      => 'Permintaan reservasi Anda telah berhasil dikirim ke email resepsionis kami. Tim kami akan segera mengonfirmasi jadwal Anda.',
-    'mail_sent'    => (bool)$mail_sent,
-    'whatsapp_url' => $wa_url,
-    'details'      => [
+    'success'            => true,
+    'message'            => 'Permintaan reservasi Anda telah berhasil dikirim ke email resepsionis kami. Tim kami akan segera mengonfirmasi jadwal Anda.',
+    'mail_sent'          => (bool)$mail_sent,
+    'customer_mail_sent' => (bool)$customer_mail_sent,
+    'whatsapp_url'       => $wa_url,
+    'details'            => [
         'booking_id' => $booking_id,
         'name'       => $name,
         'service'    => $service,

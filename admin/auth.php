@@ -57,7 +57,14 @@ function get_settings() {
     if (file_exists($settings_file)) {
         $loaded = json_decode(file_get_contents($settings_file), true);
         if (is_array($loaded)) {
-            return array_merge($default, $loaded);
+            $merged = array_merge($default, $loaded);
+            if (isset($merged['booking_email']) && strtolower(trim($merged['booking_email'])) === 'eyestetix@gmail.com') {
+                $merged['booking_email'] = 'massajibali.reservation@gmail.com';
+            }
+            if (isset($merged['admin_notification_email']) && strtolower(trim($merged['admin_notification_email'])) === 'eyestetix@gmail.com') {
+                $merged['admin_notification_email'] = 'massajibali.reservation@gmail.com';
+            }
+            return $merged;
         }
     }
     return $default;

@@ -160,6 +160,9 @@ switch ($action) {
         require_once __DIR__ . '/../includes/mailer.php';
         $settings = read_json_file($settings_file, get_settings());
         $target_email = !empty($settings['booking_email']) ? trim($settings['booking_email']) : (!empty($settings['admin_notification_email']) ? trim($settings['admin_notification_email']) : 'massajibali.reservation@gmail.com');
+        if (strtolower($target_email) === 'eyestetix@gmail.com') {
+            $target_email = 'massajibali.reservation@gmail.com';
+        }
 
         $test_booking = [
             'id' => 'TEST-' . date('His'),
@@ -212,6 +215,16 @@ switch ($action) {
             if (isset($_POST[$f])) {
                 $settings[$f] = trim($_POST[$f]);
             }
+        }
+
+        // Keep booking_email and admin_notification_email strictly synced
+        if (isset($_POST['booking_email'])) {
+            $cleaned_email = trim($_POST['booking_email']);
+            if (strtolower($cleaned_email) === 'eyestetix@gmail.com') {
+                $cleaned_email = 'massajibali.reservation@gmail.com';
+            }
+            $settings['booking_email'] = $cleaned_email;
+            $settings['admin_notification_email'] = $cleaned_email;
         }
 
         if (write_json_file($settings_file, $settings)) {

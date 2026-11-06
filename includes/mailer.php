@@ -31,30 +31,39 @@ function get_smtp_config() {
         'timeout'    => 15
     ];
 
-    // Priority 1: Check live settings.json for dynamic booking_email or admin_notification_email
+    // Priority 1: Overlay server-side smtp_config.json if exists (credentials, host, port)
+    if (file_exists($config_file)) {
+        $content = @file_get_contents($config_file);
+        if ($content) {
+            $decoded = json_decode($content, true);
+            if (is_array($decoded)) {
+                // Ignore legacy eyestetix@gmail.com recipient in smtp_config
+                if (isset($decoded['to_email']) && strtolower(trim($decoded['to_email'])) === 'eyestetix@gmail.com') {
+                    unset($decoded['to_email']);
+                }
+                $config = array_merge($config, $decoded);
+            }
+        }
+    }
+
+    // Priority 2: Dynamic booking recipient from live settings.json MUST take precedence
     if (file_exists($settings_file)) {
         $settings_raw = @file_get_contents($settings_file);
         if ($settings_raw) {
             $settings_data = json_decode($settings_raw, true);
             if (is_array($settings_data)) {
-                if (!empty($settings_data['booking_email'])) {
+                if (!empty($settings_data['booking_email']) && strtolower(trim($settings_data['booking_email'])) !== 'eyestetix@gmail.com') {
                     $config['to_email'] = trim($settings_data['booking_email']);
-                } elseif (!empty($settings_data['admin_notification_email'])) {
+                } elseif (!empty($settings_data['admin_notification_email']) && strtolower(trim($settings_data['admin_notification_email'])) !== 'eyestetix@gmail.com') {
                     $config['to_email'] = trim($settings_data['admin_notification_email']);
                 }
             }
         }
     }
 
-    // Priority 2: Overlay server-side smtp_config.json if exists
-    if (file_exists($config_file)) {
-        $content = @file_get_contents($config_file);
-        if ($content) {
-            $decoded = json_decode($content, true);
-            if (is_array($decoded)) {
-                $config = array_merge($config, $decoded);
-            }
-        }
+    // Strictly sanitize any legacy fallback
+    if (strtolower(trim($config['to_email'])) === 'eyestetix@gmail.com') {
+        $config['to_email'] = 'massajibali.reservation@gmail.com';
     }
 
     // Support environment variable overrides
@@ -179,6 +188,11 @@ function send_smtp_notification($booking, $html_body, $plain_body, &$error_messa
         $from_name  = !empty($cfg['from_name']) ? $cfg['from_name'] : 'Massaji Spa Bali';
         $to_email   = !empty($recipient_override) ? $recipient_override : (!empty($cfg['to_email']) ? $cfg['to_email'] : 'massajibali.reservation@gmail.com');
 
+        // Strictly sanitize legacy recipient
+        if (strtolower(trim($to_email)) === 'eyestetix@gmail.com') {
+            $to_email = 'massajibali.reservation@gmail.com';
+        }
+
         $mail->setFrom($from_email, $from_name);
         $mail->addAddress($to_email);
 
@@ -224,6 +238,106 @@ function send_smtp_notification($booking, $html_body, $plain_body, &$error_messa
     } catch (\Throwable $t) {
         $error_message = 'System error: ' . $t->getMessage();
         log_mail_diagnostic($booking_id, false, 'SYSTEM_ERROR', $error_message);
+        return false;
+    }
+}
+
+/**
+ * Sends a booking confirmation email directly to the customer/guest using authenticated SMTP via PHPMailer.
+ *
+ * @param array $booking Stored booking record
+ * @param string $html_body Rendered HTML email content
+ * @param string $plain_body Rendered Plain-Text email content
+ * @param string|null &$error_message Output variable for sanitized error description
+ * @param string|null $reply_to_email Reply-to address for admin
+ * @return bool True if SMTP accepted the message, False otherwise
+ */
+function send_customer_confirmation($booking, $html_body, $plain_body, &$error_message = null, $reply_to_email = null) {
+    $error_message = null;
+    $booking_id = isset($booking['id']) ? $booking['id'] : 'UNKNOWN';
+    $name = isset($booking['name']) ? $booking['name'] : 'Tamu';
+    $customer_email = isset($booking['email']) ? trim($booking['email']) : '';
+
+    if (empty($customer_email) || !filter_var($customer_email, FILTER_VALIDATE_EMAIL)) {
+        $error_message = 'Alamat email tamu tidak valid atau kosong.';
+        return false;
+    }
+
+    $cfg = get_smtp_config();
+
+    // Check if SMTP is disabled
+    if (isset($cfg['enabled']) && $cfg['enabled'] === false) {
+        $error_message = 'SMTP disabled in configuration';
+        log_mail_diagnostic($booking_id, false, 'CUSTOMER_DISABLED', $error_message);
+        return false;
+    }
+
+    // Check if password has been configured
+    if (empty($cfg['password'])) {
+        $error_message = 'SMTP password not configured';
+        log_mail_diagnostic($booking_id, false, 'CUSTOMER_MISSING_PASSWORD', 'Password empty in data/smtp_config.json');
+        return false;
+    }
+
+    try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host       = $cfg['host'];
+        $mail->SMTPAuth   = (bool)$cfg['auth'];
+        $mail->Username   = $cfg['username'];
+        $mail->Password   = $cfg['password'];
+
+        if ((int)$cfg['port'] === 465 || strtolower($cfg['secure']) === 'ssl') {
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = 465;
+        } else {
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = (int)$cfg['port'];
+        }
+
+        $mail->Timeout    = isset($cfg['timeout']) ? (int)$cfg['timeout'] : 15;
+        $mail->CharSet    = 'UTF-8';
+
+        // Sender & Recipient Configuration
+        $from_email = !empty($cfg['from_email']) ? $cfg['from_email'] : 'reservation@massaji.net';
+        $from_name  = !empty($cfg['from_name']) ? $cfg['from_name'] : 'Massaji Spa Bali';
+        $reply_to   = !empty($reply_to_email) ? $reply_to_email : (!empty($cfg['to_email']) ? $cfg['to_email'] : 'massajibali.reservation@gmail.com');
+
+        if (strtolower(trim($reply_to)) === 'eyestetix@gmail.com') {
+            $reply_to = 'massajibali.reservation@gmail.com';
+        }
+
+        $mail->setFrom($from_email, $from_name);
+        $mail->addAddress($customer_email, $name);
+        $mail->addReplyTo($reply_to, $from_name);
+
+        // Custom headers for tracking
+        $mail->addCustomHeader('X-Booking-ID', $booking_id);
+        $mail->addCustomHeader('X-System', 'Massaji-Customer-Confirmation');
+
+        // Subject & Message
+        $mail->Subject = "[Massaji Spa Bali] Konfirmasi Reservasi Anda — #" . $booking_id;
+        $mail->isHTML(true);
+        $mail->Body    = $html_body;
+        $mail->AltBody = $plain_body;
+
+        $sent = $mail->send();
+        if ($sent) {
+            log_mail_diagnostic($booking_id, true, 'CUSTOMER_CONFIRMATION', 'Accepted by SMTP for guest: ' . $customer_email);
+            return true;
+        }
+
+        $error_message = 'SMTP host rejected customer confirmation';
+        log_mail_diagnostic($booking_id, false, 'CUSTOMER_REJECTED', $error_message);
+        return false;
+
+    } catch (Exception $e) {
+        $error_message = 'Customer confirmation error: ' . $e->getMessage();
+        log_mail_diagnostic($booking_id, false, 'CUSTOMER_SMTP_ERROR', $error_message);
+        return false;
+    } catch (\Throwable $t) {
+        $error_message = 'Customer confirmation system error: ' . $t->getMessage();
+        log_mail_diagnostic($booking_id, false, 'CUSTOMER_SYSTEM_ERROR', $error_message);
         return false;
     }
 }

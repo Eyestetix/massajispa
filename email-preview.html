@@ -299,6 +299,15 @@
       </div>
     </div>
 
+    <div style="display: flex; gap: 4px; background: #0B1120; padding: 3px; border-radius: 10px; border: 1px solid #1E3A8A;">
+      <button id="btn-tmpl-admin" class="view-btn active" onclick="switchTemplate('admin', this)">
+        👔 Notifikasi Admin
+      </button>
+      <button id="btn-tmpl-customer" class="view-btn" onclick="switchTemplate('customer', this)">
+        🌟 Konfirmasi Tamu
+      </button>
+    </div>
+
     <div class="view-toggles">
       <button class="view-btn" onclick="setViewMode('desktop', this)">
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
@@ -326,29 +335,31 @@
   <div class="preview-canvas">
     <div id="emailWrapper" class="email-wrapper mode-mobile">
       
-      <!-- Mail Client Top Mockup -->
-      <div class="email-client-header">
-        <div class="client-dots">
-          <div class="client-dot dot-red"></div>
-          <div class="client-dot dot-yellow"></div>
-          <div class="client-dot dot-green"></div>
+      <!-- ================= ADMIN VIEW ================= -->
+      <div id="view-admin">
+        <!-- Mail Client Top Mockup -->
+        <div class="email-client-header">
+          <div class="client-dots">
+            <div class="client-dot dot-red"></div>
+            <div class="client-dot dot-yellow"></div>
+            <div class="client-dot dot-green"></div>
+          </div>
+          <div class="client-meta-row">
+            <span class="client-label">Dari:</span>
+            <span class="client-value">Massaji Spa Bali &lt;reservation@massaji.net&gt;</span>
+          </div>
+          <div class="client-meta-row">
+            <span class="client-label">Kepada:</span>
+            <span class="client-value">Massaji Spa Admin &lt;massajibali.reservation@gmail.com&gt;</span>
+          </div>
+          <div class="client-meta-row">
+            <span class="client-label">Waktu:</span>
+            <span class="client-value">Hari ini, 14:05 WITA</span>
+          </div>
+          <div class="client-subject">
+            [Massaji Spa] New Reservation — Sarah Jenkins (15 Nov 2026 14:00 WITA)
+          </div>
         </div>
-        <div class="client-meta-row">
-          <span class="client-label">Dari:</span>
-          <span class="client-value">Massaji Spa Bali &lt;reservation@massaji.net&gt;</span>
-        </div>
-        <div class="client-meta-row">
-          <span class="client-label">Kepada:</span>
-          <span class="client-value">Massaji Spa Admin &lt;reservation@massaji.net&gt;</span>
-        </div>
-        <div class="client-meta-row">
-          <span class="client-label">Waktu:</span>
-          <span class="client-value">Hari ini, 14:05 WITA</span>
-        </div>
-        <div class="client-subject">
-          [Booking Baru] Deep Tissue Massage (90 mins) - Sarah Jenkins (15 Nov 2026 14:00 WITA)
-        </div>
-      </div>
 
       <!-- Actual Rendered Email Body -->
       <div class="email-body-box">
@@ -574,13 +585,235 @@
         <!-- END ACTUAL EMAIL TEMPLATE -->
 
       </div>
+      </div>
+      <!-- ================= END ADMIN VIEW ================= -->
+
+      <!-- ================= CUSTOMER VIEW ================= -->
+      <div id="view-customer" style="display: none;">
+        <!-- Mail Client Top Mockup -->
+        <div class="email-client-header">
+          <div class="client-dots">
+            <div class="client-dot dot-red"></div>
+            <div class="client-dot dot-yellow"></div>
+            <div class="client-dot dot-green"></div>
+          </div>
+          <div class="client-meta-row">
+            <span class="client-label">Dari:</span>
+            <span class="client-value">Massaji Spa Bali &lt;reservation@massaji.net&gt;</span>
+          </div>
+          <div class="client-meta-row">
+            <span class="client-label">Kepada:</span>
+            <span class="client-value">Sarah Jenkins &lt;sarah.jenkins@example.com&gt;</span>
+          </div>
+          <div class="client-meta-row">
+            <span class="client-label">Waktu:</span>
+            <span class="client-value">Hari ini, 14:05 WITA</span>
+          </div>
+          <div class="client-subject">
+            [Massaji Spa Bali] Konfirmasi Reservasi Anda — #BK-20261115-9482
+          </div>
+        </div>
+
+        <div class="email-body-box">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 24px 8px; background-color: #EBF5FE; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #141E3C;">
+            <tr>
+              <td align="center">
+                
+                <table class="resp-card" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; border: 1px solid #BAE0FD; box-shadow: 0 12px 36px rgba(20, 30, 60, 0.08);">
+                  
+                  <!-- Header -->
+                  <tr>
+                    <td class="resp-header-pad" style="background: #141E3C; background: linear-gradient(135deg, #141E3C 0%, #1E3A8A 55%, #141E3C 100%); padding: 36px 20px 28px; text-align: center; border-bottom: 2px solid #C5A880;">
+                      
+                      <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto 14px;">
+                        <tr>
+                          <td style="width: 80px; height: 80px; border-radius: 50%; background-color: #FFFFFF; padding: 5px; border: 3px solid #BAE0FD; text-align: center; vertical-align: middle; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+                            <img src="assets/images/member-1.png" alt="Massaji Spa Logo" width="70" height="70" style="width: 70px; height: 70px; border-radius: 50%; display: block; margin: 0 auto; object-fit: contain;">
+                          </td>
+                        </tr>
+                      </table>
+
+                      <div style="font-size: 11px; font-weight: 800; letter-spacing: 3.5px; color: #C5A880; text-transform: uppercase; margin-bottom: 4px;">マッサージ</div>
+
+                      <h1 style="margin: 0 0 6px; font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                        Massaji Spa Bali
+                      </h1>
+
+                      <p style="margin: 0; font-size: 12px; color: #BAE0FD; font-weight: 500; letter-spacing: 0.3px;">
+                        Authentic Balinese Massage &amp; Holistic Wellness Sanctuary
+                      </p>
+
+                    </td>
+                  </tr>
+
+                  <!-- Content Body -->
+                  <tr>
+                    <td class="resp-content-pad" style="padding: 28px 24px;">
+
+                      <!-- Greeting Banner -->
+                      <div style="margin-bottom: 22px;">
+                        <h2 style="margin: 0 0 8px; font-size: 19px; font-weight: 800; color: #141E3C;">
+                          Halo Kak Sarah Jenkins, 🙏
+                        </h2>
+                        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #475569;">
+                          Terima kasih telah mempercayakan waktu istirahat dan relaksasi Anda di <strong>Massaji Spa Bali</strong>. Permintaan reservasi Anda telah berhasil kami terima.
+                        </p>
+                      </div>
+
+                      <!-- Status Card -->
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 22px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; overflow: hidden;">
+                        <tr>
+                          <td style="padding: 14px 16px;">
+                            <div style="display: inline-block; background-color: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 12px; margin-bottom: 6px;">
+                              ⏳ Status: Menunggu Konfirmasi Resepsionis
+                            </div>
+                            <div style="font-size: 12.5px; line-height: 1.5; color: #78350F;">
+                              Tim resepsionis kami sedang memeriksa ketersediaan slot terapis terbaik dan akan segera menghubungi Anda melalui WhatsApp di nomor <strong>+62 812-3456-7890</strong> untuk konfirmasi final.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Booking Summary Box -->
+                      <table class="resp-card-inner" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 22px; background-color: #FFFFFF; border: 1px solid #BAE0FD; border-radius: 14px; overflow: hidden;">
+                        
+                        <tr>
+                          <td style="background: linear-gradient(135deg, #F0F8FF 0%, #E0F2FE 100%); padding: 14px 16px; border-bottom: 1px solid #BAE0FD;">
+                            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0284C7;">Rincian Reservasi</div>
+                            <div class="resp-service-title" style="font-size: 18px; font-weight: 800; color: #141E3C; margin-top: 2px;">Deep Tissue Massage (90 mins)</div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="padding: 0;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 13px;">
+                              <tr>
+                                <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; width: 34%; white-space: nowrap;">🔖 ID Booking</td>
+                                <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #1E3A8A; font-family: monospace; font-weight: 700; font-size: 12.5px;">BK-20261115-9482</td>
+                              </tr>
+                              <tr>
+                                <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📅 Tanggal</td>
+                                <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700;">Minggu, 15 November 2026</td>
+                              </tr>
+                              <tr>
+                                <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">⏰ Waktu Reservasi</td>
+                                <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700;">14:00 WITA</td>
+                              </tr>
+                              <tr>
+                                <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">👥 Jumlah Tamu</td>
+                                <td class="resp-table-cell" style="padding: 10px 14px; border-bottom: 1px solid #F1F5F9; color: #141E3C; font-weight: 700;">2 Orang</td>
+                              </tr>
+                              <tr>
+                                <td class="resp-table-cell resp-table-label" style="padding: 10px 14px; color: #64748B; font-weight: 600; background-color: #F8FCFF; white-space: nowrap;">📝 Catatan Khusus</td>
+                                <td class="resp-table-cell" style="padding: 10px 14px; color: #475569;">Mohon sediakan 2 terapis wanita dan aromaterapi lavender jika tersedia. Terima kasih!</td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+
+                      </table>
+
+                      <!-- Important Info Box -->
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 24px; background: #F8FCFF; border: 1px solid #BAE0FD; border-radius: 12px; overflow: hidden;">
+                        <tr>
+                          <td style="padding: 16px;">
+                            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #1E3A8A; margin-bottom: 10px;">
+                              ✨ Panduan &amp; Informasi Kunjungan
+                            </div>
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; line-height: 1.5; color: #334155;">
+                              <tr>
+                                <td style="padding-bottom: 8px; vertical-align: top; width: 22px;">⏰</td>
+                                <td style="padding-bottom: 8px;"><strong>Waktu Kedatangan:</strong> Mohon tiba 10–15 menit lebih awal untuk menikmati welcoming refreshment dan konsultasi preferensi tekanan pijat.</td>
+                              </tr>
+                              <tr>
+                                <td style="padding-bottom: 8px; vertical-align: top; width: 22px;">📍</td>
+                                <td style="padding-bottom: 8px;"><strong>Lokasi Sanctuary:</strong> Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361</td>
+                              </tr>
+                              <tr>
+                                <td style="vertical-align: top; width: 22px;">💳</td>
+                                <td><strong>Pembayaran di Tempat:</strong> Dapat diselesaikan setelah perawatan via Tunai, QRIS, Kartu Debit atau Kredit.</td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Action CTA Buttons -->
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 8px;">
+                        <tr>
+                          <td class="resp-action-col" width="48%" align="center">
+                            <a href="https://wa.me/6281236695755" target="_blank" style="display: block; background: #059669; background: linear-gradient(135deg, #059669 0%, #10B981 100%); color: #FFFFFF; padding: 12px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
+                              🟢 Chat Resepsionis WhatsApp
+                            </a>
+                          </td>
+                          <td class="resp-action-spacer" width="4%"></td>
+                          <td class="resp-action-col" width="48%" align="center">
+                            <a href="https://maps.google.com/?q=Massaji+Spa+Bali" target="_blank" style="display: block; background-color: #F0F8FF; border: 1px solid #BAE0FD; color: #1E3A8A; padding: 12px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center;">
+                              📍 Petunjuk Arah Google Maps
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td class="resp-footer-pad" style="background-color: #141E3C; padding: 26px 20px; text-align: center; border-top: 1px solid #1E3A8A;">
+                      
+                      <div style="font-size: 13px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">
+                        Massaji Spa Bali
+                      </div>
+
+                      <div style="font-size: 11.5px; color: #94A3B8; margin-bottom: 12px; line-height: 1.4;">
+                        Jl. Raya Canggu, Gg. Bedugul No. 3, Kerobokan, Canggu, Bali 80361<br>
+                        Jam Buka: Setiap Hari: 10:00 - 21:00 WITA
+                      </div>
+
+                      <div style="font-size: 11px; color: #64748B;">
+                        Email ini dikirim otomatis sebagai tanda terima reservasi melalui website resmi <a href="https://massaji.net" style="color: #BAE0FD; text-decoration: underline;">massaji.net</a>.<br>
+                        Jika Anda memiliki pertanyaan mendesak, silakan hubungi WhatsApp kami di <strong>+6281236695755</strong>.
+                      </div>
+
+                    </td>
+                  </tr>
+
+                </table>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- ================= END CUSTOMER VIEW ================= -->
 
     </div>
   </div>
 
   <script>
+    function switchTemplate(type, btn) {
+      document.querySelectorAll('#btn-tmpl-admin, #btn-tmpl-customer').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const targetBtn = document.getElementById(type === 'admin' ? 'btn-tmpl-admin' : 'btn-tmpl-customer');
+        if (targetBtn) targetBtn.classList.add('active');
+      }
+
+      const adminView = document.getElementById('view-admin');
+      const customerView = document.getElementById('view-customer');
+      if (type === 'customer') {
+        adminView.style.display = 'none';
+        customerView.style.display = 'block';
+      } else {
+        adminView.style.display = 'block';
+        customerView.style.display = 'none';
+      }
+    }
+
     function setViewMode(mode, btn) {
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view-toggles .view-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const wrapper = document.getElementById('emailWrapper');

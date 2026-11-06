@@ -281,6 +281,7 @@ class SpaPreviewHandler(http.server.SimpleHTTPRequestHandler):
                 'success': True,
                 'message': 'Permintaan reservasi Anda telah berhasil dikirim ke email resepsionis kami. Tim kami akan segera mengonfirmasi jadwal Anda.',
                 'mail_sent': True,
+                'customer_mail_sent': bool(email and '@' in email),
                 'whatsapp_url': wa_url,
                 'details': {
                     'name': name,
