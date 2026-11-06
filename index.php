@@ -5,7 +5,7 @@ $live_settings = [];
 if (file_exists($settings_file)) {
     $live_settings = json_decode(file_get_contents($settings_file), true) ?: [];
 }
-$live_about_img = !empty($live_settings['about_image']) ? $live_settings['about_image'] : 'assets/images/massaji-about.jpg';
+$live_about_img = !empty($live_settings['about_image']) ? $live_settings['about_image'] : 'assets/uploads/665d1829a879f_20261030_024832.jpg';
 $live_hero_img  = !empty($live_settings['hero_image']) ? $live_settings['hero_image'] : 'assets/images/massaji-hero.jpg';
 $live_promo_img = !empty($live_settings['promo_flyer_image']) ? $live_settings['promo_flyer_image'] : 'assets/images/promo-flyer-2026.jpeg';
 $live_promo_title = !empty($live_settings['promo_title']) ? $live_settings['promo_title'] : 'END YEAR 2026 Big Promotion';
